@@ -13,7 +13,6 @@ Thumbs.db
 *.diff
 *.rar
 *.zip
-*.bat
 *.pyc
 *.pdb
 *.tlog
