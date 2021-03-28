@@ -1,4 +1,5 @@
 class CfgVehicles {
+    class Plane;
     class CUP_F35B_base : Plane {
         envelope[] = { 0, 1.75, 5.9, 7, 9.8, 10.3, 10.5, 10.9, 9.2, 7.8, 5, 3.8, 0.5, 0 };
         aileronSensitivity = 1.2;
@@ -69,8 +70,12 @@ class CfgVehicles {
         scopeCurator = 0;
     };
 
+    class EGVAR(f35,raf);
     class uksf_f35_plane_raf : EGVAR(f35,raf) {};
+    class EGVAR(f35,raf_stealth);
     class uksf_f35_plane_raf_stealth : EGVAR(f35,raf_stealth) {};
+    class EGVAR(f35,usmc);
     class uksf_f35_plane_usmc : EGVAR(f35,usmc) {};
+    class EGVAR(f35,usmc_stealth);
     class uksf_f35_plane_usmc_stealth : EGVAR(f35,usmc_stealth) {};
 };
