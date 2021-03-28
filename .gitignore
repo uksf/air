@@ -1,4 +1,7 @@
 release/*
+releases/*
+keys/*
+.hemtt/local
 tools/temp
 *.cache
 *.pbo

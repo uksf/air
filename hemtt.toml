@@ -15,7 +15,6 @@ key_name = "{{prefix}}_{{version}}"
 authority = "{{prefix}}_{{version}}-{{git \"id 8\"}}"
 
 check = [
-    "!version_set",
     "!binarizer_link"
 ]
 releasebuild = [
