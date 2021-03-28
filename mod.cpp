@@ -1,0 +1,12 @@
+name = "UKSF Air";
+picture = "modLarge.paa";
+actionName = "GitHub";
+action = "https://github.com/uksf/modpack";
+description = "UKSF - Air";
+logo = "mod.paa";
+logoOver = "mod.paa";
+tooltip = "UKSF Air";
+tooltipOwned = "UKSF Air";
+overview = "UKSF Air";
+author = "UKSF SR3 Team";
+overviewPicture = "modLarge.paa";
