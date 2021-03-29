@@ -1,0 +1,18 @@
+////////////////////////////////////////////////////////////////////
+//DeRap: Produced from mikero's Dos Tools Dll version 4.97
+//Wed Mar 04 19:18:21 2015 : Source 'file' date Wed Mar 04 19:18:21 2015
+//http://dev-heaven.net/projects/list_files/mikero-pbodll
+////////////////////////////////////////////////////////////////////
+
+#define _ARMA_
+
+//Class USAF_c17\mat\screen.rvmat{
+ambient[] = {3,3,3,3};
+diffuse[] = {0,0,0,0};
+forcedDiffuse[] = {0,0,0,0};
+emmisive[] = {60,60,60,1};
+specular[] = {7.74,7.74,7.74,0};
+specularPower = 0;
+PixelShaderID = "NormalMap";
+VertexShaderID = "NormalMap";
+//};

@@ -5,7 +5,8 @@ class CfgPatches {
         name = COMPONENT_NAME;
         units[] = {};
         weapons[] = {
-            QGVAR(gunpod)
+            QGVAR(gunpod),
+            QGVAR(C130FlareLauncher)
         };
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {

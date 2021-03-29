@@ -71,11 +71,19 @@ class CfgVehicles {
     };
 
     class EGVAR(f35,raf);
-    class uksf_f35_plane_raf : EGVAR(f35,raf) {};
+    class uksf_f35_plane_raf : EGVAR(f35,raf) {
+        scope = 1;
+    };
     class EGVAR(f35,raf_stealth);
-    class uksf_f35_plane_raf_stealth : EGVAR(f35,raf_stealth) {};
+    class uksf_f35_plane_raf_stealth : EGVAR(f35,raf_stealth) {
+        scope = 1;
+    };
     class EGVAR(f35,usmc);
-    class uksf_f35_plane_usmc : EGVAR(f35,usmc) {};
+    class uksf_f35_plane_usmc : EGVAR(f35,usmc) {
+        scope = 1;
+    };
     class EGVAR(f35,usmc_stealth);
-    class uksf_f35_plane_usmc_stealth : EGVAR(f35,usmc_stealth) {};
+    class uksf_f35_plane_usmc_stealth : EGVAR(f35,usmc_stealth) {
+        scope = 1;
+    };
 };

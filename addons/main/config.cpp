@@ -35,8 +35,8 @@ class CfgMods {
     class Mod_Base;
     class PREFIX: Mod_Base {
         dir = "@uksf_air";
-        name = "UKSF F35";
-        author = "F35";
+        name = "UKSF Air";
+        author = "UKSF";
         picture = QPATHTO_R(data\uksf_logo_ca);
         logo = QPATHTO_R(data\uksf_logo_ca);
         logoOver = QPATHTO_R(data\uksf_logo_ca);
@@ -46,9 +46,9 @@ class CfgMods {
         actionName = "Website";
         action = "http://uk-sf.co.uk/";
         description = "Issue Tracker: https://github.com/uksf/modpack/issues";
-        tooltip = "UKSF F35";
-        tooltipOwned = "UKSF F35 - Owned";
-        overview = "F35 for UKSF";
+        tooltip = "UKSF Air";
+        tooltipOwned = "UKSF Air - Owned";
+        overview = "Air Vehicles for UKSF";
     };
 };
 

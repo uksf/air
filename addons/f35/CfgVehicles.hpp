@@ -360,7 +360,7 @@ class CfgVehicles {
                 center = "Wheel_1_center";
                 boundary = "Wheel_1_rim";
                 width = 0.4;
-                mass = 998;
+                mass = 80;
                 MOI = 0.5;
                 dampingRate = 0.2;
                 dampingRateDamaged = 1;
@@ -384,7 +384,7 @@ class CfgVehicles {
                 steering = 0;
                 center = "Wheel_2_center";
                 boundary = "Wheel_2_rim";
-                mass = 1123;
+                mass = 80;
                 width = 0.6;
                 suspTravelDirection[] = { 0, -0.6, 0 };
                 maxCompression = 0.3;
@@ -1038,7 +1038,7 @@ class CfgVehicles {
         scope = 2;
         scopeCurator = 2;
         faction = "CUP_B_GB";
-        editorPreview = QPATHTOEF(common,data\uksf_f35_raf.jpg);
+        editorPreview = QPATHTOF(data\ui\uksf_f35_raf.jpg);
         hiddenSelectionsTextures[] = {
             QPATHTOF(data\exterior_1_co.paa),
             QPATHTOF(data\name_0_ca.paa)
@@ -1046,7 +1046,7 @@ class CfgVehicles {
     };
     class GVAR(raf_stealth) : GVAR(raf) {
         displayName = "F-35B Lightning II (Stealth)";
-        editorPreview = QPATHTOEF(common,data\uksf_f35_raf_stealth.jpg);
+        editorPreview = QPATHTOF(data\ui\uksf_f35_raf_stealth.jpg);
         radarTargetSize = 0.15;
         visualTargetSize = 0.5;
         class AnimationSources : AnimationSources {
@@ -1103,7 +1103,7 @@ class CfgVehicles {
         scope = 2;
         scopeCurator = 2;
         faction = "CUP_B_USMC";
-        editorPreview = QPATHTOEF(common,data\uksf_f35_usmc.jpg);
+        editorPreview = QPATHTOF(data\ui\uksf_f35_usmc.jpg);
         hiddenSelectionsTextures[] = {
             QPATHTOF(data\exterior_1_usmc_co.paa),
             QPATHTOF(data\name_0_ca.paa)
@@ -1111,7 +1111,7 @@ class CfgVehicles {
     };
     class GVAR(usmc_stealth) : GVAR(usmc) {
         displayName = "F-35B Lightning II (Stealth)";
-        editorPreview = QPATHTOEF(common,data\uksf_f35_usmc_stealth.jpg);
+        editorPreview = QPATHTOF(data\ui\uksf_f35_usmc_stealth.jpg);
         radarTargetSize = 0.15;
         visualTargetSize = 0.5;
         class AnimationSources : AnimationSources {

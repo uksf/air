@@ -6,6 +6,4 @@ ADDON = false;
 
 #include "initSettings.sqf"
 
-GVAR(inGroup) = true;
-
 ADDON = true;

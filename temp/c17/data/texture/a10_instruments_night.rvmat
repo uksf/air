@@ -1,0 +1,18 @@
+////////////////////////////////////////////////////////////////////
+//DeRap: usaf_c17\data\texture\a10_instruments_night.rvmat
+//Produced from mikero's Dos Tools Dll version 7.46
+//https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
+//'now' is Wed Feb 03 16:42:57 2021 : 'file' last modified on Wed May 20 08:38:27 2020
+////////////////////////////////////////////////////////////////////
+
+#define _ARMA_
+
+ambient[] = {1,1,1,1};
+diffuse[] = {1,0.9999999,1,1};
+forcedDiffuse[] = {0,0,0,0};
+emmisive[] = {60,65,65,1};
+specular[] = {0,0,0,1};
+specularPower = 1;
+renderFlags[] = {"NoZWrite","NoAlphaWrite"};
+PixelShaderID = "Normal";
+VertexShaderID = "Basic";

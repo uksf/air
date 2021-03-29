@@ -9,5 +9,5 @@
 #include "\u\uksf_air\addons\main\script_macros.hpp"
 
 #define VERSION_CONFIG_COMMON VERSION_CONFIG; \
-    versionDesc = "UKSF F35"; \
+    versionDesc = "UKSF Air"; \
     versionAct = QUOTE(call COMPILE_FILE(init_versionTooltip))

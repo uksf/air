@@ -14,7 +14,6 @@ def tryHemttBuild(projectpath):
     if os.path.isfile(hemttExe):
         os.chdir(projectpath)
         ret = subprocess.call([hemttExe, "pack"], stderr=subprocess.STDOUT)
-        print("Using hemtt: {}".format(ret));
         return True
     else:
         print("hemtt not installed");
