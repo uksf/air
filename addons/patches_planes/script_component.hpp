@@ -1,5 +1,5 @@
-#define COMPONENT f35_patches
-#define COMPONENT_BEAUTIFIED F-35 Patches
+#define COMPONENT patches_planes
+#define COMPONENT_BEAUTIFIED Patches - Planes
 #include "\u\uksf_air\addons\main\script_mod.hpp"
 
 // #define DEBUG_MODE_FULL
