@@ -21,23 +21,23 @@ class CfgVehicles {
         icon = QPATHTOF(data\ui\icon.paa);
         picture = QPATHTOF(data\ui\picture.paa);
         hiddenSelections[] = { "camo1", "name" };
-        // class Damage {
-        //     tex[] = {};
-        //     mat[] = {
-        //         QPATHTOF(data\exterior_1.rvmat),
-        //         QPATHTOF(data\exterior_1_damage.rvmat),
-        //         QPATHTOF(data\exterior_1_destruct.rvmat),
-        //         QPATHTOF(data\exterior_2.rvmat),
-        //         QPATHTOF(data\exterior_2_damage.rvmat),
-        //         QPATHTOF(data\exterior_2_destruct.rvmat),
-        //         QPATHTOF(data\exterior_3.rvmat),
-        //         QPATHTOF(data\exterior_3_damage.rvmat),
-        //         QPATHTOF(data\exterior_3_destruct.rvmat),
-        //         QPATHTOF(data\exterior_glass.rvmat),
-        //         QPATHTOF(data\exterior_glass_damage.rvmat),
-        //         QPATHTOF(data\exterior_glass_damage.rvmat)
-        //     };
-        // };
+        class Damage {
+            tex[] = {};
+            mat[] = {
+                QPATHTO_R(data\exterior_1.rvmat),
+                QPATHTO_R(data\exterior_1_damage.rvmat),
+                QPATHTO_R(data\exterior_1_destruct.rvmat),
+                QPATHTO_R(data\exterior_2.rvmat),
+                QPATHTO_R(data\exterior_2_damage.rvmat),
+                QPATHTO_R(data\exterior_2_destruct.rvmat),
+                QPATHTO_R(data\exterior_3.rvmat),
+                QPATHTO_R(data\exterior_3_damage.rvmat),
+                QPATHTO_R(data\exterior_3_destruct.rvmat),
+                QPATHTO_R(data\exterior_glass.rvmat),
+                QPATHTO_R(data\exterior_glass_damage.rvmat),
+                QPATHTO_R(data\exterior_glass_damage.rvmat)
+            };
+        };
         armor = 90;
         threat[] = { 0.1, 1, 1 };
         camouflage = 20;
