@@ -7,29 +7,29 @@ class MFD {
         borderRight = 0;
         borderTop = 0;
         borderBottom = 0;
-        color[] = { 0.15, 1, 0.15, 1 };
+        color[] = { 0.082, 0.408, 0.039, 1 };
         enableParallax = 0;
         class Bones {
             class PlaneOrientation {
                 type = "fixed";
-                pos[] = { 0.5, "0.53 + -0.13" };
+                pos[] = { 0.5, 0.5 };
             };
             class WeaponAim {
                 type = "vector";
                 source = "weapon";
-                pos0[] = { 0.5, "0.53 + -0.13" };
-                pos10[] = { 1.5, "1.53 + -0.13 + -0.25" };
+                pos0[] = { 0.5, 0.5 };
+                pos10[] = { 1.5, 1.5 };
             };
             class Velocity {
                 type = "vector";
                 source = "velocity";
-                pos0[] = { 0.5, "0.53 + -0.13" };
-                pos10[] = { 1.5, "1.53 + -0.13 + -0.25" };
+                pos0[] = { 0.5, 0.5 };
+                pos10[] = { 1.5, 1.5 };
             };
             class Level0 {
                 type = "horizon";
-                pos0[] = { 0.5, "0.53 + -0.13" };
-                pos10[] = { 1.5, "1.53 + -0.13 + -0.25" };
+                pos0[] = { 0.5, 0.5 };
+                pos10[] = { 1.5, 1.5 };
                 angle = 0;
             };
             class ILS_H {
@@ -55,8 +55,8 @@ class MFD {
             alpha = 0.9;
             condition = "on";
             class Horizont {
-                clipTL[] = { 0.15, 0.15 };
-                clipBR[] = { 0.85, 0.85 };
+                clipTL[] = { 0.1, 0.1 };
+                clipBR[] = { 0.9, 0.9 };
                 class Dimmed {
                     class Level00 {
                         type = "line";

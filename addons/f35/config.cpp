@@ -5,9 +5,7 @@ class CfgPatches {
         name = COMPONENT_NAME;
         units[] = {
             QGVAR(raf),
-            QGVAR(raf_stealth),
-            QGVAR(usmc),
-            QGVAR(usmc_stealth)
+            QGVAR(raf_stealth)
         };
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;

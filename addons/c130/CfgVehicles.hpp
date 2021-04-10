@@ -13,7 +13,9 @@ class CfgVehicles {
     class Plane;
     class Plane_Base_F : Plane {
         class NewTurret;
-        class Turrets : NewTurret {};
+        class Turrets {
+            class CopilotTurret;
+        };
         class ViewPilot;
         class ViewGunner;
         class HitPoints {
@@ -30,33 +32,34 @@ class CfgVehicles {
         model = QPATHTOF(uksf_c130_base.p3d);
         icon = QPATHTOF(data\ui\icon.paa);
         picture = QPATHTOF(data\ui\picture.paa);
+        editorPreview = QPATHTOF(data\ui\uksf_c130_raf.jpg);
         crew = "B_Pilot_F";
         unitInfoType = "RscUnitInfoAirPlaneNoSpeed";
         unitInfoTypeLite = "RscUnitInfoAirPlaneNoSpeed";
         hiddenSelections[] = { "camo1", "camo2", "interior" };
         hiddenSelectionsTextures[] = {
-            QPATHTOF(data\tex\c130j_body_co.paa),
-            QPATHTOF(data\tex\c130j_wings_co.paa),
-            QPATHTOF(data\tex\c130j_interior_co.paa)
+            QPATHTOF(data\tex\c130j_body_raf_co.paa),
+            QPATHTOF(data\tex\c130j_wings_raf_co.paa),
+            QPATHTOF(data\tex\c130j_interior_raf_co.paa)
         };
         mapSize = 25;
         threat[] = { 0.1, 0.1, 0.1 };
         ejectSpeed[] = { 0, 0, 0 };
         simulation = "airplaneX";
         landingAoa = "rad 7";
-        landingSpeed = 200;
+        landingSpeed = 220;
         extCameraPosition[] = { 0, 0, -40 };
         envelope[] = { 0, 0.1, 0.9, 2.8, 3.5, 3.7, 3.8, 3.8, 3.6, 3.3, 3 };
         wheelSteeringSensitivity = 5;
-        aileronSensitivity = 1.5;
+        aileronSensitivity = 1.3;
         aileronCoef[] = { 0, 0.5, 0.9, 1, 1.05, 1.1, 1.12 };
-        elevatorSensitivity = 2;
-        elevatorCoef[] = { 0, 0.4, 0.9, 1, 1.15, 1.2, 1.3 };
-        rudderInfluence = 0.9;
+        elevatorSensitivity = 0.8;
+        elevatorCoef[] = { 0, 0.4, 0.9, 1, 1.05, 1.1, 1.15 };
+        rudderInfluence = 0.8;
         rudderCoef[] = { 0, 0.8, 1.5, 1.9, 2.2, 2.4, 2.5, 2.5, 2.6, 2.6, 2.6 };
-        aileronControlsSensitivityCoef = 3;
-        elevatorControlsSensitivityCoef = 4;
-        rudderControlsSensitivityCoef = 3;
+        aileronControlsSensitivityCoef = 1;
+        elevatorControlsSensitivityCoef = 1.5;
+        rudderControlsSensitivityCoef = 1.5;
         draconicForceXCoef = 25;
         draconicForceYCoef = 0.2;
         draconicForceZCoef = 1;
@@ -64,8 +67,8 @@ class CfgVehicles {
         draconicTorqueYCoef[] = { 1, 1.2, 1.4, 2, 4, 7, 6.8, 6.6, 6.4, 6.2, 5.5, 5, 4.5, 3.9, 3, 1 };
         thrustCoef[] = { 0.5, 0.75, 0.9, 1, 1.2, 1, 0.9, 0.7, 0.6, 0.5, 0.3, 0.1, 0 };
         airBrake = 1;
-        airBrakeFrictionCoef = 20;
-        flapsFrictionCoef = 2;
+        airBrakeFrictionCoef = 5;
+        flapsFrictionCoef = 1;
         noseDownCoef = 1;
         gearUpTime = 4.5;
         gearDownTime = 3;
@@ -76,14 +79,16 @@ class CfgVehicles {
         cost = 20000;
         lockDetectionSystem = "8 + 4";
         incomingMissileDetectionSystem = "8 + 16";
+        audible = 6;
         armor = 150;
         armorWheels = 4000;
         fuelCapacity = 2000;
         fuelConsumptionRate = 0.398;
         armorStructured = 1;
         showNVGCargo[] = { 1 };
-        brakeDistance = 300;
+        brakeDistance = 200;
         gearRetracting = 1;
+        lightOnGear = 0;
         getInRadius = 4;
         driverAction = QGVAR(pilot);
         driverLeftHandAnimName = "stick_pilot";
@@ -92,7 +97,7 @@ class CfgVehicles {
         cargoIsCoDriver[] = { 0, 0 };
         cargoGetInAction[] = { "GetInLow" };
         cargoGetOutAction[] = { "GetOutLow" };
-        cargoAction[] = { "Truck_Cargo01","Truck_Cargo04","Truck_Cargo02","Truck_Cargo01","Truck_Cargo04","Truck_Cargo02","Truck_Cargo01","Truck_Cargo04","Truck_Cargo02","Truck_Cargo01","Truck_Cargo04","Truck_Cargo02","Truck_Cargo01","Truck_Cargo04","Truck_Cargo02","Truck_Cargo01","Truck_Cargo04","Truck_Cargo02","Truck_Cargo01","Truck_Cargo04","Truck_Cargo02","Truck_Cargo01","Truck_Cargo04","Truck_Cargo02","Truck_Cargo01","Truck_Cargo04","Truck_Cargo02","Truck_Cargo01","Truck_Cargo04","Truck_Cargo02","Truck_Cargo01","Truck_Cargo04","Truck_Cargo02","Truck_Cargo01","Truck_Cargo04",QGVAR(load) };
+        cargoAction[] = { "Truck_Cargo01","Truck_Cargo04","Truck_Cargo02","Truck_Cargo01","Truck_Cargo04","Truck_Cargo02","Truck_Cargo01","Truck_Cargo04","Truck_Cargo02","Truck_Cargo01","Truck_Cargo04","Truck_Cargo02","Truck_Cargo01","Truck_Cargo04","Truck_Cargo02","Truck_Cargo01","Truck_Cargo04","Truck_Cargo02","Truck_Cargo01","Truck_Cargo04","Truck_Cargo02","Truck_Cargo01","Truck_Cargo04","Truck_Cargo02","Truck_Cargo01","Truck_Cargo04","Truck_Cargo02","Truck_Cargo01","Truck_Cargo04","Truck_Cargo02","Truck_Cargo01","Truck_Cargo04","Truck_Cargo02","Truck_Cargo01","Truck_Cargo04" };
         getinaction = "GetInLow";
         getoutaction = "GetInLow";
         gunnerhasflares = 1;
@@ -112,6 +117,64 @@ class CfgVehicles {
         magazines[] = { "300Rnd_CMFlare_Chaff_Magazine" };
         memoryPointCM[] = { "flare_launcher1", "flare_launcher2", "flare_launcher3", "flare_launcher4" };
         memoryPointCMDir[] = { "flare_launcher1_dir", "flare_launcher2_dir", "flare_launcher3_dir", "flare_launcher4_dir" };
+        soundGetIn[] = { QPATHTOF(data\sounds\close),0.31622776,1 };
+        soundGetOut[] = { QPATHTOF(data\sounds\open),0.31622776,1,40 };
+        soundEngineOnInt[] = { QPATHTOF(data\sounds\int_start_1),0.5,1,100 };
+        soundEngineOnExt[] = { QPATHTOF(data\sounds\ext_Start_1),2,1,700 };
+        soundEngineOffInt[] = { QPATHTOF(data\sounds\int_stop_1),2,1,100 };
+        soundEngineOffExt[] = { QPATHTOF(data\sounds\ext_stop_1),2,1,700 };
+        soundIncommingMissile[] = { "a3\sounds_f\vehicles\air\noises\alarm_locked_by_missile_2", 0.1, 1.5 };
+        soundGearUp[] = { "A3\Sounds_F_EPC\CAS_01\gear_up", 0.794328, 0.4, 150 };
+        soundGearDown[] = { "A3\Sounds_F_EPC\CAS_01\gear_down", 0.794328, 0.4, 150 };
+        soundFlapsUp[] = { "A3\Sounds_F_EPC\CAS_01\Flaps_Up", 0.630957, 0.4, 100 };
+        soundFlapsDown[] = { "A3\Sounds_F_EPC\CAS_01\Flaps_Down", 0.630957, 0.4, 100 };
+        class Sounds {
+            class EngineLowOut {
+                sound[] = { QPATHTOF(data\sounds\c130idle.wss),2,1.0,1000 };
+                frequency = "(rpm interpolate [0,1,0.3,1])*(thrust interpolate [0,1,0.8,1.1])";
+                volume = "engineOn*camPos*(rpm interpolate [0.5,1,0,1])*(thrust interpolate [0,1,1,1.3])";
+            };
+            class ForsageOut {
+                sound[] = { QPATHTOF(data\sounds\c130forsageV1.wss),2,1,1500 };
+                frequency = "(rpm interpolate [0,1,1,1])*(thrust interpolate [0,1,0.8,1.1])";
+                volume = "camPos*(rpm interpolate [0,1,0,1])*(thrust interpolate [0,1,0.3,1])";
+            };
+            class ActuatorForsageOut {
+                sound[] = { QPATHTOF(data\sounds\c130ThrottleUpForsage.wss),2,1,800 };
+                frequency = "(thrust interpolate [0,1,0.8,1.1])";
+                volume = "engineOn*camPos*(thrust factor[0.6, 1.0])";
+            };
+            class WindNoiseOut {
+                sound[] = { QPATHTOF(data\sounds\f_windnoise_ext.wss),1,0.6,150 };
+                frequency = "(0.1+(1.2*(speed factor[1, 150])))";
+                volume = "camPos*(speed factor[1, 150])";
+            };
+            class DistantPlaneOut {
+                sound[] = { QPATHTOF(data\sounds\c130distant.wss),3,1.0,2000 };
+                frequency = "(rpm interpolate [0,1,0.5,1])*(thrust interpolate [0,1,0.8,1])";
+                volume = "engineOn*camPos*(rpm interpolate [0,1,0,1])*(thrust interpolate [0,1,0.5,1])";
+            };
+            class EngineLowIn {
+                sound[] = { QPATHTOF(data\sounds\int_engine_low),1,1,100 };
+                frequency = "(rpm interpolate [0,1,0.2,1])*(thrust interpolate [0,1,0.8,1.1])";
+                volume = "(1-camPos)*engineOn*(rpm interpolate [0,1,0,1])*(thrust interpolate [0.6,1,1,0.5])";
+            };
+            class EngineHighIn {
+                sound[] = { QPATHTOF(data\sounds\int_engine_hi),1,1,100 };
+                frequency = "(thrust interpolate [0,1,0.8,1.1])";
+                volume = "(1-camPos)*engineOn*(rpm interpolate [0.55,1,0,1])*(thrust interpolate [0.6,1,0.3,1])";
+            };
+            class ForsageIn {
+                sound[] = { QPATHTOF(data\sounds\int_forsage_1.wss),0.5,1,100 };
+                frequency = "1";
+                volume = "0*(1-camPos)*engineOn*(rpm interpolate [0.4,1,0,1])";
+            };
+            class WindNoiseIn {
+                sound[] = { QPATHTOF(data\sounds\f_windnoise_int.wss),1,100 };
+                frequency = "(0.3+(1.005*(speed factor[1, 50])))";
+                volume = "(1-camPos)*(speed factor[1, 50])";
+            };
+        };
         class Attributes {
             class GVAR(rampPosition) {
                 control = "Combo";
@@ -141,10 +204,6 @@ class CfgVehicles {
             };
         };
         class AnimationSources {
-            class landingBeams {
-                source = "user";
-                animPeriod = 0.01;
-            };
             class door_2_2 {
                 source = "user";
                 animPeriod = 10;
@@ -172,16 +231,6 @@ class CfgVehicles {
             class CollisionLightRed_source {
                 source = "MarkerLight";
                 markerLight = "PositionRed";
-            };
-            class lightred {
-                source = "user";
-                initPhase = 1;
-                animPeriod = 1;
-            };
-            class lightgreen {
-                source = "user";
-                initPhase = 1;
-                animPeriod = 1;
             };
             class fuel_tank_hide {
                 displayName = "Hide Ext Fuel";
@@ -266,47 +315,32 @@ class CfgVehicles {
             };
             class wheel_3_1_source {
                 source = "wheel";
-                wheel = "wheel_3_1";
+                wheel = "wheel_2_1";
             };
             class wheel_3_2_source {
                 source = "wheel";
-                wheel = "wheel_3_2";
+                wheel = "wheel_2_2";
             };
         };
         class UserActions {
             class CloseRamp {
-                position = "pos cargo";
+                position = "pilotcontrol";
                 onlyforplayer = 1;
                 radius = 8;
                 showwindow = 0;
-                displayName = "Close Cargo Ramp";
-                condition = QUOTE((this getVariable[ARR_2(QQGVAR(rampPosition),0)]) != 0);
+                displayName = "Close Ramp";
+                condition = QUOTE([ARR_2(this,0)] call FUNC(canControlRamp));
                 statement = QUOTE([ARR_2(this,0)] call FUNC(rampControl));
             };
-            class CloseRampCrew : CloseRamp {
-                position = "pilotcontrol";
-                radius = 50;
-                condition = QUOTE((this getVariable[ARR_2(QQGVAR(rampPosition),0)]) != 0 && (player in(crew this)));
-            };
             class HalfRamp : CloseRamp {
-                displayname = "Open Cargo Ramp Half";
-                condition = QUOTE((this getVariable[ARR_2(QQGVAR(rampPosition),0)]) != 1);
+                displayname = "Open Ramp Halfway";
+                condition = QUOTE([ARR_2(this,1)] call FUNC(canControlRamp));
                 statement = QUOTE([ARR_2(this,1)] call FUNC(rampControl));
             };
-            class HalfRampCrew : HalfRamp {
-                position = "pilotcontrol";
-                radius = 50;
-                condition = QUOTE((this getVariable[ARR_2(QQGVAR(rampPosition),0)]) != 1 && (player in(crew this)));
-            };
             class OpenRamp : CloseRamp {
-                displayName = "Open Cargo Ramp";
-                condition = QUOTE((this getVariable[ARR_2(QQGVAR(rampPosition),0)]) != 2);
+                displayName = "Open Ramp Fully";
+                condition = QUOTE([ARR_2(this,2)] call FUNC(canControlRamp));
                 statement = QUOTE([ARR_2(this,2)] call FUNC(rampControl));
-            };
-            class OpenRampCrew : OpenRamp {
-                position = "pilotcontrol";
-                radius = 50;
-                condition = QUOTE((this getVariable[ARR_2(QQGVAR(rampPosition),0)]) != 2 && (player in(crew this)));
             };
             class OpenLdoor {
                 displayName = "Open Left Jump Door";
@@ -355,7 +389,7 @@ class CfgVehicles {
                 condition = "(this animationPhase 'door_1') == 1 && player in (crew this)";
             };
             class FormlightsOn {
-                displayName = "<t color='#1F42F0'>~ Formation lights On</t>";
+                displayName = "Formation lights On";
                 displayNameDefault = "";
                 position = "pilotcontrol";
                 textToolTip = "";
@@ -366,7 +400,7 @@ class CfgVehicles {
                 statement = "this animate ['Formlights',1];";
             };
             class FormlightsOff {
-                displayName = "<t color='#1F42F0'>~ Formation lights Off</t>";
+                displayName = "Formation lights Off";
                 displayNameDefault = "";
                 position = "pilotcontrol";
                 textToolTip = "";
@@ -376,60 +410,26 @@ class CfgVehicles {
                 condition = "(this animationphase 'Formlights') == 1 && player == driver this;";
                 statement = "this animate ['Formlights',0];";
             };
-        };
-        class MarkerLights {
-            class PositionRed {
-                color[] = { 10, 0.0, 0.0 };
-                ambient[] = { 0.01, 0.0, 0.0 };
-                intensity = 30;
-                name = "navigationlight red1";
-                drawLight = 1;
-                drawLightSize = 0.4;
-                drawLightCenterSize = 0.1;
-                activeLight = 1;
-                blinking = 0;
-                dayLight = 1;
-                useFlare = 0;
+            class JumpLightsOff {
+                displayName = "Jump Lights Off";
+                position = "pilotcontrol";
+                priority = 1.9;
+                radius = 5;
+                onlyForPlayer = 1;
+                condition = QUOTE([ARR_2(this,0)] call FUNC(canControlJumpLights));
+                statement = QUOTE([ARR_2(this,0)] call FUNC(jumpLightControl));
             };
-            class PositionRed2 : PositionRed {
-                name = "navigationlight red2";
-                activeLight = 1;
+            class JumpLightsRed : JumpLightsOff {
+                displayName = "Jump Lights Red";
+                priority = 2;
+                condition = QUOTE([ARR_2(this,1)] call FUNC(canControlJumpLights));
+                statement = QUOTE([ARR_2(this,1)] call FUNC(jumpLightControl));
             };
-            class PositionRed3 : PositionRed {
-                name = "navigationlight red3";
-                activeLight = 1;
-            };
-            class PositionGreen : PositionRed {
-                color[] = { 0.0, 10, 0.0 };
-                ambient[] = { 0.0, 0.01, 0.0 };
-                name = "navigationlight green1";
-                activeLight = 1;
-            };
-            class PositionWhite : PositionRed {
-                color[] = { 10, 10, 10 };
-                ambient[] = { 0.01, 0.01, 0.01 };
-                name = "navigationlight white1";
-                activeLight = 0;
-            };
-            class PositionWhite2 : PositionWhite {
-                name = "navigationlight white2";
-                activeLight = 0;
-            };
-            class CollisionWhite : PositionRed {
-                color[] = { 50, 50, 50 };
-                ambient[] = { 0.1, 0.1, 0.1 };
-                name = "collisionstrobe1";
-                activeLight = 1;
-                useFlare = 1;
-                blinking = 1;
-                blinkingPattern[] = { 0.05, 0.95 };
-                blinkingPatternGuarantee = 1;
-                drawLightSize = 1;
-                drawLightCenterSize = 0.1;
-            };
-            class CollisionWhite2 : CollisionWhite {
-                name = "collisionstrobe2";
-                activeLight = 2;
+            class JumpLightsGreen : JumpLightsOff {
+                displayName = "Jump Lights Green";
+                priority = 2;
+                condition = QUOTE([ARR_2(this,2)] call FUNC(canControlJumpLights));
+                statement = QUOTE([ARR_2(this,2)] call FUNC(jumpLightControl));
             };
         };
         class HitPoints {
@@ -549,79 +549,78 @@ class CfgVehicles {
                 visual = "HitLCRudder";
             };
         };
+        class ViewPilot {
+            minMoveX = -0.2;
+            maxMoveX = 0.2;
+            minMoveY = -0.1;
+            maxMoveY = 0.1;
+            minMoveZ = -0.1;
+            maxMoveZ = 0.2;
+            minFov = 0.25;
+            maxFov = 1.25;
+            initFov = 0.75;
+            initAngleX = 0;
+            minAngleX = -65;
+            maxAngleX = 85;
+            initAngleY = 0;
+            minAngleY = -150;
+            maxAngleY = 150;
+            speedZoomMaxSpeed = 0;
+            speedZoomMaxFOV = 0.75;
+        };
         class Turrets : Turrets {
-            class MainTurret : NewTurret {
-                startEngine = 0;
-                outGunnerMayFire = 1;
-                commanding = -1;
+            class CopilotTurret : CopilotTurret {
                 memoryPointsGetInGunner = "pos gunner";
                 memoryPointsGetInGunnerDir = "pos gunner dir";
                 gunnerGetInAction = "GetInLow";
                 gunnerGetOutAction = "GetOutLow";
-                memoryPointGun = "machinegun";
-                memoryPointGunnerOptics = "gunnerview";
-                selectionFireAnim = "zasleh";
-                castGunnerShadow = 1;
-                viewGunnerShadow = 1;
-                gunnerOpticsModel = "\A3\Weapons_F\empty.p3d";
-                gunnerForceOptics = 0;
-                enableManualFire = 0;
+                gunnerAction = QGVAR(pilot);
+                gunnerInAction = QGVAR(pilot);
                 isCopilot = 1;
-                primaryGunner = 0;
-                primaryObserver = 0;
-                canEject = 0;
+                gunnerLeftHandAnimName = "stick_pilot";
+                gunnerRightHandAnimName = "stick_pilot";
+                class ViewGunner {
+                    minMoveX = -0.2;
+                    maxMoveX = 0.2;
+                    minMoveY = -0.1;
+                    maxMoveY = 0.1;
+                    minMoveZ = -0.1;
+                    maxMoveZ = 0.2;
+                    minFov = 0.25;
+                    maxFov = 1.25;
+                    initFov = 0.75;
+                    initAngleX = 0;
+                    minAngleX = -65;
+                    maxAngleX = 85;
+                    initAngleY = 0;
+                    minAngleY = -150;
+                    maxAngleY = 150;
+                    speedZoomMaxSpeed = 0;
+                    speedZoomMaxFOV = 0.75;
+                };
+                speedZoomMaxSpeed = 0;
+                speedZoomMaxFOV = 0.75;
+#include "MFD.hpp"
+            };
+            class FlightEngineerTurret : NewTurret {
+                commanding = -2;
+                gunnerName = "Flight Engineer";
+                gunnerCompartments = "Compartment1";
+                memoryPointsGetInGunner = "pos gunner";
+                memoryPointsGetInGunnerDir = "pos gunner dir";
+                gunnerAction = "Truck_Cargo01";
+                gunnerInAction = "Truck_Cargo01";
                 body = "";
                 gun = "";
                 animationSourceBody = "";
                 animationSourceGun = "";
-                weapons[] = {};
-                magazines[] = {};
-                gunnerAction = QGVAR(pilot);
-                gunnerInAction = QGVAR(pilot);
-                gunnerName = "$STR_A3_COPILOT";
-                gunnerNotSpawned = 0;
-                gunnerUsesPilotView = 1;
-                hasGunner = 1;
-                minElev = -50;
-                maxElev = 30;
-                initElev = 11;
-                minTurn = -170;
-                maxTurn = 170;
-                initTurn = 0;
-                maxHorizontalRotSpeed = 3;
-                maxVerticalRotSpeed = 3;
-                class ViewGunner : ViewGunner {
-                    minAngleX = -65;
-                    maxAngleX = 85;
-                    initAngleX = 0;
-                    minAngleY = -150;
-                    maxAngleY = 150;
-                    initAngleY = 0;
-                    minFov = 0.3;
-                    maxFov = 1.2;
-                    initFov = 1;
-                };
-                gunnerLeftHandAnimName = "stick_copilot";
-                gunnerRightHandAnimName = "stick_copilot";
-                gunnerLeftLegAnimName = "";
-                gunnerRightLegAnimName = "";
-                turretCanSee = 15;
-            };
-            class MainTurret2 : NewTurret {
-                dontCreateAI = 1;
-                commanding = -2;
-                gunnerName = "Flight Engineer";
-                gunnerCompartments = "Compartment1";
                 gunnerUsesPilotView = 1;
                 primaryGunner = 0;
                 isCopilot = 0;
                 proxyIndex = 2;
-                memoryPointsGetInGunner = "pos gunner";
-                memoryPointsGetInGunnerDir = "pos gunner dir";
                 canEject = 1;
+                startEngine = 0;
                 gunnerForceOptics = 0;
-                gunnerAction = "Truck_Cargo04";
-                gunnerInAction = "Truck_Cargo04";
                 minElev = -60;
                 maxElev = 10;
                 initElev = 0;
@@ -645,28 +644,18 @@ class CfgVehicles {
                     maxAngleY = 170;
                 };
             };
-            class GunnerTurret : NewTurret {
+            class LoadMasterLeftDoorTurret : FlightEngineerTurret {
                 enabledByAnimationSource = "ramp_bottom";
-                dontCreateAI = 1;
                 commanding = -3;
-                gunnerName = "Load Master";
-                startEngine = 0;
+                gunnerName = "Load Master (Left Jump Door)";
                 gunnerCompartments = "Compartment2";
-                gunnerUsesPilotView = "false";
+                gunnerUsesPilotView = 0;
                 gunnerAction = "Stand";
-                primaryGunner = 0;
-                isCopilot = 0;
                 proxyIndex = 3;
                 memoryPointsGetInGunner = "pos cargo";
                 memoryPointsGetInGunnerDir = "pos cargo dir";
                 gunnergetinaction = "GetInLow";
                 gunnergetoutaction = "GetOutHigh";
-                canEject = 1;
-                weapons[] = {};
-                magazines[] = {};
-                gunnerForceOptics = "false";
-                ejectDeadGunner = "true";
-                isPersonTurret = 1;
                 showAsCargo = 1;
                 minElev = -40;
                 maxElev = 10;
@@ -685,6 +674,17 @@ class CfgVehicles {
                     minAngleY = -170;
                     maxAngleY = 170;
                 };
+            };
+            class LoadMasterRightDoorTurret : LoadMasterLeftDoorTurret {
+                proxyIndex = 4;
+                gunnerName = "Load Master (Right Jump Door)";
+                dontCreateAI = 1;
+            };
+            class LoadMasterRampTurret : LoadMasterLeftDoorTurret {
+                proxyIndex = 5;
+                gunnerName = "Load Master (Ramp)";
+                gunnerAction = "CUP_CH47_Gunner01";
+                dontCreateAI = 1;
             };
         };
         class Damage {
@@ -710,65 +710,6 @@ class CfgVehicles {
                 "a3\data_f\default_destruct.rvmat"
             };
         };
-        soundGetIn[] = { QPATHTOF(data\sounds\close),0.31622776,1 };
-        soundGetOut[] = { QPATHTOF(data\sounds\open),0.31622776,1,40 };
-        soundEngineOnInt[] = { QPATHTOF(data\sounds\int_start_1),0.5,1,100 };
-        soundEngineOnExt[] = { QPATHTOF(data\sounds\ext_Start_1),2,1,700 };
-        soundEngineOffInt[] = { QPATHTOF(data\sounds\int_stop_1),2,1,100 };
-        soundEngineOffExt[] = { QPATHTOF(data\sounds\ext_stop_1),2,1,700 };
-        soundIncommingMissile[] = { "a3\sounds_f\vehicles\air\noises\alarm_locked_by_missile_2", 0.1, 1.5 };
-        soundGearUp[] = { "A3\Sounds_F_EPC\CAS_01\gear_up", 0.794328, 0.4, 150 };
-        soundGearDown[] = { "A3\Sounds_F_EPC\CAS_01\gear_down", 0.794328, 0.4, 150 };
-        soundFlapsUp[] = { "A3\Sounds_F_EPC\CAS_01\Flaps_Up", 0.630957, 0.4, 100 };
-        soundFlapsDown[] = { "A3\Sounds_F_EPC\CAS_01\Flaps_Down", 0.630957, 0.4, 100 };
-        audible = 6;
-        class Sounds {
-            class EngineLowOut {
-                sound[] = { QPATHTOF(data\sounds\c130idle.wss),2,1.0,1000 };
-                frequency = "(rpm interpolate [0,1,0.3,1])*(thrust interpolate [0,1,0.8,1.1])";
-                volume = "engineOn*camPos*(rpm interpolate [0.5,1,0,1])*(thrust interpolate [0,1,1,1.3])";
-            };
-            class ForsageOut {
-                sound[] = { QPATHTOF(data\sounds\c130forsageV1.wss),2,1,1500 };
-                frequency = "(rpm interpolate [0,1,1,1])*(thrust interpolate [0,1,0.8,1.1])";
-                volume = "camPos*(rpm interpolate [0,1,0,1])*(thrust interpolate [0,1,0.3,1])";
-            };
-            class ActuatorForsageOut {
-                sound[] = { QPATHTOF(data\sounds\c130ThrottleUpForsage.wss),2,1,800 };
-                frequency = "(thrust interpolate [0,1,0.8,1.1])";
-                volume = "engineOn*camPos*(thrust factor[0.6, 1.0])";
-            };
-            class WindNoiseOut {
-                sound[] = { QPATHTOF(data\sounds\f_windnoise_ext.wss),1,0.6,150 };
-                frequency = "(0.1+(1.2*(speed factor[1, 150])))";
-                volume = "camPos*(speed factor[1, 150])";
-            };
-            class DistantPlaneOut {
-                sound[] = { QPATHTOF(data\sounds\c130distant.wss),3,1.0,2000 };
-                frequency = "(rpm interpolate [0,1,0.5,1])*(thrust interpolate [0,1,0.8,1])";
-                volume = "engineOn*camPos*(rpm interpolate [0,1,0,1])*(thrust interpolate [0,1,0.5,1])";
-            };
-            class EngineLowIn {
-                sound[] = { QPATHTOF(data\sounds\int_engine_low),1,1,100 };
-                frequency = "(rpm interpolate [0,1,0.2,1])*(thrust interpolate [0,1,0.8,1.1])";
-                volume = "(1-camPos)*engineOn*(rpm interpolate [0,1,0,1])*(thrust interpolate [0.6,1,1,0.5])";
-            };
-            class EngineHighIn {
-                sound[] = { QPATHTOF(data\sounds\int_engine_hi),1,1,100 };
-                frequency = "(thrust interpolate [0,1,0.8,1.1])";
-                volume = "(1-camPos)*engineOn*(rpm interpolate [0.55,1,0,1])*(thrust interpolate [0.6,1,0.3,1])";
-            };
-            class ForsageIn {
-                sound[] = { QPATHTOF(data\sounds\int_forsage_1.wss),0.5,1,100 };
-                frequency = "1";
-                volume = "0*(1-camPos)*engineOn*(rpm interpolate [0.4,1,0,1])";
-            };
-            class WindNoiseIn {
-                sound[] = { QPATHTOF(data\sounds\f_windnoise_int.wss),1,100 };
-                frequency = "(0.3+(1.005*(speed factor[1, 50])))";
-                volume = "(1-camPos)*(speed factor[1, 50])";
-            };
-        };
         class Exhausts {
             class Exhaust_right {
                 position = "Exhaust1";
@@ -790,6 +731,61 @@ class CfgVehicles {
                 direction = "Exhaust4_dir";
             };
         };
+        class MarkerLights {
+            class PositionRed {
+                color[] = { 10, 0.0, 0.0 };
+                ambient[] = { 0.01, 0.0, 0.0 };
+                intensity = 30;
+                name = "navigationlight red1";
+                drawLight = 1;
+                drawLightSize = 0.4;
+                drawLightCenterSize = 0.1;
+                activeLight = 1;
+                blinking = 0;
+                dayLight = 1;
+                useFlare = 0;
+            };
+            class PositionRed2 : PositionRed {
+                name = "navigationlight red2";
+                activeLight = 1;
+            };
+            class PositionRed3 : PositionRed {
+                name = "navigationlight red3";
+                activeLight = 1;
+            };
+            class PositionGreen : PositionRed {
+                color[] = { 0.0, 10, 0.0 };
+                ambient[] = { 0.0, 0.01, 0.0 };
+                name = "navigationlight green1";
+                activeLight = 1;
+            };
+            class PositionWhite : PositionRed {
+                color[] = { 10, 10, 10 };
+                ambient[] = { 0.01, 0.01, 0.01 };
+                name = "navigationlight white1";
+                activeLight = 0;
+            };
+            class PositionWhite2 : PositionWhite {
+                name = "navigationlight white2";
+                activeLight = 0;
+            };
+            class CollisionWhite : PositionRed {
+                color[] = { 50, 50, 50 };
+                ambient[] = { 0.1, 0.1, 0.1 };
+                name = "collisionstrobe1";
+                activeLight = 1;
+                useFlare = 1;
+                blinking = 1;
+                blinkingPattern[] = { 0.05, 0.95 };
+                blinkingPatternGuarantee = 1;
+                drawLightSize = 1;
+                drawLightCenterSize = 0.1;
+            };
+            class CollisionWhite2 : CollisionWhite {
+                name = "collisionstrobe2";
+                activeLight = 2;
+            };
+        };
         class Reflectors {
             class Left {
                 position = "L svetlo";
@@ -801,8 +797,8 @@ class CfgVehicles {
                 intensity = 100;
                 size = 1;
                 innerAngle = 10;
-                outerAngle = 50;
-                coneFadeCoef = 3;
+                outerAngle = 45;
+                coneFadeCoef = 6;
                 brightness = 1;
                 useFlare = 1;
                 flareSize = 6;
@@ -819,8 +815,8 @@ class CfgVehicles {
                 intensity = 100;
                 size = 1;
                 innerAngle = 10;
-                outerAngle = 50;
-                coneFadeCoef = 3;
+                outerAngle = 45;
+                coneFadeCoef = 6;
                 brightness = 1;
                 useFlare = 1;
                 flareSize = 6;
@@ -863,10 +859,85 @@ class CfgVehicles {
                 flareMaxDistance = 600;
                 dayLight = 0;
             };
+            class Jump_Light_1_red {
+                color[] = { 800, 100, 100 };
+                ambient[] = { 8, 1, 1 };
+                intensity = 1;
+                size = 0.5;
+                innerAngle = 60;
+                outerAngle = 60;
+                coneFadeCoef = 1;
+                position = "jump_light_1_pos";
+                direction = "jump_light_1_dir";
+                hitpoint = "jump_light_1_red_hit";
+                selection = "jump_light_1";
+                useFlare = 0;
+                class Attenuation {
+                    start = 0.05;
+                    constant = 0;
+                    linear = 0;
+                    quadratic = 500;
+                    hardLimitStart = 0.1;
+                    hardLimitEnd = 0.1;
+                };
+            };
+            class Jump_Light_2_red : Jump_Light_1_red {
+                position = "jump_light_2_pos";
+                direction = "jump_light_2_dir";
+                hitpoint = "jump_light_2_red_hit";
+                selection = "jump_light_2";
+            };
+            class Jump_Light_1_green : Jump_Light_1_red {
+                color[] = { 100, 800, 100 };
+                ambient[] = { 1, 8, 1 };
+                hitpoint = "jump_light_1_green_hit";
+            };
+            class Jump_Light_2_green : Jump_Light_1_green {
+                position = "jump_light_2_pos";
+                direction = "jump_light_2_dir";
+                hitpoint = "jump_light_2_green_hit";
+                selection = "jump_light_2";
+            };
+            class Jump_Light_3_red : Jump_Light_1_red {
+                color[] = { 8000, 1000, 1000 };
+                ambient[] = { 8, 1, 1 };
+                intensity = 50;
+                size = 1;
+                innerAngle = 90;
+                outerAngle = 160;
+                coneFadeCoef = 5;
+                position = "jump_light_3_pos";
+                direction = "jump_light_3_dir";
+                hitpoint = "jump_light_3_red_hit";
+                selection = "jump_light_3";
+                useFlare = 0;
+                class Attenuation {
+                    start = 0.5;
+                    constant = 0;
+                    linear = 0;
+                    quadratic = 500;
+                    hardLimitStart = 1;
+                    hardLimitEnd = 3;
+                };
+            };
+            class Jump_Light_3_green : Jump_Light_3_red {
+                color[] = { 800, 8000, 800 };
+                ambient[] = { 1, 8, 1 };
+                hitpoint = "jump_light_3_green_hit";
+            };
         };
-        driveOnComponent[] = {};
-        numberPhysicalWheels = 5;
-        maxOmega = 2000;
+        class camShakeGForce{
+            power = 0.1;
+            frequency = 3;
+            distance = 0;
+            minSpeed = 1;
+        };
+        class CamShake{
+            power = 0.05;
+            frequency = 20;
+            distance = 3;
+            minSpeed = 5;
+        };
         class Wheels {
             class wheel_1_1 {
                 boneName = "wheel_1_1";
@@ -882,14 +953,14 @@ class CfgVehicles {
                 dampingRate = 0.1;
                 dampingRateDamaged = 1;
                 dampingRateDestroyed = 1000;
-                maxBrakeTorque = 3000;
-                maxHandBrakeTorque = 0;            
-                maxCompression = 0.1;
-                maxDroop = 0.1;
+                maxBrakeTorque = 4000;
+                maxHandBrakeTorque = 0;
+                maxCompression = 0.2;
+                maxDroop = 0;
                 sprungMass = 1182;
-                springStrength = 18918;
-                springDamperRate = 9459;
-                longitudinalStiffnessPerUnitGravity = 1000;
+                springStrength = 400000;
+                springDamperRate = 20000;
+                longitudinalStiffnessPerUnitGravity = 4000;
                 latStiffX = 25;
                 latStiffY = 180;
                 suspTravelDirection[] = { 0, -1, 0 };
@@ -903,9 +974,10 @@ class CfgVehicles {
                 tireForceAppPointOffset = "wheel_2_1_center";
                 side = "left";
                 steering = 0;
+                maxBrakeTorque = 8000;
                 sprungMass = 8000;
-                springStrength = 320000;
-                springDamperRate = 600000;
+                springStrength = 50000;
+                springDamperRate = 10000;
                 maxCompression = 0.1;
                 maxDroop = 0;
             };
@@ -931,12 +1003,6 @@ class CfgVehicles {
                 suspForceAppPointOffset = "wheel_3_2_center";
                 tireForceAppPointOffset = "wheel_3_2_center";
             };
-        };
-        class camShakeGForce {
-            power = 0.2;
-            frequency = 3;
-            distance = 0;
-            minSpeed = 50;
         };
         class Components : Components {
             class VehicleSystemsDisplayManagerComponentLeft : DefaultVehicleSystemsDisplayManagerLeft {
@@ -988,21 +1054,25 @@ class CfgVehicles {
                 };
             };
         };
+        driveOnComponent[] = {};
+        numberPhysicalWheels = 5;
+        maxOmega = 2000;
         delete CarrierOpsCompatability;
         CatapultExclude = 1;
+        LESH_canBeTowed = 0;
+        LESH_towFromFront = 1;
+        LESH_AxisOffsetTarget[] = { 0, 15.95, 0.4 };
+        LESH_WheelOffset[] = { 0, -1 };
+        EGVAR(common,towbarOffset)[] = { 0, 11.5, 0.37 };
+        EGVAR(common,towbarActionMemoryPoint) = "wheel_1_1";
+        uksf_radios_rackChannels[] = { 31, 40, 41 };
 #include "MFD.hpp"
     };
     class GVAR(raf) : GVAR(base) {
         scope = 2;
         scopeCurator = 2;
-        editorPreview = QPATHTOF(data\ui\uksf_c130_raf.jpg);
         crew = "UKSF_B_Pilot_617";
         typicalCargo[] = { "UKSF_B_Pilot_617" };
-        hiddenSelectionsTextures[] = {
-            QPATHTOF(data\tex\c130j_body_raf_co.paa),
-            QPATHTOF(data\tex\c130j_wings_raf_co.paa),
-            QPATHTOF(data\tex\c130j_interior_raf_co.paa)
-        };
     };
     class GVAR(raf_cargo) : GVAR(raf) {
         displayname = "C-130J (Cargo)";

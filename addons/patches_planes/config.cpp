@@ -5,8 +5,6 @@ class CfgPatches {
         name = COMPONENT_NAME;
         units[] = {
             "uksf_f35_plane_raf",
-            "uksf_f35_plane_raf_stealth",
-            "uksf_f35_plane_usmc",
             "uksf_f35_plane_raf_stealth"
         };
         weapons[] = {};

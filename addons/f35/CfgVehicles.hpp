@@ -105,6 +105,28 @@ class CfgVehicles {
         memoryPointCMDir[] = { "FlareLauncher_1_dir" };
         memoryPointLDust = "WheelDust_left_pos";
         memoryPointRDust = "WheelDust_right_pos";
+        weapons[] = { "UK3CB_BAF_Safe", "Laserdesignator_pilotCamera", "CMFlareLauncher_Singles" };
+        magazines[] = { "Laserbatteries", "240Rnd_CMFlare_Chaff_Magazine" };
+        soundSetSonicBoom[] = { QGVAR(sonicboom_soundset) };
+        maxOmega = 2000;
+        class Sounds {
+            soundSets[] = {
+                QGVAR(enginelowext_soundset),
+                QGVAR(enginehighext_soundset),
+                QGVAR(forsageext_soundset),
+                QGVAR(forsageexthigh_soundset),
+                QGVAR(windnoiseext_soundset),
+                QGVAR(engineext_middle_soundset),
+                QGVAR(engineext_dist_front_soundset),
+                QGVAR(engineext_dist_rear_soundset),
+                "Plane_Fighter_04_EngineLowInt_SoundSet",
+                "Plane_Fighter_04_EngineHighInt_SoundSet",
+                "Plane_Fighter_04_ForsageInt_SoundSet",
+                QGVAR(ForsageIntHigh_SoundSet),
+                "Plane_Fighter_04_WindNoiseInt_SoundSet",
+                "Plane_Fighter_04_VelocityInt_SoundSet"
+            };
+        };
         class CamShake {
             power = 30;
             frequency = 20;
@@ -332,26 +354,6 @@ class CfgVehicles {
             EjectionSeatForce = 50;
             CanopyForce = 30;
         };
-        soundSetSonicBoom[] = { QGVAR(sonicboom_soundset) };
-        class Sounds {
-            soundSets[] = {
-                QGVAR(enginelowext_soundset),
-                QGVAR(enginehighext_soundset),
-                QGVAR(forsageext_soundset),
-                QGVAR(forsageexthigh_soundset),
-                QGVAR(windnoiseext_soundset),
-                QGVAR(engineext_middle_soundset),
-                QGVAR(engineext_dist_front_soundset),
-                QGVAR(engineext_dist_rear_soundset),
-                "Plane_Fighter_04_EngineLowInt_SoundSet",
-                "Plane_Fighter_04_EngineHighInt_SoundSet",
-                "Plane_Fighter_04_ForsageInt_SoundSet",
-                QGVAR(ForsageIntHigh_SoundSet),
-                "Plane_Fighter_04_WindNoiseInt_SoundSet",
-                "Plane_Fighter_04_VelocityInt_SoundSet"
-            };
-        };
-        maxOmega = 2000;
         class Wheels {
             class Wheel_1 {
                 boneName = "Wheel_1";
@@ -480,8 +482,6 @@ class CfgVehicles {
                 visual = "glass_1";
             };
         };
-        weapons[] = { "UK3CB_BAF_Safe", "Laserdesignator_pilotCamera", "CMFlareLauncher_Singles" };
-        magazines[] = { "Laserbatteries", "240Rnd_CMFlare_Chaff_Magazine" };
         class Components : Components {
             class TransportPylonsComponent {
                 UIPicture = QPATHTOF(data\ui\loadout.paa);
@@ -966,9 +966,6 @@ class CfgVehicles {
             delete Plane_Fighter_01_fold_wings;
             delete Plane_Fighter_01_unfold_wings;
         };
-        tailHook = 0;
-        delete CarrierOpsCompatability;
-        CatapultExclude = 1;
         class pilotCamera : pilotCamera {
             class OpticsIn {
                 class Wide {
@@ -1032,7 +1029,17 @@ class CfgVehicles {
 #include "mfd\3.hpp"
 #include "mfd\4.hpp"
 #include "mfd\ins.hpp"
-        };
+        };        
+        tailHook = 0;
+        delete CarrierOpsCompatability;
+        CatapultExclude = 1;
+        LESH_canBeTowed = 0;
+        LESH_towFromFront = 1;
+        LESH_AxisOffsetTarget[] = { 0, 8.23, -1.9 };
+        LESH_WheelOffset[] = { 0, -1 };
+        EGVAR(common,towbarOffset)[] = { 0, 3.78, -1.9 };
+        EGVAR(common,towbarActionMemoryPoint) = "Wheel_1_center";
+        uksf_radios_rackChannels[] = { 31, 40, 41 };
     };
     class GVAR(raf) : GVAR(base) {
         scope = 2;
@@ -1047,71 +1054,6 @@ class CfgVehicles {
     class GVAR(raf_stealth) : GVAR(raf) {
         displayName = "F-35B Lightning II (Stealth)";
         editorPreview = QPATHTOF(data\ui\uksf_f35_raf_stealth.jpg);
-        radarTargetSize = 0.15;
-        visualTargetSize = 0.5;
-        class AnimationSources : AnimationSources {
-            class ext_pylons_hide : ext_pylons_hide {
-                initPhase = 1;
-            };
-        };
-        class Components : Components {
-            class TransportPylonsComponent : TransportPylonsComponent {
-                class presets {
-                    class Empty {
-                        displayName = "Empty";
-                        attachment[] = {"", "", "", "", "", "", ""};
-                    };
-                    class Default {
-                        displayName = "Multi-Role";
-                        attachment[] = { "", "", "", "PylonMissile_Missile_AMRAAM_D_INT_x1", "PylonMissile_Bomb_GBU12_x1", "PylonRack_Bomb_SDB_x4", "PylonMissile_Missile_AMRAAM_D_INT_x1" };
-                    };
-                    class CAS_Heavy {
-                        displayName = "CAS";
-                        attachment[] = { "", "", "", "PylonMissile_Missile_AMRAAM_D_INT_x1", "PylonMissile_Bomb_GBU12_x1", "PylonMissile_Bomb_GBU12_x1", "PylonMissile_Missile_AMRAAM_D_INT_x1" };
-                    };
-                    class CAP {
-                        displayName = "CAP";
-                        attachment[] = { "", "", "", "PylonMissile_Missile_AMRAAM_D_INT_x1", "PylonMissile_Missile_AMRAAM_D_INT_x1", "PylonMissile_Missile_AMRAAM_D_INT_x1", "PylonMissile_Missile_AMRAAM_D_INT_x1" };
-                    };
-                };
-                class pylons : pylons {
-                    class pylons1 {
-                        attachment = "";
-                        UIposition[] = { 10, 10 };
-                    };
-                    class pylons2 : pylons1 {};
-                    class pylons3 : pylons1 {};
-
-                    class pylons4 : pylons4 {
-                        attachment = "PylonMissile_Missile_AMRAAM_D_INT_x1";
-                    };
-                    class pylons5 : pylons5 {};
-                    class pylons6 : pylons6 {};
-                    class pylons7 : pylons7 {
-                        attachment = "PylonMissile_Missile_AMRAAM_D_INT_x1";
-                    };
-
-                    class pylons8 : pylons1 {};
-                    class pylons9 : pylons1 {};
-                    class pylons10 : pylons1 {};
-                    class pylons11 : pylons1 {};
-                };
-            };
-        };
-    };
-    class GVAR(usmc) : GVAR(base) {
-        scope = 2;
-        scopeCurator = 2;
-        faction = "CUP_B_USMC";
-        editorPreview = QPATHTOF(data\ui\uksf_f35_usmc.jpg);
-        hiddenSelectionsTextures[] = {
-            QPATHTOF(data\exterior_1_usmc_co.paa),
-            QPATHTOF(data\name_0_ca.paa)
-        };
-    };
-    class GVAR(usmc_stealth) : GVAR(usmc) {
-        displayName = "F-35B Lightning II (Stealth)";
-        editorPreview = QPATHTOF(data\ui\uksf_f35_usmc_stealth.jpg);
         radarTargetSize = 0.15;
         visualTargetSize = 0.5;
         class AnimationSources : AnimationSources {

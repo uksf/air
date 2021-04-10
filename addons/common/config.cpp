@@ -4,7 +4,9 @@ class CfgPatches {
     class ADDON {
         name = COMPONENT_NAME;
         units[] = {};
-        weapons[] = {};
+        weapons[] = {
+            QGVAR(towbar)
+        };
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {
             "uksf_air_main"
@@ -17,3 +19,4 @@ class CfgPatches {
 };
 
 #include "CfgEventHandlers.hpp"
+#include "CfgVehicles.hpp"

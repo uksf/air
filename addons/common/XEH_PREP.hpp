@@ -1,1 +1,2 @@
-
+PREP(attachTowbarActions);
+PREP(canAttachTowbar);
