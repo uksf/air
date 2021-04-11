@@ -70,6 +70,7 @@ class CfgVehicles {
         epeImpulseDamageCoef = 4;
     };
 
+    #include "helis\CfgApache.hpp"
     #include "helis\CfgChinook.hpp"
     #include "helis\CfgDauphin.hpp"
     #include "helis\CfgHC135.hpp"

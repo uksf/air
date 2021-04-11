@@ -41,32 +41,12 @@ class CUP_F35B_base : Plane {
         CanopyForce = 30;
     };
 };
-class CUP_F35B_dynamic_base : CUP_F35B_base {};
-class CUP_B_F35B_USMC : CUP_F35B_dynamic_base {};
-class CUP_B_F35B_BAF : CUP_B_F35B_USMC {
-    scope = 0;
-    scopeCurator = 0;
-};
-class CUP_B_F35B_AA_USMC : CUP_F35B_base {};
-class CUP_B_F35B_AA_BAF : CUP_B_F35B_AA_USMC {
-    scope = 0;
-    scopeCurator = 0;
-};
-class CUP_B_F35B_CAS_USMC : CUP_F35B_base {};
-class CUP_B_F35B_CAS_BAF : CUP_B_F35B_CAS_USMC {
-    scope = 0;
-    scopeCurator = 0;
-};
-class CUP_B_F35B_LGB_USMC : CUP_F35B_base {};
-class CUP_B_F35B_LGB_BAF : CUP_B_F35B_LGB_USMC {
-    scope = 0;
-    scopeCurator = 0;
-};
-class CUP_B_F35B_Stealth_USMC;
-class CUP_B_F35B_Stealth_BAF : CUP_B_F35B_Stealth_USMC {
-    scope = 0;
-    scopeCurator = 0;
-};
+
+HIDE_CLASS_WITH_BASE(CUP_B_F35B_BAF,CUP_B_F35B_USMC);
+HIDE_CLASS_WITH_BASE(CUP_B_F35B_AA_BAF,CUP_B_F35B_AA_USMC);
+HIDE_CLASS_WITH_BASE(CUP_B_F35B_CAS_BAF,CUP_B_F35B_CAS_USMC);
+HIDE_CLASS_WITH_BASE(CUP_B_F35B_LGB_BAF,CUP_B_F35B_LGB_USMC);
+HIDE_CLASS_WITH_BASE(CUP_B_F35B_Stealth_BAF,CUP_B_F35B_Stealth_USMC);
 
 DEPRECATE_CLASS_WITH_BASE(uksf_f35_plane_raf,EGVAR(f35,raf));
 DEPRECATE_CLASS_WITH_BASE(uksf_f35_plane_raf_stealth,EGVAR(f35,raf_stealth));

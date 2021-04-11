@@ -18,9 +18,11 @@ class CfgPatches {
         requiredAddons[] = {
             "uksf_gear",
             "uksf_units",
+            "CUP_AirVehicles_AH64",
             "CUP_AirVehicles_AV8B",
             "CUP_AirVehciles_AW159",
             "CUP_AirVehicles_CH47",
+            "CUP_AirVehicles_F35",
             "CUP_AirVehicles_HC3",
             "CUP_AirVehicles_L39",
             "CUP_AirVehicles_Merlin",
@@ -33,7 +35,6 @@ class CfgPatches {
             "rksla3_aw159",
             "MEA_Panther",
             "HAFM_EC635",
-            "CUP_AirVehicles_F35",
             "uksf_air_f35"
         };
         author = QUOTE(UKSF);

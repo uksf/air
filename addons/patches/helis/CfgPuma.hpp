@@ -179,12 +179,5 @@ class rksla3_puma_hc1_2gpmg: rksla3_pumahc_base {
     class TransportBackpacks {};
 };
 
-class CUP_SA330_Base: Helicopter_Base_H {};
-class CUP_B_SA330_Puma_HC1_BAF: CUP_SA330_Base {
-    scope = 0;
-    scopeCurator = 0;
-};
-class CUP_B_SA330_Puma_HC2_BAF: CUP_B_SA330_Puma_HC1_BAF {
-    scope = 0;
-    scopeCurator = 0;
-};
+HIDE_CLASS_WITH_BASE(CUP_B_SA330_Puma_HC1_BAF,CUP_SA330_Base);
+HIDE_CLASS(CUP_B_SA330_Puma_HC2_BAF,CUP_B_SA330_Puma_HC1_BAF);

@@ -86,4 +86,4 @@ GVAR(handlerUav) = [{
     // Update vars
     _args set [1, _heightChanged];
     _args set [2, _currentWaypoint];
-}, 0, [_uav, false, 1]] call cba_fnc_addPerFrameHandler;
+}, 0, [_uav, false, 1]] call CBA_fnc_addPerFrameHandler;

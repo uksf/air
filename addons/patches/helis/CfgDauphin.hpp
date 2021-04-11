@@ -74,13 +74,10 @@ class GVAR(dauphin) : MEA_Pantera_Base {
     scopeCurator = 2;
     faction = "CUP_B_GB";
     displayName = "AS365N3 Dauphin II";
-    editorPreview = QPATHTOEF(common,data\previews\GVAR(dauphin).jpg);
+    PREVIEW(GVAR(dauphin));
     class TransportBackpacks {};
     hiddenSelections[] = { "decals" };
     hiddenSelectionsTextures[] = { "" };
     startDuration = 45;
 };
-class uksf_air_dauphin : GVAR(dauphin) {
-    scope = 1;
-    scopeCurator = 0;
-};
+DEPRECATE_CLASS(uksf_air_dauphin,GVAR(dauphin));

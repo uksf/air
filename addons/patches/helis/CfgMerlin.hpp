@@ -92,24 +92,9 @@ class UK3CB_BAF_Merlin_HC3_Unarmed_Base : UK3CB_BAF_Merlin_HC3_Base {
 class UK3CB_BAF_Merlin_HC3_Armed_Base : UK3CB_BAF_Merlin_HC3_Base {
     class TransportBackpacks {};
 };
-class UK3CB_BAF_Merlin_HC3_24 : UK3CB_BAF_Merlin_HC3_Unarmed_Base {
-    scope = 0;
-    scopeCurator = 0;
-    faction = "CUP_B_GB";
-};
 class UK3CB_BAF_Merlin_HC3_32 : UK3CB_BAF_Merlin_HC3_Unarmed_Base {
     faction = "CUP_B_GB";
     displayname = "Merlin HC3";
-};
-class UK3CB_BAF_Merlin_HC3_18 : UK3CB_BAF_Merlin_HC3_Unarmed_Base {
-    scope = 0;
-    scopeCurator = 0;
-    faction = "CUP_B_GB";
-};
-class UK3CB_BAF_Merlin_HC3_Cargo : UK3CB_BAF_Merlin_HC3_Unarmed_Base {
-    scope = 0;
-    scopeCurator = 0;
-    faction = "CUP_B_GB";
 };
 class UK3CB_BAF_Merlin_HC3_18_GPMG : UK3CB_BAF_Merlin_HC3_Armed_Base {
     faction = "CUP_B_GB";
@@ -153,19 +138,16 @@ class UK3CB_BAF_Merlin_HC3_CSAR : UK3CB_BAF_Merlin_HC3_Armed_Base {
     class TransportWeapons {};
     class TransportBackpacks {};
 };
-class UK3CB_BAF_Merlin_HC4_18 : UK3CB_BAF_Merlin_HC3_18 {
-    scope = 0;
-    scopeCurator = 0;
-    faction = "CUP_B_GB";
-};
-class UK3CB_BAF_Merlin_HC4_24 : UK3CB_BAF_Merlin_HC3_24 {
-    scope = 0;
-    scopeCurator = 0;
-    faction = "CUP_B_GB";
-};
+HIDE_CLASS(UK3CB_BAF_Merlin_HC3_18,UK3CB_BAF_Merlin_HC3_Unarmed_Base);
+HIDE_CLASS(UK3CB_BAF_Merlin_HC3_24,UK3CB_BAF_Merlin_HC3_Unarmed_Base);
+
+HIDE_CLASS(UK3CB_BAF_Merlin_HC4_18,UK3CB_BAF_Merlin_HC3_18);
+HIDE_CLASS(UK3CB_BAF_Merlin_HC4_24,UK3CB_BAF_Merlin_HC3_24);
 class UK3CB_BAF_Merlin_HC4_32 : UK3CB_BAF_Merlin_HC3_32 {
     faction = "CUP_B_GB";
 };
+
+HIDE_CLASS(UK3CB_BAF_Merlin_HC3_Cargo,UK3CB_BAF_Merlin_HC3_Unarmed_Base);
 class UK3CB_BAF_Merlin_HC4_Cargo : UK3CB_BAF_Merlin_HC3_Cargo {
     faction = "CUP_B_GB";
 };
@@ -175,17 +157,9 @@ class UK3CB_BAF_Merlin_HC4_18_GPMG : UK3CB_BAF_Merlin_HC3_18_GPMG {
 class UK3CB_BAF_Merlin_HC4_CSAR : UK3CB_BAF_Merlin_HC3_CSAR {
     faction = "CUP_B_GB";
 };
-class UK3CB_BAF_Merlin_HM2_Base : UK3CB_BAF_Merlin_Base {
-    scope = 0;
-    scopeCurator = 0;
-    faction = "CUP_B_GB";
-    class TransportBackpacks {};
-};
-class UK3CB_BAF_Merlin_HM2_Unarmed_Base : UK3CB_BAF_Merlin_HM2_Base {
-    scope = 0;
-    scopeCurator = 0;
-    faction = "CUP_B_GB";
-};
+
+HIDE_CLASS(UK3CB_BAF_Merlin_HM2_Base,UK3CB_BAF_Merlin_Base);
+HIDE_CLASS(UK3CB_BAF_Merlin_HM2_Unarmed_Base,UK3CB_BAF_Merlin_HM2_Base);
 class UK3CB_BAF_Merlin_HM2_18 : UK3CB_BAF_Merlin_HM2_Unarmed_Base {
     faction = "CUP_B_GB";
 };

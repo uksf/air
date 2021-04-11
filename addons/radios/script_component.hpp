@@ -28,7 +28,7 @@
             numLimitedPositions = 0; \
             connectedByDefault = 0; \
         }; \
-    };
+    }
 
 #define RACKS_AIR \
     class AcreRacks { \
@@ -51,7 +51,7 @@
             displayName = "R3"; \
             shortName = "R3"; \
         }; \
-    };
+    }
 
 #define RACKS_AIR_FOUR \
     class AcreRacks { \
@@ -78,4 +78,4 @@
             displayName = "R4"; \
             shortName = "R4"; \
         }; \
-    };
+    }

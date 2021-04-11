@@ -21,12 +21,12 @@ if (_state) then {
         _args params ["_uav"];
 
         if !(alive _uav) exitWith {
-            [GVAR(handlerCompass)] call cba_fnc_removePerFrameHandler;
+            [GVAR(handlerCompass)] call CBA_fnc_removePerFrameHandler;
             _uav setVariable [QGVAR(compassState), false];
         };
 
         if ((ACE_controlledUAV select 3) isEqualTo "GUNNER" && {cameraView isEqualTo "GUNNER"}) then {
-            private _zoom = (call cba_fnc_getFov) select 1;
+            private _zoom = (call CBA_fnc_getFov) select 1;
             private _factor = 500 / _zoom;
             private _halfFactor = _factor / 2;
             private _center = screenToWorld [0.5,0.5];
@@ -41,9 +41,9 @@ if (_state) then {
                 ["W", [1,1,1,0.7], [-_factor,0,0], [-_halfFactor,0,0]]
             ];
         };
-    }, 0, [_uav]] call cba_fnc_addPerFrameHandler;
+    }, 0, [_uav]] call CBA_fnc_addPerFrameHandler;
     _uav setVariable [QGVAR(compassState), true];
 } else {
-    [GVAR(handlerCompass)] call cba_fnc_removePerFrameHandler;
+    [GVAR(handlerCompass)] call CBA_fnc_removePerFrameHandler;
     _uav setVariable [QGVAR(compassState), false];
 };

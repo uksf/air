@@ -26,7 +26,7 @@ class CfgVehicles {
         typicalCargo[] = {"B_UAV_AI"};
         hiddenSelectionsTextures[] = {"", "", "", "", "\UK3CB_BAF_Vehicles\addons\UK3CB_BAF_Vehicles_MQ-9_Reaper\data\raf_mq9_reaper_co.paa"};
         textureList[] = {"XXXIX", 1, "XIII", 1};
-        editorPreview = QPATHTOEF(common,data\previews\UK3CB_BAF_MQ9_Reaper.jpg);
+        PREVIEW(GVAR(raf));
         radarTargetSize = 0.001;
         radarTarget = 0;
         visualTarget = 0;
@@ -411,8 +411,15 @@ class CfgVehicles {
                 volume = "(1-camPos)*(rain - rotorSpeed/2)*2";
             };
         };
+        // TODO
+        // LESH_canBeTowed = 0;
+        // LESH_towFromFront = 1;
+        // LESH_AxisOffsetTarget[] = { 0, 15.95, 0.4 };
+        // LESH_WheelOffset[] = { 0, -1 };
+        // EGVAR(common,towbarOffset)[] = { 0, 11.5, 0.37 };
+        // EGVAR(common,towbarActionMemoryPoint) = "wheel_1_1";
     };
-    class class GVAR(raf_recon) : GVAR(raf) {
+    class GVAR(raf_recon) : GVAR(raf) {
         class Turrets : Turrets {
             class MainTurret : MainTurret {
                 

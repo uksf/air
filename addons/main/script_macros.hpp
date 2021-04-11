@@ -108,4 +108,11 @@ class TransportWeapons {}
 #define DEPRECATE_CLASS_WITH_BASE(CLASS,BASE) class BASE; \
 DEPRECATE_CLASS(CLASS,BASE)
 
+#define HIDE_CLASS(CLASS,BASE) class CLASS : BASE { \
+    scope = 0; \
+}
+
+#define HIDE_CLASS_WITH_BASE(CLASS,BASE) class BASE; \
+HIDE_CLASS(CLASS,BASE)
+
 #define PREVIEW(NAME) editorPreview = QPATHTOF(data\previews\GVAR(NAME).jpg)
