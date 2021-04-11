@@ -1066,6 +1066,7 @@ class CfgVehicles {
         EGVAR(common,towbarOffset)[] = { 0, 11.5, 0.37 };
         EGVAR(common,towbarActionMemoryPoint) = "wheel_1_1";
         uksf_radios_rackChannels[] = { 31, 40, 41 };
+		EGVAR(common,staticLineJumpPoints)[] = { "pos_para_left", "pos_para_right" };
 #include "MFD.hpp"
     };
     class GVAR(raf) : GVAR(base) {

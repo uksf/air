@@ -8,6 +8,9 @@ class Extended_PreInit_EventHandlers {
     class ADDON {
         init = QUOTE(call COMPILE_FILE(XEH_preInit));
     };
+    class Air {
+        delete CUP_Static_Line_Init;
+    };
 };
 
 class Extended_PostInit_EventHandlers {
