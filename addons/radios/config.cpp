@@ -3,15 +3,15 @@
 class CfgPatches {
     class ADDON {
         name = COMPONENT_NAME;
-        units[] = {
-            "uksf_f35_plane_raf",
-            "uksf_f35_plane_raf_stealth"
-        };
+        units[] = {};
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {
-            "CUP_AirVehicles_F35",
-            "uksf_air_f35"
+            "uksf_air_patches",
+            "uksf_air_c130",
+            "uksf_air_f35",
+            "uksf_air_apache",
+            "uksf_common"
         };
         author = QUOTE(UKSF);
         authors[] = { "Beswick.T" };
@@ -20,4 +20,6 @@ class CfgPatches {
     };
 };
 
+#include "CfgEventHandlers.hpp"
+#include "CfgSoundEffects.hpp"
 #include "CfgVehicles.hpp"

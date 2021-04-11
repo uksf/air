@@ -1,5 +1,5 @@
-#define COMPONENT patches_planes
-#define COMPONENT_BEAUTIFIED Patches - Planes
+#define COMPONENT patches
+#define COMPONENT_BEAUTIFIED Patches
 #include "\u\uksf_air\addons\main\script_mod.hpp"
 
 // #define DEBUG_MODE_FULL
@@ -7,3 +7,5 @@
 // #define CBA_DEBUG_SYNCHRONOUS
 
 #include "\u\uksf_air\addons\main\script_macros.hpp"
+
+#define STATIC_LINE_MINIMUM_ALTITUDE 80

@@ -1,3 +1,3 @@
 #include "script_component.hpp"
-#include "keybinds.sqf"
 
+#include "XEH_PREP.hpp"
