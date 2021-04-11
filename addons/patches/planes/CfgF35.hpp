@@ -68,13 +68,5 @@ class CUP_B_F35B_Stealth_BAF : CUP_B_F35B_Stealth_USMC {
     scopeCurator = 0;
 };
 
-class EGVAR(f35,raf);
-class uksf_f35_plane_raf : EGVAR(f35,raf) {
-    scope = 1;
-    scopeCurator = 0;
-};
-class EGVAR(f35,raf_stealth);
-class uksf_f35_plane_raf_stealth : EGVAR(f35,raf_stealth) {
-    scope = 1;
-    scopeCurator = 0;
-};
+DEPRECATE_CLASS_WITH_BASE(uksf_f35_plane_raf,EGVAR(f35,raf));
+DEPRECATE_CLASS_WITH_BASE(uksf_f35_plane_raf_stealth,EGVAR(f35,raf_stealth));

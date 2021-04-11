@@ -1045,7 +1045,7 @@ class CfgVehicles {
         scope = 2;
         scopeCurator = 2;
         faction = "CUP_B_GB";
-        editorPreview = QPATHTOF(data\ui\uksf_f35_raf.jpg);
+        PREVIEW(raf);
         hiddenSelectionsTextures[] = {
             QPATHTOF(data\exterior_1_co.paa),
             QPATHTOF(data\name_0_ca.paa)
@@ -1053,7 +1053,7 @@ class CfgVehicles {
     };
     class GVAR(raf_stealth) : GVAR(raf) {
         displayName = "F-35B Lightning II (Stealth)";
-        editorPreview = QPATHTOF(data\ui\uksf_f35_raf_stealth.jpg);
+        PREVIEW(raf_stealth);
         radarTargetSize = 0.15;
         visualTargetSize = 0.5;
         class AnimationSources : AnimationSources {

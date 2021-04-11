@@ -1,8 +1,2 @@
-class CUP_C130J_Base;
-class CUP_B_C130J_GB : CUP_C130J_Base {
-    scope = 2;
-};
-class CUP_C130J_VIV_Base;
-class CUP_B_C130J_Cargo_GB : CUP_C130J_VIV_Base {
-    scope = 2;
-};
+DEPRECATE_CLASS_WITH_BASE(CUP_B_C130J_GB,EGVAR(c130,raf));
+DEPRECATE_CLASS_WITH_BASE(CUP_B_C130J_Cargo_GB,EGVAR(c130,raf_cargo));

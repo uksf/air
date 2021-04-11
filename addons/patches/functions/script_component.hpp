@@ -1,1 +1,1 @@
-#include "\u\uksf\addons\air\script_component.hpp"
+#include "\u\uksf_air\addons\patches\script_component.hpp"
