@@ -79,22 +79,3 @@
             shortName = "R4"; \
         }; \
     };
-
-#define RACKS_AIR_GROUND \
-    class AcreRacks { \
-        class Rack_1 { \
-            displayName = "R1"; \
-            shortName = "R1"; \
-            componentName = "ACRE_VRC103"; \
-            allowedPositions[] = {"crew", "external"}; \
-            disabledPositions[] = {}; \
-            defaultComponents[] = {}; \
-            mountedRadio = "ACRE_PRC117F"; \
-            isRadioRemovable = 0; \
-            intercom[] = {}; \
-        }; \
-        class Rack_2: Rack_1 { \
-            displayName = "R2"; \
-            shortName = "R2"; \
-        }; \
-    };
