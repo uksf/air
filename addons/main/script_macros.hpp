@@ -97,7 +97,7 @@ class TransportWeapons {}
             control = "Checkbox"; \
             displayName = QUOTE(Deprecated by 'BASE'); \
             tooltip = QUOTE(This object has been deprecated. Use 'BASE' instead.); \
-            expression = ""; \
+            expression = "'BASE'"; \
             typeName = "BOOL"; \
             condition = "objectVehicle"; \
             defaultValue = 1; \
