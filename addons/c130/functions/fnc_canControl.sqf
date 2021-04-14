@@ -22,7 +22,7 @@ if !(_canLoadmasterControl) exitWith {
 };
 
 private _loadmasters = [2, 3, 4, 5] apply {_plane turretUnit [_x]};
-private _isLoadmaster = [_loadmasters, {ACE_player == _x}] call GFUNC(uksf,common,arrayAny);
-private _hasLoadmaster = [_loadmasters, {!(isNull _x)}] call GFUNC(uksf,common,arrayAny);
+private _isLoadmaster = [_loadmasters, {ACE_player == _x}] call UFUNC(common,arrayAny);
+private _hasLoadmaster = [_loadmasters, {!(isNull _x)}] call UFUNC(common,arrayAny);
 
 _isLoadmaster || {_isPilotOrCopilot && !_hasLoadmaster}

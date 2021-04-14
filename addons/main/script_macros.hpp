@@ -11,10 +11,13 @@
     #define PREP(fncName) [QPATHTOF(functions\DOUBLES(fnc,fncName).sqf), QFUNC(fncName)] call CBA_fnc_compileFunction
 #endif
 
-#define FUNC_GLOBAL(var1,var2,var3) TRIPLES(DOUBLES(var1,var2),fnc,var3)
-#define GFUNC(var1,var2,var3) FUNC_GLOBAL(var1,var2,var3)
-#define QGFUNC(var1,var2,var3) QUOTE(GFUNC(var1,var2,var3))
-#define QQGFUNC(var1,var2,var3) QUOTE(QGFUNC(var1,var2,var3))
+#define UGVAR(var1,var2) TRIPLES(uksf,var1,var2)
+#define QUGVAR(var1,var2) QUOTE(UGVAR(var1,var2))
+#define QQUGVAR(var1,var2) QUOTE(QUGVAR(var1,var2))
+
+#define UFUNC(var1,var2) TRIPLES(DOUBLES(uksf,var1),fnc,var2)
+#define QUFUNC(var1,var2) QUOTE(UFUNC(var1,var2))
+#define QQUFUNC(var1,var2) QUOTE(QUFUNC(var1,var2))
 
 #define ARR_12(ARG1,ARG2,ARG3,ARG4,ARG5,ARG6,ARG7,ARG8,ARG9,ARG10,ARG11,ARG12) ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, ARG7, ARG8, ARG9, ARG10, ARG11, ARG12
 #define ARR_14(ARG1,ARG2,ARG3,ARG4,ARG5,ARG6,ARG7,ARG8,ARG9,ARG10,ARG11,ARG12,ARG13,ARG14) ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, ARG7, ARG8, ARG9, ARG10, ARG11, ARG12, ARG13, ARG14
