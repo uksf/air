@@ -854,7 +854,7 @@ class CfgVehicles {
         side = 1;
         faction = "CUP_B_GB";
         displayName = "Apache AH1";
-        PREVIEW(GVAR(aac));
+        PREVIEW(aac);
         hiddenSelectionsTextures[] = { QPATHTOF(data\ah1_baf_body_co.paa),"","","",QPATHTOF(data\decals_ca.paa) };
         class TransportBackpacks {};
     };

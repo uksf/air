@@ -26,7 +26,7 @@ class CfgVehicles {
         typicalCargo[] = {"B_UAV_AI"};
         hiddenSelectionsTextures[] = {"", "", "", "", "\UK3CB_BAF_Vehicles\addons\UK3CB_BAF_Vehicles_MQ-9_Reaper\data\raf_mq9_reaper_co.paa"};
         textureList[] = {"XXXIX", 1, "XIII", 1};
-        PREVIEW(GVAR(raf));
+        PREVIEW(raf);
         radarTargetSize = 0.001;
         radarTarget = 0;
         visualTarget = 0;
@@ -420,11 +420,7 @@ class CfgVehicles {
         // EGVAR(common,towbarActionMemoryPoint) = "wheel_1_1";
     };
     class GVAR(raf_recon) : GVAR(raf) {
-        class Turrets : Turrets {
-            class MainTurret : MainTurret {
-                
-            };
-        };
+        displayName = "MQ-9 Reaper (Recon)";
         class Components : Components {            
             class TransportPylonsComponent {
                 class pylons {};

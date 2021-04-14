@@ -32,7 +32,7 @@ class CfgVehicles {
         model = QPATHTOF(uksf_c130_base.p3d);
         icon = QPATHTOF(data\ui\icon.paa);
         picture = QPATHTOF(data\ui\picture.paa);
-        PREVIEW(base);
+        PREVIEW(raf);
         crew = "B_Pilot_F";
         unitInfoType = "RscUnitInfoAirPlaneNoSpeed";
         unitInfoTypeLite = "RscUnitInfoAirPlaneNoSpeed";
