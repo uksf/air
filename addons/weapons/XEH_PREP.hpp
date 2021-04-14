@@ -1,1 +1,1 @@
-//PREP(addNVG);
+PREP(correctPilotPylon);
