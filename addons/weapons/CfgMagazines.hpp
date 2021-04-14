@@ -121,7 +121,7 @@ class CfgMagazines {
     class CUP_19Rnd_CRV7_FAT_M;
     class CUP_PylonPod_19Rnd_CRV7_FAT_M : CUP_19Rnd_CRV7_FAT_M {
         hardpoints[] += { "B_CRV7" };
-        model = QPATHTOEF(air_apache,PylonRocket_19Rnd_CRV7_HEISAP.p3d);
+        model = QPATHTOEF(apache,PylonRocket_19Rnd_CRV7_HEISAP.p3d);
         CUP_PilotControl = 0;
         GVAR(pilotControl) = 1;
     };
@@ -131,7 +131,7 @@ class CfgMagazines {
     };
     class CUP_PylonPod_19Rnd_CRV7_HE_M : CUP_PylonPod_19Rnd_CRV7_FAT_M {
         hardpoints[] += { "B_CRV7" };
-        model = QPATHTOEF(air_apache,PylonRocket_19Rnd_CRV7_HEISAP.p3d);
+        model = QPATHTOEF(apache,PylonRocket_19Rnd_CRV7_HEISAP.p3d);
         CUP_PilotControl = 0;
         GVAR(pilotControl) = 1;
     };
