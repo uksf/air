@@ -106,7 +106,7 @@ class CfgVehicles {
         maximumLoad = 100000;
         gunnerUsesPilotView = 1;
         driverCompartments = "Compartment1";
-        cargoCompartments[] = { "Compartment2" };
+        cargoCompartments[] = { "Compartment1" };
         class TransportBackpacks {
             class _xx_B_Parachute {
                 backpack = "B_Parachute";
@@ -647,8 +647,8 @@ class CfgVehicles {
             class LoadMasterLeftDoorTurret : FlightEngineerTurret {
                 enabledByAnimationSource = "ramp_bottom";
                 commanding = -3;
-                gunnerName = "Load Master (Left Jump Door)";
-                gunnerCompartments = "Compartment2";
+                gunnerName = "Jump Master (Left Door)";
+                gunnerCompartments = "Compartment1";
                 gunnerUsesPilotView = 0;
                 gunnerAction = "Stand";
                 proxyIndex = 3;
@@ -677,13 +677,18 @@ class CfgVehicles {
             };
             class LoadMasterRightDoorTurret : LoadMasterLeftDoorTurret {
                 proxyIndex = 4;
-                gunnerName = "Load Master (Right Jump Door)";
+                gunnerName = "Jump Master (Right Door)";
+                dontCreateAI = 1;
+            };
+            class LoadMasterRampSeatsTurret : LoadMasterLeftDoorTurret {
+                proxyIndex = 5;
+                gunnerName = "Load Master (Seats)";
+                gunnerAction = "CUP_CH47_Gunner01";
                 dontCreateAI = 1;
             };
             class LoadMasterRampTurret : LoadMasterLeftDoorTurret {
-                proxyIndex = 5;
+                proxyIndex = 6;
                 gunnerName = "Load Master (Ramp)";
-                gunnerAction = "CUP_CH47_Gunner01";
                 dontCreateAI = 1;
             };
         };

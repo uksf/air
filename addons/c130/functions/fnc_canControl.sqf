@@ -21,10 +21,8 @@ if !(_canLoadmasterControl) exitWith {
     _isPilotOrCopilot
 };
 
-private _loadmaster1 = _plane turretUnit [2];
-private _loadmaster2 = _plane turretUnit [3];
-private _loadmaster3 = _plane turretUnit [4];
-private _isLoadmaster = ACE_player == _loadmaster1 || ACE_player == _loadmaster2 || ACE_player == _loadmaster3;
-private _hasLoadmaster = !(isNull _loadmaster1) || !(isNull _loadmaster2) || !(isNull _loadmaster3);
+private _loadmasters = [2, 3, 4, 5] apply {_plane turretUnit [_x]};
+private _isLoadmaster = [_loadmasters, {ACE_player == _x}] call GFUNC(uksf,common,arrayAny);
+private _hasLoadmaster = [_loadmasters, {!(isNull _x)}] call GFUNC(uksf,common,arrayAny);
 
 _isLoadmaster || {_isPilotOrCopilot && !_hasLoadmaster}

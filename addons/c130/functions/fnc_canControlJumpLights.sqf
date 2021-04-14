@@ -30,5 +30,4 @@ if (_newState == 2 && _currentState != 1) exitWith {
 };
 
 _currentState != _newState
-&& {[_plane, true] call FUNC(canControl)}
-// && {[_plane] call FUNC(canControl)}
+&& {[_plane] call FUNC(canControl)}
