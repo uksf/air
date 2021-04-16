@@ -17,8 +17,8 @@
 #define INTERVAL 1
 #define MULTIPLIER_FEET 3.28084
 #define MULTIPLIER_SPEED 1.852
-#define RADIUS_2D 15000
-#define RADIUS_AEW_2D 8000
+#define RADIUS_2D 10000
+#define RADIUS_AEW_2D 5000
 
 params ["_player", "_state"];
 
