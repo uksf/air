@@ -421,6 +421,7 @@ class CfgVehicles {
     };
     class GVAR(raf_recon) : GVAR(raf) {
         displayName = "MQ-9 Reaper (Recon)";
+        PREVIEW(raf_recon);
         class Components : Components {            
             class TransportPylonsComponent {
                 class pylons {};
