@@ -66,7 +66,7 @@ class CfgVehicles {
         scope = 1;
         author = "UKSF";
         displayName = "AH-64D Apache Base";
-        model = QPATHTOF(AH_BAF.p3d);
+        model = QPATHTOF(uksf_air_apache_base.p3d);
         picture = QPATHTOF(data\ui\Picture_ah64d_CA.paa);
         icon = QPATHTOF(data\ui\Icon_ah64d_CA.paa);
         availableForSupportTypes[] = { "CAS_Heli" };
