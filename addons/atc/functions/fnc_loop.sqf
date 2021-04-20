@@ -39,10 +39,11 @@ GVAR(loopHandle) = [{
 
         private _aircraftInRange = GVAR(aircraft) select {
             (isEngineOn _x || isCollisionLightOn _x) &&
+            {((side _player) getFriend (side _x)) >= 0.6 ||
             {(_x distance2D _player) <= RADIUS_2D || {
                 private _aircraft = _x;                
                 [GVAR(aew), {_aircraft distance2D _x <= RADIUS_AEW_2D}] call UFUNC(common,arrayAny)
-            }}
+            }}}
         };
         {
             private _markerName = format ["%1%2", CBA_missionTime, random 9999];
