@@ -29,6 +29,10 @@ GVAR(handlerUav) = [{
     _args params ["_uav", "_heightChanged", "_lastWaypoint"];
 
     if !(local _uav) exitWith {};
+    
+    if ((ACE_controlledUAV select 3) isEqualTo "GUNNER" && {cameraView isEqualTo "GUNNER"}) then {
+        call FUNC(updateDisplay);
+    };
 
     private _height = ((getWPPos [_uav, 1])#2);
     private _diveMode = _uav getVariable QGVAR(diveMode);
