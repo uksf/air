@@ -858,4 +858,5 @@ class CfgVehicles {
         hiddenSelectionsTextures[] = { QPATHTOF(data\ah1_baf_body_co.paa),"","","",QPATHTOF(data\decals_ca.paa) };
         class TransportBackpacks {};
     };
+    DEPRECATE_CLASS(UKSF_Apache_AH1,GVAR(aac));
 };

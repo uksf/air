@@ -18,9 +18,7 @@ class CfgVehicles {
         };
         class ViewPilot;
         class ViewGunner;
-        class HitPoints {
-            class HitHull;
-        };
+        class HitPoints;
         class Components;
     };
     class GVAR(base) : Plane_Base_F {
