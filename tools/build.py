@@ -19,7 +19,6 @@ def tryHemttBuild(projectpath):
         print("hemtt not installed");
     return False
 
-
 def mod_time(path):
     if not os.path.isdir(path):
         return os.path.getmtime(path)
