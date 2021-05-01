@@ -5,11 +5,11 @@
 
     Description:
         Checks if aircraft functions can be controlled from the current position.
-        Effectively disables control for pilot and copilot if loadmaster is present.
+        With 2nd param true, effectively disables control for pilot and copilot if loadmaster is present.
 
     Parameter(s):
         0: Plane <OBJECT>
-        1: Can loadmaster control <BOOLEAN>
+        1: Can loadmaster control (Optional) <BOOLEAN>
 
     Return Value:
         True if control possible <BOOLEAN>

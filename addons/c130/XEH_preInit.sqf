@@ -4,6 +4,8 @@ ADDON = false;
 
 #include "XEH_PREP.hpp"
 
+GVAR(paradropInProgress) = false;
+
 [QGVAR(setJumpLightsOff), {
     params ["_plane"];
 
