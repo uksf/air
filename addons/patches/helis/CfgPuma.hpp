@@ -4,10 +4,11 @@ class rksla3_pumahc_base: Helicopter_Base_H {
     typicalCargo[] = { "UKSF_B_Pilot_7" };
     vehicleClass = "Air";
     unitInfoType = "RscUnitInfoNoSpeed";
+    fuelCapacity = 1500;
     liftForceCoef = 0.9;
     bodyFrictionCoef = 1.1;
-    cyclicAsideForceCoef = 0.9;
-    cyclicForwardForceCoef = 0.9;
+    cyclicAsideForceCoef = 0.7; // 0.9
+    cyclicForwardForceCoef = 0.7; // 0.9
     backRotorForceCoef = 0.9;
     startDuration = 40;
     class Components: Components {

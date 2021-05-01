@@ -4,8 +4,8 @@ class RscPicture;
 class RscInGameUI {
     class RscUnitInfo;
     class RscOptics_UAV_reaper_gunner : RscUnitInfo {
-        onLoad = "[""onLoad"",_this,""RscUnitInfo"",'IGUI'] call (uinamespace getvariable 'BIS_fnc_initDisplay');";
-        onUnload = "[""onUnload"",_this,""RscUnitInfo"",'IGUI'] call (uinamespace getvariable 'BIS_fnc_initDisplay')";
+        onLoad = "['onLoad', _this, 'RscUnitInfo', 'IGUI'] call (uinamespace getvariable 'BIS_fnc_initDisplay'); uiNamespace setVariable ['RscOptics_UAV_reaper_gunner', _this#0]";
+        onUnload = "['onUnload', _this, 'RscUnitInfo', 'IGUI'] call (uinamespace getvariable 'BIS_fnc_initDisplay')";
         idd = 300;
         controls[] = { "CA_IGUI_elements_group" };
         class VScrollbar;
@@ -146,9 +146,9 @@ class RscInGameUI {
                     idc = 1034;
                     style = 1;
                     text = "12345M";
-                    x = "0.915144 * safeZoneW";
+                    x = "0.9075 * safeZoneW";
                     y = "0.77 * safezoneH";
-                    w = "0.061875 * safezoneW";
+                    w = "0.0773437 * safezoneW";
                     h = "0.033 * safezoneH";
                 };
                 class ground_range_e : slant_tgt_e {
@@ -406,9 +406,9 @@ class RscInGameUI {
                     w = "0.0515625 * safezoneW";
                     h = "0.033 * safezoneH";
                 };
-                class turretElevCarrot : RscPicture {
+                class turretElevCaret : RscPicture {
                     idc = 1040;
-                    text = QPATHTOF(data\carrotL.paa);
+                    text = QPATHTOF(data\caretL.paa);
                     x = "0.0876563 * safezoneW";
                     y = "0.4884 * safezoneH";
                     w = "0.0185625 * safezoneW";
@@ -423,9 +423,9 @@ class RscInGameUI {
                     w = "0.0309379 * safezoneW";
                     h = "0.0352 * safezoneH";
                 };
-                class turretHeadingCarrot : RscPicture {
+                class turretHeadingCaret : RscPicture {
                     idc = 1042;
-                    text = QPATHTOF(data\carrotU.paa);
+                    text = QPATHTOF(data\caretU.paa);
                     x = "0.493969 * safezoneW";
                     y = "0.176 * safezoneH";
                     w = "0.0134065 * safezoneW";
@@ -439,14 +439,6 @@ class RscInGameUI {
                     y = "0.1936 * safezoneH";
                     w = "0.0309379 * safezoneW";
                     h = "0.0352 * safezoneH";
-                };
-                class compassNPicture : slant_tgt_e {
-                    idc = 1300;
-                    text = "N";
-                    x = "0.491234 * safezoneW";
-                    y = "0.148 * safezoneH";
-                    w = "0.0154688 * safezoneW";
-                    h = "0.022 * safezoneH";
                 };
             };
         };

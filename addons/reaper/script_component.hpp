@@ -8,6 +8,10 @@
 
 #include "\u\uksf_air\addons\main\script_macros.hpp"
 
+#define MULTIPLIER_FEET 3.28084
+#define FEET_TO_METERS(var) var / MULTIPLIER_FEET
+#define METERS_TO_FEET(var) var * MULTIPLIER_FEET
+
 // Gunner display defines
 #define TGT_DIST_P 1033
 #define TGT_GRID_1 1006
@@ -36,13 +40,12 @@
 #define LASER_CODE 1015
 #define TEMP 1016
 #define TURRET_EZ_TXT 1041
-#define TURRET_EZ_CARROT 1040
+#define TURRET_EZ_CARET 1040
 #define TURRET_AZ_TXT 1043
-#define TURRET_AZ_CARROT 1042
+#define TURRET_AZ_CARET 1042
 #define TURRET_AZ_BEG 0.39257 * safeZoneW
 #define TURRET_AZ_DIS 0.203156 * safezoneW
 #define TURRET_AZ_NUM_OFFSET (-0.009 * safeZoneW)
 #define TURRET_EZ_BEG 0.386 * safezoneH
 #define TURRET_EZ_DIS 0.3056 * safezoneH
-#define COMPASS_N_TXT 1300
 #define VANILLA_VISION_ARR ["DTV","NV","FLIR"]

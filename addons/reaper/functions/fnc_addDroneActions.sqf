@@ -45,14 +45,14 @@ _action = [QGVAR(droneActionAltitude), "Altitude", "", {}, {true}, {
 
     private _actions = [];
 
-    private _action = [QGVAR(droneActionAltitudePlus200), "+200m", "", {
-        private _height = (_target getVariable [QGVAR(targetHeightASL), 1500]) + 200;
+    private _action = [QGVAR(droneActionAltitudePlus500), "+500ft", "", {
+        private _height = (_target getVariable [QGVAR(targetHeightASL), 5000]) + 500;
         _target setVariable[QGVAR(targetHeightASL), _height, true];
     }, {true}] call ace_interact_menu_fnc_createAction;
     _actions pushBack [_action, [], _target];
 
-    _action = [QGVAR(droneActionAltitudeMinus200), "-200m", "", {
-        private _height = (_target getVariable [QGVAR(targetHeightASL), 1500]) - 200;
+    _action = [QGVAR(droneActionAltitudeMinus500), "-500ft", "", {
+        private _height = (_target getVariable [QGVAR(targetHeightASL), 5000]) - 500;
         _target setVariable[QGVAR(targetHeightASL), _height, true];
     }, {true}] call ace_interact_menu_fnc_createAction;
     _actions pushBack [_action, [], _target];
@@ -64,19 +64,19 @@ _action = [QGVAR(droneActionAltitude), "Altitude", "", {}, {true}, {
 
     {
         _action = [
-            format [QGVAR(droneActionAltitude%1m), _x],
-            format ["%1m", _x],
+            format [QGVAR(droneActionAltitude%1), _x],
+            format ["%1ft", _x],
             "",
             {
                 _target setVariable [QGVAR(targetHeightASL), (_this#2)#0, true];
                 _target setVariable [QGVAR(customWaypoint), true, true];
             },
-            {(_target getVariable [QGVAR(targetHeightASL), 1500]) != ((_this#2)#0)},
+            {(_target getVariable [QGVAR(targetHeightASL), 5000]) != ((_this#2)#0)},
             {},
             [_x]
         ] call ace_interact_menu_fnc_createAction;
         _actions pushBack [_action, [], _target];
-    } forEach [1000, 1500, 2000];
+    } forEach [3500, 5000, 6500];
 
     _actions
 }] call ace_interact_menu_fnc_createAction;
@@ -160,7 +160,7 @@ _action = [QGVAR(droneActionWaypoint), "Waypoints", "", {}, {true}, {
 
 _action = [QGVAR(droneActionCompass), "Compass", "", {
     private _state = _target getVariable [QGVAR(compassState), false];
-    [_target, !_state] call FUNC(compass);
+    _target setVariable [QGVAR(compassState), !_state];
 }, {true}] call ace_interact_menu_fnc_createAction;
 [QGVAR(raf), 1, ["ACE_SelfActions"], _action, true] call ace_interact_menu_fnc_addActionToClass;
 

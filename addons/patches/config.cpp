@@ -35,7 +35,8 @@ class CfgPatches {
             "rksla3_aw159",
             "MEA_Panther",
             "HAFM_EC635",
-            "uksf_air_f35"
+            "uksf_air_f35",
+            QGVAR(prep)
         };
         author = QUOTE(UKSF);
         authors[] = { "Beswick.T" };

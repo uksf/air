@@ -5,13 +5,17 @@ class CfgPatches {
         name = COMPONENT_NAME;
         units[] = {
             QGVAR(raf),
-            QGVAR(raf_recon)
+            QGVAR(raf_recon),
+            
+            // Obsolete
+            "UK3CB_BAF_MQ9_Reaper"
         };
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {
             "uksf_gear",
-            "UK3CB_BAF_Vehicles_MQ9_Reaper"
+            "UK3CB_BAF_Vehicles_MQ9_Reaper",
+            QGVAR(prep)
         };
         author = QUOTE(UKSF);
         authors[] = { "Beswick.T" };

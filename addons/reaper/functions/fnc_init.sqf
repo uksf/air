@@ -19,9 +19,9 @@ if (local _uav) then {
     _uav setVariable ["NOAI", 1, true];
     _uav setVariable [QGVAR(diveMode), false, true];
     _uav setVariable [QGVAR(observationMode), true, true];
-    _uav setVariable [QGVAR(targetHeightASL), 1500, true];
+    _uav setVariable [QGVAR(targetHeightASL), 5000, true];
     _uav setVariable [QGVAR(customWaypoint), false, true];
-    _uav flyInHeightASL [1500, 1500, 1500];
+    _uav flyInHeightASL [FEET_TO_METERS(5000), FEET_TO_METERS(5000), FEET_TO_METERS(5000)];
 };
 
 GVAR(handlerUav) = [{
@@ -30,14 +30,15 @@ GVAR(handlerUav) = [{
 
     if !(local _uav) exitWith {};
     
-    if ((ACE_controlledUAV select 3) isEqualTo "GUNNER" && {cameraView isEqualTo "GUNNER"}) then {
-        call FUNC(updateDisplay);
+    if ((ACE_controlledUAV#0) == _uav && (ACE_controlledUAV#3) isEqualTo "GUNNER" && {cameraView isEqualTo "GUNNER"}) then {
+        [_uav] call FUNC(updateDisplay);
     };
 
     private _height = ((getWPPos [_uav, 1])#2);
     private _diveMode = _uav getVariable QGVAR(diveMode);
     private _observationMode = _uav getVariable QGVAR(observationMode);
     private _targetHeightASL = _uav getVariable QGVAR(targetHeightASL);
+    private _targetHeightASLMeters = FEET_TO_METERS(_targetHeightASL);
     private _customWaypoint = _uav getVariable QGVAR(customWaypoint);
     private _currentWaypoint = currentWaypoint (group _uav);
     private _specificDistance = (getPosATL _uav) select 2;
@@ -47,11 +48,11 @@ GVAR(handlerUav) = [{
 
     // Sets the height of all current waypoints to _targetHeightASL if set.
     if (_customWaypoint && !_heightChanged) then {
-        if (!(((getWPPos [_uav, _currentWaypoint]) select 2) == _targetHeightASL)) then {
+        if (!(((getWPPos [_uav, _currentWaypoint]) select 2) == _targetHeightASLMeters)) then {
             {
-                _x setWPpos [((getWPPos _x) select 0), ((getWPPos _x) select 1), _targetHeightASL];
+                _x setWPpos [((getWPPos _x) select 0), ((getWPPos _x) select 1), _targetHeightASLMeters];
             } forEach waypoints (group _uav);
-            _height = _targetHeightASL;
+            _height = _targetHeightASLMeters;
         };
     };
 
@@ -70,7 +71,7 @@ GVAR(handlerUav) = [{
     if (_diveMode && ((getPosATL _uav) distance2D (getWPPos [_uav, _currentWaypoint]) < (4000 min (_specificDistance * 3))) && !_heightChanged) then {
         _uav forceSpeed 33;
         if (((getPosATL _uav) distance2D (getWPPos [_uav, _currentWaypoint])) < (_specificDistance * 1.5)) then {
-            _targetHeightASL = 200 max (_specificDistance - 200);
+            _targetHeightASLMeters = 200 max (_specificDistance - 200);
             _heightChanged = true;
             _uav forceSpeed -1;
         };
@@ -79,13 +80,13 @@ GVAR(handlerUav) = [{
             _heightChanged = false;
             _uav setVariable [QGVAR(diveMode), false, true];
             _uav forceSpeed -1;
-            _targetHeightASL = 200 max _height;
+            _targetHeightASLMeters = 200 max _height;
         };
     };
 
     // Updates flyInHeight based on ATL and ASL
     // _uav flyinHeight 200;
-    _uav flyInHeightASL [_targetHeightASL, _targetHeightASL, _targetHeightASL];
+    _uav flyInHeightASL [_targetHeightASLMeters, _targetHeightASLMeters, _targetHeightASLMeters];
 
     // Update vars
     _args set [1, _heightChanged];

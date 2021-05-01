@@ -69,7 +69,7 @@ class CfgVehicles {
                         minFov = 0.5;
                         maxFov = 0.5;
                         directionStabilized = 1;
-                        gunnerOpticsModel = QPATHTOF(data\optic_mq9.p3d);
+                        gunnerOpticsModel = QPATHTOF(data\optic_mq9_med.p3d);
                     };
                     class Narrow : Wide {
                         opticsDisplayName = "WM";
@@ -85,7 +85,7 @@ class CfgVehicles {
                         minFov = 0.1;
                         maxFov = 0.1;
                         directionStabilized = 1;
-                        gunnerOpticsModel = QPATHTOF(data\optic_mq9.p3d);
+                        gunnerOpticsModel = QPATHTOF(data\optic_mq9_med.p3d);
                     };
                     class Narrowerer : Wide {
                         opticsDisplayName = "MN";
@@ -93,7 +93,7 @@ class CfgVehicles {
                         minFov = 0.05;
                         maxFov = 0.05;
                         directionStabilized = 1;
-                        gunnerOpticsModel = QPATHTOF(data\optic_mq9.p3d);
+                        gunnerOpticsModel = QPATHTOF(data\optic_mq9_med.p3d);
                     };
                     class Narrowererer : Wide {
                         opticsDisplayName = "WN";
@@ -101,7 +101,7 @@ class CfgVehicles {
                         minFov = 0.02;
                         maxFov = 0.02;
                         directionStabilized = 1;
-                        gunnerOpticsModel = QPATHTOF(data\optic_mq9.p3d);
+                        gunnerOpticsModel = QPATHTOF(data\optic_mq9_med.p3d);
                     };
                     class Narrowerererer : Wide {
                         opticsDisplayName = "N";
@@ -109,7 +109,7 @@ class CfgVehicles {
                         minFov = 0.01;
                         maxFov = 0.01;
                         directionStabilized = 1;
-                        gunnerOpticsModel = QPATHTOF(data\optic_mq9.p3d);
+                        gunnerOpticsModel = QPATHTOF(data\optic_mq9_med.p3d);
                     };
                     class Narrowererererer : Wide {
                         opticsDisplayName = "NN";
@@ -117,7 +117,7 @@ class CfgVehicles {
                         minFov = 0.005;
                         maxFov = 0.005;
                         directionStabilized = 1;
-                        gunnerOpticsModel = QPATHTOF(data\optic_mq9.p3d);
+                        gunnerOpticsModel = QPATHTOF(data\optic_mq9_med.p3d);
                     };
                 };
                 class Components {
