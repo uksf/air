@@ -37,4 +37,8 @@ class CfgMarkers {
         icon = QPATHTOEF(f35,data\ui\icon.paa);
         texture = QPATHTOEF(f35,data\ui\icon.paa);
     };
+    class GVAR(h135): GVAR(apache) {
+        icon = "\HAFM_EC635\UI\Map_ec635_CA.paa";
+        texture = "\HAFM_EC635\UI\Map_ec635_CA.paa";
+    };
 };

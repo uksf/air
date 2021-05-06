@@ -48,7 +48,7 @@ GVAR(loopHandle) = [{
         {
             private _markerName = format ["%1%2", CBA_missionTime, random 9999];
             private _speed = (speed _x) / MULTIPLIER_SPEED;
-            private _altitudeATL = (getPosATL _x)#2 * MULTIPLIER_FEET;
+            private _altitudeATL = (getPos _x)#2 * MULTIPLIER_FEET;
             private _altitudeASL = (getPosASL _x)#2 * MULTIPLIER_FEET;
             private _direction = round (getDir _x);
             private _formattedSpeed = if (_speed > 50) then {(round (_speed / 10)) * 10} else {round _speed};
