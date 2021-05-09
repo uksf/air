@@ -46,6 +46,8 @@ class CfgVehicles {
         simulation = "airplaneX";
         landingAoa = "rad 7";
         landingSpeed = 220;
+        altFullForce = 7000;
+        altNoForce = 10000;
         extCameraPosition[] = { 0, 0, -40 };
         envelope[] = { 0, 0.1, 0.9, 2.8, 3.5, 3.7, 3.8, 3.8, 3.6, 3.3, 3 };
         wheelSteeringSensitivity = 5;

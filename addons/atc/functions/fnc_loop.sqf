@@ -23,12 +23,13 @@
 params ["_player", "_state"];
 
 if (!_state) exitWith {
-    [GVAR(loopHandle)] call CBA_fnc_removePerFrameHandler;
+    [GVAR(loopPFHID)] call CBA_fnc_removePerFrameHandler;
+    GVAR(loopPFHID) = -1;
     {deleteMarkerLocal _x} forEach GVAR(markers);
     GVAR(markers) = [];
 };
 
-GVAR(loopHandle) = [{
+GVAR(loopPFHID) = [{
     params ["_args"];
     _args params ["_player", "_time"];
 

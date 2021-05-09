@@ -4,6 +4,7 @@ ADDON = false;
 
 #include "XEH_PREP.hpp"
 
+GVAR(loopPFHID) = -1;
 GVAR(aircraft) = [];
 GVAR(aew) = [];
 
