@@ -12,5 +12,7 @@ if (!hasInterface) exitWith {};
         [_player, false] call FUNC(loop);
     };
 
-    [_player, _mapOn] call FUNC(loop);
+    if (_hasTerminal) then {
+        [_player, _mapOn] call FUNC(loop);
+    };
 }] call CBA_fnc_addPlayerEventHandler;
