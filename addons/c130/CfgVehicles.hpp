@@ -100,6 +100,8 @@ class CfgVehicles {
         cargoAction[] = { "Truck_Cargo01","Truck_Cargo04","Truck_Cargo02","Truck_Cargo01","Truck_Cargo04","Truck_Cargo02","Truck_Cargo01","Truck_Cargo04","Truck_Cargo02","Truck_Cargo01","Truck_Cargo04","Truck_Cargo02","Truck_Cargo01","Truck_Cargo04","Truck_Cargo02","Truck_Cargo01","Truck_Cargo04","Truck_Cargo02","Truck_Cargo01","Truck_Cargo04","Truck_Cargo02","Truck_Cargo01","Truck_Cargo04","Truck_Cargo02","Truck_Cargo01","Truck_Cargo04","Truck_Cargo02","Truck_Cargo01","Truck_Cargo04","Truck_Cargo02","Truck_Cargo01","Truck_Cargo04","Truck_Cargo02","Truck_Cargo01","Truck_Cargo04" };
         getinaction = "GetInLow";
         getoutaction = "GetInLow";
+        memoryPointsGetInCargo[] = { "pos cargo" };
+        memoryPointsGetInCargoDir[] = { "pos cargo dir" };
         gunnerhasflares = 1;
         crewVulnerable = 1;
         transportSoldier = 43;
