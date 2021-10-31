@@ -30,7 +30,7 @@
 
 ###############################################################################
 
-__version__ = "0.8"
+__version__ = "0.9"
 
 import sys
 
@@ -51,7 +51,7 @@ import traceback
 import time
 import timeit
 import re
-import fileinput
+from tempfile import mkstemp
 
 if sys.platform == "win32":
     import winreg
@@ -749,6 +749,7 @@ def main(argv):
     make_target = "DEFAULT" # Which section in make.cfg to use for the build
     new_key = True # Make a new key and use it to sign?
     quiet = False # Suppress output from build tool?
+    sqfc_compiling = True
 
     # Parse arguments
     if "help" in argv or "-h" in argv or "--help" in argv:
@@ -1075,6 +1076,23 @@ See the make.cfg file for additional build options.
                         print_error("\nFailed to delete {}".format(os.path.join(obsolete_check_path,file)))
                         pass
 
+        # Always cleanup old sqfc
+        for root, _dirs, files in os.walk(module_root_parent):
+            for file in files:
+                if file.endswith(".sqfc"):
+                    os.remove(os.path.join(root, file))
+        if sqfc_compiling:
+            print_blue("\nCompiling to sqfc...")
+            compiler_exe = os.path.join(module_root_parent, "ArmaScriptCompiler.exe")
+            if not os.path.isfile(compiler_exe):
+                print_yellow("ArmaScriptCompiler.exe not found in base mod folder - skipping")
+            else:
+                ret = subprocess.call([compiler_exe], cwd=module_root_parent, stdout=False)
+                if ret == 0:
+                    print_green("sqfc finished")
+                else:
+                    print_error("ArmaScriptCompiler.exe returned unexpected {}".format(ret))
+
         # For each module, prep files and then build.
         print_blue("\nBuilding...")
         for module in modules:
@@ -1333,6 +1351,14 @@ See the make.cfg file for additional build options.
             shutil.rmtree(os.path.join(release_dir, project, "temp"), True)
         except:
             print_error("ERROR: Could not delete pboProject temp files.")
+
+    if sqfc_compiling:
+        print_blue("\nCleaning up sqfc...")
+        # cleanup all old sqfc
+        for root, _dirs, files in os.walk(module_root_parent):
+            for file in files:
+                if file.endswith(".sqfc"):
+                    os.remove(os.path.join(root, file))
 
     # Make release
     if make_release_zip:
