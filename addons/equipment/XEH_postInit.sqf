@@ -1,4 +1,4 @@
 #include "script_component.hpp"
-#include "keybinds.sqf"
+#include "initKeybinds.sqf"
 
 call FUNC(addMarshallSticksActions);

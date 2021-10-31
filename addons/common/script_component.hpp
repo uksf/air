@@ -10,6 +10,6 @@
 
 #define VERSION_CONFIG_COMMON VERSION_CONFIG; \
     versionDesc = "UKSF Air"; \
-    versionAct = QUOTE(call COMPILE_FILE(init_versionTooltip))
+    versionAct = QUOTE(call COMPILE_SCRIPT(init_versionTooltip))
 
 #define STATIC_LINE_MINIMUM_ALTITUDE 80

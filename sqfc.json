@@ -1,0 +1,16 @@
+{
+    "inputDirs": [
+        "P:/u/uksf_air/addons/"
+    ],
+    "includePaths": [
+        "P:/"
+    ],
+    "excludeList": [
+        "initsettings.sqf",
+        "initkeybinds.sqf",
+        "xeh_prep.sqf",
+        "\\temp\\"
+    ],
+    "outputDir": "P:/",
+    "workerThreads": 12
+}
