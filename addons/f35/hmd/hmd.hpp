@@ -263,7 +263,6 @@ class AirplaneHUD {
     class Draw {
         alpha = 0.40000001;
         color[] = { 0.15000001, 1, 0.15000001 };
-        condition = "(1 - (cameraHeadingDiffY <= -15) + (abs (cameraHeadingDiffX) >= 24)) * on";
 
         class WPHud {
             condition = "wpvalid";
