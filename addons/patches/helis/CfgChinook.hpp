@@ -182,6 +182,116 @@ class CUP_CH47F_base : Helicopter_Base_H {
     ace_cookoff_cookoffSelections[] = { "exhaust_1" };
     ace_refuel_fuelCapacity = 3914;
     uksf_radios_rackChannels[] = { 31, 40, 41 };
+    class MarkerLights {
+        class WhiteStill {
+            name = "pos_light_still_white";
+            color[] = {1, 1, 1};
+            ambient[] = {0.1, 0.1, 0.1};
+            intensity = 75;
+            drawLight = 1;
+            drawLightSize = 0.15;
+            drawLightCenterSize = 0.04;
+            activeLight = 0;
+            blinking = 0;
+            dayLight = 1;
+            useFlare = 0;
+            class Attenuation {
+                start = 0;
+                constant = 0;
+                linear = 25;
+                quadratic = 50;
+                hardLimitStart = 0.75;
+                hardLimitEnd = 1;
+            };
+        };
+        class RedStill {
+            name = "pos_light_still_red";
+            color[] = {0.8, 0, 0};
+            ambient[] = {0.08, 0, 0};
+            intensity = 75;
+            drawLight = 1;
+            drawLightSize = 0.15;
+            drawLightCenterSize = 0.04;
+            activeLight = 0;
+            blinking = 0;
+            dayLight = 1;
+            useFlare = 0;
+            class Attenuation {
+                start = 0;
+                constant = 0;
+                linear = 25;
+                quadratic = 50;
+                hardLimitStart = 0.75;
+                hardLimitEnd = 1;
+            };
+        };
+        class GreenStill {
+            name = "pos_light_still_green";
+            color[] = {0, 0.8, 0};
+            ambient[] = {0, 0.08, 0};
+            intensity = 75;
+            drawLight = 1;
+            drawLightSize = 0.15;
+            drawLightCenterSize = 0.04;
+            activeLight = 0;
+            blinking = 0;
+            dayLight = 1;
+            useFlare = 0;
+            class Attenuation {
+                start = 0;
+                constant = 0;
+                linear = 25;
+                quadratic = 50;
+                hardLimitStart = 0.75;
+                hardLimitEnd = 1;
+            };
+        };
+        class RedBlinking {
+            name = "pos_light_blink_red";
+            color[] = {0.9, 0.15, 0.1};
+            ambient[] = {0.09, 0.015, 0.01};
+            intensity = 10000;
+            drawLightSize = 0.2;
+            drawLightCenterSize = 0.04;
+            activeLight = 0;
+            blinking = 1;
+            blinkingStartsOn = 0;
+            blinkingPattern[] = {0.9, 0.1};
+            blinkingPatternGuarantee = 0;
+            dayLight = 1;
+            useFlare = 0;
+            class Attenuation {
+                start = 0;
+                constant = 0;
+                linear = 25;
+                quadratic = 50;
+                hardLimitStart = 0.75;
+                hardLimitEnd = 1;
+            };
+        };
+        class WhiteBlinking {
+            name = "pos_light_blink_white";
+            color[] = {1, 1, 1};
+            ambient[] = {0.1, 0.1, 0.1};
+            intensity = 10000;
+            drawLightSize = 0.25;
+            drawLightCenterSize = 0.08;
+            activeLight = 0;
+            blinking = 1;
+            blinkingPattern[] = {0.1, 0.9};
+            blinkingPatternGuarantee = 0;
+            dayLight = 1;
+            useFlare = 0;
+            class Attenuation {
+                start = 0;
+                constant = 0;
+                linear = 25;
+                quadratic = 50;
+                hardLimitStart = 0.75;
+                hardLimitEnd = 1;
+            };
+        };
+    };
 #include "..\hmds\MFDGeneral.hpp"
 };
 class CUP_B_CH47F_GB : CUP_CH47F_base {
@@ -389,12 +499,28 @@ class CUP_B_CH47F_GB : CUP_CH47F_base {
             weapon = "CUP_Vlmg_L7A2_veh";
         };
     };
+    class TextureSources {
+        class BAF {
+            displayname = "Royal Air Force";
+            author = "Bohemia Interactive";
+            textures[] = {"cup\airvehicles\cup_airvehicles_ch47\data\ch47_ext_1_baf_co.paa", "cup\airvehicles\cup_airvehicles_ch47\data\ch47_ext_2_baf_co.paa", "", "cup\airvehicles\cup_airvehicles_ch47\data\ch47_ext_mlod_co.paa"};
+            factions[] = {};
+        };
+    };
     INVENTORY_AIRCRAFT;
 };
 class CUP_CH47F_VIV_base : CUP_CH47F_base {};
 class CUP_B_CH47F_VIV_GB : CUP_CH47F_VIV_base {
     crew = "UKSF_B_Pilot_7";
     typicalCargo[] = { "UKSF_B_Pilot_7", "UKSF_B_Pilot_7", "UKSF_B_Pilot_7" };
+    class TextureSources {
+        class BAF {
+            displayname = "Royal Air Force";
+            author = "Bohemia Interactive";
+            textures[] = {"cup\airvehicles\cup_airvehicles_ch47\data\ch47_ext_1_baf_co.paa", "cup\airvehicles\cup_airvehicles_ch47\data\ch47_ext_2_baf_co.paa", "", "cup\airvehicles\cup_airvehicles_ch47\data\ch47_ext_mlod_co.paa"};
+            factions[] = {};
+        };
+    };
     INVENTORY_AIRCRAFT;
 };
 
