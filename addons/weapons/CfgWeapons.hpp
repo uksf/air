@@ -161,12 +161,10 @@ class CfgWeapons {
         };
     };
     class UK3CB_BAF_CMFlareLauncher : CMFlareLauncher {
-        modes[] = { "Single", "Burst1", "AIBurst" };
-        class Burst1 : Mode_Burst {
-            reloadTime = 0.2;
-            displayName = "Flares 10/1s";
-            burst = 5;
-        };
+        modes[] = { "Single", "Burst2", "Burst5", "Burst8", "AIBurst" };
+        // Burst2 = 8/1s
+        // Burst5 = 16/1s
+        // Burst8 = 16/8s
     };
 
     class RocketPods;

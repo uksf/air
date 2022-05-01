@@ -119,7 +119,7 @@ class CfgVehicles {
         driveOnComponent[] = { "wheel_1_1", "wheel_2_1", "wheel_12_2" };
         soundgetin[] = { QPATHTOF(data\sounds\close.ogg),1,1 };
         soundgetout[] = { QPATHTOF(data\sounds\open.ogg),1,1,40 };
-        weapons[] = { "CUP_weapon_mastersafe", "CMFlareLauncher" };
+        weapons[] = { "CUP_weapon_mastersafe", "UK3CB_BAF_CMFlareLauncher" };
         magazines[] = { "168Rnd_CMFlare_Chaff_Magazine" };
         hiddenSelections[] = { "camo1", "id1", "id2", "id3", "decals" };
         dammageHalf[] = { QPATHTOF(data\AH64D_mfd_normal_co.paa),QPATHTOF(data\AH64D_mfd_malfc_co.paa) };

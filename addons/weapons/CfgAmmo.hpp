@@ -93,21 +93,13 @@ class CfgAmmo {
         effectsMissileInit = "PylonBackEffects";
         class ace_missileguidance;
     };
-    class ACE_Hellfire_AGM114L : ACE_Hellfire_AGM114K {
-        class ace_missileguidance : ace_missileguidance {
-            enabled = 1;
-            defaultSeekerLockMode = "LOBL";
-            seekerLockModes[] = { "LOBL" };
-        };
-    };
 
     class ACE_Hellfire_AGM114K_drone : ACE_Hellfire_AGM114K {
         class ace_missileguidance : ace_missileguidance {
             enabled = 1;
             seekerAngle = 360;
-            minDeflection = 0.0005;  // Minimum flap deflection for guidance
-            maxDeflection = 0.02;    // Maximum flap deflection for guidance
-            incDeflection = 0.0005;  // The increment in which deflection adjusts.
+            pitchRate = 45; // degrees per second
+            yawRate = 45;
         };
     };
     class ACE_Hellfire_AGM114N : ACE_Hellfire_AGM114K {
@@ -117,9 +109,8 @@ class CfgAmmo {
         class ace_missileguidance : ace_missileguidance {
             enabled = 1;
             seekerAngle = 360;
-            minDeflection = 0.0005;  // Minimum flap deflection for guidance
-            maxDeflection = 0.02;    // Maximum flap deflection for guidance
-            incDeflection = 0.0005;  // The increment in which deflection adjusts.
+            pitchRate = 45; // degrees per second
+            yawRate = 45;
         };
     };
 

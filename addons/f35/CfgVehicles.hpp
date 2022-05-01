@@ -105,7 +105,7 @@ class CfgVehicles {
         memoryPointCMDir[] = { "FlareLauncher_1_dir" };
         memoryPointLDust = "WheelDust_left_pos";
         memoryPointRDust = "WheelDust_right_pos";
-        weapons[] = { "UK3CB_BAF_Safe", "Laserdesignator_pilotCamera", "CMFlareLauncher_Singles" };
+        weapons[] = { "UK3CB_BAF_Safe", "Laserdesignator_pilotCamera", "UK3CB_BAF_CMFlareLauncher" };
         magazines[] = { "Laserbatteries", "240Rnd_CMFlare_Chaff_Magazine" };
         soundSetSonicBoom[] = { QGVAR(sonicboom_soundset) };
         maxOmega = 2000;

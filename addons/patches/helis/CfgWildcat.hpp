@@ -330,7 +330,7 @@ class rksla3_aw159_hma2 : rksla3_aw159_base {
     startDuration = 30;
     unitInfoType = "RscUnitInfoNoSpeed";
     attenuationEffectType = "HeliAttenuation";
-    weapons[] = { "UK3CB_BAF_Safe", "CMFlareLauncher" };
+    weapons[] = { "UK3CB_BAF_Safe", "UK3CB_BAF_CMFlareLauncher" };
     magazines[] = { "168Rnd_CMFlare_Chaff_Magazine" };
     class ViewPilot : ViewPilot {
         minFov = 0.25;
