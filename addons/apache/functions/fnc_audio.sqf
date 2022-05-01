@@ -4,52 +4,26 @@
         Tim Beswick
 
     Description:
-        Plays given audio
+        Plays audio from queue with delays
 
     Parameters:
-        0: Sound 1 <STRING>
-        1: Delay 1 <SCALAR>
-        2: Sound 2 <STRING>
-        3: Delay 2 <SCALAR>
-        4: Sound 3 <STRING>
+        None
 
     Return value:
         Nothing
 */
-params [["_sound1", ""], ["_delay1", 0], ["_sound2", ""], ["_delay2", 0], ["_sound3", ""], ["_delay3", 0]];
-
 // TODO: Make this use a proper queue
 
-[{
-    !GVAR(soundPlaying)
-}, {
-    params ["_sound1", "_delay1", "_sound2", "_delay2", "_sound3", "_delay3"];
+if (GVAR(audioQueue) isEqualTo []) exitWith {
+    GVAR(audioProcessing) = false;
+};
 
-    GVAR(soundPlaying) = true;
-    if (alive player) then {
-        if (_sound3 != "") then {
-            playsound [_sound1, true];
-            [{
-                playsound [_this, true];
-            }, _sound2, _delay1] call CBA_fnc_waitAndExecute;
-            [{
-                playsound [_this, true];
-            }, _sound3, (_delay1 + _delay2)] call CBA_fnc_waitAndExecute;
-        } else {
-            if (_sound2 != "") then {
-                playsound [_sound1, true];
-                [{
-                    playsound [_this, true];
-                }, _sound2, _delay1] call CBA_fnc_waitAndExecute;
-            } else {
-                if (_sound1 != "") then {
-                    playsound [_sound1, true];
-                };
-            };
-        };
-    };
+if (GVAR(audioProcessing)) exitWith {};
+GVAR(audioProcessing) = true;
 
-    [{
-        GVAR(soundPlaying) = false;
-    }, [], (_delay1 + _delay2 + _delay3)] call CBA_fnc_waitAndExecute;
-}, [_sound1, _delay1, _sound2, _delay2, _sound3, _delay3]] call CBA_fnc_waitUntilAndExecute;
+private _audio = GVAR(audioQueue) deleteAt 0;
+_audio params ["_sound", "_delay"];
+
+playsound [_sound, true];
+
+[{GVAR(audioProcessing) = false; call FUNC(audio)}, [], _delay] call CBA_fnc_waitAndExecute;

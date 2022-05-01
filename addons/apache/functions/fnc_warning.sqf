@@ -14,21 +14,21 @@
 */
 params ["_heli"];
 
-GVAR(soundHandler) = [{
+GVAR(damageHandlerPFHID) = [{
     params ["_args"];
     _args params ["_heli"];
 
     if !(alive _heli) exitWith {
-        [GVAR(soundHandler)] call CBA_fnc_removePerFrameHandler;
+        [GVAR(damageHandlerPFHID)] call CBA_fnc_removePerFrameHandler;
     };
 
     private _damage = _heli getHitPointDamage "HitVRotor";
     if (_damage > (_heli getVariable [QGVAR(previousTailDamage), 0])) then {
         if (_damage > 0.4) then {
             if (_damage < 0.8) then {
-                [QGVAR(tailrotorDamaged), 1.7] call FUNC(audio);
+                [QGVAR(processAudio), [QGVAR(tailrotorDamaged), 1.7]] call CBA_fnc_localEvent;
             } else {
-                [QGVAR(tailrotorFailure), 1.8] call FUNC(audio);
+                [QGVAR(processAudio), [QGVAR(tailrotorFailure), 1.8]] call CBA_fnc_localEvent;
             };
         };
         _heli setVariable [QGVAR(previousTailDamage), _damage, true];
@@ -38,9 +38,9 @@ GVAR(soundHandler) = [{
     if (_damage > (_heli getVariable [QGVAR(previousMainDamage), 0])) then {
         if (_damage > 0.4) then {
             if (_damage < 0.8) then {
-                [QGVAR(mainrotorDamaged), 1.7] call FUNC(audio);
+                [QGVAR(processAudio), [QGVAR(mainrotorDamaged), 1.7]] call CBA_fnc_localEvent;
             } else {
-                [QGVAR(mainrotorFailure), 1.8] call FUNC(audio);
+                [QGVAR(processAudio), [QGVAR(mainrotorFailure), 1.7]] call CBA_fnc_localEvent;
             };
         };
         _heli setVariable [QGVAR(previousMainDamage), _damage, true];
@@ -50,9 +50,9 @@ GVAR(soundHandler) = [{
     if (_damage > (_heli getVariable [QGVAR(previousE1Damage), 0])) then {
         if (_damage > 0.4) then {
             if (_damage < 0.8) then {
-                [QGVAR(engineOneDamaged), 1.7] call FUNC(audio);
+                [QGVAR(processAudio), [QGVAR(engineOneDamaged), 1.7]] call CBA_fnc_localEvent;
             } else {
-                [QGVAR(engineOneFailure), 1.7] call FUNC(audio);
+                [QGVAR(processAudio), [QGVAR(engineOneFailure), 1.7]] call CBA_fnc_localEvent;
             };
         };
         _heli setVariable [QGVAR(previousE1Damage), _damage, true];
@@ -62,9 +62,9 @@ GVAR(soundHandler) = [{
     if (_damage > (_heli getVariable [QGVAR(previousE2Damage), 0])) then {
         if (_damage > 0.4) then {
             if (_damage < 0.8) then {
-                [QGVAR(engineTwoDamaged), 1.7] call FUNC(audio);
+                [QGVAR(processAudio), [QGVAR(engineTwoDamaged), 1.7]] call CBA_fnc_localEvent;
             } else {
-                [QGVAR(engineTwoFailure), 1.7] call FUNC(audio);
+                [QGVAR(processAudio), [QGVAR(engineTwoFailure), 1.7]] call CBA_fnc_localEvent;
             };
         };
         _heli setVariable [QGVAR(previousE2Damage), _damage, true];
@@ -76,7 +76,7 @@ GVAR(soundHandler) = [{
             _heli removemagazine "UK3CB_BAF_1200Rnd_30mm_M230_HEDP_T";
             _heli addmagazine "UK3CB_BAF_JAM_30mm_M230_HEDP_T";
 
-            [QGVAR(gunActuatorFailure), 1.9] call FUNC(audio);
+            [QGVAR(processAudio), [QGVAR(gunActuatorFailure), 1.9]] call CBA_fnc_localEvent;
         };
         _heli setVariable [QGVAR(previousGunDamage), _damage, true];
     };
@@ -84,7 +84,7 @@ GVAR(soundHandler) = [{
     _damage = _heli getHitPointDamage "HitAvionics";
     if (_damage > (_heli getVariable [QGVAR(previousInsDamage), 0])) then {
         if (_damage >= 0.8) then {
-            [QGVAR(instrumentFailure), 1.7] call FUNC(audio);
+            [QGVAR(processAudio), [QGVAR(instrumentFailure), 1.7]] call CBA_fnc_localEvent;
         };
         _heli setVariable [QGVAR(previousInsDamage), _damage, true];
     };

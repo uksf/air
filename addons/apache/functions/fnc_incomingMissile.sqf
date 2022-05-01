@@ -32,26 +32,30 @@ if !(local _pilot) exitWith {}; // Only want the pilot's machine to handle this
 
 private _missile = nearestObject [_hostile, _missileType];
 GVAR(trackedMissiles) = GVAR(trackedMissiles) - [objNull];
-if (_missile in GVAR(trackedMissiles)) exitWith {};
+if (isNull _missile || {_missile in GVAR(trackedMissiles)}) exitWith {};
 GVAR(trackedMissiles) pushBack _missile;
+
+private _aircraftPosition = getPosASL _aircraft;
+private _missilePosition = getPosASL _missile;
+private _missileRelativeVertical = "low";
+if (_aircraftPosition#2 < _missilePosition#2) then {
+    _missileRelativeVertical = "high";
+};
 
 private _cmMode = _aircraft getVariable [QGVAR(cmMode), 0];
 
 // Flares (cm auto)
 if (isEngineOn _aircraft && _cmMode == 2) then {
-    _pilot forceWeaponFire ["UK3CB_BAF_CMFlareLauncher", "Burst5"]; // Flares 16/1s
-};
-
-private _aircraftPosition = getPosASL _aircraft;
-private _missilePosition = getPosASL _missile;
-private _missileRelativeVertical = "low";
-if (_aircraftPosition select 2 < _missilePosition select 2) then {
-    _missileRelativeVertical = "high";
+    [{
+        ((_this#0) distance (_this#1)) < (500 + random 250)
+    }, {
+        player forceWeaponFire ["UK3CB_BAF_CMFlareLauncher", "Burst5"]; // Flares 16/1s
+    }, [_aircraft, _missile], 10] call CBA_fnc_waitUntilAndExecute;
 };
 
 // Audio warning (cm semi or auto)
 if (isEngineOn _aircraft && _cmMode > 0) then {
-    private _missileDirection = ((_missilePosition select 0) - (_aircraftPosition select 0)) atan2 ((_missilePosition select 1) - (_aircraftPosition select 1));
+    private _missileDirection = ((_missilePosition#0) - (_aircraftPosition#0)) atan2 ((_missilePosition#1) - (_aircraftPosition#1));
     if (_missileDirection < 0) then {
         _missileDirection = _missileDirection + 360;
     };
@@ -61,10 +65,13 @@ if (isEngineOn _aircraft && _cmMode > 0) then {
         _oclock = 12;
     };
 
-    private _sounds = [format [QUOTE(GVAR(%1oclock)), _oclock], 1.7, format [QUOTE(GVAR(%1)), _missileRelativeVertical], 0.5];
-    _sounds call FUNC(audio);
-    if !(isNull (gunner _aircraft)) then {
-        [QGVAR(audio), _sounds, gunner _aircraft] call CBA_fnc_targetEvent;
+    [QGVAR(processAudio), [format [QUOTE(GVAR(%1oclock)), _oclock], 1.7]] call CBA_fnc_localEvent;
+    [QGVAR(processAudio), [format [QUOTE(GVAR(%1)), _missileRelativeVertical], 0.5]] call CBA_fnc_localEvent;
+
+    private _gunner = gunner _aircraft;
+    if (!isNull _gunner && {!local _gunner}) then {
+        [QGVAR(processAudio), [format [QUOTE(GVAR(%1oclock)), _oclock], 1.7], gunner _aircraft] call CBA_fnc_targetEvent;
+        [QGVAR(processAudio), [format [QUOTE(GVAR(%1)), _missileRelativeVertical], 0.5], gunner _aircraft] call CBA_fnc_targetEvent;
     };
 };
 

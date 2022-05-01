@@ -4,7 +4,7 @@
         Tim Beswick
 
     Description:
-        Runs on get in
+        Runs on get out
 
     Parameters:
         0: Heli <OBJECT>
@@ -16,5 +16,4 @@
         Nothing
 */
 
-GVAR(soundPlaying) = false;
-[GVAR(soundHandler)] call CBA_fnc_removePerFrameHandler;
+[GVAR(damageHandlerPFHID)] call CBA_fnc_removePerFrameHandler;

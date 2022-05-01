@@ -18,6 +18,5 @@
 params ["_heli"];
 
 if (player isEqualTo (driver _heli) || {player isEqualTo (gunner _heli)}) then {
-    GVAR(soundPlaying) = false;
     [_heli] call FUNC(warning);
 };
