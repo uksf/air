@@ -14,7 +14,11 @@ class CfgPatches {
             "CUP_Weapons_Ammunition",
             "CUP_Weapons_VehicleWeapons",
             "CUP_Weapons_DynamicLoadout",
-            "rksla3_aw159"
+            "rksla3_aw159",
+            "ace_aim9",
+            "ace_aim120",
+            "ace_gbu",
+            "ace_sdb"
         };
         author = QUOTE(UKSF);
         authors[] = { "Beswick.T" };
@@ -29,3 +33,14 @@ class CfgPatches {
 #include "CfgNonAIVehicles.hpp"
 #include "CfgVehicles.hpp"
 #include "CfgWeapons.hpp"
+
+class CfgInGameUI {
+    class CfgWeaponModeTextures {
+        LOFT = QPATHTOF(data\mode_loft_ca.paa);
+    };
+};
+class PreloadTextures {
+    class CfgInGameUI {
+        LOFT = "*";
+    };
+};

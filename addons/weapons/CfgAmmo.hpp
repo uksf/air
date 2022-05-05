@@ -72,6 +72,11 @@ class CfgAmmo {
     class ammo_Missile_AMRAAM_D : ammo_Missile_MediumRangeAABase {
         ace_rearm_dummy = QGVAR(ammo_Missile_AMRAAM_D);
     };
+    class ace_aim120_d: ammo_Missile_AMRAAM_D {
+        flightProfiles[] = {"Direct", "Loft"};
+        class Direct {};
+        class Loft {};
+    };
     class ammo_Bomb_SmallDiameterBase;
     class ammo_Bomb_SDB : ammo_Bomb_SmallDiameterBase {
         ace_rearm_dummy = QGVAR(ammo_Bomb_SDB);
@@ -118,10 +123,13 @@ class CfgAmmo {
     class ammo_Bomb_LaserGuidedBase : LaserBombCore {
         indirectHitRange = 20;  // 12
     };
-    class Bo_GBU12_LGB;
+    class Bo_GBU12_LGB : ammo_Bomb_LaserGuidedBase {
+        model = "\A3\Weapons_F_EPC\Ammo\Bomb_04_fly_F";
+        proxyShape = "\A3\Weapons_F_EPC\Ammo\Bomb_04_F";
+    };
     class CUP_Bo_GBU12_LGB : Bo_GBU12_LGB {
-        model = "\A3\Weapons_F\Ammo\Bomb_01_fly_F";
-        proxyShape = "\A3\Weapons_F\Ammo\Bomb_01_F";
+        model = "\A3\Weapons_F_EPC\Ammo\Bomb_04_fly_F";
+        proxyShape = "\A3\Weapons_F_EPC\Ammo\Bomb_04_F";
     };
 
     class BulletBase;

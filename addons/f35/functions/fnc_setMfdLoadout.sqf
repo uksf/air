@@ -12,11 +12,11 @@
     Return Value:
         Nothing
 */
-#define AIM9 ["PylonRack_Missile_BIM9X_x1", "PylonRack_Missile_BIM9X_x2", "PylonMissile_Missile_BIM9X_x1"]
-#define AMMRAM ["PylonRack_Missile_AMRAAM_D_x1", "PylonRack_Missile_AMRAAM_D_x2", "PylonMissile_Missile_AMRAAM_D_INT_x1"]
-#define GBU ["PylonMissile_Bomb_GBU12_x1", "PylonRack_Bomb_GBU12_x2"]
+#define AIM9 ["ace_aim9_PylonRack_aim132_x1", "ace_aim9_PylonRack_aim132_x2"]
+#define AMMRAM ["ace_aim120_PylonRack_Missile_d_x1", "ace_aim120_PylonRack_Missile_d_x2", "ace_aim120_PylonMissile_Missile_d_INT_x1"]
+#define GBU ["ace_gbu_PylonMissile_Bomb_GBU12_x1", "ace_gbu_PylonRack_Bomb_GBU12_x2"]
 #define JDAM []
-#define SDB ["PylonRack_Bomb_SDB_x4"]
+#define SDB ["ace_sdb_PylonRack_bomb_SDB_x4"]
 #define HEAVY []
 
 params ["_plane"];

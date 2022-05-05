@@ -170,11 +170,9 @@ class CfgWeapons {
     class RocketPods;
     class ace_hellfire_launcher : RocketPods {
         displayName = "AGM-114K";
-        magazines[] = { "2Rnd_ACE_Hellfire_AGM114K", "4Rnd_ACE_Hellfire_AGM114K", "PylonMissile_1Rnd_ACE_Hellfire_AGM114K", "PylonRack_1Rnd_ACE_Hellfire_AGM114K", "PylonRack_3Rnd_ACE_Hellfire_AGM114K", "PylonRack_4Rnd_ACE_Hellfire_AGM114K" };
     };
     class ace_hellfire_launcher_N : ace_hellfire_launcher {
         displayName = "AGM-114N";
-        magazines[] = { "2Rnd_ACE_Hellfire_AGM114N", "4Rnd_ACE_Hellfire_AGM114N", "6Rnd_ACE_Hellfire_AGM114N", "PylonMissile_1Rnd_ACE_Hellfire_AGM114N", "PylonRack_1Rnd_ACE_Hellfire_AGM114N", "PylonRack_3Rnd_ACE_Hellfire_AGM114N", "PylonRack_4Rnd_ACE_Hellfire_AGM114N" };
     };
     class ace_hellfire_launcher_drone : ace_hellfire_launcher {
         magazines[] = { "PylonRack_2Rnd_ACE_Hellfire_AGM114K_Drone" };
@@ -184,7 +182,6 @@ class CfgWeapons {
     };
     class ace_hellfire_launcher_L : ace_hellfire_launcher {
         displayName = "AGM-114L";
-        magazines[] = { "2Rnd_ACE_Hellfire_AGM114L", "4Rnd_ACE_Hellfire_AGM114L", "PylonMissile_1Rnd_ACE_Hellfire_AGM114L", "PylonRack_1Rnd_ACE_Hellfire_AGM114L", "PylonRack_3Rnd_ACE_Hellfire_AGM114L", "PylonRack_4Rnd_ACE_Hellfire_AGM114L" };
     };
 
     class CUP_Vacannon_M230_veh : CannonCore {
@@ -338,6 +335,43 @@ class CfgWeapons {
                 soundSetShot[] = { "DS_30mmgatling_Shot_SoundSet", "DS_sniper1_tail_soundset" };
             };
             soundContinuous = 0;
+        };
+    };
+
+    class weapon_LGBLauncherBase;
+    class ace_gbu_12: weapon_LGBLauncherBase {
+        displayName = "GBU-12";
+    };
+    class weapon_SDBLauncher;
+    class ace_sdb_sdb: weapon_SDBLauncher {
+        displayName = "GBU-39";
+    };
+    class missiles_ASRAAM;
+    class ace_aim9_aim132 : missiles_ASRAAM {
+        displayName = "AIM-132";
+        magazines[] = {
+            "ace_aim9_aim132_2Rnd",
+            "ace_aim9_aim132_2Rnd_MI02",
+            "ace_aim9_aim132_2Rnd_MI06",
+            "ace_aim9_aim132_4Rnd",
+            "ace_aim9_aim132_4Rnd_MI02",
+            "ace_aim9_PylonRack_1Rnd_aim132",
+            "ace_aim9_PylonMissile_1Rnd_aim132",
+            "ace_aim9_PylonRack_aim132_x1",
+            "ace_aim9_PylonRack_aim132_x2"
+        };
+    };
+    class weapon_AMRAAMLauncher;
+    class MissileLauncher;
+    class ace_aim120_aim120Launcher : weapon_AMRAAMLauncher {
+        displayName = "AIM-120D";
+        class Direct: MissileLauncher {
+            displayName = "Direct";
+            textureType = "semi";
+        };
+        class Loft: Direct {
+            displayName = "Loft";
+            textureType = "LOFT";
         };
     };
 };

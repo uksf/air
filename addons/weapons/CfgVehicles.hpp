@@ -15,4 +15,7 @@ class CfgVehicles {
     class GVAR(ammo_Bomb_SDB): ace_rearm_defaultCarriedObject {
         model = "\A3\Weapons_F_Sams\Ammo\Bomb_05_F.p3d";
     };
+    class ace_rearm_Bo_GBU12_LGB: ace_rearm_defaultCarriedObject {
+        model = "\A3\Weapons_F_EPC\Ammo\Bomb_04_F.p3d";
+    };
 };

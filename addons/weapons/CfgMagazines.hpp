@@ -19,48 +19,70 @@ class CfgMagazines {
         pylonWeapon = QGVAR(gunpod);
         hardpoints[] = { QGVAR(gunpod) };
     };
-    class magazine_Bomb_GBU12_x1;
-    class PylonMissile_Bomb_GBU12_x1 : magazine_Bomb_GBU12_x1 {
-        hardpoints[] += { "B_GBU12_Only" };
+    class PylonMissile_Bomb_GBU12_x1;
+    class ace_gbu_PylonMissile_Bomb_GBU12_x1 : PylonMissile_Bomb_GBU12_x1 {
+        displayName = "GBU-12 x1";
+        hardpoints[] += { "B_GBU12_ACE_Only" };
     };
-    class PylonRack_Bomb_GBU12_x2: magazine_Bomb_GBU12_x1 {
-        hardpoints[] += { "B_GBU12_DUAL_RAIL_Only" };
+    class PylonRack_Bomb_GBU12_x2;
+    class ace_gbu_PylonRack_Bomb_GBU12_x2 : PylonRack_Bomb_GBU12_x2 {
+        displayName = "GBU-12 x2";
+        hardpoints[] += { "B_GBU12_DUAL_RAIL_ACE_Only" };
+    };
+    class PylonRack_Bomb_SDB_x4;
+    class ace_sdb_PylonRack_bomb_SDB_x4 : PylonRack_Bomb_SDB_x4 {
+        displayName = "GBU-39 x4";
+        hardpoints[] += { "B_GBU39_ACE_Only" };
+    };
+    class ace_aim9_PylonRack_1Rnd_aim132;
+    class ace_aim9_PylonRack_aim132_x1: ace_aim9_PylonRack_1Rnd_aim132 {
+        displayName = "AIM-132 x1";
+        model = "\A3\Weapons_F_Jets\Ammo\PylonPod_Missile_AA_08_Rail_x1_F";
+        hardpoints[] += { "B_AIM132_RAIL_ACE_Only" };
+    };
+    class ace_aim9_PylonRack_aim132_x2: ace_aim9_PylonRack_aim132_x1 {
+        displayName = "AIM-132 x2";
+        count = 2;
+        model = "\A3\Weapons_F_Jets\Ammo\PylonPod_Missile_AA_08_DualRail_x2_F";
+        hardpoints[] = { "B_AIM132_DUAL_RAIL_ACE_Only" };
+        mass = 250;
+    };
+    class PylonRack_Missile_AMRAAM_D_x1;
+    class ace_aim120_PylonRack_Missile_d_x1 : PylonRack_Missile_AMRAAM_D_x1 {
+        displayName = "AIM-120D x1";
+        hardpoints[] += { "B_AMRAAM_D_RAIL_ACE_Only" };
+    };
+    class PylonRack_Missile_AMRAAM_D_x2;
+    class ace_aim120_PylonRack_Missile_d_x2: PylonRack_Missile_AMRAAM_D_x2 {
+        displayName = "AIM-120D x2";
+        hardpoints[] += { "B_AMRAAM_D_DUAL_RAIL_ACE_Only" };
+    };
+    class PylonMissile_Missile_AMRAAM_D_INT_x1;
+    class ace_aim120_PylonMissile_Missile_d_INT_x1 : PylonMissile_Missile_AMRAAM_D_INT_x1 {
+        displayName = "AIM-120D x1";
+        hardpoints[] += { "B_AMRAAM_D_INT_ACE_Only" };
     };
 
     // Hellfire K
-    class 12Rnd_PG_missiles;
-    class 6Rnd_ACE_Hellfire_AGM114K : 12Rnd_PG_missiles {
-        displayName = "AGM-114K";
-    };
-    class 4Rnd_ACE_Hellfire_AGM114K : 6Rnd_ACE_Hellfire_AGM114K {
-        displayName = "AGM-114K";
-        count = 4;
-    };
-    class 4Rnd_ACE_Hellfire_AGM114K_drone : 4Rnd_ACE_Hellfire_AGM114K {
-        ammo = "ACE_Hellfire_AGM114K_drone";
-    };
-    class 2Rnd_ACE_Hellfire_AGM114K : 6Rnd_ACE_Hellfire_AGM114K {
-        displayName = "AGM-114K";
-        count = 2;
-    };
+    class 6Rnd_ACE_Hellfire_AGM114K;
     class PylonMissile_1Rnd_ACE_Hellfire_AGM114K : 6Rnd_ACE_Hellfire_AGM114K {
-        displayName = "1x AGM-114K";
-        hardpoints[] = { "SCALPEL_1RND" };
+        displayName = "AGM-114K x1";
+        // hardpoints[] = { "SCALPEL_1RND" };
     };
     class PylonRack_1Rnd_ACE_Hellfire_AGM114K : 6Rnd_ACE_Hellfire_AGM114K {
-        displayName = "1x AGM-114K";
-        hardpoints[] = { "B_MISSILE_PYLON", "SCALPEL_1RND_EJECTOR", "B_ASRRAM_EJECTOR", "UNI_SCALPEL" };
+        displayName = "AGM-114K x1";
+        // hardpoints[] = { "B_MISSILE_PYLON", "SCALPEL_1RND_EJECTOR", "B_ASRRAM_EJECTOR", "UNI_SCALPEL" };
     };
     class PylonRack_3Rnd_ACE_Hellfire_AGM114K : 6Rnd_ACE_Hellfire_AGM114K {
-        displayName = "3x AGM-114K";
-        hardpoints[] = { "B_MISSILE_PYLON", "UNI_SCALPEL" };
+        displayName = "AGM-114K x3";
+        // hardpoints[] = { "B_MISSILE_PYLON", "UNI_SCALPEL" };
     };
     class PylonRack_4Rnd_ACE_Hellfire_AGM114K : 6Rnd_ACE_Hellfire_AGM114K {
-        displayName = "4x AGM-114K";
-        hardpoints[] = { "UNI_SCALPEL", "B_HELLFIRE" };
+        displayName = "AGM-114K x4";
+        hardpoints[] += { "B_HELLFIRE" };
     };
     class PylonRack_2Rnd_ACE_Hellfire_AGM114K_Drone : PylonRack_4Rnd_ACE_Hellfire_AGM114K {
-        displayName = "2x AGM-114K";
+        displayName = "AGM-114K x2";
         ammo = "ACE_Hellfire_AGM114K_drone";
         model = "\CUP\Weapons\CUP_Weapons_DynamicLoadout\AGM114\CUP_AGM114_dual_drone.p3d";
         count = 2;
@@ -70,28 +92,11 @@ class CfgMagazines {
     };
 
     // Hellfire N
-    class 6Rnd_ACE_Hellfire_AGM114N : 6Rnd_ACE_Hellfire_AGM114K {
-        displayName = "AGM-114N";
-        displayNameShort = "AGM-114N";
-        descriptionShort = "AGM-114N";
-    };
-    class 2Rnd_ACE_Hellfire_AGM114N : 6Rnd_ACE_Hellfire_AGM114N {
-        count = 2;
-    };
-    class 4Rnd_ACE_Hellfire_AGM114N : 6Rnd_ACE_Hellfire_AGM114N {
-        count = 4;
-    };
-    class 4Rnd_ACE_Hellfire_AGM114N_drone : 4Rnd_ACE_Hellfire_AGM114N {
-        ammo = "ACE_Hellfire_AGM114N_drone";
-    };
     class PylonRack_4Rnd_ACE_Hellfire_AGM114N : PylonRack_4Rnd_ACE_Hellfire_AGM114K {
-        displayName = "4x AGM-114N";
-        displayNameShort = "AGM-114N";
-        descriptionShort = "AGM-114N";
-        pylonWeapon = "ace_hellfire_launcher_N";
+        displayName = "AGM-114N x4";
     };
     class PylonRack_2Rnd_ACE_Hellfire_AGM114N_Drone : PylonRack_4Rnd_ACE_Hellfire_AGM114N {
-        displayName = "2x AGM-114N";
+        displayName = "AGM-114N x2";
         ammo = "ACE_Hellfire_AGM114N_drone";
         model = "\CUP\Weapons\CUP_Weapons_DynamicLoadout\AGM114\CUP_AGM114_dual_drone.p3d";
         count = 2;
@@ -101,17 +106,8 @@ class CfgMagazines {
     };
 
     // Hellfire L
-    class 6Rnd_ACE_Hellfire_AGM114L : 6Rnd_ACE_Hellfire_AGM114K {
-        displayName = "AGM-114L";
-    };
-    class 2Rnd_ACE_Hellfire_AGM114L : 6Rnd_ACE_Hellfire_AGM114L {
-        count = 2;
-    };
-    class 4Rnd_ACE_Hellfire_AGM114L : 6Rnd_ACE_Hellfire_AGM114L {
-        count = 4;
-    };
     class PylonRack_4Rnd_ACE_Hellfire_AGM114L : PylonRack_4Rnd_ACE_Hellfire_AGM114K {
-        displayName = "4x AGM-114L";
+        displayName = "AGM-114L x4";
     };
 
     class CUP_14Rnd_FFAR_M;
