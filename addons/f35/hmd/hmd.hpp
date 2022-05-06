@@ -263,6 +263,7 @@ class AirplaneHUD {
     class Draw {
         alpha = 0.40000001;
         color[] = { 0.15000001, 1, 0.15000001 };
+        condition = "on";
 
         class WPHud {
             condition = "wpvalid";
