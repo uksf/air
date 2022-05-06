@@ -28,7 +28,7 @@ if (isNull _currentUav || {_currentUav != _uav}) exitWith {
 };
 
 if (_seat isEqualTo "GUNNER" && {cameraView isEqualTo "GUNNER"}) then {
-    call FUNC(updateDisplay);
+    [_uav] call FUNC(updateDisplay);
 };
 
 private _waypointHeight = (getWPPos [_uav, 1])#2;
