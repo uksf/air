@@ -4,7 +4,7 @@ class rksla3_pumahc_base: Helicopter_Base_H {
     typicalCargo[] = { "UKSF_B_Pilot_7" };
     vehicleClass = "Air";
     unitInfoType = "RscUnitInfoNoSpeed";
-    fuelCapacity = 1500;
+    FUEL(1556,75);
     liftForceCoef = 0.9;
     bodyFrictionCoef = 1.1;
     cyclicAsideForceCoef = 0.7; // 0.9

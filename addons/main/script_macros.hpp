@@ -125,3 +125,7 @@ DEPRECATE_CLASS(CLASS,BASE)
 HIDE_CLASS(CLASS,BASE)
 
 #define PREVIEW(NAME) editorPreview = QPATHTOF(data\previews\GVAR(NAME).jpg)
+
+#define FUEL(capacity,flightTime) fuelCapacity = capacity; \
+ace_refuel_fuelCapacity = capacity; \
+fuelConsumptionRate = capacity / (flightTime * 60)

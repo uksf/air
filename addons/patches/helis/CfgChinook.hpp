@@ -1,7 +1,7 @@
 class CUP_CH47F_base : Helicopter_Base_H {
     cyclicAsideForceCoef = 2; // 1.7
     cyclicForwardForceCoef = 1.8; // 1.7
-    fuelCapacity = 60;  // 500
+    FUEL(3914,100);
     armor = 60;
     startDuration = 90;
     maximumLoad = 2500;
@@ -180,7 +180,6 @@ class CUP_CH47F_base : Helicopter_Base_H {
         };
     };
     ace_cookoff_cookoffSelections[] = { "exhaust_1" };
-    ace_refuel_fuelCapacity = 3914;
     uksf_radios_rackChannels[] = { 31, 40, 41 };
     class MarkerLights {
         class WhiteStill {

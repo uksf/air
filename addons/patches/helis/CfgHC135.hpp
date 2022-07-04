@@ -8,7 +8,7 @@ class H135_Juno_HT1_ZM521 : Helicopter_Base_H {
     liftForceCoef = 1;         // 1.5
     cyclicAsideForceCoef = 1;  // 1.6
     cyclicForwardForceCoef = 1;  // 1.1
-    fuelCapacity = 300;          // 960
+    FUEL(700,45);
     startDuration = 30;
     weapons[] = { "UK3CB_BAF_CMFlareLauncher", "UK3CB_BAF_IRJammer" };
     magazines[] = { "120Rnd_CMFlare_Chaff_Magazine", "UK3CB_BAF_IRJammer_Magazine" };

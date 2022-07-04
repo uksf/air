@@ -83,7 +83,6 @@ class CfgVehicles {
         armor = 150;
         armorWheels = 4000;
         fuelCapacity = 2000;
-        fuelConsumptionRate = 0.398;
         armorStructured = 1;
         showNVGCargo[] = { 1 };
         brakeDistance = 200;

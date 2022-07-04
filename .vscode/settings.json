@@ -8,7 +8,11 @@
     "sqf.enableCBA": true,
     "sqf.enableACE3": true,
     "[sqf]": {
-        "editor.quickSuggestions": true,
+        "editor.quickSuggestions": {
+            "comments": "on",
+            "strings": "on",
+            "other": "on"
+        },
         "editor.tabSize": 4,
         "editor.insertSpaces": true,
         "editor.detectIndentation": true,
@@ -40,10 +44,18 @@
         "xiosbase": "cpp"
     },
     "[cpp]": {
-        "editor.quickSuggestions": false
+        "editor.quickSuggestions": {
+            "comments": "off",
+            "strings": "off",
+            "other": "off"
+        }
     },
     "[c]": {
-        "editor.quickSuggestions": false
+        "editor.quickSuggestions": {
+            "comments": "off",
+            "strings": "off",
+            "other": "off"
+        }
     },
     "workbench.colorTheme": "[SQF] Dark Theme",
     "editor.detectIndentation": false

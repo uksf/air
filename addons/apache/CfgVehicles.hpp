@@ -71,7 +71,7 @@ class CfgVehicles {
         icon = QPATHTOF(data\ui\Icon_ah64d_CA.paa);
         availableForSupportTypes[] = { "CAS_Heli" };
         armor = 150;
-        fuelCapacity = 200;  // 300
+        FUEL(870,75);
         startDuration = 70;
         explosionShielding = 2;
         epeImpulseDamageCoef = 5;

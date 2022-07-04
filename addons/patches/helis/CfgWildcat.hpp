@@ -8,7 +8,7 @@ class UK3CB_BAF_Wildcat_Base : Heli_light_03_base_F {
     faction = "CUP_B_GB";
     crew = "UKSF_B_Pilot_7";
     typicalCargo[] = { "UKSF_B_Pilot_7" };
-    fuelCapacity = 400;  // 742
+    FUEL(836,60);
     startDuration = 30;
     mainRotorSpeed = 1;
     bodyFrictionCoef = 0.5;        // 1
@@ -326,7 +326,7 @@ class rksla3_aw159_hma2 : rksla3_aw159_base {
     vehicleClass = "Air";
     crew = "UKSF_B_Pilot_7";
     typicalCargo[] = { "UKSF_B_Pilot_7" };
-    fuelCapacity = 400;  // 742
+    FUEL(836,60);
     startDuration = 30;
     unitInfoType = "RscUnitInfoNoSpeed";
     attenuationEffectType = "HeliAttenuation";

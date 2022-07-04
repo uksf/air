@@ -3,7 +3,7 @@ class UK3CB_BAF_Merlin_Base : Heli_Transport_02_base_F {
     faction = "CUP_B_GB";
     crew = "UKSF_B_Pilot_7";
     typicalCargo[] = { "UKSF_B_Pilot_7" };
-    fuelCapacity = 1750;  // 2500
+    FUEL(3222,100);
     startDuration = 60;
     cyclicAsideForceCoef = 1.1; // 1
     cyclicForwardForceCoef = 1;
