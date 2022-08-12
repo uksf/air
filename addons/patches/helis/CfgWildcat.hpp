@@ -245,26 +245,42 @@ class UK3CB_BAF_Wildcat_Base : Heli_light_03_base_F {
     };
     ace_cookoff_cookoffSelections[] = { "motor" };
     uksf_radios_rackChannels[] = { 31, 40, 41 };
-    INVENTORY_AIRCRAFT;
 #include "..\hmds\MFDCAS.hpp"
 };
-class UK3CB_BAF_Wildcat_AH1_Base : UK3CB_BAF_Wildcat_Base {
-};
-class UK3CB_BAF_Wildcat_AH1_6_Base : UK3CB_BAF_Wildcat_AH1_Base {
-    class TransportBackpacks {};
-};
-class UK3CB_BAF_Wildcat_AH1_8_Base : UK3CB_BAF_Wildcat_AH1_Base {
-    crew = "UKSF_B_Pilot_7";
-    typicalCargo[] = { "UKSF_B_Pilot_7" };
-    class TransportBackpacks {};
-};
-class UK3CB_BAF_Wildcat_AH1_TRN_8A : UK3CB_BAF_Wildcat_AH1_8_Base {
-    faction = "CUP_B_GB";
-};
-class UK3CB_BAF_Wildcat_AH1_CAS_6A : UK3CB_BAF_Wildcat_AH1_6_Base {
-    faction = "CUP_B_GB";
+
+class UK3CB_BAF_Wildcat_AH1_6_Base;
+class UK3CB_BAF_Wildcat_AH1_6_Armed: UK3CB_BAF_Wildcat_AH1_6_Base {
     crew = "UKSF_B_Pilot_656";
     typicalCargo[] = { "UKSF_B_Pilot_656" };
+    INVENTORY_AIRCRAFT;
+};
+class UK3CB_BAF_Wildcat_AH1_8_Base;
+class UK3CB_BAF_Wildcat_AH1_8_Armed: UK3CB_BAF_Wildcat_AH1_8_Base {
+    crew = "UKSF_B_Pilot_656";
+    typicalCargo[] = { "UKSF_B_Pilot_656" };
+    INVENTORY_AIRCRAFT;
+};
+class UK3CB_BAF_Wildcat_AH1_TRN_8A : UK3CB_BAF_Wildcat_AH1_8_Base {
+    INVENTORY_AIRCRAFT;
+};
+class UK3CB_BAF_Wildcat_HMA2_8_Base;
+class UK3CB_BAF_Wildcat_HMA2_TRN_8A : UK3CB_BAF_Wildcat_HMA2_8_Base {
+    crew = "UKSF_B_Pilot_7";
+    typicalCargo[] = { "UKSF_B_Pilot_7" };
+    INVENTORY_AIRCRAFT;
+};
+
+class UK3CB_BAF_Wildcat_AH1_6_Generic: UK3CB_BAF_Wildcat_AH1_6_Armed {
+    scope = 0;
+    scopeCurator = 0;
+};
+class UK3CB_BAF_Wildcat_AH1_8_Generic: UK3CB_BAF_Wildcat_AH1_8_Armed {
+    scope = 0;
+    scopeCurator = 0;
+};
+class UK3CB_BAF_Wildcat_AH1_CAS_6A : UK3CB_BAF_Wildcat_AH1_6_Base {
+    scope = 0;
+    scopeCurator = 0;
 };
 class UK3CB_BAF_Wildcat_AH1_CAS_6B : UK3CB_BAF_Wildcat_AH1_CAS_6A {
     scope = 0;
@@ -279,9 +295,8 @@ class UK3CB_BAF_Wildcat_AH1_CAS_6D : UK3CB_BAF_Wildcat_AH1_CAS_6A {
     scopeCurator = 0;
 };
 class UK3CB_BAF_Wildcat_AH1_CAS_8A : UK3CB_BAF_Wildcat_AH1_8_Base {
-    faction = "CUP_B_GB";
-    crew = "UKSF_B_Pilot_656";
-    typicalCargo[] = { "UKSF_B_Pilot_656" };
+    scope = 0;
+    scopeCurator = 0;
 };
 class UK3CB_BAF_Wildcat_AH1_CAS_8B : UK3CB_BAF_Wildcat_AH1_CAS_8A {
     scope = 0;
@@ -303,18 +318,7 @@ class UK3CB_BAF_Wildcat_AH1_HEL_8A : UK3CB_BAF_Wildcat_AH1_8_Base {
     scope = 0;
     scopeCurator = 0;
 };
-class UK3CB_BAF_Wildcat_HMA2_Base : UK3CB_BAF_Wildcat_Base {
-    crew = "UKSF_B_Pilot_7";
-    typicalCargo[] = { "UKSF_B_Pilot_7" };
-    class TransportBackpacks {};
-};
-class UK3CB_BAF_Wildcat_HMA2_8_Base : UK3CB_BAF_Wildcat_HMA2_Base {
-    crew = "UKSF_B_Pilot_7";
-    typicalCargo[] = { "UKSF_B_Pilot_7" };
-};
-class UK3CB_BAF_Wildcat_HMA2_TRN_8A : UK3CB_BAF_Wildcat_HMA2_8_Base {
-    faction = "CUP_B_GB";
-};
+
 class rksla3_aw159_base : Helicopter_Base_F {
     class ViewPilot;
     class Turrets : Turrets {

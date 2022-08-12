@@ -20,4 +20,14 @@ class CfgPatches {
 class CfgVehicles {
     delete CUP_B_C130J_GB;
     delete CUP_B_C130J_Cargo_GB;
+
+    class UK3CB_BAF_Wildcat_AH1_6_Base;
+    RESET_INVENTORY(UK3CB_BAF_Wildcat_AH1_6_Armed,UK3CB_BAF_Wildcat_AH1_6_Base);
+
+    class UK3CB_BAF_Wildcat_AH1_8_Base;
+    RESET_INVENTORY(UK3CB_BAF_Wildcat_AH1_8_Armed,UK3CB_BAF_Wildcat_AH1_8_Base);
+    RESET_INVENTORY(UK3CB_BAF_Wildcat_AH1_TRN_8A,UK3CB_BAF_Wildcat_AH1_8_Base);
+
+    class UK3CB_BAF_Wildcat_HMA2_8_Base;
+    RESET_INVENTORY(UK3CB_BAF_Wildcat_HMA2_TRN_8A,UK3CB_BAF_Wildcat_HMA2_8_Base);
 };
