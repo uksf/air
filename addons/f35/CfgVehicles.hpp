@@ -47,7 +47,7 @@ class CfgVehicles {
         irTargetSize = 0.5;
         showAllTargets = 2;
         countermeasureActivationRadius = 32000;
-        landingSpeed = 230;
+        landingSpeed = 150; // 230
         stallSpeed = 1;
         acceleration = 250;
         maxSpeed = 1930;
@@ -56,25 +56,40 @@ class CfgVehicles {
         altFullForce = 8000;
         altNoForce = 15500;
         vtol = 1;
-        VTOLPitchInfluence = 8;
-        VTOLRollInfluence = 8;
+        VTOLPitchInfluence = 5;
+        VTOLRollInfluence = 5;
         VTOLYawInfluence = 8;
-        rudderInfluence = 0.1;
+        rudderInfluence = 0.2;
+        elevatorControlsSensitivityCoef = 4;
+        aileronControlsSensitivityCoef = 3.5;
+        rudderControlsSensitivityCoef = 4;
         draconicForceXCoef = 10;
         draconicForceYCoef = 2;
-        draconicForceZCoef = 1;
-        aileronControlsSensitivityCoef = 4;
+        draconicForceZCoef = 0.05;
+
+        // draconicTorqueXCoef[] = { 4, 5.1, 6.1, 7, 7.7, 8.3, 9, 9.1, 9.2, 9.2, 9.2 };  // f-18
+        // draconicTorqueXCoef[] = { 16, 15.5, 15, 14.5, 14, 14, 14.5, 15, 16, 17, 18 }; // blackfish
+        // draconicTorqueXCoef = 0.15; // f-35
+        draconicTorqueXCoef[] = { 4, 5.1, 6.1, 7, 7.7, 8.3, 9, 9.1, 9.2, 9.2, 9.2 };
+
+        // draconicTorqueYCoef[] = { 6.8, 5.5, 4, 1.5, 0.1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };  // f-18
+        // draconicTorqueYCoef[] = { 1, 1.2, 1.4, 2, 4, 7, 6.8, 6.6, 6.4, 6.2, 5.5, 5, 4.5, 3.9, 3, 1 }; // blackfish
+        // draconicTorqueYCoef = 1; // f-35
+        draconicTorqueYCoef[] = { 1, 1.2, 1.4, 0.1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+
         // envelope[] = { 0, 0.11, 0.43, 0.97, 1.72, 2.69, 3.87, 5.27, 6.89, 8.72, 9.7, 9.6, 9.2, 8.5, 8.2, 8 };  // f-18
         // envelope[] = { 0, 1, 1.5, 1.8, 3.8, 5.3, 5.5, 6.9, 5.2, 4.3, 5, 3.2, 0.5, 0 }; // f-35
-        envelope[] = { 0.9, 1.2, 1.3, 1.5, 1.72, 2.69, 3.87, 5.27, 6.89, 8.72, 9.4, 9.2, 8.5, 8.2, 8, 7.5 };
+        envelope[] = { 0, 1, 1.3, 1.4, 1.6, 1.72, 2.69, 3.87, 5.27, 6.89, 8.72, 9.4, 9.2, 8.5, 8.2, 8, 7.5 };
 
         // thrustCoef[] = { 1.76, 1.69, 1.62, 1.68, 1.74, 1.81, 1.89, 1.95, 1.96, 1.96, 1.92, 1.4, 0.4, 0, 0, 0 };  // f-18
         // thrustCoef[] = { 1, 1.1, 1.3, 1.5, 1.9, 1.7, 1.4, 1.2, 1.2, 1.1, 1, 0.5, 0 }; // f-35
-        thrustCoef[] = { 1, 1, 1, 1.1, 1.3, 1.5, 1.7, 1.8, 1.9, 1.8, 1.7, 1.6, 1, 0.4, 0, 0 };
+        // thrustCoef[] = { 1, 1, 1, 1.1, 1.3, 1.5, 1.7, 1.8, 1.9, 1.8, 1.7, 1.6, 1, 0.4, 0, 0 }; // f-35 OP
+        thrustCoef[] = { 1.01, 1.05, 1.1, 1.2, 1.4, 1.5, 1.6, 1.9, 1.85, 1.75, 1.6, 1.5, 1, 0.5, 0 };
 
         // elevatorCoef[] = { 0.3, 0.5, 0.66, 0.52, 0.49, 0.46, 0.43, 0.4, 0.35, 0.3, 0.25, 0.18, 0.17, 0.16, 0.15, 0.15 };  // f-18
         // elevatorCoef[] = { 0.6, 0.9, 1.0, 1.1, 1.0, 0.8, 0.5 }; // f-35
-        elevatorCoef[] = { 0.5, 0.55, 0.65, 0.55, 0.5, 0.45, 0.4, 0.35, 0.3, 0.25, 0.2, 0.18, 0.16, 0.15, 0.13, 0.12 };
+        // elevatorCoef[] = { 0.5, 0.55, 0.65, 0.55, 0.5, 0.45, 0.4, 0.35, 0.3, 0.25, 0.2, 0.18, 0.16, 0.15, 0.13, 0.12 }; // f-35 OP
+        elevatorCoef[] = { 0.4, 0.5, 0.6, 0.55, 0.5, 0.45, 0.4, 0.35, 0.3, 0.25, 0.2, 0.18, 0.16, 0.15, 0.15, 0.15 };
 
         // aileronCoef[] = { 0.4, 0.5, 0.8, 0.95, 1.02, 1.04, 1.03, 1.01, 1, 0.7, 0.6, 0.55, 0.5, 0.45, 0.4, 0.35 };  // f-18
         // aileronCoef[] = { 0.2, 1.5, 1.7, 1.8, 1.9, 1.9, 1.9, 1.9, 1.9, 1.8, 1.7, 1.6, 1.5 }; // f-35
@@ -83,9 +98,10 @@ class CfgVehicles {
         // rudderCoef[] = { 0.5, 1.8, 2.6, 2.75, 2.8, 2.85, 2.9, 2.95, 2.98, 3.01, 2.7, 1.1, 0.9, 0.7, 0.5, 0.3 };  // f-18
         // rudderCoef[] = { 0.7, 1.5, 4, 3, 2, 1, 0.6 }; // f-35
         rudderCoef[] = { 0.5, 1.8, 2.6, 2.75, 2.8, 2.85, 2.9, 2.95, 2.98, 3.01, 2.7, 1.1, 0.9, 0.7, 0.5, 0.3 };
-        airFrictionCoefs0[] = {0, 0, 0};
-        airFrictionCoefs1[] = {0.1, 0.05, 0.006};
-        airFrictionCoefs2[] = {0.001, 0.0005, 6e-005};
+
+        airFrictionCoefs0[] = { 0, 0, 0 };
+        airFrictionCoefs1[] = { 0.1, 0.05, 0.006 };
+        airFrictionCoefs2[] = { 0.001, 0.0005, 0.00006 };
         angleOfIndicence = "rad 1";
         landingAoa = "rad 10";
         flapsFrictionCoef = 0.4;
