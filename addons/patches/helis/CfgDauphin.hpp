@@ -68,6 +68,13 @@ class MEA_Pantera_Base : Helicopter_Base_H {
     ace_fastroping_ropeOrigins[] = { { 1.4, 1.15, 0.5 } };
     INVENTORY_AIRCRAFT;
 #include "..\hmds\MFDGeneral.hpp"
+    LESH_canBeTowed = 0;
+    LESH_towFromFront = 1;
+    LESH_AxisOffsetTarget[] = { 0, 8.365, -1.71 };
+    LESH_WheelOffset[] = { 0, -1 };
+    EGVAR(common,towbarOffset)[] = { -0.11, -0.13, 0.08 };
+    EGVAR(common,towbarRotation)[] = { 0, 1, 0.024 };
+    EGVAR(common,towbarActionMemoryPoint) = "wheel_f_axis";
 };
 class GVAR(dauphin) : MEA_Pantera_Base {
     scope = 2;

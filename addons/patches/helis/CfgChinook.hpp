@@ -292,6 +292,13 @@ class CUP_CH47F_base : Helicopter_Base_H {
         };
     };
 #include "..\hmds\MFDGeneral.hpp"
+    LESH_canBeTowed = 0;
+    LESH_towFromFront = 0;
+    LESH_AxisOffsetTarget[] = { 1.6, -9.14, -3.14 };
+    LESH_WheelOffset[] = { 1.6, -1 };
+    EGVAR(common,towbarOffset)[] = { 1.6, -0.6, -0.19 };
+    EGVAR(common,towbarRotation)[] = { 0, -1, 0.036 };
+    EGVAR(common,towbarActionMemoryPoint) = "doplnovani";
 };
 class CUP_B_CH47F_GB : CUP_CH47F_base {
     scope = 2;

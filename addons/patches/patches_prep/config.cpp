@@ -30,4 +30,13 @@ class CfgVehicles {
 
     class UK3CB_BAF_Wildcat_HMA2_8_Base;
     RESET_INVENTORY(UK3CB_BAF_Wildcat_HMA2_TRN_8A,UK3CB_BAF_Wildcat_HMA2_8_Base);
+
+    delete UK3CB_BAF_Wildcat_AH1_CAS_6B;
+    delete UK3CB_BAF_Wildcat_AH1_CAS_6C;
+    delete UK3CB_BAF_Wildcat_AH1_CAS_6D;
+    delete UK3CB_BAF_Wildcat_AH1_CAS_6A;
+    delete UK3CB_BAF_Wildcat_AH1_CAS_8B;
+    delete UK3CB_BAF_Wildcat_AH1_CAS_8C;
+    delete UK3CB_BAF_Wildcat_AH1_CAS_8D;
+    delete UK3CB_BAF_Wildcat_AH1_CAS_8A;
 };

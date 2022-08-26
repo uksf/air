@@ -1052,9 +1052,10 @@ class CfgVehicles {
         CatapultExclude = 1;
         LESH_canBeTowed = 0;
         LESH_towFromFront = 1;
-        LESH_AxisOffsetTarget[] = { 0, 8.23, -1.9 };
+        LESH_AxisOffsetTarget[] = { 0, 8.23, -1.88 };
         LESH_WheelOffset[] = { 0, -1 };
-        EGVAR(common,towbarOffset)[] = { 0, 3.78, -1.9 };
+        EGVAR(common,towbarOffset)[] = { 0, 0, -0.055 };
+        EGVAR(common,towbarRotation)[] = { 0, 1, 0.015 };
         EGVAR(common,towbarActionMemoryPoint) = "Wheel_1_center";
         uksf_radios_rackChannels[] = { 31, 40, 41 };
     };

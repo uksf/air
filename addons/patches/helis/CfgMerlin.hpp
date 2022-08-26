@@ -82,6 +82,13 @@ class UK3CB_BAF_Merlin_Base : Heli_Transport_02_base_F {
     ace_cookoff_cookoffSelections[] = { "motor" };
     uksf_radios_rackChannels[] = { 31, 40, 41 };
 #include "..\hmds\MFDMerlin.hpp"
+    LESH_canBeTowed = 0;
+    LESH_towFromFront = 1;
+    LESH_AxisOffsetTarget[] = { 0.22, 11.905, -3.295 };
+    LESH_WheelOffset[] = { 0.22, -1 };
+    EGVAR(common,towbarOffset)[] = { 0.255, 0, -0.115 };
+    EGVAR(common,towbarRotation)[] = { 0, 1, 0.04 };
+    EGVAR(common,towbarActionMemoryPoint) = "wheel_front_axis";
 };
 class UK3CB_BAF_Merlin_HC3_Base : UK3CB_BAF_Merlin_Base {
     INVENTORY_AIRCRAFT;

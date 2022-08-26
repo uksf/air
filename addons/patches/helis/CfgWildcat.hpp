@@ -246,6 +246,13 @@ class UK3CB_BAF_Wildcat_Base : Heli_light_03_base_F {
     ace_cookoff_cookoffSelections[] = { "motor" };
     uksf_radios_rackChannels[] = { 31, 40, 41 };
 #include "..\hmds\MFDCAS.hpp"
+    LESH_canBeTowed = 0;
+    LESH_towFromFront = 1;
+    LESH_AxisOffsetTarget[] = { -0.125, 7.915, -1.67 };
+    LESH_WheelOffset[] = { -0.125, -1 };
+    EGVAR(common,towbarOffset)[] = { 0.31, 0, -0.06 };
+    EGVAR(common,towbarRotation)[] = { 0, 1, 0.053 };
+    EGVAR(common,towbarActionMemoryPoint) = "wheel_front_axis";
 };
 
 class UK3CB_BAF_Wildcat_AH1_6_Base;
@@ -278,38 +285,6 @@ class UK3CB_BAF_Wildcat_AH1_8_Generic: UK3CB_BAF_Wildcat_AH1_8_Armed {
     scope = 0;
     scopeCurator = 0;
 };
-class UK3CB_BAF_Wildcat_AH1_CAS_6A : UK3CB_BAF_Wildcat_AH1_6_Base {
-    scope = 0;
-    scopeCurator = 0;
-};
-class UK3CB_BAF_Wildcat_AH1_CAS_6B : UK3CB_BAF_Wildcat_AH1_CAS_6A {
-    scope = 0;
-    scopeCurator = 0;
-};
-class UK3CB_BAF_Wildcat_AH1_CAS_6C : UK3CB_BAF_Wildcat_AH1_CAS_6A {
-    scope = 0;
-    scopeCurator = 0;
-};
-class UK3CB_BAF_Wildcat_AH1_CAS_6D : UK3CB_BAF_Wildcat_AH1_CAS_6A {
-    scope = 0;
-    scopeCurator = 0;
-};
-class UK3CB_BAF_Wildcat_AH1_CAS_8A : UK3CB_BAF_Wildcat_AH1_8_Base {
-    scope = 0;
-    scopeCurator = 0;
-};
-class UK3CB_BAF_Wildcat_AH1_CAS_8B : UK3CB_BAF_Wildcat_AH1_CAS_8A {
-    scope = 0;
-    scopeCurator = 0;
-};
-class UK3CB_BAF_Wildcat_AH1_CAS_8C : UK3CB_BAF_Wildcat_AH1_CAS_8A {
-    scope = 0;
-    scopeCurator = 0;
-};
-class UK3CB_BAF_Wildcat_AH1_CAS_8D : UK3CB_BAF_Wildcat_AH1_CAS_8A {
-    scope = 0;
-    scopeCurator = 0;
-};
 class UK3CB_BAF_Wildcat_AH1_HEL_6A : UK3CB_BAF_Wildcat_AH1_6_Base {
     scope = 0;
     scopeCurator = 0;
@@ -318,6 +293,14 @@ class UK3CB_BAF_Wildcat_AH1_HEL_8A : UK3CB_BAF_Wildcat_AH1_8_Base {
     scope = 0;
     scopeCurator = 0;
 };
+DEPRECATE_CLASS(UK3CB_BAF_Wildcat_AH1_CAS_6A,UK3CB_BAF_Wildcat_AH1_6_Armed);
+DEPRECATE_CLASS(UK3CB_BAF_Wildcat_AH1_CAS_6B,UK3CB_BAF_Wildcat_AH1_6_Armed);
+DEPRECATE_CLASS(UK3CB_BAF_Wildcat_AH1_CAS_6C,UK3CB_BAF_Wildcat_AH1_6_Armed);
+DEPRECATE_CLASS(UK3CB_BAF_Wildcat_AH1_CAS_6D,UK3CB_BAF_Wildcat_AH1_6_Armed);
+DEPRECATE_CLASS(UK3CB_BAF_Wildcat_AH1_CAS_8A,UK3CB_BAF_Wildcat_AH1_8_Armed);
+DEPRECATE_CLASS(UK3CB_BAF_Wildcat_AH1_CAS_8B,UK3CB_BAF_Wildcat_AH1_8_Armed);
+DEPRECATE_CLASS(UK3CB_BAF_Wildcat_AH1_CAS_8C,UK3CB_BAF_Wildcat_AH1_8_Armed);
+DEPRECATE_CLASS(UK3CB_BAF_Wildcat_AH1_CAS_8D,UK3CB_BAF_Wildcat_AH1_8_Armed);
 
 class rksla3_aw159_base : Helicopter_Base_F {
     class ViewPilot;

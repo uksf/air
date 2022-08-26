@@ -838,13 +838,13 @@ class CfgVehicles {
         };
         ace_cookoff_cookoffSelections[] = { "zamerny" };
         EGVAR(radios,rackChannels)[] = { 41, 40, 31, 32 };
-        // TODO
-        // LESH_canBeTowed = 0;
-        // LESH_towFromFront = 1;
-        // LESH_AxisOffsetTarget[] = { 0, 15.95, 0.4 };
-        // LESH_WheelOffset[] = { 0, -1 };
-        // EGVAR(common,towbarOffset)[] = { 0, 11.5, 0.37 };
-        // EGVAR(common,towbarActionMemoryPoint) = "wheel_1_1";
+        LESH_canBeTowed = 0;
+        LESH_towFromFront = 0;
+        LESH_AxisOffsetTarget[] = { 0.02, -12.33, -1.95 };
+        LESH_WheelOffset[] = { 0.02, -1 };
+        EGVAR(common,towbarOffset)[] = { 0.16, -0.05, 0.07 };
+        EGVAR(common,towbarRotation)[] = { 0, -1, 0.035 };
+        EGVAR(common,towbarActionMemoryPoint) = "wheel_12_2_axis";
         INVENTORY_AIRCRAFT;
         #include "MFDPilot.hpp"
     };

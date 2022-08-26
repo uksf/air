@@ -1067,9 +1067,10 @@ class CfgVehicles {
         CatapultExclude = 1;
         LESH_canBeTowed = 0;
         LESH_towFromFront = 1;
-        LESH_AxisOffsetTarget[] = { 0, 15.95, 0.4 };
+        LESH_AxisOffsetTarget[] = { 0, 15.99, 0.55 };
         LESH_WheelOffset[] = { 0, -1 };
-        EGVAR(common,towbarOffset)[] = { 0, 11.5, 0.37 };
+        EGVAR(common,towbarOffset)[] = { 0, 0, 0 };
+        EGVAR(common,towbarRotation)[] = { 0, 1, -0.005 };
         EGVAR(common,towbarActionMemoryPoint) = "wheel_1_1";
         uksf_radios_rackChannels[] = { 31, 40, 41 };
 		EGVAR(common,staticLineJumpPoints)[] = { "pos_para_left", "pos_para_right" };

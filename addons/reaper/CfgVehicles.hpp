@@ -411,13 +411,13 @@ class CfgVehicles {
                 volume = "(1-camPos)*(rain - rotorSpeed/2)*2";
             };
         };
-        // TODO
-        // LESH_canBeTowed = 0;
-        // LESH_towFromFront = 1;
-        // LESH_AxisOffsetTarget[] = { 0, 15.95, 0.4 };
-        // LESH_WheelOffset[] = { 0, -1 };
-        // EGVAR(common,towbarOffset)[] = { 0, 11.5, 0.37 };
-        // EGVAR(common,towbarActionMemoryPoint) = "wheel_1_1";
+        LESH_canBeTowed = 0;
+        LESH_towFromFront = 1;
+        LESH_AxisOffsetTarget[] = { 0, 7.33, -1.45 };
+        LESH_WheelOffset[] = { 0, -1 };
+        EGVAR(common,towbarOffset)[] = { -0.02, 0, 0 };
+        EGVAR(common,towbarRotation)[] = { 0, 1, 0.045 };
+        EGVAR(common,towbarActionMemoryPoint) = "wheel_1_1_axis";
     };
     class GVAR(raf_recon) : GVAR(raf) {
         displayName = "MQ-9 Reaper (Recon)";
