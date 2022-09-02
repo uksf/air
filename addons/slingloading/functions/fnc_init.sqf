@@ -168,9 +168,6 @@ FUNC(Rope_Adjust_Mass) = {
             params [["_vehicle", objNull], ["_cargo", objNull], ["_originalMass", 0], ["_lift", 0], ["_maxLiftableMass", 0]];
             if (isNull _vehicle || isNull _cargo || _originalMass == 0 || _lift == 0 || _maxLiftableMass == 0) exitWith {};
             [[_cargo, (_lift * 0.8 + ((_originalMass / _maxLiftableMass) * (_lift * 0.2)))], QFUNC(Rope_Set_Mass), _cargo, true] call FUNC(RemoteExec);
-            while {alive _vehicle && alive _cargo && _cargo in ropeAttachedObjects _vehicle} do {
-                sleep 0.2;
-            };
         };
     };
     sleep 0.3;
@@ -366,6 +363,7 @@ FUNC(Extend_Ropes_Action) = {
         };
         [[format [LLSTRING(ALREADY_MAX_LENGTH), GVAR(MaxRopeLength)]], true] call CBA_fnc_notify;
     };
+    GVAR(actionContext) = [ACTION_CONTEXT_EXTEND, ACTION_CONTEXT_EXTENDTOGROUND] select _toGround;
     [LLSTRING(EXTEND), QFUNC(Extend_Ropes_Index_Action), _activeRopes, LLSTRING(ROPE), _vehicle, _unit, _toGround] call FUNC(Show_Select_Ropes_Menu);
     private _extendedRopes = _vehicle getVariable [QGVAR(Ropes_Change), []];
     // diag_log formatText ["%1%2%3%4%5%6%7%8%9", time, "s  (FUNC(Extend_Ropes_Action)) _extendedRopes: ", _extendedRopes, ", _activeRopes: ", _activeRopes];
@@ -452,6 +450,7 @@ FUNC(Show_Select_Ropes_Menu) = {
     showCommandingMenu "";
     showCommandingMenu QUOTE(#USER:GVAR(Show_Select_Ropes_Menu_Array));
     waitUntil {commandingMenu == ""};
+    GVAR(actionContext) = ACTION_CONTEXT_EMPTY;
 };
 
 FUNC(Extend_Ropes_Index_Action) = {
@@ -578,6 +577,7 @@ FUNC(Shorten_Ropes_Action) = {
         };
         [[format [LLSTRING(ALREADY_MIN_LENGTH), GVAR(MinRopeLength)]], true] call CBA_fnc_notify;
     };
+    GVAR(actionContext) = ACTION_CONTEXT_SHORTEN;
     [LLSTRING(SHORTEN), QFUNC(Shorten_Ropes_Index_Action), _activeRopes, LLSTRING(ROPE), _vehicle, _unit] call FUNC(Show_Select_Ropes_Menu);
     private _shortenedRopes = _vehicle getVariable [QGVAR(Ropes_Change), []];
     if (count _shortenedRopes > 0) then {
@@ -680,6 +680,7 @@ FUNC(Release_Cargo_Action) = {
     if (count _activeRopes == 1) exitWith {
         [_vehicle, _unit, (_activeRopes#0)#0] call FUNC(Release_Cargo)
     };
+    GVAR(actionContext) = ACTION_CONTEXT_RELEASE;
     [LLSTRING(RELEASE), QFUNC(Release_Cargo_Index_Action), _activeRopes, LLSTRING(CARGO), _vehicle, _unit] call FUNC(Show_Select_Ropes_Menu);
 };
 
@@ -779,6 +780,7 @@ FUNC(Retract_Ropes_Action) = {
         [_vehicle, _unit, (_activeRopes #0) #0] call FUNC(Retract_Ropes);
         [[LLSTRING(ROPES_RETRACTED)], true] call CBA_fnc_notify;
     };
+    GVAR(actionContext) = ACTION_CONTEXT_RETRACT;
     [LLSTRING(RETRACT), QFUNC(Retract_Ropes_Index_Action), _activeRopes, LLSTRING(ROPE), _vehicle, _unit] call FUNC(Show_Select_Ropes_Menu);
 };
 
@@ -1083,7 +1085,7 @@ FUNC(Rope_Monitor_Unit) = {
                 _unit setVariable [QGVAR(Ropes_Near_Unit), _unitRopes];
             };
         } forEach _unitRopes;
-        sleep 0.1;
+        sleep 0.2;
     };
     [_unit, [QGVAR(ActionID_Pickup)]] call FUNC(Remove_Actions); // if no rope ends near, remove pickup action from unit
     _unit setVariable [QGVAR(Ropes_Near_Unit), nil]; // annil unit rope array

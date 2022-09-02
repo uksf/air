@@ -49,6 +49,8 @@ GVAR(slingRules) = [
     ["Air", "CAN_SLING", "ReammoBox_F"]
 ];
 
+GVAR(actionContext) = "";
+
 call FUNC(init);
 
 ADDON = true;

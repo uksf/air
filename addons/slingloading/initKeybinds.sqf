@@ -1,7 +1,7 @@
 #include "\a3\editor_f\Data\Scripts\dikCodes.h"
 
-// Release slung cargo
-["UKSF Air", QGVAR(releaseCargoAll), "Release Cargo (All)", {false}, {["All"] call FUNC(releaseCargo); true}, [0, [false, false, false]]] call CBA_fnc_addKeybind;
-["UKSF Air", QGVAR(releaseCargoFront), "Release Cargo (Front)", {false}, {["Front"] call FUNC(releaseCargo); true}, [0, [false, false, false]]] call CBA_fnc_addKeybind;
-["UKSF Air", QGVAR(releaseCargoCenter), "Release Cargo (Center)", {false}, {["Center"] call FUNC(releaseCargo); true}, [0, [false, false, false]]] call CBA_fnc_addKeybind;
-["UKSF Air", QGVAR(releaseCargoRear), "Release Cargo (Rear)", {false}, {["Rear"] call FUNC(releaseCargo); true}, [0, [false, false, false]]] call CBA_fnc_addKeybind;
+// Operate cargo ropes
+["UKSF Air", QGVAR(operateRopesAll), ["Operate Ropes (All)", "Operate ropes based on current action context for all ropes. Operating without an action selected will release cargo"], {false}, {["All"] call FUNC(operateRopes); true}, [0, [false, false, false]]] call CBA_fnc_addKeybind;
+["UKSF Air", QGVAR(operateRopesFront), ["Operate Ropes (Front)", "Operate ropes based on current action context for front rope. Operating without an action selected will release cargo"], {false}, {["Front"] call FUNC(operateRopes); true}, [0, [false, false, false]]] call CBA_fnc_addKeybind;
+["UKSF Air", QGVAR(operateRopesCenter), ["Operate Ropes (Center)", "Operate ropes based on current action context for center rope. Operating without an action selected will release cargo"], {false}, {["Center"] call FUNC(operateRopes); true}, [0, [false, false, false]]] call CBA_fnc_addKeybind;
+["UKSF Air", QGVAR(operateRopesRear), ["Operate Ropes (Rear)", "Operate ropes based on current action context for rear rope. Operating without an action selected will release cargo"], {false}, {["Rear"] call FUNC(operateRopes); true}, [0, [false, false, false]]] call CBA_fnc_addKeybind;
