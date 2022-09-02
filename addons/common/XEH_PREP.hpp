@@ -4,5 +4,4 @@ PREP(canAttachTowbar);
 PREP(canStaticLineJump);
 PREP(packParachute);
 PREP(ramp);
-PREP(releaseCargo);
 PREP(staticLineJump);
