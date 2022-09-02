@@ -49,7 +49,7 @@ GVAR(slingRules) = [
     ["Air", "CAN_SLING", "ReammoBox_F"]
 ];
 
-GVAR(actionContext) = "";
+GVAR(actionContext) = ACTION_CONTEXT_EMPTY;
 
 call FUNC(init);
 
