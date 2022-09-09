@@ -397,7 +397,7 @@ FUNC(Extend_Ropes_Action) = {
     } forEach _extendedRopes;
     _messages pushBack true;
     _messages call CBA_fnc_notify;
-    _vehicle setVariable [QGVAR(Ropes_Change), nil];
+    _vehicle setVariable [QGVAR(Ropes_Change), nil, true];
 };
 
 FUNC(Release_Cargo_Near_Ground) = {
@@ -442,11 +442,12 @@ FUNC(Show_Select_Ropes_Menu) = {
     GVAR(Vehicle) = _vehicle;
     GVAR(Unit) = _unit;
     GVAR(toGround) = _toGround;
+
+    GVAR(Show_Select_Ropes_Menu_Array) pushBack [format ["%1 %2", LLSTRING(ALL), _ropesLabel], [0], "", -5, [["expression", format [QUOTE({[ARR_4(_x,GVAR(Vehicle),GVAR(Unit),GVAR(toGround))] call %1} forEach [ARR_3(0,1,2)]), _functionName]]], "1", "1"];
     {
         GVAR(Show_Select_Ropes_Menu_Array) pushBack [format ["%1 %2", _x#1, _ropesLabel], [0], "", -5, [["expression", format [QUOTE([ARR_4(%1,GVAR(Vehicle),GVAR(Unit),GVAR(toGround))] call %2), _x#0, _functionName]]], "1", "1"];
     } forEach _ropesIndexAndLabelArray;
     
-    GVAR(Show_Select_Ropes_Menu_Array) pushBack [format ["%1 %2", LLSTRING(ALL), _ropesLabel], [0], "", -5, [["expression", format [QUOTE({[ARR_4(_x,GVAR(Vehicle),GVAR(Unit),GVAR(toGround))] call %1} forEach [ARR_3(0,1,2)]), _functionName]]], "1", "1"];
     showCommandingMenu "";
     showCommandingMenu QUOTE(#USER:GVAR(Show_Select_Ropes_Menu_Array));
     waitUntil {commandingMenu == ""};
@@ -471,7 +472,7 @@ FUNC(Save_Rope_Change) = {
     if (count _existingRopes == 0 || _ropeLength == 0) exitWith {};
     private _changedRopes = _vehicle getVariable [QGVAR(Ropes_Change), []];
     _changedRopes pushBack [_ropesIndex, _ropeLength];
-    _vehicle setVariable [QGVAR(Ropes_Change), _changedRopes];
+    _vehicle setVariable [QGVAR(Ropes_Change), _changedRopes, true];
 };
 
 FUNC(Extend_Ropes) = {
@@ -597,7 +598,7 @@ FUNC(Shorten_Ropes_Action) = {
         } forEach _shortenedRopes;
         _messages pushBack true;
         _messages call CBA_fnc_notify;
-        _vehicle setVariable [QGVAR(Ropes_Change), nil];
+        _vehicle setVariable [QGVAR(Ropes_Change), nil, true];
     };
 };
 
@@ -971,14 +972,14 @@ FUNC(Deploy_Ropes) = {
     if (!alive _vehicle) exitWith {[_vehicle] call FUNC(Add_Vehicle_Actions)};
     private _existingRopes = _vehicle getVariable [QGVAR(Ropes), []];
     if (count _existingRopes > 0) exitWith {
-        if (_unit == player) then {["uksf_common_notify", [[LLSTRING(ALREADY)], true], _unit] call CBA_fnc_targetEvent;};
+        [QUGVAR(common,notify), [[LLSTRING(ALREADY)], true], _unit] call CBA_fnc_targetEvent;
     };
     private _slingLoadPoints = [_vehicle] call FUNC(Get_Sling_Load_Points);
     if (count _slingLoadPoints == 0) exitWith {
-        if (_unit == player) then {["uksf_common_notify", [[LLSTRING(DOESNT_SUPPORT)], true], _unit] call CBA_fnc_targetEvent;};
+        [QUGVAR(common,notify), [[LLSTRING(DOESNT_SUPPORT)], true], _unit] call CBA_fnc_targetEvent;
     };
     if (count _slingLoadPoints < _cargoCount) exitWith {
-        if (_unit == player) then {["uksf_common_notify", [[format [LLSTRING(DOESNT_SUPPORT_X), _cargoCount]], true], _unit] call CBA_fnc_targetEvent;};
+        [QUGVAR(common,notify), [[format [LLSTRING(DOESNT_SUPPORT_X), _cargoCount]], true], _unit] call CBA_fnc_targetEvent;
     };
     private _cargoRopes = [];
     private _cargo = [];
@@ -1037,7 +1038,7 @@ FUNC(Rope_Monitor_Vehicle) = {
                     _unitRopes = _x getVariable [QGVAR(Ropes_Near_Unit), []];
                     if (_unitRopes find _rope == -1) then {
                         _unitRopes pushBack _rope;
-                        _x setVariable [QGVAR(Ropes_Near_Unit), _unitRopes];
+                        _x setVariable [QGVAR(Ropes_Near_Unit), _unitRopes, true];
                     };
                     // hintSilent formatText ["%1%2%3%4%5", time, "s  (FUNC(Rope_Monitor_Vehicle)) unit: ", _x, ", _unitRopes: ", _unitRopes];
                     [_x] spawn FUNC(Rope_Monitor_Unit);
@@ -1053,20 +1054,20 @@ FUNC(Rope_Monitor_Unit) = {
     params [["_unit", objNull]];
     if (isNull _unit) exitWith {};
     if (_unit getVariable [QGVAR(Unit_Rope_Monitor), false]) exitWith {}; // leave, if unit is already monitoring ror rope ends
-    _unit setVariable [QGVAR(Unit_Rope_Monitor), true]; // raise unit rope monitor flag
+    _unit setVariable [QGVAR(Unit_Rope_Monitor), true, true]; // raise unit rope monitor flag
     // diag_log formatText ["%1%2%3%4%5%6%7%8%9%10", time, "s  (FUNC(Rope_Monitor_Unit)) _unit: ", _unit, ", started rope end monitoring"];
-    if (isNil{_unit getVariable QGVAR(ActionID_Pickup)}) then {                    // add pickup action to unit
+    if (isNil{_unit getVariable QGVAR(ActionID_Pickup)}) then { // add pickup action to unit
         private _actionID = _unit addAction [
             LLSTRING(PICKUP),
-            {[_this #0] call FUNC(Pickup_Ropes_Action)},        
+            {[_this #0] call FUNC(Pickup_Ropes_Action)},
             nil,
             250,
             true,
             true,
             "",
-            QUOTE([_this] call FUNC(Pickup_Ropes_Action_Check))    
+            QUOTE([_this] call FUNC(Pickup_Ropes_Action_Check))
         ];
-        _unit setVariable [QGVAR(ActionID_Pickup), _actionID];
+        _unit setVariable [QGVAR(ActionID_Pickup), _actionID, true];
     };
     private ["_unitRopes", "_index"];
     while {alive _unit && (count(_unit getVariable [QGVAR(Ropes_Near_Unit), []]) > 0)} do {
@@ -1075,21 +1076,21 @@ FUNC(Rope_Monitor_Unit) = {
         // hintSilent formatText ["%1%2%3%4%5%6%7", "unit: ", _unit, lineBreak, "Ropes: ", lineBreak, _unitRopes];
         if (objNull in _unitRopes) then {
             _unitRopes = _unitRopes - [objNull];
-            _unit setVariable [QGVAR(Ropes_Near_Unit), _unitRopes];
+            _unit setVariable [QGVAR(Ropes_Near_Unit), _unitRopes, true];
         };
         {
             if (!alive _x || (_unit distance (ropeEndPosition _x #1) > (GVAR(RopeHandlingDistance) + 5) && _unitRopes find _x != -1)) then {
                 _index = _unitRopes find _x;
                 if (_index == -1) exitWith {};
                 _unitRopes deleteAt _index;
-                _unit setVariable [QGVAR(Ropes_Near_Unit), _unitRopes];
+                _unit setVariable [QGVAR(Ropes_Near_Unit), _unitRopes, true];
             };
         } forEach _unitRopes;
         sleep 0.2;
     };
     [_unit, [QGVAR(ActionID_Pickup)]] call FUNC(Remove_Actions); // if no rope ends near, remove pickup action from unit
-    _unit setVariable [QGVAR(Ropes_Near_Unit), nil]; // annil unit rope array
-    _unit setVariable [QGVAR(Unit_Rope_Monitor), nil]; // annil unit rope monitor flag
+    _unit setVariable [QGVAR(Ropes_Near_Unit), nil, true]; // annil unit rope array
+    _unit setVariable [QGVAR(Unit_Rope_Monitor), nil, true]; // annil unit rope monitor flag
 };
 
 FUNC(Pickup_Ropes_Action_Check) = {
@@ -1098,17 +1099,15 @@ FUNC(Pickup_Ropes_Action_Check) = {
     // diag_log formatText ["%1%2%3%4%5", time, "s  (FUNC(Pickup_Ropes_Action_Check)) _target: ", _target, ", _this: ", _this];
     if (vehicle _unit != _unit) exitWith {false};
     if !(isNil{_unit getVariable QGVAR(Ropes_Pick_Up_Helper)}) exitWith {false};
-    private _unitRopes = _unit getVariable QGVAR(Ropes_Near_Unit);
+    private _unitRopes = _unit getVariable [QGVAR(Ropes_Near_Unit), []];
     if (objNull in _unitRopes) then {
         _unitRopes = _unitRopes - [objNull];
-        _unit setVariable [QGVAR(Ropes_Near_Unit), _unitRopes];
+        _unit setVariable [QGVAR(Ropes_Near_Unit), _unitRopes, true];
     };
     // diag_log formatText ["%1%2%3%4%5", time, "s  (FUNC(Pickup_Ropes_Action_Check)) _unitRopes: ", _unitRopes];
     private _pickup = false;
-    private _ropeHandlingDistance = GVAR(RopeHandlingDistance);
-    if (_unit != player) then {_ropeHandlingDistance = _ropeHandlingDistance + 5};
     {
-        if (alive _x && ((_unit distance ((ropeEndPosition _x)#1)) < _ropeHandlingDistance)) exitWith {_pickup = true};
+        if (alive _x && ((_unit distance ((ropeEndPosition _x)#1)) < GVAR(RopeHandlingDistance))) exitWith {_pickup = true};
     } forEach _unitRopes;
     _pickup
 };
@@ -1116,11 +1115,9 @@ FUNC(Pickup_Ropes_Action_Check) = {
 FUNC(Pickup_Ropes_Action) = {
     params [["_unit", objNull]];
     if (isNull _unit) exitWith {};
-    private _unitRopes = _unit getVariable QGVAR(Ropes_Near_Unit);
+    private _unitRopes = _unit getVariable [QGVAR(Ropes_Near_Unit), []];
             
-    private _ropeHandlingDistance = GVAR(RopeHandlingDistance);
-    if (_unit != player) then {_ropeHandlingDistance = _ropeHandlingDistance + 5};
-    _unitRopes = _unitRopes select {!(isNull _x) && (_unit distance ((ropeEndPosition _x)#1)) < _ropeHandlingDistance} apply {[_unit distance ((ropeEndPosition _x)#1), _x]};
+    _unitRopes = _unitRopes select {!(isNull _x) && (_unit distance ((ropeEndPosition _x)#1)) < GVAR(RopeHandlingDistance)} apply {[_unit distance ((ropeEndPosition _x)#1), _x]};
     if (_unitRopes isEqualTo []) exitWith {};
 
     _unitRopes sort true;
@@ -1170,7 +1167,7 @@ FUNC(Pickup_Ropes) = {
             "",
             QUOTE([_this] call FUNC(Attach_Ropes_Action_Check))
         ];
-        _unit setVariable [QGVAR(ActionID_Attach), _actionID];
+        _unit setVariable [QGVAR(ActionID_Attach), _actionID, true];
     };
     if (isNil{_unit getVariable QGVAR(ActionID_Drop)}) then {
         _actionID = _unit addAction [
@@ -1183,7 +1180,7 @@ FUNC(Pickup_Ropes) = {
             "",
             QUOTE([_this] call FUNC(Drop_Ropes_Action_Check))
         ];
-        _unit setVariable [QGVAR(ActionID_Drop), _actionID];
+        _unit setVariable [QGVAR(ActionID_Drop), _actionID, true];
     };
 };
 
@@ -1194,8 +1191,7 @@ FUNC(Attach_Ropes_Action_Check) = {
     private _vehicle = (_unit getVariable [QGVAR(Ropes_Vehicle), [objNull, 0]]) #0;
     // private _ropeAttachDistance = GVAR(RopeHandlingDistance);
     // private _ropeAttachDistance = GVAR(RopeHandlingDistance) + (sizeOf typeOf _cargo / 10 max 2);
-    private _ropeAttachDistance = GVAR(MaxDeployRetractDistance) + (sizeOf typeOf _cargo / 10 max 1);
-    if (_unit != player) then {_ropeAttachDistance = _ropeAttachDistance + 5}; // AIs get higher range, as AIs sometimes can't get close enough to vehicles        
+    private _ropeAttachDistance = GVAR(MaxDeployRetractDistance) + (sizeOf typeOf _cargo / 10 max 1);     
     // diag_log formatText ["%1%2%3%4%5", time, "s  (FUNC(Attach_Ropes_Action_Check)) check 1"];
     if (vehicle _unit != _unit || _unit distance _cargo > _ropeAttachDistance || _vehicle == _cargo || !alive _cargo) exitWith {false};
     // diag_log formatText ["%1%2%3%4%5", time, "s  (FUNC(Attach_Ropes_Action_Check)) check 2"];
@@ -1232,7 +1228,7 @@ FUNC(Attach_Ropes) = {
     // diag_log formatText ["%1%2%3%4%5", time, "s  (FUNC(Attach_Ropes)) _attachmentPoints: ", _attachmentPoints, ", _self: ", _self];
     private _ropeLength = (ropeLength (_ropes #0));
     private _objDistance = (_cargo distance _vehicle) + 2;
-    if (_objDistance > _ropeLength) exitWith {["uksf_common_notify", [[LLSTRING(TOO_SHORT)], true], _unit] call CBA_fnc_targetEvent;};
+    if (_objDistance > _ropeLength) exitWith {[QUGVAR(common,notify), [[LLSTRING(TOO_SHORT)], true], _unit] call CBA_fnc_targetEvent;};
     private _ropesIndex = _vehicleWithIndex #1;
     _cargo setVariable [QGVAR(CarrierVehicle), _vehicle, true];
     [_vehicle, _cargo] spawn {
@@ -1330,7 +1326,7 @@ FUNC(Add_Vehicle_Actions) = {
     if (getMass _vehicle < GVAR(MinVehicleMass) || !alive _vehicle) exitWith {
         [_vehicle, [QGVAR(ActionID_Deploy), QGVAR(ActionID_Retract), QGVAR(ActionID_Extend), QGVAR(ActionID_Shorten), QGVAR(ActionID_Release)]] call FUNC(Remove_Actions);
     };
-    private ["_actionID"];
+    private _actionID = -1;
     if (isNil{_vehicle getVariable QGVAR(ActionID_Deploy)}) then {
         _actionID = _vehicle addAction [
             LLSTRING(DEPLOY),
@@ -1426,7 +1422,7 @@ FUNC(Remove_Actions) = {
     } forEach _actions;
 };
 
-if (!isDedicated) then {
+if (hasInterface) then {
     ["Air", "init", {_this call FUNC(Add_Vehicle_Actions)}, true] call CBA_fnc_addClassEventHandler; // adds init event to all air vehicles; has to be run preinit!
 };
 
