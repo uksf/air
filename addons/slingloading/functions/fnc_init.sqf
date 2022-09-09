@@ -1328,7 +1328,7 @@ FUNC(addActions) = {
     };
     if (isNil {_unit getVariable QGVAR(ActionID_Attach)}) then {
         _actionID = _unit addAction [
-            LLSTRING(ATTACH) localize,
+            LLSTRING(ATTACH),
             {[_this#0] call FUNC(Attach_Ropes_Action)},
             nil,
             230,
@@ -1341,7 +1341,7 @@ FUNC(addActions) = {
     };
     if (isNil {_unit getVariable QGVAR(ActionID_Drop)}) then {
         _actionID = _unit addAction [
-            LLSTRING(DROP) localize,
+            LLSTRING(DROP),
             {[_this#0] call FUNC(Drop_Ropes_Action)},
             nil,
             225,
