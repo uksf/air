@@ -1005,7 +1005,7 @@ uksf_air_slingloading_fnc_Deploy_Ropes_Index = {
     _allRopes set [_ropesIndex, _cargoRopes];
     _vehicle setVariable ["uksf_air_slingloading_Ropes", _allRopes, true];
     [_vehicle] spawn uksf_air_slingloading_fnc_Rope_Monitor_Vehicle;
-    ["uksf_common_notify", [[format [localize localize "STR_uksf_air_slingloading_ROPES_DEPLOYED", uksf_air_slingloading_InitialDeployRopeLength]], true], _unit] call CBA_fnc_targetEvent;
+    ["uksf_common_notify", [[format [localize "STR_uksf_air_slingloading_ROPES_DEPLOYED", uksf_air_slingloading_InitialDeployRopeLength]], true], _unit] call CBA_fnc_targetEvent;
 };
 
 uksf_air_slingloading_fnc_Pickup_Ropes_Action_Check = {
