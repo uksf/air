@@ -50,7 +50,19 @@ GVAR(slingRules) = [
 ];
 
 GVAR(actionContext) = ACTION_CONTEXT_EMPTY;
+GVAR(allRopes) = [];
 
 call FUNC(init);
+
+[QGVAR(Rope_Set_Mass), {call FUNC(Rope_Set_Mass)}] call CBA_fnc_addEventHandler;
+[QGVAR(Extend_Ropes), {call FUNC(Extend_Ropes)}] call CBA_fnc_addEventHandler;
+[QGVAR(Shorten_Ropes), {call FUNC(Shorten_Ropes)}] call CBA_fnc_addEventHandler;
+[QGVAR(Release_Cargo), {call FUNC(Release_Cargo)}] call CBA_fnc_addEventHandler;
+[QGVAR(Retract_Ropes), {call FUNC(Retract_Ropes)}] call CBA_fnc_addEventHandler;
+[QGVAR(Deploy_Ropes), {call FUNC(Deploy_Ropes)}] call CBA_fnc_addEventHandler;
+[QGVAR(Deploy_Ropes_Index), {call FUNC(Deploy_Ropes_Index)}] call CBA_fnc_addEventHandler;
+[QGVAR(Pickup_Ropes), {call FUNC(Pickup_Ropes)}] call CBA_fnc_addEventHandler;
+[QGVAR(Attach_Ropes), {call FUNC(Attach_Ropes)}] call CBA_fnc_addEventHandler;
+[QGVAR(Drop_Ropes), {call FUNC(Drop_Ropes)}] call CBA_fnc_addEventHandler;
 
 ADDON = true;

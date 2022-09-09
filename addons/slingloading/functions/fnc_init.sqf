@@ -163,11 +163,11 @@ FUNC(Rope_Adjust_Mass) = {
     private _originalMass = getMass _cargo;
     private _heavyLiftMinLift = missionNamespace getVariable [QGVAR(HEAVY_LIFTING_MIN_LIFT_OVERRIDE), 5000];
     if (_originalMass >= _lift * 0.8 && _lift >= _heavyLiftMinLift && _originalMass <= _maxLiftableMass) then {
-        [[_cargo, _originalMass], QFUNC(Rope_Set_Mass), _cargo, true] call FUNC(RemoteExec);
+        [QGVAR(Rope_Set_Mass), [_cargo, _originalMass], _cargo] call CBA_fnc_targetEvent;
         [_vehicle, _cargo, _originalMass, _lift, _maxLiftableMass] spawn {
             params [["_vehicle", objNull], ["_cargo", objNull], ["_originalMass", 0], ["_lift", 0], ["_maxLiftableMass", 0]];
             if (isNull _vehicle || isNull _cargo || _originalMass == 0 || _lift == 0 || _maxLiftableMass == 0) exitWith {};
-            [[_cargo, (_lift * 0.8 + ((_originalMass / _maxLiftableMass) * (_lift * 0.2)))], QFUNC(Rope_Set_Mass), _cargo, true] call FUNC(RemoteExec);
+            [QGVAR(Rope_Set_Mass), [_cargo, (_lift * 0.8 + ((_originalMass / _maxLiftableMass) * (_lift * 0.2)))], _cargo] call CBA_fnc_targetEvent;
         };
     };
     sleep 0.3;
@@ -397,7 +397,7 @@ FUNC(Extend_Ropes_Action) = {
     } forEach _extendedRopes;
     _messages pushBack true;
     _messages call CBA_fnc_notify;
-    _vehicle setVariable [QGVAR(Ropes_Change), nil, true];
+    _vehicle setVariable [QGVAR(Ropes_Change), nil];
 };
 
 FUNC(Release_Cargo_Near_Ground) = {
@@ -472,13 +472,13 @@ FUNC(Save_Rope_Change) = {
     if (count _existingRopes == 0 || _ropeLength == 0) exitWith {};
     private _changedRopes = _vehicle getVariable [QGVAR(Ropes_Change), []];
     _changedRopes pushBack [_ropesIndex, _ropeLength];
-    _vehicle setVariable [QGVAR(Ropes_Change), _changedRopes, true];
+    _vehicle setVariable [QGVAR(Ropes_Change), _changedRopes];
 };
 
 FUNC(Extend_Ropes) = {
     params [["_vehicle", objNull], ["_ropesIndex", 0], ["_toGround", false]];
     if (isNull _vehicle) exitWith {};
-    if !(local _vehicle) exitWith {[_this, QFUNC(Extend_Ropes), _vehicle, true] call FUNC(RemoteExec)};
+    if !(local _vehicle) exitWith {[QGVAR(Extend_Ropes), _this, _vehicle] call CBA_fnc_targetEvent;};
     private _existingRopes = [_vehicle, _ropesIndex] call FUNC(Get_Ropes);
     if (count _existingRopes == 0) exitWith {0};
     private _ropeLength = ropeLength (_existingRopes #0);
@@ -598,7 +598,7 @@ FUNC(Shorten_Ropes_Action) = {
         } forEach _shortenedRopes;
         _messages pushBack true;
         _messages call CBA_fnc_notify;
-        _vehicle setVariable [QGVAR(Ropes_Change), nil, true];
+        _vehicle setVariable [QGVAR(Ropes_Change), nil];
     };
 };
 
@@ -614,7 +614,7 @@ FUNC(Shorten_Ropes_Index_Action) = {
 FUNC(Shorten_Ropes) = {
     params [["_vehicle", objNull], ["_unit", objNull], ["_ropesIndex", 0]];
     if (isNull _vehicle || isNull _unit) exitWith {};
-    if !(local _vehicle) exitWith {[_this,QFUNC(Shorten_Ropes), _vehicle, true] call FUNC(RemoteExec)};
+    if !(local _vehicle) exitWith {[QGVAR(Shorten_Ropes), _this, _vehicle] call CBA_fnc_targetEvent;};
     private _existingRopes = [_vehicle, _ropesIndex] call FUNC(Get_Ropes);
     private _ropeLength = -1;
     if (count _existingRopes > 0) then {
@@ -697,7 +697,7 @@ FUNC(Release_Cargo_Index_Action) = {
 FUNC(Release_Cargo) = {
     params [["_vehicle", objNull], ["_unit", objNull], ["_ropesIndex", 0]];
     if (isNull _vehicle || isNull _unit) exitWith {false};
-    if !(local _vehicle) exitWith {[_this, QFUNC(Release_Cargo), _vehicle, true] call FUNC(RemoteExec)};
+    if !(local _vehicle) exitWith {[QGVAR(Release_Cargo), _this, _vehicle] call CBA_fnc_targetEvent;};
     private _existingRopesAndCargo = [_vehicle, _ropesIndex] call FUNC(Get_Ropes_And_Cargo);
     // diag_log formatText ["%1%2%3%4%5%6%7", time, "s  (FUNC(Release_Cargo)) _vehicle: ", _vehicle, ", _unit: ", _unit, ", _existingRopesAndCargo: ", _existingRopesAndCargo];
     private _existingRopes = _existingRopesAndCargo #0;
@@ -797,7 +797,7 @@ FUNC(Retract_Ropes_Index_Action) = {
 FUNC(Retract_Ropes) = {
     params [["_vehicle", objNull], ["_unit", objNull], ["_ropesIndex", 0]];
     if (isNull _vehicle || isNull _unit) exitWith {false};
-    if !(local _vehicle) exitWith {[_this, QFUNC(Retract_Ropes), _vehicle, true] call FUNC(RemoteExec)};
+    if !(local _vehicle) exitWith {[QGVAR(Retract_Ropes), _this, _vehicle] call CBA_fnc_targetEvent;};
     private _existingRopesAndCargo = [_vehicle, _ropesIndex] call FUNC(Get_Ropes_And_Cargo);
     private _existingRopes = _existingRopesAndCargo #0;
     private _existingCargo = _existingRopesAndCargo #1;
@@ -835,6 +835,9 @@ FUNC(Retract_Ropes) = {
                 //     ", vehicle alive: ", alive _vehicle,
                 //     ", time < _future: ", time < _future
                 // ];
+                GVAR(allRopes) deleteAt (GVAR(allRopes) find _rope);
+                GVAR(allRopes) = GVAR(allRopes) - [objNull];
+                publicVariable QGVAR(allRopes);
                 ropeDestroy _rope;
             };
         } forEach _existingRopes;
@@ -968,7 +971,7 @@ FUNC(Deploy_Ropes_Count_Action) = {
 FUNC(Deploy_Ropes) = {
     params [["_vehicle", objNull], ["_unit", objNull], ["_cargoCount", 1]];
     if (isNull _vehicle || isNull _unit) exitWith {false};
-    if !(local _vehicle) exitWith {[_this, QFUNC(Deploy_Ropes), _vehicle, true] call FUNC(RemoteExec)};
+    if !(local _vehicle) exitWith {[QGVAR(Deploy_Ropes), _this, _vehicle] call CBA_fnc_targetEvent;};
     if (!alive _vehicle) exitWith {[_vehicle] call FUNC(Add_Vehicle_Actions)};
     private _existingRopes = _vehicle getVariable [QGVAR(Ropes), []];
     if (count _existingRopes > 0) exitWith {
@@ -997,7 +1000,7 @@ FUNC(Deploy_Ropes) = {
 FUNC(Deploy_Ropes_Index) = {
     params [["_vehicle", objNull], ["_unit", objNull], ["_ropesIndex", 0]];
     if (isNull _vehicle || isNull _unit) exitWith {};
-    if !(local _vehicle) exitWith {[_this, QFUNC(Deploy_Ropes_Index), _vehicle, true] call FUNC(RemoteExec)};
+    if !(local _vehicle) exitWith {[QGVAR(Deploy_Ropes_Index), _this, _vehicle] call CBA_fnc_targetEvent;};
     private _existingRopes = [_vehicle, _ropesIndex] call FUNC(Get_Ropes);
     if (count _existingRopes > 0) exitWith {};
     private _existingRopesCount = [_vehicle] call FUNC(Get_Ropes_Count);
@@ -1009,88 +1012,15 @@ FUNC(Deploy_Ropes_Index) = {
         _rope allowDamage false;
         _rope setVariable [QGVAR(Ropes_Vehicle), [_vehicle, _ropesIndex], true]; // memory vehicle and rope index on each rope 
         _cargoRopes pushBack _rope; 
+        GVAR(allRopes) pushBack _rope;
     };
+    publicVariable QGVAR(allRopes);
     [_vehicle, _cargoRopes, GVAR(RopeUnwindSpeed) + 2, GVAR(InitialDeployRopeLength), false] spawn FUNC(Unwind_Ropes);
     private _allRopes = _vehicle getVariable [QGVAR(Ropes), []];
     _allRopes set [_ropesIndex, _cargoRopes];
     _vehicle setVariable [QGVAR(Ropes), _allRopes, true];
     [_vehicle] spawn FUNC(Rope_Monitor_Vehicle);
-    [[format [LLSTRING(ROPES_DEPLOYED), GVAR(InitialDeployRopeLength)]], true] call CBA_fnc_notify;
-};
-
-FUNC(Rope_Monitor_Vehicle) = {
-    params [["_vehicle", objNull]];
-    if (isNull _vehicle) exitWith {};
-    if (_vehicle getVariable [QGVAR(Vehicle_Rope_Monitor), false]) exitWith {}; // leave, if vehicle is already monitoring rope ends
-    _vehicle setVariable [QGVAR(Vehicle_Rope_Monitor), true, true];
-    // diag_log formatText ["%1%2%3%4%5%6%7%8%9%10", time, "s  (FUNC(Rope_Monitor_Vehicle)) _vehicle: ", _vehicle, ", started rope end monitoring"];
-    private ["_allRopes", "_ropeBundle", "_rope", "_nearbyUnits", "_unitRopes"];
-    while {alive _vehicle && !(isNil{_vehicle getVariable QGVAR(Ropes)})} do {
-        _allRopes = _vehicle getVariable [QGVAR(Ropes), []];
-        // diag_log formatText ["%1%2%3%4%5%6%7%8%9%10", time, "s  (FUNC(Rope_Monitor_Vehicle)) _allRopes: ", _allRopes];
-        {
-            _ropeBundle = _x;
-            {
-                _rope = _x;
-                _nearbyUnits = ((ropeEndPosition _rope #1) nearObjects (GVAR(RopeHandlingDistance) + 5)) select {_x isKindOf "CAManBase" && side _x == side player && vehicle _x == _x};
-                // hintSilent formatText ["%1%2%3%4%5", time, "s  (FUNC(Rope_Monitor_Vehicle)) _nearbyUnits: ", _nearbyUnits];
-                {
-                    _unitRopes = _x getVariable [QGVAR(Ropes_Near_Unit), []];
-                    if (_unitRopes find _rope == -1) then {
-                        _unitRopes pushBack _rope;
-                        _x setVariable [QGVAR(Ropes_Near_Unit), _unitRopes, true];
-                    };
-                    // hintSilent formatText ["%1%2%3%4%5", time, "s  (FUNC(Rope_Monitor_Vehicle)) unit: ", _x, ", _unitRopes: ", _unitRopes];
-                    [_x] spawn FUNC(Rope_Monitor_Unit);
-                } forEach _nearbyUnits;
-            } forEach _ropeBundle;
-        } forEach _allRopes;
-        sleep 1;
-    };
-    _vehicle setVariable [QGVAR(Vehicle_Rope_Monitor), nil, true];
-};
-
-FUNC(Rope_Monitor_Unit) = {
-    params [["_unit", objNull]];
-    if (isNull _unit) exitWith {};
-    if (_unit getVariable [QGVAR(Unit_Rope_Monitor), false]) exitWith {}; // leave, if unit is already monitoring ror rope ends
-    _unit setVariable [QGVAR(Unit_Rope_Monitor), true, true]; // raise unit rope monitor flag
-    // diag_log formatText ["%1%2%3%4%5%6%7%8%9%10", time, "s  (FUNC(Rope_Monitor_Unit)) _unit: ", _unit, ", started rope end monitoring"];
-    if (isNil{_unit getVariable QGVAR(ActionID_Pickup)}) then { // add pickup action to unit
-        private _actionID = _unit addAction [
-            LLSTRING(PICKUP),
-            {[_this #0] call FUNC(Pickup_Ropes_Action)},
-            nil,
-            250,
-            true,
-            true,
-            "",
-            QUOTE([_this] call FUNC(Pickup_Ropes_Action_Check))
-        ];
-        _unit setVariable [QGVAR(ActionID_Pickup), _actionID, true];
-    };
-    private ["_unitRopes", "_index"];
-    while {alive _unit && (count(_unit getVariable [QGVAR(Ropes_Near_Unit), []]) > 0)} do {
-        _unitRopes = _unit getVariable QGVAR(Ropes_Near_Unit);
-        // diag_log formatText ["%1%2%3%4%5%6%7%8%9%10", time, "s  (FUNC(Rope_Monitor_Unit)) _unitRopes: ", _unitRopes];
-        // hintSilent formatText ["%1%2%3%4%5%6%7", "unit: ", _unit, lineBreak, "Ropes: ", lineBreak, _unitRopes];
-        if (objNull in _unitRopes) then {
-            _unitRopes = _unitRopes - [objNull];
-            _unit setVariable [QGVAR(Ropes_Near_Unit), _unitRopes, true];
-        };
-        {
-            if (!alive _x || (_unit distance (ropeEndPosition _x #1) > (GVAR(RopeHandlingDistance) + 5) && _unitRopes find _x != -1)) then {
-                _index = _unitRopes find _x;
-                if (_index == -1) exitWith {};
-                _unitRopes deleteAt _index;
-                _unit setVariable [QGVAR(Ropes_Near_Unit), _unitRopes, true];
-            };
-        } forEach _unitRopes;
-        sleep 0.2;
-    };
-    [_unit, [QGVAR(ActionID_Pickup)]] call FUNC(Remove_Actions); // if no rope ends near, remove pickup action from unit
-    _unit setVariable [QGVAR(Ropes_Near_Unit), nil, true]; // annil unit rope array
-    _unit setVariable [QGVAR(Unit_Rope_Monitor), nil, true]; // annil unit rope monitor flag
+    [QUGVAR(common,notify), [[format [localize LLSTRING(ROPES_DEPLOYED), GVAR(InitialDeployRopeLength)]], true], _unit] call CBA_fnc_targetEvent;
 };
 
 FUNC(Pickup_Ropes_Action_Check) = {
@@ -1099,29 +1029,28 @@ FUNC(Pickup_Ropes_Action_Check) = {
     // diag_log formatText ["%1%2%3%4%5", time, "s  (FUNC(Pickup_Ropes_Action_Check)) _target: ", _target, ", _this: ", _this];
     if (vehicle _unit != _unit) exitWith {false};
     if !(isNil{_unit getVariable QGVAR(Ropes_Pick_Up_Helper)}) exitWith {false};
-    private _unitRopes = _unit getVariable [QGVAR(Ropes_Near_Unit), []];
-    if (objNull in _unitRopes) then {
-        _unitRopes = _unitRopes - [objNull];
-        _unit setVariable [QGVAR(Ropes_Near_Unit), _unitRopes, true];
+    
+    private _ropeHandlingDistance = GVAR(RopeHandlingDistance);
+    private _nearRopes = GVAR(allRopes) select {
+        alive _x &&
+        _unit distance ((ropeEndPosition _x)#1) < _ropeHandlingDistance
     };
-    // diag_log formatText ["%1%2%3%4%5", time, "s  (FUNC(Pickup_Ropes_Action_Check)) _unitRopes: ", _unitRopes];
-    private _pickup = false;
-    {
-        if (alive _x && ((_unit distance ((ropeEndPosition _x)#1)) < GVAR(RopeHandlingDistance))) exitWith {_pickup = true};
-    } forEach _unitRopes;
-    _pickup
+    _nearRopes isNotEqualTo []
 };
 
 FUNC(Pickup_Ropes_Action) = {
     params [["_unit", objNull]];
     if (isNull _unit) exitWith {};
-    private _unitRopes = _unit getVariable [QGVAR(Ropes_Near_Unit), []];
-            
-    _unitRopes = _unitRopes select {!(isNull _x) && (_unit distance ((ropeEndPosition _x)#1)) < GVAR(RopeHandlingDistance)} apply {[_unit distance ((ropeEndPosition _x)#1), _x]};
-    if (_unitRopes isEqualTo []) exitWith {};
+    
+    private _ropeHandlingDistance = GVAR(RopeHandlingDistance);
+    private _nearRopes = GVAR(allRopes) select {
+        alive _x &&
+        _unit distance ((ropeEndPosition _x)#1) < _ropeHandlingDistance
+    } apply {[_unit distance ((ropeEndPosition _x)#1), _x]};
+    if (_nearRopes isEqualTo []) exitWith {};
 
-    _unitRopes sort true;
-    private _closestRope = _unitRopes#0#1;
+    _nearRopes sort true;
+    private _closestRope = _nearRopes#0#1;
     private _vehicle = (_closestRope getVariable QGVAR(Ropes_Vehicle)) #0;
     if (isNull _vehicle) exitWith {};
     if (locked _vehicle > 1 && !(missionNamespace getVariable [QGVAR(LOCKED_VEHICLES_ENABLED), false])) exitWith {
@@ -1134,7 +1063,7 @@ FUNC(Pickup_Ropes_Action) = {
 FUNC(Pickup_Ropes) = {
     params [["_vehicle", objNull], ["_unit", objNull], ["_ropesIndex", 0]];
     if (isNull _vehicle || isNull _unit) exitWith {};
-    if !(local _vehicle) exitWith {[_this, QFUNC(Pickup_Ropes), _vehicle, true] call FUNC(RemoteExec)};
+    if !(local _vehicle) exitWith {[QGVAR(Pickup_Ropes), _this, _vehicle] call CBA_fnc_targetEvent;};
     private _existingRopesAndCargo = [_vehicle, _ropesIndex] call FUNC(Get_Ropes_And_Cargo);
     private _existingRopes = _existingRopesAndCargo #0;
     private _existingCargo = _existingRopesAndCargo #1;
@@ -1155,39 +1084,15 @@ FUNC(Pickup_Ropes) = {
     hideObjectGlobal _helper;
     _unit setVariable [QGVAR(Ropes_Vehicle), [_vehicle, _ropesIndex], true];
     _unit setVariable [QGVAR(Ropes_Pick_Up_Helper), _helper, true];
-    private ["_actionID"];
-    if (isNil{_unit getVariable QGVAR(ActionID_Attach)}) then {
-        _actionID = _unit addAction [
-            LLSTRING(ATTACH),
-            {[_this #0] call FUNC(Attach_Ropes_Action)},
-            nil,
-            230,
-            true,
-            true,
-            "",
-            QUOTE([_this] call FUNC(Attach_Ropes_Action_Check))
-        ];
-        _unit setVariable [QGVAR(ActionID_Attach), _actionID, true];
-    };
-    if (isNil{_unit getVariable QGVAR(ActionID_Drop)}) then {
-        _actionID = _unit addAction [
-            LLSTRING(DROP),
-            {[_this #0] call FUNC(Drop_Ropes_Action)},
-            nil,
-            225,
-            true,
-            true,
-            "",
-            QUOTE([_this] call FUNC(Drop_Ropes_Action_Check))
-        ];
-        _unit setVariable [QGVAR(ActionID_Drop), _actionID, true];
-    };
 };
 
 FUNC(Attach_Ropes_Action_Check) = {
     params [["_unit", objNull]];
     if (isNull _unit) exitWith {false};
+
     private _cargo = cursorObject;
+    if (isNull _cargo) exitWith {false};
+
     private _vehicle = (_unit getVariable [QGVAR(Ropes_Vehicle), [objNull, 0]]) #0;
     // private _ropeAttachDistance = GVAR(RopeHandlingDistance);
     // private _ropeAttachDistance = GVAR(RopeHandlingDistance) + (sizeOf typeOf _cargo / 10 max 2);
@@ -1210,9 +1115,7 @@ FUNC(Attach_Ropes_Action) = {
     };
     private _canBeAttached = true;
     // diag_log formatText ["%1%2%3%4%5", time, "s  (FUNC(Attach_Ropes)) _unit: ", _unit, ", _self: ", _self];
-    if (_canBeAttached) then {
-        [_cargo, _unit] call FUNC(Attach_Ropes);
-    };
+    [_cargo, _unit] call FUNC(Attach_Ropes);
 };
 
 FUNC(Attach_Ropes) = {
@@ -1221,7 +1124,7 @@ FUNC(Attach_Ropes) = {
     private _vehicleWithIndex = _unit getVariable [QGVAR(Ropes_Vehicle), [objNull, 0]];
     private _vehicle = _vehicleWithIndex #0;
     if (isNull _vehicle) exitWith {};
-    if !(local _vehicle) exitWith {[_this, QFUNC(Attach_Ropes), _vehicle, true] call FUNC(RemoteExec)};
+    if !(local _vehicle) exitWith {[QGVAR(Attach_Ropes), _this, _vehicle] call CBA_fnc_targetEvent;};
     private _ropes = [_vehicle, _vehicleWithIndex #1] call FUNC(Get_Ropes);
     if (count _ropes != 4) exitWith {};
     private _attachmentPoints = [_cargo] call FUNC(Get_Corner_Points);
@@ -1250,15 +1153,15 @@ FUNC(Attach_Ropes) = {
     if (missionNamespace getVariable [QGVAR(HEAVY_LIFTING_ENABLED), true]) then {
         [_vehicle, _cargo, _ropes] spawn FUNC(Rope_Adjust_Mass);
     };
-    [_unit, [QGVAR(ActionID_Attach), QGVAR(ActionID_Drop)]] call FUNC(Remove_Actions); // remove 'drop ropes' and 'attach ropes' actions, once unit has attached ropes to some cargo
     _unit setVariable [QGVAR(Ropes_Pick_Up_Helper), nil, true];
     _unit setVariable [QGVAR(Ropes_Vehicle), nil, true];
 };
 
 FUNC(Drop_Ropes_Action_Check) = {
     params [["_unit", objNull]];
-    if (isNull _unit) exitWith {false};
-    count (_unit getVariable [QGVAR(Ropes_Vehicle), []]) > 0 && vehicle _unit == _unit;
+    if (isNull _unit || vehicle _unit != _unit) exitWith {false};
+
+    (_unit getVariable [QGVAR(Ropes_Vehicle), []]) isNotEqualTo []
 };
 
 FUNC(Drop_Ropes_Action) = {
@@ -1274,7 +1177,7 @@ FUNC(Drop_Ropes_Action) = {
 FUNC(Drop_Ropes) = {
     params [["_vehicle", objNull], ["_unit", objNull], ["_ropesIndex", 0]];
     if (isNull _vehicle || isNull _unit) exitWith {};
-    if !(local _vehicle) exitWith {[_this, QGVAR(Drop_Ropes), _vehicle, true] call FUNC(RemoteExec)};
+    if !(local _vehicle) exitWith {[QGVAR(Drop_Ropes), _this, _vehicle] call CBA_fnc_targetEvent;};
     private _helper = (_unit getVariable [QGVAR(Ropes_Pick_Up_Helper), objNull]);
     // diag_log formatText ["%1%2%3%4%5%6%7%8%9", time, "s  (FUNC(Drop_Ropes))    _unit: ", _unit, ", _self: ", _self, ", _vehicle: ", _vehicle, ", _ropesIndex: ", _ropesIndex];
     if (!isNull _helper) then {
@@ -1286,7 +1189,6 @@ FUNC(Drop_Ropes) = {
         _unit setVariable [QGVAR(Ropes_Vehicle), nil, true];
         deleteVehicle _helper;
     };
-    [_unit, [QGVAR(ActionID_Attach), QGVAR(ActionID_Drop), QGVAR(ActionID_Detach)]] call FUNC(Remove_Actions); // remove 'attach ropes', 'drop ropes' and 'detach ropes' actions, once unit has dropped ropes
     _unit setVariable [QGVAR(Ropes_Pick_Up_Helper), nil, true];
 };
 
@@ -1407,6 +1309,51 @@ FUNC(Add_Vehicle_Actions) = {
     };
 };
 
+FUNC(addActions) = {
+    params ["_unit"];
+
+    private _actionID = -1;
+    if (isNil {_unit getVariable QGVAR(ActionID_Pickup)}) then {
+        _actionID = _unit addAction [
+            LLSTRING(PICKUP),
+            {[_this#0] call FUNC(Pickup_Ropes_Action)},
+            nil,
+            250,
+            true,
+            true,
+            "",
+            QUOTE([_this] call FUNC(Pickup_Ropes_Action_Check))
+        ];
+        _unit setVariable [QGVAR(ActionID_Pickup), _actionID];
+    };
+    if (isNil {_unit getVariable QGVAR(ActionID_Attach)}) then {
+        _actionID = _unit addAction [
+            LLSTRING(ATTACH) localize,
+            {[_this#0] call FUNC(Attach_Ropes_Action)},
+            nil,
+            230,
+            true,
+            true,
+            "",
+            QUOTE([_this] call FUNC(Attach_Ropes_Action_Check))
+        ];
+        _unit setVariable [QGVAR(ActionID_Attach), _actionID];
+    };
+    if (isNil {_unit getVariable QGVAR(ActionID_Drop)}) then {
+        _actionID = _unit addAction [
+            LLSTRING(DROP) localize,
+            {[_this#0] call FUNC(Drop_Ropes_Action)},
+            nil,
+            225,
+            true,
+            true,
+            "",
+            QUOTE([_this] call FUNC(Drop_Ropes_Action_Check))
+        ];
+        _unit setVariable [QGVAR(ActionID_Drop), _actionID];
+    };
+};
+
 FUNC(Remove_Actions) = {
     params [["_object", objNull], ["_actions", []]];
     // diag_log formatText ["%1%2%3%4%5", time, "s  (FUNC(Remove_Actions)) _object: ", _object, "    _actions: ", _actions];
@@ -1423,19 +1370,8 @@ FUNC(Remove_Actions) = {
 };
 
 if (hasInterface) then {
-    ["Air", "init", {_this call FUNC(Add_Vehicle_Actions)}, true] call CBA_fnc_addClassEventHandler; // adds init event to all air vehicles; has to be run preinit!
-};
-
-FUNC(RemoteExec) = {
-    params ["_params", "_functionName", "_target", ["_isCall", false]];
-
-    if (_isCall) exitWith {_params remoteExecCall [_functionName, _target]};
-    _params remoteExec [_functionName, _target];
-};
-
-FUNC(RemoteExecServer) = {
-    params ["_params", "_functionName", ["_isCall", false]];
-
-    if (_isCall) exitWith {_params remoteExecCall [_functionName, 2]};
-    _params remoteExec [_functionName, 2];
+    ["Air", "init", {_this call FUNC(Add_Vehicle_Actions)}, true] call CBA_fnc_addClassEventHandler;
+    
+    ["CAManBase", "respawn", {call FUNC(addActions)}, true, [], true] call CBA_fnc_addClassEventHandler;
+    [player] call FUNC(addActions);
 };
