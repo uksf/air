@@ -141,23 +141,23 @@ uksf_air_slingloading_fnc_Rope_Set_Mass = {
     
         
 uksf_air_slingloading_fnc_Rope_Adjust_Mass = {
-    params [["_vehicle", objNull], ["_cargo", objNull], ["_ropes", []]];
+    params [["_vehicle", objNull], ["_unit", objNull], ["_cargo", objNull], ["_ropes", []]];
     if (isNull _vehicle || isNull _cargo) exitWith {};
     private _lift = [_vehicle] call uksf_air_slingloading_fnc_Rope_Get_Lift_Capability;
     private _maxLiftableMass = _lift * uksf_air_slingloading_MaxLiftableMassFactor;
     private _originalMass = getMass _cargo;
     private _heavyLiftMinLift = missionNamespace getVariable ["uksf_air_slingloading_HEAVY_LIFTING_MIN_LIFT_OVERRIDE", 5000];
     if (_originalMass >= _lift * 0.8 && _lift >= _heavyLiftMinLift && _originalMass <= _maxLiftableMass) then {
-        [[_cargo, _originalMass], "uksf_air_slingloading_fnc_Rope_Set_Mass", _cargo, true] call uksf_air_slingloading_fnc_RemoteExec;
+        ["uksf_air_slingloading_Rope_Set_Mass", [_cargo, _originalMass], _cargo] call CBA_fnc_targetEvent;
         [_vehicle, _cargo, _originalMass, _lift, _maxLiftableMass] spawn {
             params [["_vehicle", objNull], ["_cargo", objNull], ["_originalMass", 0], ["_lift", 0], ["_maxLiftableMass", 0]];
             if (isNull _vehicle || isNull _cargo || _originalMass == 0 || _lift == 0 || _maxLiftableMass == 0) exitWith {};
-            [[_cargo, (_lift * 0.8 + ((_originalMass / _maxLiftableMass) * (_lift * 0.2)))], "uksf_air_slingloading_fnc_Rope_Set_Mass", _cargo, true] call uksf_air_slingloading_fnc_RemoteExec;
+            ["uksf_air_slingloading_Rope_Set_Mass", [_cargo, (_lift * 0.8 + ((_originalMass / _maxLiftableMass) * (_lift * 0.2)))], _cargo] call CBA_fnc_targetEvent;
         };
     };
     sleep 0.3;
-    [_vehicle, _originalMass, _lift] spawn {
-        params [["_vehicle", objNull], ["_originalMass", 0], ["_lift", 0]];
+    [_vehicle, _unit, _originalMass, _lift] spawn {
+        params [["_vehicle", objNull], ["_unit", objNull], ["_originalMass", 0], ["_lift", 0]];
         if (isNull _vehicle || _originalMass == 0 || _lift == 0) exitWith {};
         sleep 0.2;
         private _messages = [[localize "STR_uksf_air_slingloading_SLING_MASS"]];
@@ -172,7 +172,7 @@ uksf_air_slingloading_fnc_Rope_Adjust_Mass = {
             _messages pushback [format [localize "STR_uksf_air_slingloading_SLING_MASS_REMAINING", ((_lift - _totalSlingMass) / 1000) toFixed 2, (_lift / 1000) toFixed 2]];
         };
         _messages pushBack true;
-        _messages call CBA_fnc_notify;
+        ["uksf_common_notify", _messages, _unit] call CBA_fnc_targetEvent;
     };
 };
 
@@ -382,7 +382,7 @@ uksf_air_slingloading_fnc_Extend_Ropes_Action = {
     } forEach _extendedRopes;
     _messages pushBack true;
     _messages call CBA_fnc_notify;
-    _vehicle setVariable ["uksf_air_slingloading_Ropes_Change", nil, true];
+    _vehicle setVariable ["uksf_air_slingloading_Ropes_Change", nil];
 };
 
 uksf_air_slingloading_fnc_Release_Cargo_Near_Ground = {
@@ -457,13 +457,13 @@ uksf_air_slingloading_fnc_Save_Rope_Change = {
     if (count _existingRopes == 0 || _ropeLength == 0) exitWith {};
     private _changedRopes = _vehicle getVariable ["uksf_air_slingloading_Ropes_Change", []];
     _changedRopes pushBack [_ropesIndex, _ropeLength];
-    _vehicle setVariable ["uksf_air_slingloading_Ropes_Change", _changedRopes, true];
+    _vehicle setVariable ["uksf_air_slingloading_Ropes_Change", _changedRopes];
 };
 
 uksf_air_slingloading_fnc_Extend_Ropes = {
     params [["_vehicle", objNull], ["_ropesIndex", 0], ["_toGround", false]];
     if (isNull _vehicle) exitWith {};
-    if !(local _vehicle) exitWith {[_this, "uksf_air_slingloading_fnc_Extend_Ropes", _vehicle, true] call uksf_air_slingloading_fnc_RemoteExec};
+    if !(local _vehicle) exitWith {["uksf_air_slingloading_Extend_Ropes", _this, _vehicle] call CBA_fnc_targetEvent;};
     private _existingRopes = [_vehicle, _ropesIndex] call uksf_air_slingloading_fnc_Get_Ropes;
     if (count _existingRopes == 0) exitWith {0};
     private _ropeLength = ropeLength (_existingRopes #0);
@@ -583,7 +583,7 @@ uksf_air_slingloading_fnc_Shorten_Ropes_Action = {
         } forEach _shortenedRopes;
         _messages pushBack true;
         _messages call CBA_fnc_notify;
-        _vehicle setVariable ["uksf_air_slingloading_Ropes_Change", nil, true];
+        _vehicle setVariable ["uksf_air_slingloading_Ropes_Change", nil];
     };
 };
 
@@ -599,7 +599,7 @@ uksf_air_slingloading_fnc_Shorten_Ropes_Index_Action = {
 uksf_air_slingloading_fnc_Shorten_Ropes = {
     params [["_vehicle", objNull], ["_unit", objNull], ["_ropesIndex", 0]];
     if (isNull _vehicle || isNull _unit) exitWith {};
-    if !(local _vehicle) exitWith {[_this,"uksf_air_slingloading_fnc_Shorten_Ropes", _vehicle, true] call uksf_air_slingloading_fnc_RemoteExec};
+    if !(local _vehicle) exitWith {["uksf_air_slingloading_Shorten_Ropes", _this, _vehicle] call CBA_fnc_targetEvent;};
     private _existingRopes = [_vehicle, _ropesIndex] call uksf_air_slingloading_fnc_Get_Ropes;
     private _ropeLength = -1;
     if (count _existingRopes > 0) then {
@@ -682,7 +682,7 @@ uksf_air_slingloading_fnc_Release_Cargo_Index_Action = {
 uksf_air_slingloading_fnc_Release_Cargo = {
     params [["_vehicle", objNull], ["_unit", objNull], ["_ropesIndex", 0]];
     if (isNull _vehicle || isNull _unit) exitWith {false};
-    if !(local _vehicle) exitWith {[_this, "uksf_air_slingloading_fnc_Release_Cargo", _vehicle, true] call uksf_air_slingloading_fnc_RemoteExec};
+    if !(local _vehicle) exitWith {["uksf_air_slingloading_Release_Cargo", _this, _vehicle] call CBA_fnc_targetEvent;};
     private _existingRopesAndCargo = [_vehicle, _ropesIndex] call uksf_air_slingloading_fnc_Get_Ropes_And_Cargo;
     
     private _existingRopes = _existingRopesAndCargo #0;
@@ -782,7 +782,7 @@ uksf_air_slingloading_fnc_Retract_Ropes_Index_Action = {
 uksf_air_slingloading_fnc_Retract_Ropes = {
     params [["_vehicle", objNull], ["_unit", objNull], ["_ropesIndex", 0]];
     if (isNull _vehicle || isNull _unit) exitWith {false};
-    if !(local _vehicle) exitWith {[_this, "uksf_air_slingloading_fnc_Retract_Ropes", _vehicle, true] call uksf_air_slingloading_fnc_RemoteExec};
+    if !(local _vehicle) exitWith {["uksf_air_slingloading_Retract_Ropes", _this, _vehicle] call CBA_fnc_targetEvent;};
     private _existingRopesAndCargo = [_vehicle, _ropesIndex] call uksf_air_slingloading_fnc_Get_Ropes_And_Cargo;
     private _existingRopes = _existingRopesAndCargo #0;
     private _existingCargo = _existingRopesAndCargo #1;
@@ -820,6 +820,9 @@ uksf_air_slingloading_fnc_Retract_Ropes = {
                 
                 
                 
+                uksf_air_slingloading_allRopes deleteAt (uksf_air_slingloading_allRopes find _rope);
+                uksf_air_slingloading_allRopes = uksf_air_slingloading_allRopes - [objNull];
+                publicVariable "uksf_air_slingloading_allRopes";
                 ropeDestroy _rope;
             };
         } forEach _existingRopes;
@@ -953,7 +956,7 @@ uksf_air_slingloading_fnc_Deploy_Ropes_Count_Action = {
 uksf_air_slingloading_fnc_Deploy_Ropes = {
     params [["_vehicle", objNull], ["_unit", objNull], ["_cargoCount", 1]];
     if (isNull _vehicle || isNull _unit) exitWith {false};
-    if !(local _vehicle) exitWith {[_this, "uksf_air_slingloading_fnc_Deploy_Ropes", _vehicle, true] call uksf_air_slingloading_fnc_RemoteExec};
+    if !(local _vehicle) exitWith {["uksf_air_slingloading_Deploy_Ropes", _this, _vehicle] call CBA_fnc_targetEvent;};
     if (!alive _vehicle) exitWith {[_vehicle] call uksf_air_slingloading_fnc_Add_Vehicle_Actions};
     private _existingRopes = _vehicle getVariable ["uksf_air_slingloading_Ropes", []];
     if (count _existingRopes > 0) exitWith {
@@ -982,7 +985,7 @@ uksf_air_slingloading_fnc_Deploy_Ropes = {
 uksf_air_slingloading_fnc_Deploy_Ropes_Index = {
     params [["_vehicle", objNull], ["_unit", objNull], ["_ropesIndex", 0]];
     if (isNull _vehicle || isNull _unit) exitWith {};
-    if !(local _vehicle) exitWith {[_this, "uksf_air_slingloading_fnc_Deploy_Ropes_Index", _vehicle, true] call uksf_air_slingloading_fnc_RemoteExec};
+    if !(local _vehicle) exitWith {["uksf_air_slingloading_Deploy_Ropes_Index", _this, _vehicle] call CBA_fnc_targetEvent;};
     private _existingRopes = [_vehicle, _ropesIndex] call uksf_air_slingloading_fnc_Get_Ropes;
     if (count _existingRopes > 0) exitWith {};
     private _existingRopesCount = [_vehicle] call uksf_air_slingloading_fnc_Get_Ropes_Count;
@@ -994,88 +997,15 @@ uksf_air_slingloading_fnc_Deploy_Ropes_Index = {
         _rope allowDamage false;
         _rope setVariable ["uksf_air_slingloading_Ropes_Vehicle", [_vehicle, _ropesIndex], true]; 
         _cargoRopes pushBack _rope; 
+        uksf_air_slingloading_allRopes pushBack _rope;
     };
+    publicVariable "uksf_air_slingloading_allRopes";
     [_vehicle, _cargoRopes, uksf_air_slingloading_RopeUnwindSpeed + 2, uksf_air_slingloading_InitialDeployRopeLength, false] spawn uksf_air_slingloading_fnc_Unwind_Ropes;
     private _allRopes = _vehicle getVariable ["uksf_air_slingloading_Ropes", []];
     _allRopes set [_ropesIndex, _cargoRopes];
     _vehicle setVariable ["uksf_air_slingloading_Ropes", _allRopes, true];
     [_vehicle] spawn uksf_air_slingloading_fnc_Rope_Monitor_Vehicle;
-    [[format [localize "STR_uksf_air_slingloading_ROPES_DEPLOYED", uksf_air_slingloading_InitialDeployRopeLength]], true] call CBA_fnc_notify;
-};
-
-uksf_air_slingloading_fnc_Rope_Monitor_Vehicle = {
-    params [["_vehicle", objNull]];
-    if (isNull _vehicle) exitWith {};
-    if (_vehicle getVariable ["uksf_air_slingloading_Vehicle_Rope_Monitor", false]) exitWith {}; 
-    _vehicle setVariable ["uksf_air_slingloading_Vehicle_Rope_Monitor", true, true];
-    
-    private ["_allRopes", "_ropeBundle", "_rope", "_nearbyUnits", "_unitRopes"];
-    while {alive _vehicle && !(isNil{_vehicle getVariable "uksf_air_slingloading_Ropes"})} do {
-        _allRopes = _vehicle getVariable ["uksf_air_slingloading_Ropes", []];
-        
-        {
-            _ropeBundle = _x;
-            {
-                _rope = _x;
-                _nearbyUnits = ((ropeEndPosition _rope #1) nearObjects (uksf_air_slingloading_RopeHandlingDistance + 5)) select {_x isKindOf "CAManBase" && side _x == side player && vehicle _x == _x};
-                
-                {
-                    _unitRopes = _x getVariable ["uksf_air_slingloading_Ropes_Near_Unit", []];
-                    if (_unitRopes find _rope == -1) then {
-                        _unitRopes pushBack _rope;
-                        _x setVariable ["uksf_air_slingloading_Ropes_Near_Unit", _unitRopes, true];
-                    };
-                    
-                    [_x] spawn uksf_air_slingloading_fnc_Rope_Monitor_Unit;
-                } forEach _nearbyUnits;
-            } forEach _ropeBundle;
-        } forEach _allRopes;
-        sleep 1;
-    };
-    _vehicle setVariable ["uksf_air_slingloading_Vehicle_Rope_Monitor", nil, true];
-};
-
-uksf_air_slingloading_fnc_Rope_Monitor_Unit = {
-    params [["_unit", objNull]];
-    if (isNull _unit) exitWith {};
-    if (_unit getVariable ["uksf_air_slingloading_Unit_Rope_Monitor", false]) exitWith {}; 
-    _unit setVariable ["uksf_air_slingloading_Unit_Rope_Monitor", true, true]; 
-    
-    if (isNil{_unit getVariable "uksf_air_slingloading_ActionID_Pickup"}) then { 
-        private _actionID = _unit addAction [
-            localize "STR_uksf_air_slingloading_PICKUP",
-            {[_this #0] call uksf_air_slingloading_fnc_Pickup_Ropes_Action},
-            nil,
-            250,
-            true,
-            true,
-            "",
-            "[_this] call uksf_air_slingloading_fnc_Pickup_Ropes_Action_Check"
-        ];
-        _unit setVariable ["uksf_air_slingloading_ActionID_Pickup", _actionID, true];
-    };
-    private ["_unitRopes", "_index"];
-    while {alive _unit && (count(_unit getVariable ["uksf_air_slingloading_Ropes_Near_Unit", []]) > 0)} do {
-        _unitRopes = _unit getVariable "uksf_air_slingloading_Ropes_Near_Unit";
-        
-        
-        if (objNull in _unitRopes) then {
-            _unitRopes = _unitRopes - [objNull];
-            _unit setVariable ["uksf_air_slingloading_Ropes_Near_Unit", _unitRopes, true];
-        };
-        {
-            if (!alive _x || (_unit distance (ropeEndPosition _x #1) > (uksf_air_slingloading_RopeHandlingDistance + 5) && _unitRopes find _x != -1)) then {
-                _index = _unitRopes find _x;
-                if (_index == -1) exitWith {};
-                _unitRopes deleteAt _index;
-                _unit setVariable ["uksf_air_slingloading_Ropes_Near_Unit", _unitRopes, true];
-            };
-        } forEach _unitRopes;
-        sleep 0.2;
-    };
-    [_unit, ["uksf_air_slingloading_ActionID_Pickup"]] call uksf_air_slingloading_fnc_Remove_Actions; 
-    _unit setVariable ["uksf_air_slingloading_Ropes_Near_Unit", nil, true]; 
-    _unit setVariable ["uksf_air_slingloading_Unit_Rope_Monitor", nil, true]; 
+    ["uksf_common_notify", [[format [localize localize "STR_uksf_air_slingloading_ROPES_DEPLOYED", uksf_air_slingloading_InitialDeployRopeLength]], true], _unit] call CBA_fnc_targetEvent;
 };
 
 uksf_air_slingloading_fnc_Pickup_Ropes_Action_Check = {
@@ -1084,29 +1014,28 @@ uksf_air_slingloading_fnc_Pickup_Ropes_Action_Check = {
     
     if (vehicle _unit != _unit) exitWith {false};
     if !(isNil{_unit getVariable "uksf_air_slingloading_Ropes_Pick_Up_Helper"}) exitWith {false};
-    private _unitRopes = _unit getVariable ["uksf_air_slingloading_Ropes_Near_Unit", []];
-    if (objNull in _unitRopes) then {
-        _unitRopes = _unitRopes - [objNull];
-        _unit setVariable ["uksf_air_slingloading_Ropes_Near_Unit", _unitRopes, true];
-    };
     
-    private _pickup = false;
-    {
-        if (alive _x && ((_unit distance ((ropeEndPosition _x)#1)) < uksf_air_slingloading_RopeHandlingDistance)) exitWith {_pickup = true};
-    } forEach _unitRopes;
-    _pickup
+    private _ropeHandlingDistance = uksf_air_slingloading_RopeHandlingDistance;
+    private _nearRopes = uksf_air_slingloading_allRopes select {
+        alive _x &&
+        _unit distance ((ropeEndPosition _x)#1) < _ropeHandlingDistance
+    };
+    _nearRopes isNotEqualTo []
 };
 
 uksf_air_slingloading_fnc_Pickup_Ropes_Action = {
     params [["_unit", objNull]];
     if (isNull _unit) exitWith {};
-    private _unitRopes = _unit getVariable ["uksf_air_slingloading_Ropes_Near_Unit", []];
-            
-    _unitRopes = _unitRopes select {!(isNull _x) && (_unit distance ((ropeEndPosition _x)#1)) < uksf_air_slingloading_RopeHandlingDistance} apply {[_unit distance ((ropeEndPosition _x)#1), _x]};
-    if (_unitRopes isEqualTo []) exitWith {};
+    
+    private _ropeHandlingDistance = uksf_air_slingloading_RopeHandlingDistance;
+    private _nearRopes = uksf_air_slingloading_allRopes select {
+        alive _x &&
+        _unit distance ((ropeEndPosition _x)#1) < _ropeHandlingDistance
+    } apply {[_unit distance ((ropeEndPosition _x)#1), _x]};
+    if (_nearRopes isEqualTo []) exitWith {};
 
-    _unitRopes sort true;
-    private _closestRope = _unitRopes#0#1;
+    _nearRopes sort true;
+    private _closestRope = _nearRopes#0#1;
     private _vehicle = (_closestRope getVariable "uksf_air_slingloading_Ropes_Vehicle") #0;
     if (isNull _vehicle) exitWith {};
     if (locked _vehicle > 1 && !(missionNamespace getVariable ["uksf_air_slingloading_LOCKED_VEHICLES_ENABLED", false])) exitWith {
@@ -1119,7 +1048,7 @@ uksf_air_slingloading_fnc_Pickup_Ropes_Action = {
 uksf_air_slingloading_fnc_Pickup_Ropes = {
     params [["_vehicle", objNull], ["_unit", objNull], ["_ropesIndex", 0]];
     if (isNull _vehicle || isNull _unit) exitWith {};
-    if !(local _vehicle) exitWith {[_this, "uksf_air_slingloading_fnc_Pickup_Ropes", _vehicle, true] call uksf_air_slingloading_fnc_RemoteExec};
+    if !(local _vehicle) exitWith {["uksf_air_slingloading_Pickup_Ropes", _this, _vehicle] call CBA_fnc_targetEvent;};
     private _existingRopesAndCargo = [_vehicle, _ropesIndex] call uksf_air_slingloading_fnc_Get_Ropes_And_Cargo;
     private _existingRopes = _existingRopesAndCargo #0;
     private _existingCargo = _existingRopesAndCargo #1;
@@ -1140,39 +1069,15 @@ uksf_air_slingloading_fnc_Pickup_Ropes = {
     hideObjectGlobal _helper;
     _unit setVariable ["uksf_air_slingloading_Ropes_Vehicle", [_vehicle, _ropesIndex], true];
     _unit setVariable ["uksf_air_slingloading_Ropes_Pick_Up_Helper", _helper, true];
-    private ["_actionID"];
-    if (isNil{_unit getVariable "uksf_air_slingloading_ActionID_Attach"}) then {
-        _actionID = _unit addAction [
-            localize "STR_uksf_air_slingloading_ATTACH",
-            {[_this #0] call uksf_air_slingloading_fnc_Attach_Ropes_Action},
-            nil,
-            230,
-            true,
-            true,
-            "",
-            "[_this] call uksf_air_slingloading_fnc_Attach_Ropes_Action_Check"
-        ];
-        _unit setVariable ["uksf_air_slingloading_ActionID_Attach", _actionID, true];
-    };
-    if (isNil{_unit getVariable "uksf_air_slingloading_ActionID_Drop"}) then {
-        _actionID = _unit addAction [
-            localize "STR_uksf_air_slingloading_DROP",
-            {[_this #0] call uksf_air_slingloading_fnc_Drop_Ropes_Action},
-            nil,
-            225,
-            true,
-            true,
-            "",
-            "[_this] call uksf_air_slingloading_fnc_Drop_Ropes_Action_Check"
-        ];
-        _unit setVariable ["uksf_air_slingloading_ActionID_Drop", _actionID, true];
-    };
 };
 
 uksf_air_slingloading_fnc_Attach_Ropes_Action_Check = {
     params [["_unit", objNull]];
     if (isNull _unit) exitWith {false};
+
     private _cargo = cursorObject;
+    if (isNull _cargo) exitWith {false};
+
     private _vehicle = (_unit getVariable ["uksf_air_slingloading_Ropes_Vehicle", [objNull, 0]]) #0;
     
     
@@ -1195,9 +1100,7 @@ uksf_air_slingloading_fnc_Attach_Ropes_Action = {
     };
     private _canBeAttached = true;
     
-    if (_canBeAttached) then {
-        [_cargo, _unit] call uksf_air_slingloading_fnc_Attach_Ropes;
-    };
+    [_cargo, _unit] call uksf_air_slingloading_fnc_Attach_Ropes;
 };
 
 uksf_air_slingloading_fnc_Attach_Ropes = {
@@ -1206,7 +1109,7 @@ uksf_air_slingloading_fnc_Attach_Ropes = {
     private _vehicleWithIndex = _unit getVariable ["uksf_air_slingloading_Ropes_Vehicle", [objNull, 0]];
     private _vehicle = _vehicleWithIndex #0;
     if (isNull _vehicle) exitWith {};
-    if !(local _vehicle) exitWith {[_this, "uksf_air_slingloading_fnc_Attach_Ropes", _vehicle, true] call uksf_air_slingloading_fnc_RemoteExec};
+    if !(local _vehicle) exitWith {["uksf_air_slingloading_Attach_Ropes", _this, _vehicle] call CBA_fnc_targetEvent;};
     private _ropes = [_vehicle, _vehicleWithIndex #1] call uksf_air_slingloading_fnc_Get_Ropes;
     if (count _ropes != 4) exitWith {};
     private _attachmentPoints = [_cargo] call uksf_air_slingloading_fnc_Get_Corner_Points;
@@ -1233,17 +1136,17 @@ uksf_air_slingloading_fnc_Attach_Ropes = {
     _allCargo set [(_vehicleWithIndex #1), _cargo];
     _vehicle setVariable ["uksf_air_slingloading_Cargo", _allCargo, true];
     if (missionNamespace getVariable ["uksf_air_slingloading_HEAVY_LIFTING_ENABLED", true]) then {
-        [_vehicle, _cargo, _ropes] spawn uksf_air_slingloading_fnc_Rope_Adjust_Mass;
+        [_vehicle, _unit, _cargo, _ropes] spawn uksf_air_slingloading_fnc_Rope_Adjust_Mass;
     };
-    [_unit, ["uksf_air_slingloading_ActionID_Attach", "uksf_air_slingloading_ActionID_Drop"]] call uksf_air_slingloading_fnc_Remove_Actions; 
     _unit setVariable ["uksf_air_slingloading_Ropes_Pick_Up_Helper", nil, true];
     _unit setVariable ["uksf_air_slingloading_Ropes_Vehicle", nil, true];
 };
 
 uksf_air_slingloading_fnc_Drop_Ropes_Action_Check = {
     params [["_unit", objNull]];
-    if (isNull _unit) exitWith {false};
-    count (_unit getVariable ["uksf_air_slingloading_Ropes_Vehicle", []]) > 0 && vehicle _unit == _unit;
+    if (isNull _unit || vehicle _unit != _unit) exitWith {false};
+
+    (_unit getVariable ["uksf_air_slingloading_Ropes_Vehicle", []]) isNotEqualTo []
 };
 
 uksf_air_slingloading_fnc_Drop_Ropes_Action = {
@@ -1259,7 +1162,7 @@ uksf_air_slingloading_fnc_Drop_Ropes_Action = {
 uksf_air_slingloading_fnc_Drop_Ropes = {
     params [["_vehicle", objNull], ["_unit", objNull], ["_ropesIndex", 0]];
     if (isNull _vehicle || isNull _unit) exitWith {};
-    if !(local _vehicle) exitWith {[_this, "uksf_air_slingloading_Drop_Ropes", _vehicle, true] call uksf_air_slingloading_fnc_RemoteExec};
+    if !(local _vehicle) exitWith {["uksf_air_slingloading_Drop_Ropes", _this, _vehicle] call CBA_fnc_targetEvent;};
     private _helper = (_unit getVariable ["uksf_air_slingloading_Ropes_Pick_Up_Helper", objNull]);
     
     if (!isNull _helper) then {
@@ -1271,7 +1174,6 @@ uksf_air_slingloading_fnc_Drop_Ropes = {
         _unit setVariable ["uksf_air_slingloading_Ropes_Vehicle", nil, true];
         deleteVehicle _helper;
     };
-    [_unit, ["uksf_air_slingloading_ActionID_Attach", "uksf_air_slingloading_ActionID_Drop", "uksf_air_slingloading_ActionID_Detach"]] call uksf_air_slingloading_fnc_Remove_Actions; 
     _unit setVariable ["uksf_air_slingloading_Ropes_Pick_Up_Helper", nil, true];
 };
 
@@ -1392,6 +1294,51 @@ uksf_air_slingloading_fnc_Add_Vehicle_Actions = {
     };
 };
 
+uksf_air_slingloading_fnc_addActions = {
+    params ["_unit"];
+
+    private _actionID = -1;
+    if (isNil {_unit getVariable "uksf_air_slingloading_ActionID_Pickup"}) then {
+        _actionID = _unit addAction [
+            localize "STR_uksf_air_slingloading_PICKUP",
+            {[_this#0] call uksf_air_slingloading_fnc_Pickup_Ropes_Action},
+            nil,
+            250,
+            true,
+            true,
+            "",
+            "[_this] call uksf_air_slingloading_fnc_Pickup_Ropes_Action_Check"
+        ];
+        _unit setVariable ["uksf_air_slingloading_ActionID_Pickup", _actionID];
+    };
+    if (isNil {_unit getVariable "uksf_air_slingloading_ActionID_Attach"}) then {
+        _actionID = _unit addAction [
+            localize "STR_uksf_air_slingloading_ATTACH",
+            {[_this#0] call uksf_air_slingloading_fnc_Attach_Ropes_Action},
+            nil,
+            230,
+            true,
+            true,
+            "",
+            "[_this] call uksf_air_slingloading_fnc_Attach_Ropes_Action_Check"
+        ];
+        _unit setVariable ["uksf_air_slingloading_ActionID_Attach", _actionID];
+    };
+    if (isNil {_unit getVariable "uksf_air_slingloading_ActionID_Drop"}) then {
+        _actionID = _unit addAction [
+            localize "STR_uksf_air_slingloading_DROP",
+            {[_this#0] call uksf_air_slingloading_fnc_Drop_Ropes_Action},
+            nil,
+            225,
+            true,
+            true,
+            "",
+            "[_this] call uksf_air_slingloading_fnc_Drop_Ropes_Action_Check"
+        ];
+        _unit setVariable ["uksf_air_slingloading_ActionID_Drop", _actionID];
+    };
+};
+
 uksf_air_slingloading_fnc_Remove_Actions = {
     params [["_object", objNull], ["_actions", []]];
     
@@ -1408,19 +1355,8 @@ uksf_air_slingloading_fnc_Remove_Actions = {
 };
 
 if (hasInterface) then {
-    ["Air", "init", {_this call uksf_air_slingloading_fnc_Add_Vehicle_Actions}, true] call CBA_fnc_addClassEventHandler; 
-};
-
-uksf_air_slingloading_fnc_RemoteExec = {
-    params ["_params", "_functionName", "_target", ["_isCall", false]];
-
-    if (_isCall) exitWith {_params remoteExecCall [_functionName, _target]};
-    _params remoteExec [_functionName, _target];
-};
-
-uksf_air_slingloading_fnc_RemoteExecServer = {
-    params ["_params", "_functionName", ["_isCall", false]];
-
-    if (_isCall) exitWith {_params remoteExecCall [_functionName, 2]};
-    _params remoteExec [_functionName, 2];
+    ["Air", "init", {_this call uksf_air_slingloading_fnc_Add_Vehicle_Actions}, true] call CBA_fnc_addClassEventHandler;
+    
+    ["CAManBase", "respawn", {call uksf_air_slingloading_fnc_addActions}, true, [], true] call CBA_fnc_addClassEventHandler;
+    [player] call uksf_air_slingloading_fnc_addActions;
 };
