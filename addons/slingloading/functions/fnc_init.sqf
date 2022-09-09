@@ -156,7 +156,7 @@ FUNC(Rope_Set_Mass) = {
     // ];
         // diag_log formatText ["%1%2%3%4%5", time, "s  (FUNC(Rope_Adjust_Mass)) Mass is being adjusted!"];
 FUNC(Rope_Adjust_Mass) = {
-    params [["_vehicle", objNull], ["_cargo", objNull], ["_ropes", []]];
+    params [["_vehicle", objNull], ["_unit", objNull], ["_cargo", objNull], ["_ropes", []]];
     if (isNull _vehicle || isNull _cargo) exitWith {};
     private _lift = [_vehicle] call FUNC(Rope_Get_Lift_Capability);
     private _maxLiftableMass = _lift * GVAR(MaxLiftableMassFactor);
@@ -171,8 +171,8 @@ FUNC(Rope_Adjust_Mass) = {
         };
     };
     sleep 0.3;
-    [_vehicle, _originalMass, _lift] spawn {
-        params [["_vehicle", objNull], ["_originalMass", 0], ["_lift", 0]];
+    [_vehicle, _unit, _originalMass, _lift] spawn {
+        params [["_vehicle", objNull], ["_unit", objNull], ["_originalMass", 0], ["_lift", 0]];
         if (isNull _vehicle || _originalMass == 0 || _lift == 0) exitWith {};
         sleep 0.2;
         private _messages = [[LLSTRING(SLING_MASS)]];
@@ -187,7 +187,7 @@ FUNC(Rope_Adjust_Mass) = {
             _messages pushback [format [LLSTRING(SLING_MASS_REMAINING), ((_lift - _totalSlingMass) / 1000) toFixed 2, (_lift / 1000) toFixed 2]];
         };
         _messages pushBack true;
-        _messages call CBA_fnc_notify;
+        [QUGVAR(common,notify), _messages, _unit] call CBA_fnc_targetEvent;
     };
 };
 
@@ -1151,7 +1151,7 @@ FUNC(Attach_Ropes) = {
     _allCargo set [(_vehicleWithIndex #1), _cargo];
     _vehicle setVariable [QGVAR(Cargo), _allCargo, true];
     if (missionNamespace getVariable [QGVAR(HEAVY_LIFTING_ENABLED), true]) then {
-        [_vehicle, _cargo, _ropes] spawn FUNC(Rope_Adjust_Mass);
+        [_vehicle, _unit, _cargo, _ropes] spawn FUNC(Rope_Adjust_Mass);
     };
     _unit setVariable [QGVAR(Ropes_Pick_Up_Helper), nil, true];
     _unit setVariable [QGVAR(Ropes_Vehicle), nil, true];
