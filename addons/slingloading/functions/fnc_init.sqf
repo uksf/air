@@ -1019,7 +1019,6 @@ FUNC(Deploy_Ropes_Index) = {
     private _allRopes = _vehicle getVariable [QGVAR(Ropes), []];
     _allRopes set [_ropesIndex, _cargoRopes];
     _vehicle setVariable [QGVAR(Ropes), _allRopes, true];
-    [_vehicle] spawn FUNC(Rope_Monitor_Vehicle);
     [QUGVAR(common,notify), [[format [LLSTRING(ROPES_DEPLOYED), GVAR(InitialDeployRopeLength)]], true], _unit] call CBA_fnc_targetEvent;
 };
 
