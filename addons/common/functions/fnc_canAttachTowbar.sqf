@@ -24,11 +24,10 @@ if !(isArray _towbarConfig) exitWith {
 
 private _baseCondition = vehicle ACE_player == ACE_player
 && isNull (ACE_controlledUAV#0)
+&& !(isEngineOn _aircraft)
 && speed _aircraft < 1;
 
 private _towbar = _aircraft getVariable [QGVAR(attachedTowbar), objNull];
-if (_attach) exitWith {
-    _baseCondition && isNull _towbar
-};
+private _hasTowbar = !(isNull _towbar);
 
-_baseCondition && !(isNull _towbar)
+_baseCondition && ((_attach && !_hasTowbar) || (!_attach && _hasTowbar))

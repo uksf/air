@@ -36,6 +36,7 @@ class CfgVehicles {
         aileronSensitivity = 1;
         elevatorSensitivity = 1;
         wheelSteeringSensitivity = 1;
+        landingSpeed = 90; // 140
         fuelCapacity = 1850;  // 270
         unitInfoType = "RscOptics_AV_airplane_pilot";
         class Turrets : Turrets {

@@ -521,7 +521,7 @@ class CfgVehicles {
                     };
                     class CAP {
                         displayName = "CAP";
-                        attachment[] = { "ace_aim9_PylonRack_2Rnd_aim132", "ace_aim9_PylonRack_2Rnd_aim132", "ace_aim120_PylonRack_Missile_d_x2", "ace_aim120_PylonMissile_Missile_d_INT_x1", "ace_aim120_PylonMissile_Missile_d_INT_x1", "ace_aim120_PylonMissile_Missile_d_INT_x1", "ace_aim120_PylonMissile_Missile_d_INT_x1", "ace_aim120_PylonRack_Missile_d_x2", "ace_aim9_PylonRack_2Rnd_aim132", "ace_aim9_PylonRack_2Rnd_aim132", QEGVAR(weapons,gunpod_pylon) };
+                        attachment[] = { "ace_aim9_PylonRack_aim132_x2", "ace_aim9_PylonRack_aim132_x2", "ace_aim120_PylonRack_Missile_d_x2", "ace_aim120_PylonMissile_Missile_d_INT_x1", "ace_aim120_PylonMissile_Missile_d_INT_x1", "ace_aim120_PylonMissile_Missile_d_INT_x1", "ace_aim120_PylonMissile_Missile_d_INT_x1", "ace_aim120_PylonRack_Missile_d_x2", "ace_aim9_PylonRack_aim132_x2", "ace_aim9_PylonRack_aim132_x2", QEGVAR(weapons,gunpod_pylon) };
                     };
                 };
                 class pylons {
