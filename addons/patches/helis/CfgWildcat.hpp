@@ -99,28 +99,6 @@ class UK3CB_BAF_Wildcat_Base : Heli_light_03_base_F {
                     angleRangeHorizontal = 26;
                     angleRangeVertical = 26;
                 };
-                class ActiveRadarSensorComponent : SensorTemplateActiveRadar {
-                    class AirTarget {
-                        minRange = 5000;
-                        maxRange = 5000;
-                        objectDistanceLimitCoef = -1;
-                        viewDistanceLimitCoef = -1;
-                    };
-                    class GroundTarget {
-                        minRange = 4000;
-                        maxRange = 4000;
-                        objectDistanceLimitCoef = -1;
-                        viewDistanceLimitCoef = -1;
-                    };
-                    maxTrackableSpeed = 125;
-                    angleRangeVertical = 90;
-                    groundNoiseDistanceCoef = -1;
-                    maxGroundNoiseDistance = -1;
-                    minSpeedThreshold = 0;
-                    maxSpeedThreshold = 0;
-                    aimDown = 30;
-                    animDirection = "";
-                };
                 class NVSensorComponent : SensorTemplateNV {
                     animDirection = "flir_gun";
                 };
@@ -270,10 +248,46 @@ class UK3CB_BAF_Wildcat_AH1_8_Armed: UK3CB_BAF_Wildcat_AH1_8_Base {
 class UK3CB_BAF_Wildcat_AH1_TRN_8A : UK3CB_BAF_Wildcat_AH1_8_Base {
     INVENTORY_AIRCRAFT;
 };
-class UK3CB_BAF_Wildcat_HMA2_8_Base;
+class UK3CB_BAF_Wildcat_HMA2_Base: UK3CB_BAF_Wildcat_Base {
+    class Components : Components {
+        class SensorsManagerComponent;
+    };
+};
+class UK3CB_BAF_Wildcat_HMA2_8_Base : UK3CB_BAF_Wildcat_HMA2_Base {
+    class Components : Components {
+        class SensorsManagerComponent : SensorsManagerComponent {
+            class Components;
+        };
+    };
+};
 class UK3CB_BAF_Wildcat_HMA2_TRN_8A : UK3CB_BAF_Wildcat_HMA2_8_Base {
     crew = "UKSF_B_Pilot_7";
     typicalCargo[] = { "UKSF_B_Pilot_7" };
+    class Components : Components {
+        class SensorsManagerComponent : SensorsManagerComponent {
+            class Components : Components {
+                class ActiveRadarSensorComponent : SensorTemplateActiveRadar {
+                    class AirTarget {
+                        maxRange = 0;
+                    };
+                    class GroundTarget {
+                        minRange = 500;
+                        maxRange = 4000;
+                        objectDistanceLimitCoef = -1;
+                        viewDistanceLimitCoef = -1;
+                    };
+                    maxTrackableSpeed = 40;
+                    angleRangeVertical = 90;
+                    groundNoiseDistanceCoef = -1;
+                    maxGroundNoiseDistance = -1;
+                    minSpeedThreshold = 0;
+                    maxSpeedThreshold = 0;
+                    aimDown = 30;
+                    animDirection = "mainGun";
+                };
+            };
+        };
+    };
     INVENTORY_AIRCRAFT;
 };
 
