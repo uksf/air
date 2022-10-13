@@ -9,6 +9,8 @@ class UK3CB_BAF_Wildcat_Base : Heli_light_03_base_F {
     crew = "UKSF_B_Pilot_7";
     typicalCargo[] = { "UKSF_B_Pilot_7" };
     FUEL(836,60);
+    weapons[] = { "UK3CB_BAF_CMFlareLauncher" };
+    magazines[] = { "168Rnd_CMFlare_Chaff_Magazine" };
     startDuration = 30;
     mainRotorSpeed = 1;
     bodyFrictionCoef = 0.5;        // 1
@@ -237,12 +239,16 @@ class UK3CB_BAF_Wildcat_AH1_6_Base;
 class UK3CB_BAF_Wildcat_AH1_6_Armed: UK3CB_BAF_Wildcat_AH1_6_Base {
     crew = "UKSF_B_Pilot_656";
     typicalCargo[] = { "UKSF_B_Pilot_656" };
+    weapons[] = { "CUP_weapon_mastersafe", "UK3CB_BAF_CMFlareLauncher" };
+    magazines[] = { "168Rnd_CMFlare_Chaff_Magazine" };
     INVENTORY_AIRCRAFT;
 };
 class UK3CB_BAF_Wildcat_AH1_8_Base;
 class UK3CB_BAF_Wildcat_AH1_8_Armed: UK3CB_BAF_Wildcat_AH1_8_Base {
     crew = "UKSF_B_Pilot_656";
     typicalCargo[] = { "UKSF_B_Pilot_656" };
+    weapons[] = { "CUP_weapon_mastersafe", "UK3CB_BAF_CMFlareLauncher" };
+    magazines[] = { "168Rnd_CMFlare_Chaff_Magazine" };
     INVENTORY_AIRCRAFT;
 };
 class UK3CB_BAF_Wildcat_AH1_TRN_8A : UK3CB_BAF_Wildcat_AH1_8_Base {
@@ -291,22 +297,11 @@ class UK3CB_BAF_Wildcat_HMA2_TRN_8A : UK3CB_BAF_Wildcat_HMA2_8_Base {
     INVENTORY_AIRCRAFT;
 };
 
-class UK3CB_BAF_Wildcat_AH1_6_Generic: UK3CB_BAF_Wildcat_AH1_6_Armed {
-    scope = 0;
-    scopeCurator = 0;
-};
-class UK3CB_BAF_Wildcat_AH1_8_Generic: UK3CB_BAF_Wildcat_AH1_8_Armed {
-    scope = 0;
-    scopeCurator = 0;
-};
-class UK3CB_BAF_Wildcat_AH1_HEL_6A : UK3CB_BAF_Wildcat_AH1_6_Base {
-    scope = 0;
-    scopeCurator = 0;
-};
-class UK3CB_BAF_Wildcat_AH1_HEL_8A : UK3CB_BAF_Wildcat_AH1_8_Base {
-    scope = 0;
-    scopeCurator = 0;
-};
+HIDE_CLASS(UK3CB_BAF_Wildcat_AH1_6_Generic,UK3CB_BAF_Wildcat_AH1_6_Armed);
+HIDE_CLASS(UK3CB_BAF_Wildcat_AH1_8_Generic,UK3CB_BAF_Wildcat_AH1_8_Armed);
+HIDE_CLASS(UK3CB_BAF_Wildcat_AH1_HEL_6A,UK3CB_BAF_Wildcat_AH1_6_Base);
+HIDE_CLASS(UK3CB_BAF_Wildcat_AH1_HEL_8A,UK3CB_BAF_Wildcat_AH1_8_Base);
+
 DEPRECATE_CLASS(UK3CB_BAF_Wildcat_AH1_CAS_6A,UK3CB_BAF_Wildcat_AH1_6_Armed);
 DEPRECATE_CLASS(UK3CB_BAF_Wildcat_AH1_CAS_6B,UK3CB_BAF_Wildcat_AH1_6_Armed);
 DEPRECATE_CLASS(UK3CB_BAF_Wildcat_AH1_CAS_6C,UK3CB_BAF_Wildcat_AH1_6_Armed);
@@ -331,7 +326,7 @@ class rksla3_aw159_hma2 : rksla3_aw159_base {
     startDuration = 30;
     unitInfoType = "RscUnitInfoNoSpeed";
     attenuationEffectType = "HeliAttenuation";
-    weapons[] = { "UK3CB_BAF_Safe", "UK3CB_BAF_CMFlareLauncher" };
+    weapons[] = { "CUP_weapon_mastersafe", "UK3CB_BAF_CMFlareLauncher" };
     magazines[] = { "168Rnd_CMFlare_Chaff_Magazine" };
     class ViewPilot : ViewPilot {
         minFov = 0.25;
@@ -444,5 +439,6 @@ class rksla3_aw159_hma2 : rksla3_aw159_base {
         };
     };
     uksf_radios_rackChannels[] = { 31, 40, 41 };
+    INVENTORY_AIRCRAFT;
 #include "..\hmds\MFDRKSLWildcat.hpp"
 };

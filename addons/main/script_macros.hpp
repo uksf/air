@@ -91,9 +91,7 @@ class TransportItems { \
     MACRO_ADDITEM(ACE_morphine,4); \
     MACRO_ADDITEM(ACE_painkillers,4); \
 }; \
-class TransportBackpacks { \
-    MACRO_ADDBACKPACK(B_Parachute,6); \
-}; \
+class TransportBackpacks {}; \
 class TransportWeapons {}
 
 #define DEPRECATE_CLASS(CLASS,BASE) class CLASS : BASE { \
@@ -116,9 +114,12 @@ class TransportWeapons {}
 #define DEPRECATE_CLASS_WITH_BASE(CLASS,BASE) class BASE; \
 DEPRECATE_CLASS(CLASS,BASE)
 
-#define HIDE_CLASS(CLASS,BASE) class CLASS : BASE { \
+#define HIDE \
     scope = 0; \
-    scopeCurator = 0; \
+    scopeCurator = 0
+
+#define HIDE_CLASS(CLASS,BASE) class CLASS : BASE { \
+    HIDE; \
 }
 
 #define HIDE_CLASS_WITH_BASE(CLASS,BASE) class BASE; \

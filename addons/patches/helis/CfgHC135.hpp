@@ -10,8 +10,8 @@ class H135_Juno_HT1_ZM521 : Helicopter_Base_H {
     cyclicForwardForceCoef = 1;  // 1.1
     FUEL(700,45);
     startDuration = 30;
-    weapons[] = { "UK3CB_BAF_CMFlareLauncher", "UK3CB_BAF_IRJammer" };
-    magazines[] = { "120Rnd_CMFlare_Chaff_Magazine", "UK3CB_BAF_IRJammer_Magazine" };
+    weapons[] = { "UK3CB_BAF_CMFlareLauncher" };
+    magazines[] = { "120Rnd_CMFlare_Chaff_Magazine" };
     class ViewPilot : ViewPilot {
         minFov = 0.25;
         maxFov = 1.25;

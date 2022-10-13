@@ -122,7 +122,7 @@ class CfgVehicles {
         memoryPointLDust = "WheelDust_left_pos";
         memoryPointRDust = "WheelDust_right_pos";
         maximumLoad = 200;
-        weapons[] = { "UK3CB_BAF_Safe", "Laserdesignator_pilotCamera", "UK3CB_BAF_CMFlareLauncher" };
+        weapons[] = { "CUP_weapon_mastersafe", "Laserdesignator_pilotCamera", "UK3CB_BAF_CMFlareLauncher" };
         magazines[] = { "Laserbatteries", "240Rnd_CMFlare_Chaff_Magazine" };
         soundSetSonicBoom[] = { QGVAR(sonicboom_soundset) };
         maxOmega = 2000;

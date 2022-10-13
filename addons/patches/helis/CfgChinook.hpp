@@ -8,6 +8,11 @@ class CUP_CH47F_base : Helicopter_Base_H {
     memoryPointsGetInDriver = "pos cargo";
     memoryPointsGetInDriverDir = "pos cargo dir";
     driverCanEject = 1;
+    weapons[] = { "UK3CB_BAF_CMFlareLauncher" };
+    magazines[] = { "168Rnd_CMFlare_Chaff_Magazine" };
+    attenuationEffectType = "SemiOpenHeliAttenuation";
+    unitInfoType = "RscUnitInfoNoSpeed";
+    unitInfoTypeLite = "RscUnitInfoNoSpeed";
     class ViewPilot : ViewPilot {
         minFov = 0.25;
         maxFov = 1.25;
@@ -91,10 +96,6 @@ class CUP_CH47F_base : Helicopter_Base_H {
             };
         };
     };
-    class AnimationSources;
-    attenuationEffectType = "SemiOpenHeliAttenuation";
-    unitInfoType = "RscUnitInfoNoSpeed";
-    unitInfoTypeLite = "RscUnitInfoNoSpeed";
     class Sounds {
         class Engine {
             sound[] = { "CUP\AirVehicles\CUP_AirVehicles_CH47\sounds\CH47_engine_high_ext", 2, 1.0, 1000 };
@@ -179,8 +180,6 @@ class CUP_CH47F_base : Helicopter_Base_H {
             };
         };
     };
-    ace_cookoff_cookoffSelections[] = { "exhaust_1" };
-    uksf_radios_rackChannels[] = { 31, 40, 41 };
     class MarkerLights {
         class WhiteStill {
             name = "pos_light_still_white";
@@ -291,7 +290,9 @@ class CUP_CH47F_base : Helicopter_Base_H {
             };
         };
     };
-#include "..\hmds\MFDGeneral.hpp"
+    class AnimationSources;
+    ace_cookoff_cookoffSelections[] = { "exhaust_1" };
+    uksf_radios_rackChannels[] = { 31, 40, 41 };
     LESH_canBeTowed = 0;
     LESH_towFromFront = 0;
     LESH_AxisOffsetTarget[] = { 1.6, -9.14, -3.14 };
@@ -299,6 +300,7 @@ class CUP_CH47F_base : Helicopter_Base_H {
     EGVAR(common,towbarOffset)[] = { 1.6, -0.6, -0.19 };
     EGVAR(common,towbarRotation)[] = { 0, -1, 0.036 };
     EGVAR(common,towbarActionMemoryPoint) = "doplnovani";
+    #include "..\hmds\MFDGeneral.hpp"
 };
 class CUP_B_CH47F_GB : CUP_CH47F_base {
     scope = 2;
@@ -309,6 +311,7 @@ class CUP_B_CH47F_GB : CUP_CH47F_base {
     crew = "UKSF_B_Pilot_7";
     typicalCargo[] = { "UKSF_B_Pilot_7", "UKSF_B_Pilot_7", "UKSF_B_Pilot_7" };
     hiddenSelectionsTextures[] = { "cup\airvehicles\cup_airvehicles_ch47\data\ch47_ext_1_baf_co.paa", "cup\airvehicles\cup_airvehicles_ch47\data\ch47_ext_2_baf_co.paa", "", "cup\airvehicles\cup_airvehicles_ch47\data\ch47_ext_mlod_co.paa" };
+    class TextureSources {};
     editorPreview = "CUP\AirVehicles\CUP_AirVehicles_CH47\Data\preview\CUP_B_CH47F_GB.jpg";
     class Turrets : Turrets {
         class MainTurret : MainTurret {
@@ -505,28 +508,14 @@ class CUP_B_CH47F_GB : CUP_CH47F_base {
             weapon = "CUP_Vlmg_L7A2_veh";
         };
     };
-    class TextureSources {
-        class BAF {
-            displayname = "Royal Air Force";
-            author = "Bohemia Interactive";
-            textures[] = {"cup\airvehicles\cup_airvehicles_ch47\data\ch47_ext_1_baf_co.paa", "cup\airvehicles\cup_airvehicles_ch47\data\ch47_ext_2_baf_co.paa", "", "cup\airvehicles\cup_airvehicles_ch47\data\ch47_ext_mlod_co.paa"};
-            factions[] = {};
-        };
-    };
     INVENTORY_AIRCRAFT;
 };
-class CUP_CH47F_VIV_base : CUP_CH47F_base {};
+class CUP_CH47F_VIV_base;
 class CUP_B_CH47F_VIV_GB : CUP_CH47F_VIV_base {
     crew = "UKSF_B_Pilot_7";
     typicalCargo[] = { "UKSF_B_Pilot_7", "UKSF_B_Pilot_7", "UKSF_B_Pilot_7" };
-    class TextureSources {
-        class BAF {
-            displayname = "Royal Air Force";
-            author = "Bohemia Interactive";
-            textures[] = {"cup\airvehicles\cup_airvehicles_ch47\data\ch47_ext_1_baf_co.paa", "cup\airvehicles\cup_airvehicles_ch47\data\ch47_ext_2_baf_co.paa", "", "cup\airvehicles\cup_airvehicles_ch47\data\ch47_ext_mlod_co.paa"};
-            factions[] = {};
-        };
-    };
+    hiddenSelectionsTextures[] = { "cup\airvehicles\cup_airvehicles_ch47\data\ch47_ext_1_baf_co.paa", "cup\airvehicles\cup_airvehicles_ch47\data\ch47_ext_2_baf_co.paa", "", "cup\airvehicles\cup_airvehicles_ch47\data\ch47_ext_mlod_co.paa" };
+    class TextureSources {};
     INVENTORY_AIRCRAFT;
 };
 

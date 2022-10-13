@@ -1,16 +1,21 @@
 class MEA_Pantera_Base : Helicopter_Base_H {
     crew = "UKSF_B_Pilot_7";
     typicalCargo[] = { "UKSF_B_Pilot_7" };
+    FUEL(1135,60);
+    weapons[] = { "UK3CB_BAF_CMFlareLauncher" };
+    magazines[] = { "168Rnd_CMFlare_Chaff_Magazine" };
     unitInfoType = "RscUnitInfoNoSpeed";
     unitInfoTypeLite = "RscUnitInfoNoSpeed";
     cyclicAsideForceCoef = 0.9;
     cyclicForwardForceCoef = 0.7;
-    FUEL(1135,60);
     camouflage = 10;
     audible = 25;
     radarTargetSize = 0.5;
     visualTargetSize = 0.7;
     irTargetSize = 0.5;
+    extCameraPosition[] = { 0, 0, -15 };
+    ace_fastroping_enabled = 1;
+    ace_fastroping_ropeOrigins[] = { { 1.4, 1.15, 0.5 } };
     class Wheels {
         class Wheel_f {
             boneName = "wheel_f";
@@ -63,11 +68,6 @@ class MEA_Pantera_Base : Helicopter_Base_H {
             tireForceAppPointOffset = "wheel_l_center";
         };
     };
-    extCameraPosition[] = { 0, 0, -15 };
-    ace_fastroping_enabled = 1;
-    ace_fastroping_ropeOrigins[] = { { 1.4, 1.15, 0.5 } };
-    INVENTORY_AIRCRAFT;
-#include "..\hmds\MFDGeneral.hpp"
     LESH_canBeTowed = 0;
     LESH_towFromFront = 1;
     LESH_AxisOffsetTarget[] = { 0, 8.365, -1.71 };
@@ -75,6 +75,7 @@ class MEA_Pantera_Base : Helicopter_Base_H {
     EGVAR(common,towbarOffset)[] = { -0.11, -0.13, 0.08 };
     EGVAR(common,towbarRotation)[] = { 0, 1, 0.024 };
     EGVAR(common,towbarActionMemoryPoint) = "wheel_f_axis";
+#include "..\hmds\MFDGeneral.hpp"
 };
 class GVAR(dauphin) : MEA_Pantera_Base {
     scope = 2;
@@ -82,9 +83,9 @@ class GVAR(dauphin) : MEA_Pantera_Base {
     faction = "CUP_B_GB";
     displayName = "AS365N3 Dauphin II";
     PREVIEW(dauphin);
-    class TransportBackpacks {};
     hiddenSelections[] = { "decals" };
     hiddenSelectionsTextures[] = { "" };
     startDuration = 45;
+    INVENTORY_AIRCRAFT;
 };
 DEPRECATE_CLASS(uksf_air_dauphin,GVAR(dauphin));

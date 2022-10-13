@@ -94,8 +94,8 @@ class rksla3_pumahc_base: Helicopter_Base_H {
         controllable = 0;
     };
     memoryPointDriverOptics = "slingLoad_cam_pos";
-    weapons[] = {"UK3CB_BAF_CMFlareLauncher", "UK3CB_BAF_IRJammer"};
-    magazines[] = {"120Rnd_CMFlare_Chaff_Magazine", "UK3CB_BAF_IRJammer_Magazine"};
+    weapons[] = { "UK3CB_BAF_CMFlareLauncher" };
+    magazines[] = { "120Rnd_CMFlare_Chaff_Magazine" };
     INVENTORY_EMPTY;
     uksf_radios_rackChannels[] = { 31, 40, 41 };
     #include "..\hmds\MFDMerlin.hpp"
@@ -129,7 +129,7 @@ class rksla3_puma_hc1_1gpmg: rksla3_pumahc_base {
     vehicleClass = "Air";
     class Turrets: Turrets {
         class RH_Turret: MainTurret {
-            weapons[] = {"UK3CB_BAF_Safe", "rksla3_pumahc1_mounted_GPMG_R"};
+            weapons[] = { "CUP_weapon_mastersafe", "rksla3_pumahc1_mounted_GPMG_R" };
         };
     };
     class TransportMagazines {
@@ -156,10 +156,10 @@ class rksla3_puma_hc1_2gpmg: rksla3_pumahc_base {
     vehicleClass = "Air";
     class Turrets: Turrets {
         class RH_Turret: MainTurret {
-            weapons[] = {"UK3CB_BAF_Safe", "rksla3_pumahc1_mounted_GPMG_R"};
+            weapons[] = { "CUP_weapon_mastersafe", "rksla3_pumahc1_mounted_GPMG_R" };
         };
         class LH_Turret: RH_Turret {
-            weapons[] = {"UK3CB_BAF_Safe", "rksla3_pumahc1_mounted_GPMG_L"};
+            weapons[] = { "CUP_weapon_mastersafe", "rksla3_pumahc1_mounted_GPMG_L" };
         };
     };
     class TransportMagazines {

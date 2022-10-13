@@ -18,17 +18,9 @@ class CfgPatches {
         requiredAddons[] = {
             "uksf_gear",
             "uksf_units",
-            "CUP_AirVehicles_AH64",
-            "CUP_AirVehicles_AV8B",
-            "CUP_AirVehciles_AW159",
+            "CUP_AirVehicles_LoadOrder",
             "CUP_AirVehicles_CH47",
-            "CUP_AirVehicles_F35",
-            "CUP_AirVehicles_HC3",
-            "CUP_AirVehicles_L39",
-            "CUP_AirVehicles_Merlin",
-            "CUP_AirVehicles_MV22",
-            "CUP_AirVehciles_SA330",
-            "CUP_AirVehciles_StaticLine",
+            "CUP_Vehicles_ACE_compat",
             "UK3CB_BAF_Vehicles_Merlin",
             "UK3CB_BAF_Vehicles_Wildcat",
             "rksla3_pumahc",
@@ -36,7 +28,7 @@ class CfgPatches {
             "MEA_Panther",
             "HAFM_EC635",
             "uksf_air_f35",
-            QGVAR(prep)
+            "uksf_air_patches_prep"
         };
         author = QUOTE(UKSF);
         authors[] = { "Beswick.T" };

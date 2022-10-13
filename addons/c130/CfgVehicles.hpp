@@ -108,12 +108,6 @@ class CfgVehicles {
         gunnerUsesPilotView = 1;
         driverCompartments = "Compartment1";
         cargoCompartments[] = { "Compartment1" };
-        class TransportBackpacks {
-            class _xx_B_Parachute {
-                backpack = "B_Parachute";
-                count = 30;
-            };
-        };
         weapons[] = { QEGVAR(weapons,C130FlareLauncher) };
         magazines[] = { "300Rnd_CMFlare_Chaff_Magazine" };
         memoryPointCM[] = { "flare_launcher1", "flare_launcher2", "flare_launcher3", "flare_launcher4" };
@@ -1074,6 +1068,24 @@ class CfgVehicles {
         EGVAR(common,towbarActionMemoryPoint) = "wheel_1_1";
         uksf_radios_rackChannels[] = { 31, 40, 41 };
 		EGVAR(common,staticLineJumpPoints)[] = { "pos_para_left", "pos_para_right" };
+        class TransportMagazines {
+            MACRO_ADDMAGAZINE(ACE_M14,2);
+            MACRO_ADDMAGAZINE(ACE_HandFlare_Red,2);
+            MACRO_ADDMAGAZINE(UK3CB_BAF_SmokeShellRed,2);
+            MACRO_ADDMAGAZINE(B_IR_Grenade,2);
+        };
+        class TransportItems {
+            MACRO_ADDITEM(Toolkit,1);
+            MACRO_ADDITEM(ACE_elasticBandage,4);
+            MACRO_ADDITEM(ACE_packingBandage,4);
+            MACRO_ADDITEM(ACE_morphine,4);
+            MACRO_ADDITEM(ACE_painkillers,4);
+            MACRO_ADDITEM(uksf_halohaho_airSupply,6);
+        };
+        class TransportBackpacks {
+            MACRO_ADDBACKPACK(B_Parachute,30);
+        };
+        class TransportWeapons {};
 #include "MFD.hpp"
     };
     class GVAR(raf) : GVAR(base) {
