@@ -19,7 +19,6 @@ class CfgPatches {
             "uksf_gear",
             "uksf_units",
             "CUP_AirVehicles_LoadOrder",
-            "CUP_AirVehicles_CH47",
             "CUP_Vehicles_ACE_compat",
             "UK3CB_BAF_Vehicles_Merlin",
             "UK3CB_BAF_Vehicles_Wildcat",
