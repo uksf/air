@@ -59,7 +59,7 @@ private _newSpeed = -1;
 
 // Slows down the drone if it is in observation mode and close to its waypoint, unlimits speed when it's far from its waypoint.
 if (_observationMode && ((getPosATL _uav) distance2D (getWPPos [_uav, _currentWaypoint])) < (waypointLoiterRadius [_uav, _currentWaypoint] + 500)) then {
-    _newSpeed = 33;
+    _newSpeed = 40;
 } else {
     if (!_diveMode) then {
         _newSpeed = -1;
@@ -70,7 +70,7 @@ if (_observationMode && ((getPosATL _uav) distance2D (getWPPos [_uav, _currentWa
 // Then nosedives the drone in order for the hellfire to get a lock on the laser.
 // Once waypoint is completed drone speed is unlimited and drone climbs back to its original altitude.
 if (_diveMode && ((getPosATL _uav) distance2D (getWPPos [_uav, _currentWaypoint]) < (4000 min (_specificDistance * 3))) && !_heightChanged) then {
-    _newSpeed = 33;
+    _newSpeed = 40;
     if (((getPosATL _uav) distance2D (getWPPos [_uav, _currentWaypoint])) < (_specificDistance * 1.5)) then {
         _targetHeightASLMeters = 200 max (_specificDistance - 200);
         _heightChanged = true;

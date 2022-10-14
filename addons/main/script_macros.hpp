@@ -130,3 +130,5 @@ HIDE_CLASS(CLASS,BASE)
 #define FUEL(capacity,flightTime) fuelCapacity = capacity; \
 ace_refuel_fuelCapacity = capacity; \
 fuelConsumptionRate = capacity / (flightTime * 60)
+
+#define ROUND_TO_10(var) (round (var / 10)) * 10

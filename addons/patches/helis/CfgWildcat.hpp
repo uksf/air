@@ -349,7 +349,7 @@ class rksla3_aw159_hma2 : rksla3_aw159_base {
     };
     class Turrets : Turrets {
         class MainTurret : MainTurret {
-            weapons[] = { "Laserdesignator_mounted" };
+            weapons[] = { "UK3CB_BAF_Laserdesignator_mounted" };
             magazines[] = { "Laserbatteries" };
             primaryGunner = 1;
             canEject = 1;

@@ -102,9 +102,7 @@ class CfgAmmo {
     class ACE_Hellfire_AGM114K_drone : ACE_Hellfire_AGM114K {
         class ace_missileguidance : ace_missileguidance {
             enabled = 1;
-            seekerAngle = 360;
-            pitchRate = 45; // degrees per second
-            yawRate = 45;
+            seekerAngle = 180;
         };
     };
     class ACE_Hellfire_AGM114N : ACE_Hellfire_AGM114K {
@@ -113,9 +111,7 @@ class CfgAmmo {
     class ACE_Hellfire_AGM114N_drone : ACE_Hellfire_AGM114N {
         class ace_missileguidance : ace_missileguidance {
             enabled = 1;
-            seekerAngle = 360;
-            pitchRate = 45; // degrees per second
-            yawRate = 45;
+            seekerAngle = 180;
         };
     };
 

@@ -52,9 +52,9 @@ GVAR(loopPFHID) = [{
             private _altitudeATL = (getPos _x)#2 * MULTIPLIER_FEET;
             private _altitudeASL = (getPosASL _x)#2 * MULTIPLIER_FEET;
             private _direction = round (getDir _x);
-            private _formattedSpeed = if (_speed > 50) then {(round (_speed / 10)) * 10} else {round _speed};
-            private _formattedAltitudeATL = if (_altitudeATL > 100) then {(round (_altitudeATL / 10)) * 10} else {round _altitudeATL};
-            private _formattedAltitudeASL = if (_altitudeASL > 100) then {(round (_altitudeASL / 10)) * 10} else {round _altitudeASL};
+            private _formattedSpeed = if (_speed > 50) then {ROUND_TO_10(_speed)} else {round _speed};
+            private _formattedAltitudeATL = if (_altitudeATL > 100) then {ROUND_TO_10(_altitudeATL)} else {round _altitudeATL};
+            private _formattedAltitudeASL = if (_altitudeASL > 100) then {ROUND_TO_10(_altitudeATL)} else {round _altitudeASL};
             private _marker = createMarkerLocal [_markerName, _x];
             _marker setMarkerShapeLocal "ICON";
             _marker setMarkerTypeLocal ([_x] call FUNC(getMarker));

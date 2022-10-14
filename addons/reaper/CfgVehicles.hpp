@@ -27,12 +27,12 @@ class CfgVehicles {
         hiddenSelectionsTextures[] = {"", "", "", "", "\UK3CB_BAF_Vehicles\addons\UK3CB_BAF_Vehicles_MQ-9_Reaper\data\raf_mq9_reaper_co.paa"};
         textureList[] = {"XXXIX", 1, "XIII", 1};
         PREVIEW(raf);
-        radarTargetSize = 0.001;
-        radarTarget = 0;
-        visualTarget = 0;
-        nvTarget = 0;
-        irTarget = 0;
-        camouflage = 0;
+        radarTargetSize = 0.01;
+        radarTarget = 1;
+        visualTarget = 1;
+        nvTarget = 1;
+        irTarget = 1;
+        camouflage = 5;
         aileronSensitivity = 1;
         elevatorSensitivity = 1;
         wheelSteeringSensitivity = 1;
@@ -41,6 +41,8 @@ class CfgVehicles {
         unitInfoType = "RscOptics_AV_airplane_pilot";
         class Turrets : Turrets {
             class MainTurret : MainTurret {
+                weapons[] = { "CUP_weapon_mastersafe", "UK3CB_BAF_Laserdesignator_mounted" };
+                magazines[] = { "Laserbatteries" };
                 turretInfoType = "RscOptics_UAV_reaper_gunner";
                 maxHorizontalRotSpeed = 4;
                 maxVerticalRotSpeed = 4;
@@ -222,20 +224,20 @@ class CfgVehicles {
                 class Components {
                     class ActiveRadarComponent : SensorTemplateActiveRadar {
                         class AirTarget {
-                            maxRange = 12000;
-                            minRange = 12000;
+                            maxRange = 8000;
+                            minRange = 1000;
                             objectDistanceLimitCoef = -1;
                             viewDistanceLimitCoef = -1;
                         };
                         class GroundTarget {
-                            maxRange = 12000;
-                            minRange = 12000;
+                            maxRange = 0;
+                            minRange = 0;
                             objectDistanceLimitCoef = -1;
                             viewDistanceLimitCoef = -1;
                         };
-                        typeRecognitionDistance = 12000;
+                        typeRecognitionDistance = 10000;
                         angleRangeHorizontal = 360;
-                        angleRangeVertical = 360;
+                        angleRangeVertical = 180;
                         maxGroundNoiseDistance = -1;
                         groundNoiseDistanceCoef = -1;
                         minSpeedThreshold = 0;
@@ -243,38 +245,38 @@ class CfgVehicles {
                     };
                     class IRSensorComponent : SensorTemplateIR {
                         aimDown = 0;
-                        animDirection = "MainTurret";
+                        animDirection = "mainGun";
                         angleRangeHorizontal = 30;
                         angleRangeVertical = 30;
                         maxTrackableSpeed = 110;
                         class AirTarget {
-                            maxRange = 12000;
-                            minRange = 12000;
+                            maxRange = 8000;
+                            minRange = 500;
                             objectDistanceLimitCoef = 1;
                             viewDistanceLimitCoef = 1;
                         };
                         class GroundTarget {
-                            maxRange = 12000;
-                            minRange = 12000;
+                            maxRange = 8000;
+                            minRange = 500;
                             objectDistanceLimitCoef = 1;
                             viewDistanceLimitCoef = 1;
                         };
                     };
                     class VisualSensorComponent : SensorTemplateVisual {
                         aimDown = 0;
-                        animDirection = "MainTurret";
+                        animDirection = "mainGun";
                         angleRangeHorizontal = 30;
                         angleRangeVertical = 30;
                         maxTrackableSpeed = 110;
                         class AirTarget {
-                            maxRange = 12000;
-                            minRange = 12000;
+                            maxRange = 8000;
+                            minRange = 500;
                             objectDistanceLimitCoef = 1;
                             viewDistanceLimitCoef = 1;
                         };
                         class GroundTarget {
-                            maxRange = 12000;
-                            minRange = 12000;
+                            maxRange = 8000;
+                            minRange = 500;
                             objectDistanceLimitCoef = 1;
                             viewDistanceLimitCoef = 1;
                         };
@@ -282,26 +284,26 @@ class CfgVehicles {
                     class PassiveSensorComponent : SensorTemplatePassiveRadar {};
                     class NVSensorComponent : SensorTemplateNV {
                         aimDown = 0;
-                        animDirection = "MainTurret";
+                        animDirection = "mainGun";
                         angleRangeHorizontal = 30;
                         angleRangeVertical = 30;
                         maxTrackableSpeed = 110;
                         class AirTarget {
-                            maxRange = 12000;
-                            minRange = 12000;
+                            maxRange = 8000;
+                            minRange = 500;
                             objectDistanceLimitCoef = 1;
                             viewDistanceLimitCoef = 1;
                         };
                         class GroundTarget {
-                            maxRange = 12000;
-                            minRange = 12000;
+                            maxRange = 8000;
+                            minRange = 500;
                             objectDistanceLimitCoef = 1;
                             viewDistanceLimitCoef = 1;
                         };
                     };
                     class LaserSensorComponent : SensorTemplateLaser {
                         aimDown = 0;
-                        animDirection = "MainTurret";
+                        animDirection = "mainGun";
                         angleRangeHorizontal = 30;
                         angleRangeVertical = 30;
                         maxTrackableSpeed = 110;
@@ -312,8 +314,8 @@ class CfgVehicles {
                             viewDistanceLimitCoef = -1;
                         };
                         class GroundTarget {
-                            maxRange = 12000;
-                            minRange = 12000;
+                            maxRange = 8000;
+                            minRange = 8000;
                             objectDistanceLimitCoef = -1;
                             viewDistanceLimitCoef = -1;
                         };
@@ -333,8 +335,8 @@ class CfgVehicles {
                         turret[] = { 0 };
                     };
                     class Pylons2 : Pylons1 {
-                        attachment = "PylonRack_2Rnd_ACE_Hellfire_AGM114N_Drone";
-                        hardpoints[] = { "UK3CB_BAF_BOMB_PYLON", "B_HELLFIRE_DRONE" };
+                        attachment = "ace_gbu_PylonMissile_Bomb_GBU12_x1_Drone";
+                        hardpoints[] = { "B_GBU12_ACE_DRONE" };
                         UIposition[] = { 0.2, 0.45 };
                     };
                     class Pylons3 : Pylons2 {
@@ -347,25 +349,21 @@ class CfgVehicles {
                     };
                 };
                 class Presets {
-                    class Empty {
-                        displayName = "Empty";
-                        attachment[] = {};
-                    };
-                    class Default {
-                        attachment[] = { "PylonRack_2Rnd_ACE_Hellfire_AGM114K_Drone", "PylonRack_2Rnd_ACE_Hellfire_AGM114N_Drone", "PylonRack_2Rnd_ACE_Hellfire_AGM114N_Drone", "PylonRack_2Rnd_ACE_Hellfire_AGM114K_Drone" };
+                    class Mixed {
+                        attachment[] = { "PylonRack_2Rnd_ACE_Hellfire_AGM114K_Drone", "ace_gbu_PylonMissile_Bomb_GBU12_x1_Drone", "ace_gbu_PylonMissile_Bomb_GBU12_x1_Drone", "PylonRack_2Rnd_ACE_Hellfire_AGM114N_Drone" };
                         displayName = "Mixed";
                     };
                     class AT {
-                        attachment[] = { "PylonRack_2Rnd_ACE_Hellfire_AGM114K_Drone", "PylonRack_2Rnd_ACE_Hellfire_AGM114K_Drone", "PylonRack_2Rnd_ACE_Hellfire_AGM114K_Drone", "PylonRack_2Rnd_ACE_Hellfire_AGM114K_Drone" };
+                        attachment[] = { "PylonRack_2Rnd_ACE_Hellfire_AGM114K_Drone", "ace_gbu_PylonMissile_Bomb_GBU12_x1_Drone", "ace_gbu_PylonMissile_Bomb_GBU12_x1_Drone", "PylonRack_2Rnd_ACE_Hellfire_AGM114K_Drone" };
                         displayName = "Anti-Tank";
                     };
                     class AP {
-                        attachment[] = { "PylonRack_2Rnd_ACE_Hellfire_AGM114N_Drone", "PylonRack_2Rnd_ACE_Hellfire_AGM114N_Drone", "PylonRack_2Rnd_ACE_Hellfire_AGM114N_Drone", "PylonRack_2Rnd_ACE_Hellfire_AGM114N_Drone" };
+                        attachment[] = { "PylonRack_2Rnd_ACE_Hellfire_AGM114N_Drone", "ace_gbu_PylonMissile_Bomb_GBU12_x1_Drone", "ace_gbu_PylonMissile_Bomb_GBU12_x1_Drone", "PylonRack_2Rnd_ACE_Hellfire_AGM114N_Drone" };
                         displayName = "Anti-Personnel";
                     };
-                    class Mixed {
-                        attachment[] = { "PylonRack_2Rnd_ACE_Hellfire_AGM114N_Drone", "UK3CB_BAF_PylonRack_1Rnd_GBU", "UK3CB_BAF_PylonRack_1Rnd_GBU", "PylonRack_2Rnd_ACE_Hellfire_AGM114K_Drone" };
-                        displayName = "Mixed";
+                    class Empty {
+                        displayName = "Empty";
+                        attachment[] = {};
                     };
                 };
                 UIPicture = "\CUP\AirVehicles\CUP_AirVehicles_MQ9\data\ui\CUP_MQ9_3DEN_ca.paa";
