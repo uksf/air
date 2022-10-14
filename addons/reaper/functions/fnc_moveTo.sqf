@@ -39,7 +39,7 @@ switch (_type) do {
         _uav setVariable [QGVAR(diveMode), false, true];
         _uav setVariable [QGVAR(observationMode), true, true];
         _waypoint setWaypointType 'LOITER';
-        _waypoint setWaypointLoiterRadius 1500;
+        _waypoint setWaypointLoiterRadius 2000;
     };
     case 2: {
         _uav setVariable [QGVAR(diveMode), true, true];
