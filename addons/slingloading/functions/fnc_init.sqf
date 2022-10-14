@@ -1371,6 +1371,13 @@ FUNC(Remove_Actions) = {
 if (hasInterface) then {
     ["Air", "init", {_this call FUNC(Add_Vehicle_Actions)}, true] call CBA_fnc_addClassEventHandler;
     
-    ["CAManBase", "respawn", {call FUNC(addActions)}, true, [], true] call CBA_fnc_addClassEventHandler;
+    ["CAManBase", "respawn", {
+        params ["_unit"];
+
+        _unit setVariable [QGVAR(ActionID_Pickup), nil];
+        _unit setVariable [QGVAR(ActionID_Attach), nil];
+        _unit setVariable [QGVAR(ActionID_Drop), nil];
+        call FUNC(addActions);
+    }, true, [], true] call CBA_fnc_addClassEventHandler;
     [player] call FUNC(addActions);
 };
