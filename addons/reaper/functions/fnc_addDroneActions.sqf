@@ -150,7 +150,7 @@ _action = [QGVAR(droneActionDirection), "Toggle Loiter Direction", "", {
     private _group = group _target;
     private _currentType = waypointLoiterType [_group, currentWaypoint _group];
     private _newType = ["CIRCLE", "CIRCLE_L"] select (_currentType isEqualTo "CIRCLE");
-    [_group, _currentType] setWaypointLoiterType _newType;
+    [_group, currentWaypoint _group] setWaypointLoiterType _newType;
 }, {
     params ["_target", "", ""];
 
