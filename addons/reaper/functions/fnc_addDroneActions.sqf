@@ -140,7 +140,7 @@ _action = [QGVAR(droneActionRadius), "Loiter Radius", "", {}, {
     params ["_target", "", "", "_actionData"];
 
     private _radius = waypointLoiterRadius [group _target, currentWaypoint (group _target)];
-    _actionData set [1, format ["Loiter Radius (%1)", _radius]];
+    _actionData set [1, format ["Loiter Radius (%1m)", _radius]];
 }] call ace_interact_menu_fnc_createAction;
 [QGVAR(raf), 1, ["ACE_SelfActions"], _action, true] call ace_interact_menu_fnc_addActionToClass;
 

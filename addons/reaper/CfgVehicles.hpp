@@ -234,16 +234,16 @@ class CfgVehicles {
                             viewDistanceLimitCoef = -1;
                         };
                         class GroundTarget {
-                            maxRange = 0;
+                            maxRange = 8000;
                             minRange = 0;
                             objectDistanceLimitCoef = -1;
                             viewDistanceLimitCoef = -1;
                         };
-                        typeRecognitionDistance = 10000;
+                        typeRecognitionDistance = 8000;
                         angleRangeHorizontal = 360;
                         angleRangeVertical = 180;
-                        maxGroundNoiseDistance = -1;
-                        groundNoiseDistanceCoef = -1;
+                        groundNoiseDistanceCoef = 0.5;
+                        maxGroundNoiseDistance = 200;
                         minSpeedThreshold = 0;
                         maxSpeedThreshold = 24;
                     };

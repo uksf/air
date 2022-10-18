@@ -18,17 +18,17 @@ FUNC(Get_Sling_Load_Points) = {
     if (isNull _vehicle) exitWith {};
     private _slingLoadPointsArray = [];
     private _cornerPoints = [_vehicle] call FUNC(Get_Corner_Points);
-    private _frontCenterPoint = (((_cornerPoints #2) vectorDiff (_cornerPoints #3)) vectorMultiply 0.5) vectorAdd (_cornerPoints #3);
-    private _rearCenterPoint = (((_cornerPoints #0) vectorDiff (_cornerPoints #1)) vectorMultiply 0.5) vectorAdd (_cornerPoints #1);
+    private _frontCenterPoint = (((_cornerPoints#2) vectorDiff (_cornerPoints#3)) vectorMultiply 0.5) vectorAdd (_cornerPoints#3);
+    private _rearCenterPoint = (((_cornerPoints#0) vectorDiff (_cornerPoints#1)) vectorMultiply 0.5) vectorAdd (_cornerPoints#1);
     _rearCenterPoint = ((_frontCenterPoint vectorDiff _rearCenterPoint) vectorMultiply 0.2) vectorAdd _rearCenterPoint;
     _frontCenterPoint = ((_rearCenterPoint vectorDiff _frontCenterPoint) vectorMultiply 0.2) vectorAdd _frontCenterPoint;
     private _middleCenterPoint = ((_frontCenterPoint vectorDiff _rearCenterPoint) vectorMultiply 0.5) vectorAdd _rearCenterPoint;
     private _vehicleUnitVectorUp = vectorNormalized (vectorUp _vehicle);
     private _slingLoadPointHeightOffset = [-0.05, -0.05, -0.05];
     {
-        if (_vehicle isKindOf _x #0) exitWith {
-            _slingLoadPointHeightOffset = _x #1;
-            // diag_log formatText ["%1%2%3%4%5%6%7", time, "s  (FUNC(Get_Sling_Load_Points)) _vehicle ", _vehicle, " isKindOf ", _x #0, ", _slingLoadPointHeightOffsetfset: ", _slingLoadPointHeightOffset];
+        if (_vehicle isKindOf _x#0) exitWith {
+            _slingLoadPointHeightOffset = _x#1;
+            // diag_log formatText ["%1%2%3%4%5%6%7", time, "s  (FUNC(Get_Sling_Load_Points)) _vehicle ", _vehicle, " isKindOf ", _x#0, ", _slingLoadPointHeightOffsetfset: ", _slingLoadPointHeightOffset];
         };
     } forEach GVAR(classLoadPointOffsets);
     private _slingLoadPoints = [];
@@ -58,7 +58,7 @@ FUNC(Get_Sling_Load_Points) = {
         // See: https://en.wikipedia.org/wiki/Line%E2%80%93plane_intersection
         _la = ASLToAGL _surfaceIntersectStartASL;
         _lb = ASLToAGL _surfaceIntersectEndASL;
-        if (_la #2 < 0 && _lb #2 > 0) then {
+        if (_la#2 < 0 && _lb#2 > 0) then {
             _n = [0, 0, 1];
             _p0 = [0, 0, 0.1];
             _l = (_la vectorFromTo _lb);
@@ -71,26 +71,26 @@ FUNC(Get_Sling_Load_Points) = {
         _surfaces = lineIntersectsSurfaces [_surfaceIntersectStartASL, _surfaceIntersectEndASL, objNull, objNull, true, 100];
         _intersectionASL = [];
         {
-            _intersectionObject = _x #2;
+            _intersectionObject = _x#2;
             if (_intersectionObject == _vehicle) exitWith {
-                _intersectionASL = _x #0;
+                _intersectionASL = _x#0;
             };
         } forEach _surfaces;
         if (count _intersectionASL > 0) then {
-            _intersectionASL = _intersectionASL vectorAdd ((_surfaceIntersectStartASL vectorFromTo _surfaceIntersectEndASL) vectorMultiply (_slingLoadPointHeightOffset #(count _slingLoadPoints)));
+            _intersectionASL = _intersectionASL vectorAdd ((_surfaceIntersectStartASL vectorFromTo _surfaceIntersectEndASL) vectorMultiply (_slingLoadPointHeightOffset#(count _slingLoadPoints)));
             _slingLoadPoints pushBack (_vehicle worldToModelVisual (ASLToAGL _intersectionASL));
         } else {
             _slingLoadPoints pushBack [];
         };
     } forEach [_frontCenterPoint, _middleCenterPoint, _rearCenterPoint];
     
-    if (count (_slingLoadPoints #1) > 0) then {
-        _slingLoadPointsArray pushBack [_slingLoadPoints #1];
-        if (count (_slingLoadPoints #0) > 0 && count (_slingLoadPoints #2) > 0) then {
-            if (((_slingLoadPoints #0) distance (_slingLoadPoints #2)) > 3) then {
-                _slingLoadPointsArray pushBack [_slingLoadPoints #0, _slingLoadPoints #2];
-                if (((_slingLoadPoints #0) distance (_slingLoadPoints #1)) > 3) then {
-                    _slingLoadPointsArray pushBack [_slingLoadPoints #0, _slingLoadPoints #1, _slingLoadPoints #2];
+    if (count (_slingLoadPoints#1) > 0) then {
+        _slingLoadPointsArray pushBack [_slingLoadPoints#1];
+        if (count (_slingLoadPoints#0) > 0 && count (_slingLoadPoints#2) > 0) then {
+            if (((_slingLoadPoints#0) distance (_slingLoadPoints#2)) > 3) then {
+                _slingLoadPointsArray pushBack [_slingLoadPoints#0, _slingLoadPoints#2];
+                if (((_slingLoadPoints#0) distance (_slingLoadPoints#1)) > 3) then {
+                    _slingLoadPointsArray pushBack [_slingLoadPoints#0, _slingLoadPoints#1, _slingLoadPoints#2];
                 };
             };
         };
@@ -112,18 +112,18 @@ FUNC(Get_Corner_Points) = {
     };
     private _centerOfMass     = getCenterOfMass _vehicle;
     private _bbr            = boundingBoxReal _vehicle;
-    private _p1                = _bbr #0;
-    private _p2                = _bbr #1;
-    private _maxWidth        = abs ((_p2 #0) - (_p1 #0));
-    private _widthOffset    = ((_maxWidth / 2) - abs (_centerOfMass #0)) * _widthFactor;
-    private _maxLength        = abs ((_p2 #1) - (_p1 #1));
-    private _lengthOffset    = ((_maxLength / 2) - abs (_centerOfMass #1)) * _lengthFactor;
-    private _maxHeight        = abs ((_p2 #2) - (_p1 #2));
+    private _p1                = _bbr#0;
+    private _p2                = _bbr#1;
+    private _maxWidth        = abs ((_p2#0) - (_p1#0));
+    private _widthOffset    = ((_maxWidth / 2) - abs (_centerOfMass#0)) * _widthFactor;
+    private _maxLength        = abs ((_p2#1) - (_p1#1));
+    private _lengthOffset    = ((_maxLength / 2) - abs (_centerOfMass#1)) * _lengthFactor;
+    private _maxHeight        = abs ((_p2#2) - (_p1#2));
     private _heightOffset    = _maxHeight / 6;
-    private _rearCorner        = [(_centerOfMass #0) + _widthOffset, (_centerOfMass #1) - _lengthOffset, (_centerOfMass #2) + _heightOffset];
-    private _rearCorner2    = [(_centerOfMass #0) - _widthOffset, (_centerOfMass #1) - _lengthOffset, (_centerOfMass #2) + _heightOffset];
-    private _frontCorner    = [(_centerOfMass #0) + _widthOffset, (_centerOfMass #1) + _lengthOffset, (_centerOfMass #2) + _heightOffset];
-    private _frontCorner2    = [(_centerOfMass #0) - _widthOffset, (_centerOfMass #1) + _lengthOffset, (_centerOfMass #2) + _heightOffset];
+    private _rearCorner        = [(_centerOfMass#0) + _widthOffset, (_centerOfMass#1) - _lengthOffset, (_centerOfMass#2) + _heightOffset];
+    private _rearCorner2    = [(_centerOfMass#0) - _widthOffset, (_centerOfMass#1) - _lengthOffset, (_centerOfMass#2) + _heightOffset];
+    private _frontCorner    = [(_centerOfMass#0) + _widthOffset, (_centerOfMass#1) + _lengthOffset, (_centerOfMass#2) + _heightOffset];
+    private _frontCorner2    = [(_centerOfMass#0) - _widthOffset, (_centerOfMass#1) + _lengthOffset, (_centerOfMass#2) + _heightOffset];
     [_rearCorner, _rearCorner2, _frontCorner, _frontCorner2];
 };
 
@@ -135,7 +135,7 @@ FUNC(Rope_Get_Lift_Capability) = {
         _slingLoadMaxCargoMass = GVAR(DefaultLiftableMass);
     };
     {
-        if (_vehicle isKindOf _x #0) exitWith {_slingLoadMaxCargoMass = _x #1};
+        if (_vehicle isKindOf _x#0) exitWith {_slingLoadMaxCargoMass = _x#1};
     } forEach GVAR(liftCapacity);
     _slingLoadMaxCargoMass;
 };
@@ -208,8 +208,8 @@ FUNC(Get_Active_Ropes) = {
     private ["_ropeLabels"];
     {
         if ((_active && count _x > 0) || (!_active && count _x == 0)) then {
-            _ropeLabels = _ropeLabelSets #(_totalExistingRopes - 1);
-            _activeRopes pushBack [_foreachindex, _ropeLabels #_foreachindex];
+            _ropeLabels = _ropeLabelSets#(_totalExistingRopes - 1);
+            _activeRopes pushBack [_foreachindex, _ropeLabels#_foreachindex];
         };
     } forEach _existingRopes;
     _activeRopes;
@@ -223,7 +223,7 @@ FUNC(Get_Active_Ropes_With_Cargo) = {
     private _activeRopes = [_vehicle, true] call FUNC(Get_Active_Ropes);
     private ["_cargo"];
     {
-        _cargo = _existingCargo select (_x #0);
+        _cargo = _existingCargo select (_x#0);
         if (!isNull _cargo) then {
             if (!alive _cargo || ropeAttachedTo _cargo != _vehicle) exitWith {
                 [_vehicle, _unit, _foreachindex] call FUNC(Release_Cargo); // in case cargo destroyed
@@ -243,7 +243,7 @@ FUNC(Get_Active_Ropes_Without_Cargo) = {
     // diag_log formatText ["%1%2%3%4%5%6%7", time, "s  (FUNC(Get_Active_Ropes_Without_Cargo)) _vehicle: ", _vehicle, ", _existingCargo: ", _existingCargo, ", _activeRopes: ", _activeRopes];
     private ["_cargo"];
     {
-        _cargo = _existingCargo select (_x #0);
+        _cargo = _existingCargo select (_x#0);
         if (isNull _cargo) then {
             _activeRopesWithoutCargo pushBack _x;
         };
@@ -259,7 +259,7 @@ FUNC(Get_Ropes) = {
     private _allRopes = _vehicle getVariable [QGVAR(Ropes), []];
     // diag_log formatText ["%1%2%3%4%5%6%7", time, "s  (FUNC(Is_Unit_Authorized)) _vehicle: ", _vehicle, ", _ropesIndex: ", _ropesIndex], ", _allRopes: ", _allRopes;
     if (count _allRopes > _ropesIndex) then {
-        _selectedRopes = _allRopes #_ropesIndex;
+        _selectedRopes = _allRopes#_ropesIndex;
     };
     _selectedRopes;
 };
@@ -276,7 +276,7 @@ FUNC(Get_Cargo) = {
     private _selectedCargo = objNull;
     private _allCargo = _vehicle getVariable [QGVAR(Cargo), []];
     if (count _allCargo > _ropesIndex) then {
-        _selectedCargo = _allCargo #_ropesIndex;
+        _selectedCargo = _allCargo#_ropesIndex;
     };
     _selectedCargo;
 };
@@ -326,8 +326,8 @@ FUNC(Can_Extend_Ropes) = {
     if (count ([_vehicle, true] call FUNC(Get_Active_Ropes)) == 0) exitWith {false};
     private _exit = false;
     if (_toGround) then {
-        if (ropeEndPosition (_allRopes #0 #0) #1 #2 < GVAR(ExtendShortenRopeLength)) exitWith {_exit = true};
-        private _vehicleHeight = getPos _vehicle #2;
+        if (ropeEndPosition (_allRopes#0#0)#1#2 < GVAR(ExtendShortenRopeLength)) exitWith {_exit = true};
+        private _vehicleHeight = getPos _vehicle#2;
         if (_vehicleHeight < GVAR(ExtendShortenRopeLength) || _vehicleHeight > GVAR(MaxRopeLength)) then {_exit = true};
     };
     // diag_log formatText ["%1%2%3%4%5", time, "s  (FUNC(Can_Extend_Ropes)) _vehicle: ", _vehicle, "    _toGround: ", _toGround];
@@ -345,7 +345,7 @@ FUNC(Extend_Ropes_Action) = {
         _canReleaseCargo = [_vehicle, _unit] call FUNC(Can_Release_Cargo);
     };
     if (count _activeRopes == 1) exitWith {
-        private _ropeLength = [_vehicle, _activeRopes #0 #0, _toGround] call FUNC(Extend_Ropes);
+        private _ropeLength = [_vehicle, _activeRopes#0#0, _toGround] call FUNC(Extend_Ropes);
         if (_ropeLength <= GVAR(MaxRopeLength)) exitWith {
             private _messages = [[format [LLSTRING(ROPES_EXTENDED_TO), _ropeLength]]];
             if (_toGround) then {_messages set [0, [format [LLSTRING(ROPES_EXTENDED_TO_G), _ropeLength]]]};
@@ -356,8 +356,8 @@ FUNC(Extend_Ropes_Action) = {
             _messages call CBA_fnc_notify;
             // diag_log formatText ["%1%2%3%4%5%6%7%8%9", time, "s  (FUNC(Extend_Ropes_Action)) can release cargo: ", [_vehicle, _unit] call FUNC(Can_Release_Cargo)];
             if (_toGround && _canReleaseCargo) then {
-                private _rope = (_vehicle getVariable QGVAR(Ropes)) #0 #0;
-                private _cargo = (_vehicle getVariable QGVAR(Cargo)) #0;
+                private _rope = (_vehicle getVariable QGVAR(Ropes))#0#0;
+                private _cargo = (_vehicle getVariable QGVAR(Cargo))#0;
                 [_vehicle, _unit, _rope, _ropeLength, _cargo] spawn FUNC(Release_Cargo_Near_Ground);
             };
         };
@@ -375,10 +375,10 @@ FUNC(Extend_Ropes_Action) = {
         _activeCargoRopes = [_vehicle, _unit] call FUNC(Get_Active_Ropes_With_Cargo);
     };
     {
-        if (_x #1 <= GVAR(MaxRopeLength)) then {
-            _extendedRopeIndex = _x #0;
-            _messages pushBack [format [LLSTRING(ROPES_EXTENDED_TO_IND), (_activeRopes select {_x #0 == _extendedRopeIndex}) #0 #1, _x #1]];
-            if (_x #1 == GVAR(MaxRopeLength)) then {
+        if (_x#1 <= GVAR(MaxRopeLength)) then {
+            _extendedRopeIndex = _x#0;
+            _messages pushBack [format [LLSTRING(ROPES_EXTENDED_TO_IND), (_activeRopes select {_x#0 == _extendedRopeIndex})#0#1, _x#1]];
+            if (_x#1 == GVAR(MaxRopeLength)) then {
                 _messages set [1, [format ["%1%2", _messages#1#0, " (max)"]]];
             };
             // diag_log formatText [
@@ -387,9 +387,9 @@ FUNC(Extend_Ropes_Action) = {
             //     ", _extendedRopeIndex: ", _extendedRopeIndex
             // ];
             if (_toGround && _canReleaseCargo) then {
-                private _rope = (_vehicle getVariable QGVAR(Ropes)) #_extendedRopeIndex #0;
-                private _cargo = (_vehicle getVariable QGVAR(Cargo)) #_extendedRopeIndex;
-                [_vehicle, _unit, _rope, _x #1, _cargo, _extendedRopeIndex] spawn FUNC(Release_Cargo_Near_Ground);
+                private _rope = (_vehicle getVariable QGVAR(Ropes))#_extendedRopeIndex#0;
+                private _cargo = (_vehicle getVariable QGVAR(Cargo))#_extendedRopeIndex;
+                [_vehicle, _unit, _rope, _x#1, _cargo, _extendedRopeIndex] spawn FUNC(Release_Cargo_Near_Ground);
             };
         } else {
             _messages pushBack [format [LLSTRING(ALREADY_MAX_LENGTH), GVAR(MaxRopeLength)]];
@@ -419,7 +419,7 @@ FUNC(Release_Cargo_Near_Ground) = {
         time < _future && 
         ropeLength _rope < _ropeLength &&
         alive _cargo &&
-        getPos _cargo #2 > 1
+        getPos _cargo#2 > 1
     } do {sleep 1};
     // diag_log formatText [
     //     "%1%2%3%4%5%6%7%8%9%10%11%12%13", time,
@@ -428,9 +428,9 @@ FUNC(Release_Cargo_Near_Ground) = {
     //     ", time < _future: ", time < _future,
     //     ", ropeLength _rope < _ropeLength: ", ropeLength _rope < _ropeLength,
     //     ", alive _cargo: ", alive _cargo,
-    //     ", getPos _cargo #2 > 1: ", getPos _cargo #2 > 1
+    //     ", getPos _cargo#2 > 1: ", getPos _cargo#2 > 1
     // ];
-    if (!alive _vehicle || (getPos _cargo #2 > 5 && getPosASL _cargo #2 > 5 && alive _cargo)) exitWith {};
+    if (!alive _vehicle || (getPos _cargo#2 > 5 && getPosASL _cargo#2 > 5 && alive _cargo)) exitWith {};
     [_ropesIndex, _vehicle, _unit] call FUNC(Release_Cargo_Index_Action);
 };
 
@@ -481,11 +481,11 @@ FUNC(Extend_Ropes) = {
     if !(local _vehicle) exitWith {[QGVAR(Extend_Ropes), _this, _vehicle] call CBA_fnc_targetEvent;};
     private _existingRopes = [_vehicle, _ropesIndex] call FUNC(Get_Ropes);
     if (count _existingRopes == 0) exitWith {0};
-    private _ropeLength = ropeLength (_existingRopes #0);
+    private _ropeLength = ropeLength (_existingRopes#0);
     if (_ropeLength >= GVAR(MaxRopeLength)) exitWith {GVAR(MaxRopeLength) + 1};
     private _unwindLength = GVAR(ExtendShortenRopeLength);
     if (_toGround) then {
-        _unwindLength = ceil((getPos _vehicle #2) - _ropeLength + 5);
+        _unwindLength = ceil((getPos _vehicle#2) - _ropeLength + 5);
         /*
             'getPos' will return the height of the vehicle above the next object underneath. 
             So, if the vehicle has a sling load, it is likely the height will be measured false
@@ -493,9 +493,9 @@ FUNC(Extend_Ropes) = {
             length from sling load to ground.
         */
         private _allCargo = _vehicle getVariable [QGVAR(Cargo), []];
-        private _cargo = _allCargo #_ropesIndex;
+        private _cargo = _allCargo#_ropesIndex;
         if (isNull _cargo) exitWith {};
-        _unwindLength = ceil(getPos _cargo #2) + 3;
+        _unwindLength = ceil(getPos _cargo#2) + 3;
     };
     if (_ropeLength + _unwindLength > GVAR(MaxRopeLength)) then {
         _unwindLength = GVAR(MaxRopeLength) - _ropeLength;
@@ -503,7 +503,7 @@ FUNC(Extend_Ropes) = {
     // diag_log formatText [
     //     "%1%2%3%4%5%6%7%8%9%10%11%12%13", time,
     //     "s  (FUNC(Extend_Ropes)) _unwindLength: ", _unwindLength,
-    //     ", vehicle height: ", getPos _vehicle #2,
+    //     ", vehicle height: ", getPos _vehicle#2,
     //     ", GVAR(MaxRopeLength): ", GVAR(MaxRopeLength),
     //     ", _ropeLength: ", _ropeLength,
     //     ", _ropesIndex: ", _ropesIndex
@@ -521,8 +521,8 @@ FUNC(Unwind_Ropes) = {
     if (_length > 0) then {_sound = QGVAR(SlingLoadDownExt)};
     {
         ropeUnwind [_x, _speed, _length, _relative];
-        private _dummy = "#particlesource" createVehicleLocal ropeEndPosition _x #0;
-        _dummy attachTo [_vehicle, _vehicle worldToModelVisual ropeEndPosition _x #0];
+        private _dummy = "#particlesource" createVehicleLocal ropeEndPosition _x#0;
+        _dummy attachTo [_vehicle, _vehicle worldToModelVisual ropeEndPosition _x#0];
         [_vehicle, _dummy, _x, _sound] spawn {
             params [["_vehicle", objNull], ["_dummy", objNull], ["_rope", objNull], ["_sound", ""]];
             if (isNull _vehicle || isNull _dummy || isNull _rope) exitWith {};
@@ -585,10 +585,10 @@ FUNC(Shorten_Ropes_Action) = {
         private _messages = [[LLSTRING(ROPES_SHORTENED)]];
         private ["_shortenedRopesIndex"];
         {
-            if (_x #1 >= GVAR(MinRopeLength)) then {
+            if (_x#1 >= GVAR(MinRopeLength)) then {
                 _shortenedRopesIndex = _x#0;
-                _messages pushBack [format [LLSTRING(ROPES_SHORTENED_TO_IND), (_activeRopes select {_x #0 == _shortenedRopesIndex}) #0 #1, _x #1]];
-                if (_x #1 == GVAR(MinRopeLength)) then {
+                _messages pushBack [format [LLSTRING(ROPES_SHORTENED_TO_IND), (_activeRopes select {_x#0 == _shortenedRopesIndex})#0#1, _x#1]];
+                if (_x#1 == GVAR(MinRopeLength)) then {
                     private _messageIndex = (count _messages) - 1;
                     _messages set [_messageIndex, [format ["%1%2", _messages#_messageIndex#0, " (min)"]]];
                 };
@@ -618,7 +618,7 @@ FUNC(Shorten_Ropes) = {
     private _existingRopes = [_vehicle, _ropesIndex] call FUNC(Get_Ropes);
     private _ropeLength = -1;
     if (count _existingRopes > 0) then {
-        _ropeLength = ropeLength (_existingRopes #0);
+        _ropeLength = ropeLength (_existingRopes#0);
         if (_ropeLength <= GVAR(MinRopeLength)) exitWith {
             if (GVAR(MinRopeLengthDropCargo)) then {
                 [_vehicle, _unit, _ropesIndex] call FUNC(Release_Cargo);
@@ -700,8 +700,8 @@ FUNC(Release_Cargo) = {
     if !(local _vehicle) exitWith {[QGVAR(Release_Cargo), _this, _vehicle] call CBA_fnc_targetEvent;};
     private _existingRopesAndCargo = [_vehicle, _ropesIndex] call FUNC(Get_Ropes_And_Cargo);
     // diag_log formatText ["%1%2%3%4%5%6%7", time, "s  (FUNC(Release_Cargo)) _vehicle: ", _vehicle, ", _unit: ", _unit, ", _existingRopesAndCargo: ", _existingRopesAndCargo];
-    private _existingRopes = _existingRopesAndCargo #0;
-    private _existingCargo = _existingRopesAndCargo #1;
+    private _existingRopes = _existingRopesAndCargo#0;
+    private _existingCargo = _existingRopesAndCargo#1;
     {
         _existingCargo ropeDetach _x;
     } forEach _existingRopes;
@@ -778,7 +778,7 @@ FUNC(Retract_Ropes_Action) = {
     private _activeRopes = [_vehicle] call FUNC(Get_Active_Ropes_Without_Cargo);
     if (count _activeRopes == 1) exitWith {        
         // diag_log formatText ["%1%2%3%4%5", time, "s  (FUNC(Retract_Ropes_Action)) inactive ropes: ", [_vehicle] call FUNC(Get_Active_Ropes), ", existing ropes: ", _vehicle getVariable [QGVAR(Ropes), []]];
-        [_vehicle, _unit, (_activeRopes #0) #0] call FUNC(Retract_Ropes);
+        [_vehicle, _unit, (_activeRopes#0)#0] call FUNC(Retract_Ropes);
         [[LLSTRING(ROPES_RETRACTED)], true] call CBA_fnc_notify;
     };
     GVAR(actionContext) = ACTION_CONTEXT_RETRACT;
@@ -799,12 +799,12 @@ FUNC(Retract_Ropes) = {
     if (isNull _vehicle || isNull _unit) exitWith {false};
     if !(local _vehicle) exitWith {[QGVAR(Retract_Ropes), _this, _vehicle] call CBA_fnc_targetEvent;};
     private _existingRopesAndCargo = [_vehicle, _ropesIndex] call FUNC(Get_Ropes_And_Cargo);
-    private _existingRopes = _existingRopesAndCargo #0;
-    private _existingCargo = _existingRopesAndCargo #1;
+    private _existingRopes = _existingRopesAndCargo#0;
+    private _existingCargo = _existingRopesAndCargo#1;
     private _cargoArray = ropeAttachedObjects _vehicle;
     // diag_log formatText ["%1%2%3%4%5", time, "s  (FUNC(Retract_Ropes)) _vehicle: ", _vehicle, "    _cargoArray: ", _cargoArray];
     if (count _cargoArray > 0) then {
-        private _helper = (_cargoArray select {_x getVariable [QGVAR(Ropes_Pick_Up_Helper), false]}) #0;
+        private _helper = (_cargoArray select {_x getVariable [QGVAR(Ropes_Pick_Up_Helper), false]})#0;
         if (isNil {_helper}) exitWith {};
         private _ropeHolder = attachedTo _helper;
         if (!isNull _ropeHolder) then {_unit = _ropeHolder};
@@ -855,7 +855,7 @@ FUNC(Vehicle_Is_UAV_And_Currently_Operatied_By_Unit) = {
     params [["_UAV", objNull], ["_unit", objNull]];
     if (isNull _UAV || isNull _unit) exitWith {false};
     // diag_log formatText ["%1%2%3%4%5", time, "s  (FUNC(Vehicle_Is_UAV_And_Currently_Operatied_By_Unit)) _UAV: ", _UAV, "    _unit: ", _unit];
-    if (UAVControl _UAV #0 == _unit && (UAVControl _UAV #1 == "GUNNER" || UAVControl _UAV #1 == "DRIVER")) exitWith {
+    if (UAVControl _UAV#0 == _unit && (UAVControl _UAV#1 == "GUNNER" || UAVControl _UAV#1 == "DRIVER")) exitWith {
         // diag_log formatText ["%1%2%3%4%5%6%7", time, "s  (FUNC(Vehicle_Is_UAV_And_Currently_Operatied_By_Unit)) EXIT 1: unit is UAV gunner or driver"];
         true
     };
@@ -898,7 +898,7 @@ FUNC(Can_Deploy_Ropes) = {
         // diag_log formatText ["%1%2%3%4%5", time, "s  (FUNC(Can_Deploy_Ropes)) EXIT 3"];
         false
     };
-    if (getPos _vehicle #2 > GVAR(MaxRopeDeployHeight)) exitWith {
+    if (getPos _vehicle#2 > GVAR(MaxRopeDeployHeight)) exitWith {
         // diag_log formatText ["%1%2%3%4%5", time, "s  (FUNC(Can_Deploy_Ropes)) EXIT 4"];
         false
     };
@@ -929,7 +929,7 @@ FUNC(Deploy_Ropes_Action) = {
         if (count _inactiveRopes > 1) then {
             [LLSTRING(DEPLOY), QFUNC(Deploy_Ropes_Index_Action), _inactiveRopes, _vehicle, _unit] call FUNC(Show_Select_Ropes_Menu);
         } else {
-            [_vehicle, _unit, (_inactiveRopes #0) #0] call FUNC(Deploy_Ropes_Index);
+            [_vehicle, _unit, (_inactiveRopes#0)#0] call FUNC(Deploy_Ropes_Index);
         };
     };
     private _slingLoadPoints = [_vehicle] call FUNC(Get_Sling_Load_Points);
@@ -1008,7 +1008,7 @@ FUNC(Deploy_Ropes_Index) = {
     private _cargoRopes = [];
     private ["_rope"];
     for "_i" from 1 to 4 do {
-        _rope = ropeCreate [_vehicle, (_slingLoadPoints select (_existingRopesCount - 1)) #_ropesIndex, 0];
+        _rope = ropeCreate [_vehicle, (_slingLoadPoints select (_existingRopesCount - 1))#_ropesIndex, 0];
         _rope allowDamage false;
         _rope setVariable [QGVAR(Ropes_Vehicle), [_vehicle, _ropesIndex], true]; // memory vehicle and rope index on each rope 
         _cargoRopes pushBack _rope; 
@@ -1050,12 +1050,12 @@ FUNC(Pickup_Ropes_Action) = {
 
     _nearRopes sort true;
     private _closestRope = _nearRopes#0#1;
-    private _vehicle = (_closestRope getVariable QGVAR(Ropes_Vehicle)) #0;
+    private _vehicle = (_closestRope getVariable QGVAR(Ropes_Vehicle))#0;
     if (isNull _vehicle) exitWith {};
     if (locked _vehicle > 1 && !(missionNamespace getVariable [QGVAR(LOCKED_VEHICLES_ENABLED), false])) exitWith {
         [[LLSTRING(CANT_PICKUP)], true] call CBA_fnc_notify;
     };
-    private _ropesIndex = (_closestRope getVariable QGVAR(Ropes_Vehicle)) #1;
+    private _ropesIndex = (_closestRope getVariable QGVAR(Ropes_Vehicle))#1;
     [_vehicle, _unit, _ropesIndex] call FUNC(Pickup_Ropes);
 };
 
@@ -1064,8 +1064,8 @@ FUNC(Pickup_Ropes) = {
     if (isNull _vehicle || isNull _unit) exitWith {};
     if !(local _vehicle) exitWith {[QGVAR(Pickup_Ropes), _this, _vehicle] call CBA_fnc_targetEvent;};
     private _existingRopesAndCargo = [_vehicle, _ropesIndex] call FUNC(Get_Ropes_And_Cargo);
-    private _existingRopes = _existingRopesAndCargo #0;
-    private _existingCargo = _existingRopesAndCargo #1;
+    private _existingRopes = _existingRopesAndCargo#0;
+    private _existingCargo = _existingRopesAndCargo#1;
     if (!isNull _existingCargo) then {
         {
             _existingCargo ropeDetach _x;
@@ -1092,7 +1092,7 @@ FUNC(Attach_Ropes_Action_Check) = {
     private _cargo = cursorObject;
     if (isNull _cargo) exitWith {false};
 
-    private _vehicle = (_unit getVariable [QGVAR(Ropes_Vehicle), [objNull, 0]]) #0;
+    private _vehicle = (_unit getVariable [QGVAR(Ropes_Vehicle), [objNull, 0]])#0;
     // private _ropeAttachDistance = GVAR(RopeHandlingDistance);
     // private _ropeAttachDistance = GVAR(RopeHandlingDistance) + (sizeOf typeOf _cargo / 10 max 2);
     private _ropeAttachDistance = GVAR(MaxDeployRetractDistance) + (sizeOf typeOf _cargo / 10 max 1);     
@@ -1108,7 +1108,7 @@ FUNC(Attach_Ropes_Action) = {
     params [["_unit", objNull]];
     if (isNull _unit) exitWith {};
     private _cargo = cursorObject;
-    private _vehicle = (_unit getVariable [QGVAR(Ropes_Vehicle), [objNull, 0]]) #0;
+    private _vehicle = (_unit getVariable [QGVAR(Ropes_Vehicle), [objNull, 0]])#0;
     if (locked _cargo > 1 && !(missionNamespace getVariable [QGVAR(LOCKED_VEHICLES_ENABLED), false])) exitWith {
         [[LLSTRING(CANT_ATTACH)], true] call CBA_fnc_notify;
     };
@@ -1121,17 +1121,17 @@ FUNC(Attach_Ropes) = {
     params [["_cargo", objNull], ["_unit", objNull]];
     if (isNull _cargo || isNull _unit) exitWith {};
     private _vehicleWithIndex = _unit getVariable [QGVAR(Ropes_Vehicle), [objNull, 0]];
-    private _vehicle = _vehicleWithIndex #0;
+    private _vehicle = _vehicleWithIndex#0;
     if (isNull _vehicle) exitWith {};
     if !(local _vehicle) exitWith {[QGVAR(Attach_Ropes), _this, _vehicle] call CBA_fnc_targetEvent;};
-    private _ropes = [_vehicle, _vehicleWithIndex #1] call FUNC(Get_Ropes);
+    private _ropes = [_vehicle, _vehicleWithIndex#1] call FUNC(Get_Ropes);
     if (count _ropes != 4) exitWith {};
     private _attachmentPoints = [_cargo] call FUNC(Get_Corner_Points);
     // diag_log formatText ["%1%2%3%4%5", time, "s  (FUNC(Attach_Ropes)) _attachmentPoints: ", _attachmentPoints, ", _self: ", _self];
-    private _ropeLength = (ropeLength (_ropes #0));
+    private _ropeLength = (ropeLength (_ropes#0));
     private _objDistance = (_cargo distance _vehicle) + 2;
     if (_objDistance > _ropeLength) exitWith {[QUGVAR(common,notify), [[LLSTRING(TOO_SHORT)], true], _unit] call CBA_fnc_targetEvent;};
-    private _ropesIndex = _vehicleWithIndex #1;
+    private _ropesIndex = _vehicleWithIndex#1;
     _cargo setVariable [QGVAR(CarrierVehicle), _vehicle, true];
     [_vehicle, _cargo] spawn {
         params [["_vehicle", objNull], ["_cargo", objNull]];
@@ -1144,10 +1144,10 @@ FUNC(Attach_Ropes) = {
     [_vehicle, _unit, _ropesIndex] call FUNC(Drop_Ropes);
     // diag_log formatText ["%1%2%3%4%5%6%7", time, "s  (FUNC(Attach_Ropes)) _vehicle: ", _vehicle, ", _unit: ", _unit, ", _ropesIndex: ", _ropesIndex];
     for "_i" from 0 to 3 do {
-        [_cargo, _attachmentPoints #_i, [0, 0, -1]] ropeAttachTo (_ropes #_i);
+        [_cargo, _attachmentPoints#_i, [0, 0, -1]] ropeAttachTo (_ropes#_i);
     };
     private _allCargo = _vehicle getVariable [QGVAR(Cargo), []];
-    _allCargo set [(_vehicleWithIndex #1), _cargo];
+    _allCargo set [(_vehicleWithIndex#1), _cargo];
     _vehicle setVariable [QGVAR(Cargo), _allCargo, true];
     if (missionNamespace getVariable [QGVAR(HEAVY_LIFTING_ENABLED), true]) then {
         [_vehicle, _unit, _cargo, _ropes] spawn FUNC(Rope_Adjust_Mass);
@@ -1169,7 +1169,7 @@ FUNC(Drop_Ropes_Action) = {
     private _vehicleAndIndex = _unit getVariable [QGVAR(Ropes_Vehicle), []];
     // diag_log formatText ["%1%2%3%4%5%6%7", time, "s  (FUNC(Drop_Ropes_Action))    _unit: ", _unit, ", _self: ", _self, ", _vehicleAndIndex: ", _vehicleAndIndex];
     if (count _vehicleAndIndex == 2) then {
-        [_vehicleAndIndex #0, _unit, _vehicleAndIndex #1] call FUNC(Drop_Ropes);
+        [_vehicleAndIndex#0, _unit, _vehicleAndIndex#1] call FUNC(Drop_Ropes);
     };
 };
 
@@ -1207,7 +1207,7 @@ FUNC(Is_Supported_Cargo) = {
     if (isNull _vehicle || isNull _cargo) exitWith {false};
     private _canSling = false;
     {
-        if (_vehicle isKindOf (_x #0) && _cargo isKindOf (_x #2) && (toUpper (_x #1)) == "CAN_SLING") exitWith {_canSling = true};
+        if (_vehicle isKindOf (_x#0) && _cargo isKindOf (_x#2) && (toUpper (_x#1)) == "CAN_SLING") exitWith {_canSling = true};
     } forEach (missionNamespace getVariable [QGVAR(SLING_RULES_OVERRIDE), GVAR(slingRules)]);
     // diag_log formatText ["%1%2%3%4%5", time, "s  (FUNC(Is_Supported_Cargo))        _canSling: ", _canSling];
     _canSling
@@ -1231,7 +1231,7 @@ FUNC(Add_Vehicle_Actions) = {
     if (isNil{_vehicle getVariable QGVAR(ActionID_Deploy)}) then {
         _actionID = _vehicle addAction [
             LLSTRING(DEPLOY),
-            {[_this #0, _this #1] call FUNC(Deploy_Ropes_Action)},
+            {[_this#0, _this#1] call FUNC(Deploy_Ropes_Action)},
             nil,
             100,
             false,
@@ -1244,7 +1244,7 @@ FUNC(Add_Vehicle_Actions) = {
     if (isNil{_vehicle getVariable QGVAR(ActionID_Retract)}) then {
         _actionID = _vehicle addAction [
             LLSTRING(RETRACT),
-            {[_this #0, _this #1] call FUNC(Retract_Ropes_Action)},
+            {[_this#0, _this#1] call FUNC(Retract_Ropes_Action)},
             nil,
             50,
             false,
@@ -1257,7 +1257,7 @@ FUNC(Add_Vehicle_Actions) = {
     if (isNil{_vehicle getVariable QGVAR(ActionID_Extend)}) then {
         _actionID = _vehicle addAction [
             LLSTRING(EXTEND),
-            {[_this #0, _this #1] call FUNC(Extend_Ropes_Action)},
+            {[_this#0, _this#1] call FUNC(Extend_Ropes_Action)},
             nil,
             199,
             false,
@@ -1270,7 +1270,7 @@ FUNC(Add_Vehicle_Actions) = {
     if (isNil{_vehicle getVariable QGVAR(ActionID_ExtendTG)}) then {
         _actionID = _vehicle addAction [
             LLSTRING(EXTEND_TG),
-            {[_this #0, _this #1, true] call FUNC(Extend_Ropes_Action)},
+            {[_this#0, _this#1, true] call FUNC(Extend_Ropes_Action)},
             nil,
             198,
             false,
@@ -1283,7 +1283,7 @@ FUNC(Add_Vehicle_Actions) = {
     if (isNil{_vehicle getVariable QGVAR(ActionID_Shorten)}) then {
         _actionID = _vehicle addAction [
             LLSTRING(SHORTEN),
-            {[_this #0, _this #1] call FUNC(Shorten_Ropes_Action)},
+            {[_this#0, _this#1] call FUNC(Shorten_Ropes_Action)},
             nil,
             197,
             false,
@@ -1311,55 +1311,44 @@ FUNC(Add_Vehicle_Actions) = {
 FUNC(addActions) = {
     params ["_unit"];
 
-    private _actionID = -1;
-    if (isNil {_unit getVariable QGVAR(ActionID_Pickup)}) then {
-        _actionID = _unit addAction [
-            LLSTRING(PICKUP),
-            {[_this#0] call FUNC(Pickup_Ropes_Action)},
-            nil,
-            250,
-            true,
-            true,
-            "",
-            QUOTE([_this] call FUNC(Pickup_Ropes_Action_Check))
-        ];
-        _unit setVariable [QGVAR(ActionID_Pickup), _actionID];
-    };
-    if (isNil {_unit getVariable QGVAR(ActionID_Attach)}) then {
-        _actionID = _unit addAction [
-            LLSTRING(ATTACH),
-            {[_this#0] call FUNC(Attach_Ropes_Action)},
-            nil,
-            230,
-            true,
-            true,
-            "",
-            QUOTE([_this] call FUNC(Attach_Ropes_Action_Check))
-        ];
-        _unit setVariable [QGVAR(ActionID_Attach), _actionID];
-    };
-    if (isNil {_unit getVariable QGVAR(ActionID_Drop)}) then {
-        _actionID = _unit addAction [
-            LLSTRING(DROP),
-            {[_this#0] call FUNC(Drop_Ropes_Action)},
-            nil,
-            225,
-            true,
-            true,
-            "",
-            QUOTE([_this] call FUNC(Drop_Ropes_Action_Check))
-        ];
-        _unit setVariable [QGVAR(ActionID_Drop), _actionID];
-    };
+    _unit addAction [
+        LLSTRING(PICKUP),
+        {[_this#0] call FUNC(Pickup_Ropes_Action)},
+        nil,
+        250,
+        true,
+        true,
+        "",
+        QUOTE([_this] call FUNC(Pickup_Ropes_Action_Check))
+    ];
+    _unit addAction [
+        LLSTRING(ATTACH),
+        {[_this#0] call FUNC(Attach_Ropes_Action)},
+        nil,
+        230,
+        true,
+        true,
+        "",
+        QUOTE([_this] call FUNC(Attach_Ropes_Action_Check))
+    ];
+    _unit addAction [
+        LLSTRING(DROP),
+        {[_this#0] call FUNC(Drop_Ropes_Action)},
+        nil,
+        225,
+        true,
+        true,
+        "",
+        QUOTE([_this] call FUNC(Drop_Ropes_Action_Check))
+    ];
 };
 
 FUNC(Remove_Actions) = {
     params [["_object", objNull], ["_actions", []]];
     // diag_log formatText ["%1%2%3%4%5", time, "s  (FUNC(Remove_Actions)) _object: ", _object, "    _actions: ", _actions];
     if (isNull _object || count _actions == 0) exitWith {};
-    private ["_actionID"];
     {
-        _actionID = _object getVariable [_x, -1];
+        private _actionID = _object getVariable [_x, -1];
         // diag_log formatText ["%1%2%3%4%5", time, "s  (FUNC(Remove_Actions)) removing _actionID: ", _actionID];
         if (_actionID > -1) then {
             _object removeAction _actionID;
@@ -1370,14 +1359,7 @@ FUNC(Remove_Actions) = {
 
 if (hasInterface) then {
     ["Air", "init", {_this call FUNC(Add_Vehicle_Actions)}, true] call CBA_fnc_addClassEventHandler;
-    
-    ["CAManBase", "respawn", {
-        params ["_unit"];
 
-        _unit setVariable [QGVAR(ActionID_Pickup), nil];
-        _unit setVariable [QGVAR(ActionID_Attach), nil];
-        _unit setVariable [QGVAR(ActionID_Drop), nil];
-        call FUNC(addActions);
-    }, true, [], true] call CBA_fnc_addClassEventHandler;
-    [player] call FUNC(addActions);
+    ["CAManBase", "init", {call FUNC(addActions)}, nil, nil, true] call CBA_fnc_addClassEventHandler;
+    ["CAManBase", "respawn", {call FUNC(addActions)}] call CBA_fnc_addClassEventHandler;
 };
