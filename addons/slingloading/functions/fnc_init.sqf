@@ -1069,8 +1069,8 @@ FUNC(Pickup_Ropes) = {
     if (!isNull _existingCargo) then {
         {
             _existingCargo ropeDetach _x;
-            _x setVariable [QGVAR(CarrierVehicle), nil, true];
         } forEach _existingRopes;
+        _existingCargo setVariable [QGVAR(CarrierVehicle), nil, true];
         private _allCargo = _vehicle getVariable [QGVAR(Cargo), []];
         _allCargo set [_ropesIndex, objNull];
         _vehicle setVariable [QGVAR(Cargo), _allCargo, true];
