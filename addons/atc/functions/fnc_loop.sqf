@@ -14,11 +14,11 @@
         None
 */
 
-#define INTERVAL 1
+#define INTERVAL 2
 #define MULTIPLIER_FEET 3.28084
 #define MULTIPLIER_SPEED 1.852
-#define RADIUS_2D 10000
-#define RADIUS_AEW_2D 5000
+#define RADIUS_2D 8000
+#define RADIUS_AEW_2D 6000
 
 params ["_player", "_state"];
 
@@ -36,25 +36,28 @@ GVAR(loopPFHID) = [{
     if (CBA_missionTime > (_time + INTERVAL)) then {
         {deleteMarkerLocal _x} forEach GVAR(markers);
         GVAR(markers) = [];
-        GVAR(aircraft) = GVAR(aircraft) select {!isNull _x && {alive _x}};
+        GVAR(aircraft) = GVAR(aircraft) select {alive _x};
 
         private _aircraftInRange = GVAR(aircraft) select {
-            (isEngineOn _x || isCollisionLightOn _x) &&
-            {((side _player) getFriend (side _x)) >= 0.6 ||
-            {(_x distance2D _player) <= RADIUS_2D || {
-                private _aircraft = _x;                
-                [GVAR(aew), {_aircraft distance2D _x <= RADIUS_AEW_2D}] call UFUNC(common,arrayAny)
-            }}}
+            (isEngineOn _x || isCollisionLightOn _x)
+            && {getConnectedUAV _player != _x}
+            && {
+                (_x distance2D _player) <= RADIUS_2D
+                || {
+                    private _aircraft = _x;                
+                    [GVAR(aew), {_aircraft distance2D _x <= RADIUS_AEW_2D}] call UFUNC(common,arrayAny)
+                }
+            }
         };
         {
             private _markerName = format ["%1%2", CBA_missionTime, random 9999];
-            private _speed = (speed _x) / MULTIPLIER_SPEED;
-            private _altitudeATL = (getPos _x)#2 * MULTIPLIER_FEET;
-            private _altitudeASL = (getPosASL _x)#2 * MULTIPLIER_FEET;
+            private _speed = KMH_TO_KNOTS(speed _x);
+            private _altitudeATL = METERS_TO_FEET((getPos _x)#2);
+            private _altitudeASL = METERS_TO_FEET((getPosASL _x)#2);
             private _direction = round (getDir _x);
-            private _formattedSpeed = if (_speed > 50) then {ROUND_TO_10(_speed)} else {round _speed};
-            private _formattedAltitudeATL = if (_altitudeATL > 100) then {ROUND_TO_10(_altitudeATL)} else {round _altitudeATL};
-            private _formattedAltitudeASL = if (_altitudeASL > 100) then {ROUND_TO_10(_altitudeATL)} else {round _altitudeASL};
+            private _formattedSpeed = if (_speed > 50) then {ROUND_TO_NEAREST(_speed,10)} else {round _speed};
+            private _formattedAltitudeATL = if (_altitudeATL > 100) then {ROUND_TO_NEAREST(_altitudeATL,100)} else {round _altitudeATL};
+            private _formattedAltitudeASL = if (_altitudeASL > 100) then {ROUND_TO_NEAREST(_altitudeASL,100)} else {round _altitudeASL};
             private _marker = createMarkerLocal [_markerName, _x];
             _marker setMarkerShapeLocal "ICON";
             _marker setMarkerTypeLocal ([_x] call FUNC(getMarker));

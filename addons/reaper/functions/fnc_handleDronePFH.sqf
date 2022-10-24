@@ -24,12 +24,14 @@ private _currentUav = ACE_controlledUAV#0;
 if (isNull _currentUav || {_currentUav != _uav}) exitWith {
     WARNING_2("Current uav (%1) is not the same as the context uav (%2)",_currentUav,_uav);
     [_idPFH] call CBA_fnc_removePerFrameHandler;
-    GVAR(handlerUav) = -1;
+    GVAR(displayHandlerId) = -1;
 };
 
 if (_seat isEqualTo "GUNNER" && {cameraView isEqualTo "GUNNER"}) then {
     [_uav] call FUNC(updateDisplay);
 };
+
+if (true) exitWith {};
 
 private _waypointHeight = (getWPPos [_uav, 1])#2;
 private _diveMode = _uav getVariable [QGVAR(diveMode), false];

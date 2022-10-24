@@ -131,4 +131,12 @@ HIDE_CLASS(CLASS,BASE)
 ace_refuel_fuelCapacity = capacity; \
 fuelConsumptionRate = capacity / (flightTime * 60)
 
-#define ROUND_TO_10(var) (round (var / 10)) * 10
+#define ROUND_TO_NEAREST(var,value) (round ((var) / value)) * value
+
+#define MULTIPLIER_FEET 3.28084
+#define FEET_TO_METERS(var) (var) / MULTIPLIER_FEET
+#define METERS_TO_FEET(var) (var) * MULTIPLIER_FEET
+
+#define MULTIPLIER_SPEED 1.852
+#define KMH_TO_KNOTS(var) (var) / MULTIPLIER_SPEED
+#define KNOTS_TO_KMH(var) (var) * MULTIPLIER_SPEED

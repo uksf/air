@@ -27,20 +27,24 @@ class CfgVehicles {
         hiddenSelectionsTextures[] = {"", "", "", "", "\UK3CB_BAF_Vehicles\addons\UK3CB_BAF_Vehicles_MQ-9_Reaper\data\raf_mq9_reaper_co.paa"};
         textureList[] = {"XXXIX", 1, "XIII", 1};
         PREVIEW(raf);
-        radarTargetSize = 0.01;
+        radarTargetSize = 0.05;
         radarTarget = 1;
         visualTarget = 1;
         nvTarget = 1;
         irTarget = 1;
-        camouflage = 5;
+        camouflage = 10;
         aileronSensitivity = 1;
         elevatorSensitivity = 1;
         wheelSteeringSensitivity = 1.2;
         airBrakeFrictionCoef = 5;
         altFullForce = 4000;
-        thrustCoef[] = { 1.36, 1.3, 1.2, 1.1, 1.0, 0.9, 0.8, 0.7, 0.61, 0.3, 0, 0, 0 };
-        envelope[] = { 0, 1, 1.3, 1.5, 1.6, 1.8, 2.8, 3.9, 5.4, 7.0, 8.9, 9.5, 9.3, 8.6, 8.3, 8.2, 7.6 };
-        landingSpeed = 90; // 140
+        thrustCoef[] = { 1.5, 1.4, 1.3, 1.2, 1.1, 1.0, 0.9, 0.8, 0.65, 0.35, 0, 0, 0 };
+        envelope[] = { 0, 1.5, 1.8, 2, 2.1, 2.3, 3.2, 4.4, 5.8, 9.0, 10, 11, 10.5, 9, 8.5, 8.2, 7.6 };
+        landingSpeed = 100; // 140
+        stallSpeed = 70;
+        airFrictionCoefs0[] = { 0, 0, 0 };
+        airFrictionCoefs1[] = { 0.1, 0.07, 0.005 };
+        airFrictionCoefs2[] = { 0.001, 0.0005, 0.00006 };
         fuelCapacity = 1850;  // 270
         unitInfoType = "RscOptics_AV_airplane_pilot";
         class Turrets : Turrets {

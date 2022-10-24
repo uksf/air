@@ -7,19 +7,18 @@
         Controls drone behaviour to be changed and the altitude to be changed.
 
     Parameter(s):
-        0: UAV <OBJECT>
+        0: Drone <OBJECT>
 
     Return Value:
         Nothing
 */
-params ["_uav"];
+params ["_drone"];
 
-if (local _uav) then {
-    _uav setVariable ["acex_headless_blacklist", true, true];
-    _uav setVariable ["NOAI", 1, true];
-    _uav setVariable [QGVAR(diveMode), false, true];
-    _uav setVariable [QGVAR(observationMode), true, true];
-    _uav setVariable [QGVAR(targetHeightASL), 5000, true];
-    _uav setVariable [QGVAR(customWaypoint), false, true];
-    _uav flyInHeightASL [FEET_TO_METERS(5000), FEET_TO_METERS(5000), FEET_TO_METERS(5000)];
+if (local _drone) then {
+    _drone setVariable ["acex_headless_blacklist", true, true];
+    _drone setVariable ["NOAI", 1, true];
+    _drone setVariable [QGVAR(flightMode), FLIGHT_MODE_CRUISE, true];
+    _drone setVariable [QGVAR(altitude), 5000, true];
+    _drone setVariable [QGVAR(loiterRadius), 2000, true];
+    [_drone, 5000] call FUNC(adjustAltitude);
 };

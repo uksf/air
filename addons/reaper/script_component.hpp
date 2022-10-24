@@ -8,9 +8,14 @@
 
 #include "\u\uksf_air\addons\main\script_macros.hpp"
 
-#define MULTIPLIER_FEET 3.28084
-#define FEET_TO_METERS(var) var / MULTIPLIER_FEET
-#define METERS_TO_FEET(var) var * MULTIPLIER_FEET
+#define FLIGHT_MODE_CRUISE "CRUISE"
+#define FLIGHT_MODE_OBSERVE "OBSERVE"
+#define FLIGHT_MODE_STRIKE "STRIKE"
+
+#define FLIGHT_SPEED_CRUISE -1 
+#define FLIGHT_SPEED_OBSERVE 40
+#define FLIGHT_SPEED_CLIMB 50
+#define FLIGHT_SPEED_DESCEND 40
 
 // Gunner display defines
 #define TGT_DIST_P 1033

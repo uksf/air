@@ -14,6 +14,7 @@ class CfgPatches {
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {
             "uksf_gear",
+            "uksf_air_atc",
             "UK3CB_BAF_Vehicles_MQ9_Reaper",
             QGVAR(prep)
         };
