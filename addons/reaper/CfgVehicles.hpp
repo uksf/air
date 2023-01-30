@@ -28,10 +28,6 @@ class CfgVehicles {
         textureList[] = {"XXXIX", 1, "XIII", 1};
         PREVIEW(raf);
         radarTargetSize = 0.01;
-        radarTarget = 1;
-        visualTarget = 1;
-        nvTarget = 1;
-        irTarget = 1;
         camouflage = 5;
         aileronSensitivity = 1;
         elevatorSensitivity = 1;
