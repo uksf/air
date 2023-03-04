@@ -95,4 +95,8 @@ class CfgVehicles {
         INTERCOM_AIR;
         RACKS_AIR;
     };
+    class H135_Juno_HT1_ZM521 : Helicopter_Base_H {
+        INTERCOM_AIR;
+        RACKS_AIR;
+    };
 };
