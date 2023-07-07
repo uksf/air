@@ -68,12 +68,15 @@ class CfgAmmo {
     class ammo_Missile_BIM9X : ammo_Missile_ShortRangeAABase {
         ace_rearm_dummy = QGVAR(ammo_Missile_BIM9X);
     };
+    class M_Air_AA : MissileBase {
+        ace_rearm_dummy = QGVAR(ammo_Missile_AIM132);
+    };
     class ammo_Missile_MediumRangeAABase;
     class ammo_Missile_AMRAAM_D : ammo_Missile_MediumRangeAABase {
         ace_rearm_dummy = QGVAR(ammo_Missile_AMRAAM_D);
     };
-    class ace_aim120_d: ammo_Missile_AMRAAM_D {
-        flightProfiles[] = {"Direct", "Loft"};
+    class ace_aim120_d : ammo_Missile_AMRAAM_D {
+        flightProfiles[] = { "Direct", "Loft" };
         class Direct {};
         class Loft {};
     };

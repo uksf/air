@@ -9,6 +9,9 @@ class CfgVehicles {
     class GVAR(ammo_Missile_BIM9X): ace_rearm_defaultCarriedObject {
         model = "\A3\Weapons_F_Jets\Ammo\Missile_AA_08_F";
     };
+    class GVAR(ammo_Missile_AIM132): ace_rearm_defaultCarriedObject {
+        model = "\A3\Weapons_F\Ammo\Missile_AT_02_F";
+    };
     class GVAR(ammo_Missile_AMRAAM_D): ace_rearm_defaultCarriedObject {
         model = "\A3\Weapons_F_Jets\Ammo\Missile_AA_06_fly_F";
     };
