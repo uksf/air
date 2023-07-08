@@ -213,7 +213,7 @@ class CfgWeapons {
             textureType = "semi";
             burst = 10;
             soundBurst = 0;
-            dispersion = 0.00015;
+            dispersion = 0.0045; // 0.00015 (data sheet value 0.003, observed assumed 0.006)
         };
         class burst_15 : manual {
             displayName = "Burst 20";

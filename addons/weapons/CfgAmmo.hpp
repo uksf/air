@@ -5,8 +5,8 @@ class CfgAmmo {
         ace_rearm_caliber = 25;
         caliber = 7;
         typicalSpeed = 970;
-        hit = 90;
-        indirectHit = 15;
+        hit = 180;
+        indirectHit = 50;
         indirectHitRange = 2;
         explosive = 0.5;
         model = "\A3\Weapons_f\Data\bullettracer\tracer_red";
@@ -88,11 +88,11 @@ class CfgAmmo {
     class ammo_Penetrator_Scalpel;
     class ammo_Penetrator_Hellfire : ammo_Penetrator_Scalpel {
         caliber = 70;
-        hit = 1550;
+        hit = 2000;
     };
     class M_Scalpel_AT;
     class ACE_Hellfire_AGM114K : M_Scalpel_AT {
-        hit = 400;  // 150 (javelin 350)
+        hit = 600;  // 150 (javelin 350)
         submunitionAmmo = "ammo_Penetrator_Hellfire";
         SoundSetExplosion[] = { "JPEX_Missile_EXPLOSION_SoundSet", "JPEX_Missile_REFLECTOR_SoundSet", "JPEX_Big_Debris_SoundSet" };
         model = QPATHTOF(data\AGM114\AGM114Hellfire.p3d);
@@ -140,7 +140,7 @@ class CfgAmmo {
             hitWater = "ImpactEffectsWater";
         };
         hit = 105;
-        indirectHit = 10;
+        indirectHit = 15;
         indirectHitRange = 2;
         tracerEndTime = 30;
         timeToLive = 30;
