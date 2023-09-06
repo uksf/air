@@ -1049,6 +1049,26 @@ class MFD {
                     points[] = { { "ForwardVector", 1, "Weapons", 1, { -0.05, -0.08 }, 1 }, { "ForwardVector", 1, "Weapons", 1, { 0.05, -0.08 }, 1 }, {}, { "ForwardVector", 1, "Weapons", 1, { 0, -0.08 }, 1 }, { "ForwardVector", 1, "Weapons", 1, { 0, 0.08 }, 1 }, {}, { "ForwardVector", 1, "Weapons", 1, { -0.05, 0.08 }, 1 }, { "ForwardVector", 1, "Weapons", 1, { 0.05, 0.08 }, 1 }, {} };
                 };
             };
+            class Fuel_Text {
+                type = "text";
+                source = "static";
+                text = "Fuel";
+                align = "right";
+                scale = 1;
+                pos[] = { { 0.03, 0.9 }, 1 };
+                right[] = { { 0.07, 0.9 }, 1 };
+                down[] = { { 0.03, 0.94 }, 1 };
+            };
+            class Fuel_Number {
+                type = "text";
+                source = "fuel";
+                sourceScale = 100;
+                align = "right";
+                scale = 1;
+                pos[] = { { 0.1, 0.9 }, 1 };
+                right[] = { { 0.14, 0.9 }, 1 };
+                down[] = { { 0.1, 0.94 }, 1 };
+            };
             class WP {
                 condition = "wpvalid - autohover";
                 class WPdist {

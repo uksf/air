@@ -20,14 +20,18 @@ class CfgAmmo {
         ACE_caliber = 70;
         ACE_hearing_caliber = 15;
     };
-    class ammo_Missile_ShortRangeAABase;
+    class ammo_Missile_ShortRangeAABase : MissileBase {
+        hit = 400; // 130
+    };
     class ammo_Missile_BIM9X : ammo_Missile_ShortRangeAABase {
         ace_rearm_dummy = QGVAR(ammo_Missile_BIM9X);
     };
     class M_Air_AA : MissileBase {
         ace_rearm_dummy = QGVAR(ammo_Missile_AIM132);
     };
-    class ammo_Missile_MediumRangeAABase;
+    class ammo_Missile_MediumRangeAABase : MissileBase {
+        hit = 600; // 200
+    };
     class ammo_Missile_AMRAAM_D : ammo_Missile_MediumRangeAABase {
         ace_rearm_dummy = QGVAR(ammo_Missile_AMRAAM_D);
     };
