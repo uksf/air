@@ -1066,7 +1066,7 @@ class CfgVehicles {
         EGVAR(common,towbarOffset)[] = { 0, 0, 0 };
         EGVAR(common,towbarRotation)[] = { 0, 1, -0.005 };
         EGVAR(common,towbarActionMemoryPoint) = "wheel_1_1";
-        UGVAR(rackChannels)[] = { 31, 40, 41 };
+        UGVAR(radios,rackChannels)[] = { 31, 40, 41 };
 		EGVAR(common,staticLineJumpPoints)[] = { "pos_para_left", "pos_para_right" };
         class TransportMagazines {
             MACRO_ADDMAGAZINE(ACE_M14,2);

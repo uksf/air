@@ -97,7 +97,7 @@ class rksla3_pumahc_base: Helicopter_Base_H {
     weapons[] = { "UK3CB_BAF_CMFlareLauncher" };
     magazines[] = { "120Rnd_CMFlare_Chaff_Magazine" };
     INVENTORY_EMPTY;
-    UGVAR(rackChannels)[] = { 31, 40, 41 };
+    UGVAR(radios,rackChannels)[] = { 31, 40, 41 };
     #include "..\hmds\MFDMerlin.hpp"
 };
 class rksla3_puma_hc1_troop: rksla3_pumahc_base {

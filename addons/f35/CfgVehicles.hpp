@@ -1057,7 +1057,7 @@ class CfgVehicles {
         EGVAR(common,towbarOffset)[] = { 0, 0, -0.055 };
         EGVAR(common,towbarRotation)[] = { 0, 1, 0.015 };
         EGVAR(common,towbarActionMemoryPoint) = "Wheel_1_center";
-        UGVAR(rackChannels)[] = { 31, 40, 41 };
+        UGVAR(radios,rackChannels)[] = { 31, 40, 41 };
     };
     class GVAR(raf) : GVAR(base) {
         scope = 2;

@@ -82,7 +82,7 @@ class UK3CB_BAF_Merlin_Base : Heli_Transport_02_base_F {
         };
     };
     ace_cookoff_cookoffSelections[] = { "motor" };
-    UGVAR(rackChannels)[] = { 31, 40, 41 };
+    UGVAR(radios,rackChannels)[] = { 31, 40, 41 };
     LESH_canBeTowed = 0;
     LESH_towFromFront = 1;
     LESH_AxisOffsetTarget[] = { 0.22, 11.905, -3.295 };
