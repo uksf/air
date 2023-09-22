@@ -837,7 +837,7 @@ class CfgVehicles {
             };
         };
         ace_cookoff_cookoffSelections[] = { "zamerny" };
-        EGVAR(radios,rackChannels)[] = { 41, 40, 31, 32 };
+        EGVAR(radios,rackChannels)[] = { 41, 31, 40, 42, 31, 30 };
         LESH_canBeTowed = 0;
         LESH_towFromFront = 0;
         LESH_AxisOffsetTarget[] = { 0.02, -12.33, -1.95 };
