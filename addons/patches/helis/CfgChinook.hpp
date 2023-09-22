@@ -292,7 +292,7 @@ class CUP_CH47F_base : Helicopter_Base_H {
     };
     class AnimationSources;
     ace_cookoff_cookoffSelections[] = { "exhaust_1" };
-    uksf_radios_rackChannels[] = { 31, 40, 41 };
+    UGVAR(rackChannels)[] = { 31, 40, 41 };
     LESH_canBeTowed = 0;
     LESH_towFromFront = 0;
     LESH_AxisOffsetTarget[] = { 1.6, -9.14, -3.14 };

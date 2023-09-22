@@ -224,7 +224,7 @@ class UK3CB_BAF_Wildcat_Base : Heli_light_03_base_F {
         };
     };
     ace_cookoff_cookoffSelections[] = { "motor" };
-    uksf_radios_rackChannels[] = { 31, 40, 41 };
+    UGVAR(rackChannels)[] = { 31, 40, 41 };
 #include "..\hmds\MFDCAS.hpp"
     LESH_canBeTowed = 0;
     LESH_towFromFront = 1;
@@ -438,7 +438,7 @@ class rksla3_aw159_hma2 : rksla3_aw159_base {
             };
         };
     };
-    uksf_radios_rackChannels[] = { 31, 40, 41 };
+    UGVAR(rackChannels)[] = { 31, 40, 41 };
     INVENTORY_AIRCRAFT;
 #include "..\hmds\MFDRKSLWildcat.hpp"
 };
