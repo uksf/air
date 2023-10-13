@@ -6,6 +6,9 @@ class CfgPatches {
         units[] = {
             QGVAR(dauphin),
 
+            // Panda Express
+            QGVAR(pe_mh6),
+
             // Obsolete
             "UKSF_B_L39",
             "UKSF_B_L39_Unarmed",
@@ -58,5 +61,6 @@ class RscInGameUI {
     };
 };
 
+#include "CfgEditorSubcategories.hpp"
 #include "CfgEventHandlers.hpp"
 #include "CfgVehicles.hpp"

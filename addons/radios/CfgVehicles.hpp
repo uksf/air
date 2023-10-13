@@ -99,4 +99,9 @@ class CfgVehicles {
         INTERCOM_AIR;
         RACKS_AIR;
     };
+    class B_Heli_Light_01_F;
+    class EGVAR(patches,pe_mh6) : B_Heli_Light_01_F {
+        INTERCOM_AIR;
+        RACKS_AIR;
+    };
 };

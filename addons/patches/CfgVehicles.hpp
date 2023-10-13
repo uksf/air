@@ -79,6 +79,8 @@ class CfgVehicles {
     #include "helis\CfgPuma.hpp"
     #include "helis\CfgWildcat.hpp"
     #include "helis\CfgWildcatCUP.hpp"
+    
+    #include "helis\CfgPandaExpress.hpp"
 
     #include "planes\CfgBuzzard.hpp"
     #include "planes\CfgC130.hpp"
