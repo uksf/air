@@ -8,6 +8,9 @@ class CfgPatches {
 
             // Panda Express
             QGVAR(pe_mh6),
+            QGVAR(pe_ah6),
+            QGVAR(pe_uh60),
+            QGVAR(eh101_idap),
 
             // Obsolete
             "UKSF_B_L39",

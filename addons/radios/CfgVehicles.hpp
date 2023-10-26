@@ -104,4 +104,19 @@ class CfgVehicles {
         INTERCOM_AIR;
         RACKS_AIR;
     };
+    class B_Heli_Light_01_dynamicLoadout_F;
+    class EGVAR(patches,pe_ah6) : B_Heli_Light_01_dynamicLoadout_F {
+        INTERCOM_AIR;
+        RACKS_AIR;
+    };
+    class CUP_B_UH60L_Unarmed_FFV_MEV_US;
+    class GVAR(pe_uh60) : CUP_B_UH60L_Unarmed_FFV_MEV_US {
+        INTERCOM_AIR;
+        RACKS_AIR;
+    };
+    class CUP_C_Merlin_HC3_IDAP_Rescue;
+    class GVAR(eh101_idap) : CUP_C_Merlin_HC3_IDAP_Rescue {
+        INTERCOM_AIR;
+        RACKS_AIR;
+    };
 };
