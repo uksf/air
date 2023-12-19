@@ -1055,9 +1055,9 @@ class MFD {
                 text = "Fuel";
                 align = "right";
                 scale = 1;
-                pos[] = { { 0.03, 0.9 }, 1 };
-                right[] = { { 0.07, 0.9 }, 1 };
-                down[] = { { 0.03, 0.94 }, 1 };
+                pos[] = { { 0.8, 0.87 }, 1 };
+                right[] = { { 0.84, 0.87 }, 1 };
+                down[] = { { 0.8, 0.9 }, 1 };
             };
             class Fuel_Number {
                 type = "text";
@@ -1065,9 +1065,9 @@ class MFD {
                 sourceScale = 100;
                 align = "right";
                 scale = 1;
-                pos[] = { { 0.1, 0.9 }, 1 };
-                right[] = { { 0.14, 0.9 }, 1 };
-                down[] = { { 0.1, 0.94 }, 1 };
+                pos[] = { { 0.8, 0.9 }, 1 };
+                right[] = { { 0.84, 0.9 }, 1 };
+                down[] = { { 0.8, 0.93 }, 1 };
             };
             class WP {
                 condition = "wpvalid - autohover";
