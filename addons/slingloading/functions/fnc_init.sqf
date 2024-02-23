@@ -1032,7 +1032,7 @@ FUNC(Pickup_Ropes_Action_Check) = {
     private _ropeHandlingDistance = GVAR(RopeHandlingDistance);
     private _nearRopes = GVAR(allRopes) select {
         alive _x &&
-        _unit distance ((ropeEndPosition _x)#1) < _ropeHandlingDistance
+        {_unit distance ((ropeEndPosition _x)#1) < _ropeHandlingDistance}
     };
     _nearRopes isNotEqualTo []
 };
@@ -1044,7 +1044,7 @@ FUNC(Pickup_Ropes_Action) = {
     private _ropeHandlingDistance = GVAR(RopeHandlingDistance);
     private _nearRopes = GVAR(allRopes) select {
         alive _x &&
-        _unit distance ((ropeEndPosition _x)#1) < _ropeHandlingDistance
+        {_unit distance ((ropeEndPosition _x)#1) < _ropeHandlingDistance}
     } apply {[_unit distance ((ropeEndPosition _x)#1), _x]};
     if (_nearRopes isEqualTo []) exitWith {};
 
