@@ -324,17 +324,17 @@ class CfgVehicles {
                 radius = 8;
                 showwindow = 0;
                 displayName = "Close Ramp";
-                condition = QUOTE([ARR_2(this,0)] call FUNC(canControlRamp));
+                condition = QUOTE([ARR_2(this,0)] call EFUNC(common,canControlRamp));
                 statement = QUOTE([ARR_2(this,0)] call FUNC(rampControl));
             };
             class HalfRamp : CloseRamp {
                 displayname = "Open Ramp Halfway";
-                condition = QUOTE([ARR_2(this,1)] call FUNC(canControlRamp));
+                condition = QUOTE([ARR_2(this,1)] call EFUNC(common,canControlRamp));
                 statement = QUOTE([ARR_2(this,1)] call FUNC(rampControl));
             };
             class OpenRamp : CloseRamp {
                 displayName = "Open Ramp Fully";
-                condition = QUOTE([ARR_2(this,2)] call FUNC(canControlRamp));
+                condition = QUOTE([ARR_2(this,2)] call EFUNC(common,canControlRamp));
                 statement = QUOTE([ARR_2(this,2)] call FUNC(rampControl));
             };
             class OpenLdoor {

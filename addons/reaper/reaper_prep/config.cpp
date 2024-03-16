@@ -7,7 +7,7 @@ class CfgPatches {
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {
-            "UK3CB_BAF_Vehicles_MQ9_Reaper"
+            "uksf_air_common"
         };
         author = QUOTE(UKSF);
         authors[] = { "Beswick.T" };

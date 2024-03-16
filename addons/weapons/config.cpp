@@ -10,15 +10,7 @@ class CfgPatches {
         };
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {
-            "uksf_air_common",
-            "CUP_Weapons_Ammunition",
-            "CUP_Weapons_VehicleWeapons",
-            "CUP_Weapons_DynamicLoadout",
-            "rksla3_aw159",
-            "ace_aim9",
-            "ace_aim120",
-            "ace_gbu",
-            "ace_sdb"
+            "uksf_air_common"
         };
         author = QUOTE(UKSF);
         authors[] = { "Beswick.T" };

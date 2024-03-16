@@ -9,6 +9,10 @@ class CfgMarkers {
         icon = QPATHTOF(data\markers\icon_c130j_ca.paa);
         texture = QPATHTOF(data\markers\icon_c130j_ca.paa);
     };
+    class GVAR(a400m): GVAR(apache) {
+        icon = "A400M\Data\UI\A400M_MAP_ICON_CA.paa";
+        texture = "A400M\Data\UI\A400M_MAP_ICON_CA.paa";
+    };
     class GVAR(chinook): GVAR(apache) {
         icon = QPATHTOF(data\markers\icon_chinook_ca.paa);
         texture = QPATHTOF(data\markers\icon_chinook_ca.paa);

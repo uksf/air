@@ -7,10 +7,7 @@ class CfgPatches {
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {
-            "MEA_Panther",
-            "UK3CB_BAF_Vehicles_Wildcat",
-            "CUP_AirVehicles_LoadOrder",
-            "CUP_Vehicles_ACE_compat"
+            "uksf_air_common",
         };
         author = QUOTE(UKSF);
         authors[] = { "Beswick.T" };
@@ -35,4 +32,7 @@ class CfgVehicles {
     class CUP_CH47F_VIV_base;
     RESET_INVENTORY(CUP_B_CH47F_GB,CUP_CH47F_base);
     RESET_INVENTORY(CUP_B_CH47F_VIV_GB,CUP_CH47F_VIV_base);
+
+    class Plane_Base_F;
+    RESET_INVENTORY(A400M_base_F,Plane_Base_F);
 };

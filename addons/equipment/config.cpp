@@ -9,8 +9,7 @@ class CfgPatches {
         };
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {
-            "uksf_air_common",
-            "CXS_LightSticks"
+            "uksf_air_common"
         };
         author = QUOTE(UKSF);
         authors[] = { "Beswick.T" };

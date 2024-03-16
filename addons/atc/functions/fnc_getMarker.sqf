@@ -27,6 +27,7 @@ switch (true) do {
     case (_aircraft isKindOf "H135_Juno_HT1_ZM521"): {_markerType = QGVAR(h135)};
     case (_aircraft isKindOf QEGVAR(apache,base)): {_markerType = QGVAR(apache)};
     case (_aircraft isKindOf QEGVAR(c130,base)): {_markerType = QGVAR(c130)};
+    case (_aircraft isKindOf "A400M_base_F"): {_markerType = QGVAR(a400m)};
     case (_aircraft isKindOf QEGVAR(f35,base)): {_markerType = QGVAR(f35)};
     case (_aircraft isKindOf QEGVAR(reaper,raf)): {_markerType = QGVAR(reaper)};
     default {_markerType = "b_air"; };

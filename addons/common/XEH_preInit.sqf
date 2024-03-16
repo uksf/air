@@ -6,6 +6,8 @@ ADDON = false;
 
 // #include "initSettings.sqf"
 
+GVAR(paradropInProgress) = false;
+
 ["Air", "init", {call FUNC(addAttachTowbarActions)}, true, nil, true] call CBA_fnc_addClassEventHandler;
 ["Air", "init", {call FUNC(addStaticLineActions)}, true, nil, true] call CBA_fnc_addClassEventHandler;
 

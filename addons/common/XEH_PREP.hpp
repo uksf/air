@@ -1,7 +1,10 @@
 PREP(addAttachTowbarActions);
 PREP(addStaticLineActions);
 PREP(canAttachTowbar);
+PREP(canControl);
+PREP(canControlRamp);
 PREP(canStaticLineJump);
 PREP(packParachute);
+PREP(paradropCargo);
 PREP(ramp);
 PREP(staticLineJump);

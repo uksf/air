@@ -9,9 +9,7 @@ class CfgPatches {
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {
-            "uksf_weapons",
-            "Starstreak",
-            "ATASK"
+            "uksf_air_weapons"
         };
         author = QUOTE(UKSF);
         authors[] = { "Beswick.T" };

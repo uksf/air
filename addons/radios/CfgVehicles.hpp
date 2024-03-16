@@ -67,6 +67,10 @@ class CfgVehicles {
         INTERCOM_AIR;
         RACKS_AIR;
     };
+    class A400M_base_F : Plane_Base_F {
+        INTERCOM_AIR;
+        RACKS_AIR;
+    };
     class Plane_Fighter_01_Base_F;
     class EGVAR(f35,base) : Plane_Fighter_01_Base_F {
         RACKS_AIR;

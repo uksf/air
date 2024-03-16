@@ -53,6 +53,8 @@ class CfgVehicles {
     class Plane_Base_F : Plane {
         class Turrets;
         class Components;
+        class AnimationSources;
+        class UserActions;
     };
     class Plane_CAS_01_base_F : Plane_Base_F {
         epeImpulseDamageCoef = 4;
@@ -82,6 +84,7 @@ class CfgVehicles {
     
     #include "helis\CfgPandaExpress.hpp"
 
+    #include "planes\CfgA400.hpp"
     #include "planes\CfgBuzzard.hpp"
     #include "planes\CfgC130.hpp"
     #include "planes\CfgF35.hpp"
