@@ -49,7 +49,8 @@ class CfgPatches {
             "MEA_Panther",
             "rksla3_aw159",
             "rksla3_pumahc",
-            "Starstreak"
+            "Starstreak",
+            "sps_black_hornet"
         };
         author = QUOTE(UKSF);
         authors[] = { "Beswick.T" };

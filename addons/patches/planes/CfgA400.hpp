@@ -5,7 +5,6 @@ class A400M_base_F : Plane_Base_F {
     altFullForce = 10000;
     thrustCoef[] = { 1.42, 1.38, 1.34, 1.3, 1.25, 1.2, 1.19, 1.18, 1.17, 1.17, 1.16, 1.16, 1.1, 1, 0.7, 0.2, 0 }; // Check 400 knots
     armor = 150;
-    epeImpulseDamageCoef = 4;
     weapons[] = { QEGVAR(weapons,C130FlareLauncher) };
     magazines[] = { "300Rnd_CMFlare_Chaff_Magazine", "300Rnd_CMFlare_Chaff_Magazine" };
     gunnerhasflares = 1;
@@ -87,12 +86,11 @@ class A400M_base_F : Plane_Base_F {
         MACRO_ADDBACKPACK(B_Parachute,30);
     };
     class TransportWeapons {};
-
     class VehicleTransport {
         class Carrier {
-            cargoBayDimensions[] = { { 1.35, -9, 1.85 }, { -1.35, 6.8, 4.75 } };
+            cargoBayDimensions[] = { { 1.5, -9, 1.85 }, { -1.5, 6.7, 5.7 } };
             disableHeightLimit = 1;
-            maxLoadMass = 37000;
+            maxLoadMass = 50000;
             cargoAlignment[] = { "front", "center" };
             cargoSpacing[] = { 0.2, 0.2, 0 };
             exits[] = { "VTV_exit_1" };
@@ -103,7 +101,6 @@ class A400M_base_F : Plane_Base_F {
             parachuteHeightLimitDefault = 50;
         };
     };
-
     class Attributes {
         class GVAR(rampPosition) {
             control = "Combo";

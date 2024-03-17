@@ -15,7 +15,9 @@
 
 FUNC(Get_Sling_Load_Points) = {
     params [["_vehicle", objNull]];
+
     if (isNull _vehicle) exitWith {};
+
     private _slingLoadPointsArray = [];
     private _cornerPoints = [_vehicle] call FUNC(Get_Corner_Points);
     private _frontCenterPoint = (((_cornerPoints#2) vectorDiff (_cornerPoints#3)) vectorMultiply 0.5) vectorAdd (_cornerPoints#3);
@@ -1195,9 +1197,15 @@ FUNC(Drop_Ropes) = {
 FUNC(Is_Supported_Vehicle) = {
     params [["_vehicle", objNull]];
     if (isNull _vehicle) exitWith {false};
+
+    private _supported = [[_vehicle, QGVAR(supported)] joinString "", {configOf _vehicle >> QGVAR(supported)}, 1] call UFUNC(common,readCacheValues);
+    if (_supported == 0) exitWith {false};
+
     private _isSupported = false;
     {
-        if (_vehicle isKindOf _x) exitWith {_isSupported = true};
+        if (_vehicle isKindOf _x) exitWith {
+            _isSupported = true
+        };
     } forEach (missionNamespace getVariable [QGVAR(SUPPORTED_VEHICLES_OVERRIDE), GVAR(supportedVehicles)]);
     _isSupported
 };
