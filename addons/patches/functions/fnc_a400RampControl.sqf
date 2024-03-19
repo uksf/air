@@ -4,7 +4,7 @@
         Tim Beswick
 
     Description:
-        Set ramp position for A-400M
+        Set ramp position for A400M
 
     Parameter(s):
         0: Plane <OBJECT>

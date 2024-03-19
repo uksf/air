@@ -257,7 +257,7 @@ class A400M_base_F : Plane_Base_F {
 class B_A400M_UK_CAMO_F : A400M_base_F {};
 class GVAR(a400m_raf) : B_A400M_UK_CAMO_F {
     faction = "CUP_B_GB";
-    displayName = "A-400M";
+    displayName = "A400M";
     crew = "UKSF_B_Pilot_617";
     typicalCargo[] = { "UKSF_B_Pilot_617" };
     hiddenSelectionsTextures[] = {
