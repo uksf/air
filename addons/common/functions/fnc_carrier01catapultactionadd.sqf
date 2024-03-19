@@ -161,7 +161,54 @@ private _onCompleted =
         call compile _codeEnd;
     };
 
+    //////////////////////////////////////////////////////////////////// Added by AAREN Advanced Aero Effects
+    //Get Wheels
+    _vars = (_plane call AAE_fnc_InitEH) get "AAE_Wheels_Selections";
+
+    _color = [[0.7,0.8,1,0.8],[0.7,0.8,1,0.5],[0.7,0.8,1,0.3],[0.7,0.8,1,0.15],[0.7,0.8,1,0.05],[0.7,0.8,1,0.01],[0.7,0.8,1,0.0]];
+    _velocity = velocity _plane;
+    _VelocityFX = [0, 0, 0];
+    _size = [1,3,6,20];
+    _gearArray = _vars # 2;
+    _offset = _vars # 3;
+    _offsetF = _vars # 4;
+
+    _gear = _gearArray select {(_x # 1)>0};
+    _effect00 = "#particlesource" createVehicleLocal [0,0,0];
+    _effect00 attachTo [_plane, _gear # 0];
+
+    _effect00 setParticleParams [
+        ["\A3\Data_F\ParticleEffects\Universal\Universal", 16, 12, 16, 0], "", "Billboard",
+        0, 5, [0, _offset, _OffsetF], _VelocityFX, 1.25, 1.2, 1, 0, _size,
+        _color,
+        [0], 0.5, 0, "", "", _effect00
+    ];
+    _effect00 setDropInterval 0.05;
+    _effect00 setParticleRandom [3, [0,0,0], [0,0,0], 0.5, 0.3, [0, 0, 0, 0.25], 0.1, 0.02, 90];
+
+    // internal sound
+    [] spawn {
+        _plane = cameraon;
+        waituntil {
+            !(isTouchingGround _plane)
+        };
+        if ((_plane iskindof "Plane") && (cameraView == "INTERNAL")) then {
+            playsound "Catapult_End";
+        };
+    };
+
+    if ((_plane iskindof "Plane") && (cameraView == "INTERNAL")) then {
+        playsound "Catapult_Start";
+        playsound "Catapult_int";
+    };
+
     ATTACHED_TO_CATAPULT(false);
+
+    waitUntil{
+        !(isTouchingGround _plane)
+    };
+    deleteVehicle _effect00
+    //////////////////////////////////////////////////////////////////// End added by AAREN Advanced Aero Effects
 };
 
 private _onInterrupted =

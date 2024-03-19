@@ -44,6 +44,7 @@ class CfgPatches {
             // Other
             "A400M",
             "ATASK",
+            "AVDAVFX",
             "CXS_LightSticks",
             "HAFM_EC635",
             "MEA_Panther",

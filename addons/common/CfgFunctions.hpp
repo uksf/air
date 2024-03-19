@@ -5,5 +5,8 @@ class CfgFunctions {
                 file = QPATHTOF(functions\fnc_carrier01catapultactionadd.sqf);
             };
         };
+        class AAE {
+            delete Carrier01CatapultActionAdd;
+        };
     };
 };

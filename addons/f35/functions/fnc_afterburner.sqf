@@ -21,8 +21,8 @@
 #define SPEED_UPPER_MIN 1500
 #define SPEED_UPPER_OFFSET 800
 #define SPEED_LOWER_OFFSET 150
-#define FORCE 600
-#define FUEL_USAGE 0.0002
+#define FORCE 700
+#define FUEL_USAGE 0.0004
 
 params ["_plane"];
 

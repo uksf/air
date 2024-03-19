@@ -84,7 +84,7 @@ class CfgVehicles {
         // thrustCoef[] = { 1.76, 1.69, 1.62, 1.68, 1.74, 1.81, 1.89, 1.95, 1.96, 1.96, 1.92, 1.4, 0.4, 0, 0, 0 };  // f-18
         // thrustCoef[] = { 1, 1.1, 1.3, 1.5, 1.9, 1.7, 1.4, 1.2, 1.2, 1.1, 1, 0.5, 0 }; // f-35
         // thrustCoef[] = { 1, 1, 1, 1.1, 1.3, 1.5, 1.7, 1.8, 1.9, 1.8, 1.7, 1.6, 1, 0.4, 0, 0 }; // f-35 OP
-        thrustCoef[] = { 1.01, 1.05, 1.1, 1.2, 1.4, 1.5, 1.6, 1.9, 1.85, 1.75, 1.6, 1.5, 1, 0.5, 0 };
+        thrustCoef[] = { 1.01, 1.03, 1.06, 1.1, 1.15, 1.2, 1.3, 1.6, 1.55, 1.2, 1.1, 1.05, 1, 0.5, 0 };
 
         // elevatorCoef[] = { 0.3, 0.5, 0.66, 0.52, 0.49, 0.46, 0.43, 0.4, 0.35, 0.3, 0.25, 0.18, 0.17, 0.16, 0.15, 0.15 };  // f-18
         // elevatorCoef[] = { 0.6, 0.9, 1.0, 1.1, 1.0, 0.8, 0.5 }; // f-35
@@ -352,6 +352,11 @@ class CfgVehicles {
             class Exhaust1 {
                 position = "exhaust_pos";
                 direction = "exhaust_dir";
+                effect = "ExhaustsEffectJet";
+            };
+            class Exhaust2 {
+                position = "engine_1_axis";
+                direction = "exhaust_axis";
                 effect = "ExhaustsEffectJet";
             };
         };
@@ -1058,6 +1063,55 @@ class CfgVehicles {
         EGVAR(common,towbarRotation)[] = { 0, 1, 0.015 };
         EGVAR(common,towbarActionMemoryPoint) = "Wheel_1_center";
         UGVAR(radios,rackChannels)[] = { 31, 40, 41 };
+        AAE_Have_AB = 1;
+        AB_Source = "afterburner_hide";
+        AAE_Alarm_Int = "AAE_Alarm";
+        AAE_Rumble_Int = "AAE_Rumble";
+        AAE_GBreathe = "AAE_GBreathe";
+        AAE_GBreathe_Hold = "AAE_GBreathe_Hold";
+        AAE_AB_Sound = "AAE_AB_Active";
+        Taxiing = "AAE_RumbleG";
+        AAE_Touchdown_Int = "TouchDown_Int";
+        AAE_Touchdown_Ext[] = { "MG8\AVDAVFX\snd\touchdown.ogg", 1, 1, 1500 };
+        AAE_Burner_Offset[] = { 0, -12, 0 };
+        AAE_WheelsContact[] = { "wheel_1_contact", "wheel_2_contact", "wheel_3_contact" };
+        class AAE_Config_Handler {
+            Beach[] = {
+                { 1, 1, 0.46, 0 },
+                { 1, 1, 0.46, 0.01 },
+                { 1, 1, 0.46, 0.02 },
+                { 1, 1, 0.46, 0.06 },
+                { 1, 1, 0.46, 0.05 },
+                { 1, 1, 0.46, 0.02 },
+                { 1, 1, 0.46, 0 }
+            };
+            Dust[] = {
+                { 1, 1, 0.46, 0 },
+                { 1, 1, 0.46, 0.01 },
+                { 1, 1, 0.46, 0.02 },
+                { 1, 1, 0.46, 0.06 },
+                { 1, 1, 0.46, 0.05 },
+                { 1, 1, 0.46, 0.02 },
+                { 1, 1, 0.46, 0 }
+            };
+            Default[] = {
+                { 1, 1, 0.46, 0 },
+                { 1, 1, 0.46, 0.01 },
+                { 1, 1, 0.46, 0.02 },
+                { 1, 1, 0.46, 0.06 },
+                { 1, 1, 0.46, 0.05 },
+                { 1, 1, 0.46, 0.02 },
+                { 1, 1, 0.46, 0 }
+            };
+            Water[] = {
+                { 0.7, 0.8, 1, 0 },
+                { 0.7, 0.8, 1, 0.01 },
+                { 0.7, 0.8, 1, 0.02 },
+                { 0.7, 0.8, 1, 0.05 },
+                { 0.7, 0.8, 1, 0.02 },
+                { 0.7, 0.8, 1, 0 }
+            };
+        };
     };
     class GVAR(raf) : GVAR(base) {
         scope = 2;
