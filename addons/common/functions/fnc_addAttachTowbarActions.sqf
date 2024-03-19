@@ -62,7 +62,10 @@ _fnc_detachTowbar = {
     }, "Detaching towbar"] call ace_common_fnc_progressBar;
 };
 
-// TODO: Change to ace interactions
 private _towbarActionMemoryPoint = [[typeOf _aircraft, QGVAR(towbarActionMemoryPoint)] joinString "", {configOf _aircraft >> QGVAR(towbarActionMemoryPoint)}] call UFUNC(common,readCacheValues);
-_aircraft addAction ["Attach Towbar", _fnc_attachTowbar, nil, 1.5, true, true, "", QUOTE([ARR_2(_target,true)] call FUNC(canAttachTowbar)), 4, false, "", _towbarActionMemoryPoint];
-_aircraft addAction ["Detach Towbar", _fnc_detachTowbar, nil, 1.5, true, true, "", QUOTE([ARR_2(_target,false)] call FUNC(canAttachTowbar)), 4, false, "", _towbarActionMemoryPoint];
+
+private _action = [QGVAR(attachTowbar), "Attach Towbar", "", _fnc_attachTowbar, {[_target, true] call FUNC(canAttachTowbar)}, {}, [], _towbarActionMemoryPoint, 5] call ace_interact_menu_fnc_createAction;
+[_aircraft, 0, [], _action] call ace_interact_menu_fnc_addActionToObject;
+
+_action = [QGVAR(detachTowbar), "Detach Towbar", "", _fnc_detachTowbar, {[_target, false] call FUNC(canAttachTowbar)}, {}, [], _towbarActionMemoryPoint, 5] call ace_interact_menu_fnc_createAction;
+[_aircraft, 0, [], _action] call ace_interact_menu_fnc_addActionToObject;
