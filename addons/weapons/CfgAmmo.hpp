@@ -49,6 +49,7 @@ class M_Scalpel_AT;
 class B_35mm_AA;
 
 #include "ammoSets\bombs.hpp"
+#include "ammoSets\brimstone.hpp"
 #include "ammoSets\bullets.hpp"
 #include "ammoSets\hellfire.hpp"
 };

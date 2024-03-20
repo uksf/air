@@ -1,7 +1,7 @@
 class GVAR(penetrator_hellfire_stage2) : ammo_Penetrator_Base {
     caliber = 80;
     warheadName = "HEAT";
-    hit = 5000;
+    hit = 7500;
 };
 class GVAR(penetrator_hellfire_stage1) : GVAR(penetrator_hellfire_stage2) {
     warheadName = "TandemHEAT";
@@ -14,7 +14,7 @@ class GVAR(penetrator_hellfire_stage1) : GVAR(penetrator_hellfire_stage2) {
     deleteParentWhenTriggered = 0;
 };
 class ACE_Hellfire_AGM114K : M_Scalpel_AT {
-    hit = 400;  // 150 (javelin 350)
+    hit = 450;  // 150 (javelin 350)
     submunitionAmmo = QGVAR(penetrator_hellfire_stage1);
     SoundSetExplosion[] = { "JPEX_Missile_EXPLOSION_SoundSet", "JPEX_Missile_REFLECTOR_SoundSet", "JPEX_Big_Debris_SoundSet" };
     model = QPATHTOF(data\AGM114\AGM114Hellfire.p3d);

@@ -21,4 +21,7 @@ class CfgVehicles {
     class ace_rearm_Bo_GBU12_LGB: ace_rearm_defaultCarriedObject {
         model = "\A3\Weapons_F_EPC\Ammo\Bomb_04_F.p3d";
     };
+    class GVAR(ammo_missile_brimstone3): ace_rearm_defaultCarriedObject {
+        model = QPATHTOF(data\brimstone\brimstone_proxy.p3d);
+    };
 };

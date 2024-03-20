@@ -16,7 +16,7 @@
 #define AMMRAM ["ace_aim120_PylonRack_Missile_d_x1", "ace_aim120_PylonRack_Missile_d_x2", "ace_aim120_PylonMissile_Missile_d_INT_x1"]
 #define GBU ["ace_gbu_PylonMissile_Bomb_GBU12_x1", "ace_gbu_PylonRack_Bomb_GBU12_x2"]
 #define JDAM []
-#define SDB ["ace_sdb_PylonRack_bomb_SDB_x4"]
+#define SDB ["ace_sdb_PylonRack_bomb_SDB_x4",QEGVAR(weapons,brimstone3_pylonRack_3Rnd)]
 #define HEAVY []
 
 params ["_plane"];

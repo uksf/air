@@ -552,7 +552,8 @@ class CfgVehicles {
                             "B_AMRAAM_D_RAIL_ACE_Only",
                             "B_AMRAAM_D_DUAL_RAIL_ACE_Only",
                             "B_GBU12_ACE_Only",
-                            "B_GBU12_DUAL_RAIL_ACE_Only"
+                            "B_GBU12_DUAL_RAIL_ACE_Only",
+                            QEGVAR(weapons,brimstone3_pylon)
                         };
                         maxweight = 2500;
                         attachment = "ace_gbu_PylonMissile_Bomb_GBU12_x1";
@@ -567,7 +568,8 @@ class CfgVehicles {
                             "B_AMRAAM_D_RAIL_ACE_Only",
                             "B_AMRAAM_D_DUAL_RAIL_ACE_Only",
                             "B_GBU12_ACE_Only",
-                            "B_GBU12_DUAL_RAIL_ACE_Only"
+                            "B_GBU12_DUAL_RAIL_ACE_Only",
+                            QEGVAR(weapons,brimstone3_pylon)
                         };
                         maxweight = 5000;
                         attachment = "ace_gbu_PylonMissile_Bomb_GBU12_x1";
@@ -585,7 +587,12 @@ class CfgVehicles {
                     class pylons5 : pylons4 {
                         // bay right inner
                         UIposition[] = { 0.45, 0.2 };
-                        hardpoints[] = { "B_GBU12_ACE_Only", "B_AMRAAM_D_INT_ACE_Only", "B_GBU39_ACE_Only" };
+                        hardpoints[] = {
+                            "B_GBU12_ACE_Only",
+                            "B_AMRAAM_D_INT_ACE_Only",
+                            "B_GBU39_ACE_Only",
+                            QEGVAR(weapons,brimstone3_pylon)
+                        };
                         maxweight = 2000;
                         attachment = "ace_gbu_PylonMissile_Bomb_GBU12_x1";
                         priority = 1;

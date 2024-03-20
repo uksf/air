@@ -1,10 +1,9 @@
 class ammo_Bomb_SDB : ammo_Bomb_SmallDiameterBase {
     ace_rearm_dummy = QGVAR(ammo_Bomb_SDB);
 };
-
 class ammo_Bomb_LaserGuidedBase : LaserBombCore {
-    hit = 7500; // 5000
-    indirectHit = 1500; // 1100
+    hit = 10000; // 5000
+    indirectHit = 2000; // 1100
     indirectHitRange = 20;  // 12
 };
 class Bo_GBU12_LGB : ammo_Bomb_LaserGuidedBase {

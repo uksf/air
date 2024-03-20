@@ -6,7 +6,8 @@ class CfgPatches {
         units[] = {};
         weapons[] = {
             QGVAR(gunpod),
-            QGVAR(C130FlareLauncher)
+            QGVAR(C130FlareLauncher),
+            QGVAR(brimstone3_launcher)
         };
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {
