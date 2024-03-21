@@ -30,7 +30,7 @@ class GVAR(brimstone3) : ACE_Hellfire_AGM114L {
         seekerAccuracy = 1;     // seeker accuracy multiplier
         seekerMinRange = 1;
         seekerMaxRange = 20000;  // Range from the missile which the seeker can visually search
-        activeRadarEngageDistance = 5000;
+        activeRadarEngageDistance = 2000;
 
         defaultAttackProfile = "hellfire";
         attackProfiles[] = { "hellfire" };
