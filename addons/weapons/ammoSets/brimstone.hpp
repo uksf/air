@@ -9,7 +9,7 @@ class GVAR(brimstone3) : ACE_Hellfire_AGM114L {
     proxyShape = QPATHTOF(data\brimstone\brimstone_proxy.p3d);
     ace_rearm_dummy = QGVAR(ammo_missile_brimstone3);
 
-    thrustTime = 2.5;
+    thrustTime = 3;
     thrust = 250;
     timeToLive = 120;
 
@@ -22,8 +22,8 @@ class GVAR(brimstone3) : ACE_Hellfire_AGM114L {
         seekerTypes[] = { "MillimeterWaveRadar" };
         defaultSeekerLockMode = "LOBL";
         seekerLockModes[] = { "LOBL" };
-        defaultNavigationType = "AugmentedProportionalNavigation";
-        navigationTypes[] = { "AugmentedProportionalNavigation" };
+        defaultNavigationType = "Direct";
+        navigationTypes[] = { "Direct", "ZeroEffortMiss" };
 
         seekLastTargetPos = 1;  // seek last target position [if seeker loses LOS of target, continue to last known pos]
         seekerAngle = 70;       // Angle in front of the missile which can be searched
@@ -32,8 +32,21 @@ class GVAR(brimstone3) : ACE_Hellfire_AGM114L {
         seekerMaxRange = 20000;  // Range from the missile which the seeker can visually search
         activeRadarEngageDistance = 5000;
 
-        defaultAttackProfile = "maverick";
-        attackProfiles[] = { "maverick" };
+        defaultAttackProfile = "hellfire";
+        attackProfiles[] = { "hellfire" };
+
+        class navigationStates {
+            class initial {
+                transitionCondition = "ace_hellfire_fnc_midCourseTransition";
+                navigationType = "Direct";
+            };
+            class terminal {
+                transitionCondition = "";
+                navigationType = "ZeroEffortMiss";
+            };
+            // transitions from initial -> termimal
+            states[] = {"initial", "terminal"};
+        };
     };
 
     // Vanilla lock system vars
