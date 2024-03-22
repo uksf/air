@@ -29,7 +29,7 @@ class GVAR(brimstone3) : ACE_Hellfire_AGM114L {
         seekerAngle = 70;       // Angle in front of the missile which can be searched
         seekerAccuracy = 1;     // seeker accuracy multiplier
         seekerMinRange = 1;
-        seekerMaxRange = 20000;  // Range from the missile which the seeker can visually search
+        seekerMaxRange = 12000;  // Range from the missile which the seeker can visually search
         activeRadarEngageDistance = 2000;
 
         defaultAttackProfile = "hellfire";
@@ -55,7 +55,7 @@ class GVAR(brimstone3) : ACE_Hellfire_AGM114L {
     lockType = 0;
     maneuvrability = 0;  // no maneuvrability so that default guidance doesnt work
 
-    missileLockMaxDistance = 20000;
+    missileLockMaxDistance = 12000;
     missileLockMinDistance = 250;
     missileLockMaxSpeed = 600;
     missileKeepLockedCone = 70;
@@ -68,17 +68,17 @@ class GVAR(brimstone3) : ACE_Hellfire_AGM114L {
                     componentType = "ActiveRadarSensorComponent";
                     class AirTarget {
                         minRange = 0;
-                        maxRange = 20000;
+                        maxRange = 12000;
                         objectDistanceLimitCoef = -1;
                         viewDistanceLimitCoef = -1;
                     };
                     class GroundTarget {
                         minRange = 0;
-                        maxRange = 20000;
+                        maxRange = 12000;
                         objectDistanceLimitCoef = -1;
                         viewDistanceLimitCoef = -1;
                     };
-                    typeRecognitionDistance = 5000;
+                    typeRecognitionDistance = 3000;
                     angleRangeHorizontal = 70;
                     angleRangeVertical = 70;
                     groundNoiseDistanceCoef = 0;  // relevant to AA missiles - not really for this
