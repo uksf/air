@@ -73,13 +73,13 @@ class A400M_base_F : Plane_Base_F {
         MACRO_ADDMAGAZINE(ACE_HandFlare_Red,2);
         MACRO_ADDMAGAZINE(UK3CB_BAF_SmokeShellRed,2);
         MACRO_ADDMAGAZINE(B_IR_Grenade,2);
+        MACRO_ADDMAGAZINE(ACE_painkillers,4);
     };
     class TransportItems {
         MACRO_ADDITEM(Toolkit,1);
         MACRO_ADDITEM(ACE_elasticBandage,4);
         MACRO_ADDITEM(ACE_packingBandage,4);
         MACRO_ADDITEM(ACE_morphine,4);
-        MACRO_ADDITEM(ACE_painkillers,4);
         MACRO_ADDITEM(uksf_halohaho_airSupply,6);
     };
     class TransportBackpacks {

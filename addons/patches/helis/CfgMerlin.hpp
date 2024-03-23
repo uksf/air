@@ -140,6 +140,7 @@ class UK3CB_BAF_Merlin_HC4_CSAR : UK3CB_BAF_Merlin_HC3_CSAR {
         MACRO_ADDMAGAZINE(UK3CB_BAF_SmokeShellRed,2);
         MACRO_ADDMAGAZINE(B_IR_Grenade,2);
         MACRO_ADDMAGAZINE(UK3CB_BAF_762_200Rnd_T,15);
+        MACRO_ADDMAGAZINE(ACE_painkillers,15);
     };
     class TransportItems {
         MACRO_ADDITEM(Toolkit,1);
@@ -149,7 +150,6 @@ class UK3CB_BAF_Merlin_HC4_CSAR : UK3CB_BAF_Merlin_HC3_CSAR {
         MACRO_ADDITEM(ACE_bloodIV_500,20);
         MACRO_ADDITEM(ACE_bloodIV_250,20);
         MACRO_ADDITEM(ACE_splint,10);
-        MACRO_ADDITEM(ACE_painkillers,15);
     };
     class TransportWeapons {};
     class TransportBackpacks {};
