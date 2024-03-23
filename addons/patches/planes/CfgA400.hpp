@@ -88,7 +88,7 @@ class A400M_base_F : Plane_Base_F {
     class TransportWeapons {};
     class VehicleTransport {
         class Carrier {
-            cargoBayDimensions[] = { { 1.5, -9, 1.85 }, { -1.5, 6.7, 5.7 } };
+            cargoBayDimensions[] = { { 1.5, -11.4, 1.85 }, { -1.5, 7, 5.7 } };
             disableHeightLimit = 1;
             maxLoadMass = 50000;
             cargoAlignment[] = { "front", "center" };
