@@ -9,4 +9,11 @@ class CfgFunctions {
             delete Carrier01CatapultActionAdd;
         };
     };
+    class AAE {
+        class GeneralFn {
+            class camshake {
+                file = QPATHTOF(functions\fnc_aaeCamshakeWrapper.sqf);
+            };
+        };
+    };
 };

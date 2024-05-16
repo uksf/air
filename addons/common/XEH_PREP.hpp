@@ -1,3 +1,4 @@
+PREP(aaeCamshake);
 PREP(addAttachTowbarActions);
 PREP(addStaticLineActions);
 PREP(canAttachTowbar);
