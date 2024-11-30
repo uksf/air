@@ -1,15 +1,14 @@
 class CfgVehicles {
-    class Helicopter;
-    class Helicopter_Base_F : Helicopter {
+    class UK3CB_BAF_Apache_base;
+    class UK3CB_BAF_Apache_AH1 : UK3CB_BAF_Apache_base {
         class Turrets;
     };
-    class Heli_Attack_01_base_F : Helicopter_Base_F {
+    class UK3CB_BAF_Apache_AH1_Generic : UK3CB_BAF_Apache_AH1 {
         class Turrets : Turrets {
             class MainTurret;
         };
-        class CargoTurret;
     };
-    class EGVAR(apache,base) : Heli_Attack_01_base_F {
+    class EGVAR(apache,base) : UK3CB_BAF_Apache_AH1_Generic {
         class AcreIntercoms {
             class Intercom_1 {
                 displayName = "Crew intercom";
@@ -55,10 +54,10 @@ class CfgVehicles {
             class MainTurret : MainTurret {
                 soundAttenuationTurret = "ThickGlassAttenuation";
             };
-            class CargoTurret_01 : CargoTurret {
-                disableSoundAttenuation = 1;
-            };
-            class CargoTurret_02 : CargoTurret_01 {};
+            // class CargoTurret_01 : CargoTurret {
+            //     disableSoundAttenuation = 1;
+            // };
+            // class CargoTurret_02 : CargoTurret_01 {};
         };
         RACKS_AIR_FOUR;
     };

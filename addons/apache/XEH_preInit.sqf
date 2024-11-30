@@ -4,10 +4,10 @@ ADDON = false;
 
 #include "XEH_PREP.hpp"
 
-[QGVAR(processAudio), {
-    GVAR(audioQueue) pushBack _this;
-    call FUNC(audio);
-}] call CBA_fnc_addEventHandler;
+// [QGVAR(processAudio), {
+//     GVAR(audioQueue) pushBack _this;
+//     call FUNC(audio);
+// }] call CBA_fnc_addEventHandler;
 
 GVAR(trackedMissiles) = [];
 GVAR(audioQueue) = [];

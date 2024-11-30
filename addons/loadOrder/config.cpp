@@ -37,6 +37,7 @@ class CfgPatches {
 
             // 3CB
             "UK3CB_BAF_Vehicles_LoadOrder",
+            "UK3CB_BAF_Vehicles_Apache",
             "UK3CB_BAF_Vehicles_Merlin",
             "UK3CB_BAF_Vehicles_MQ9_Reaper",
             "UK3CB_BAF_Vehicles_Wildcat",
