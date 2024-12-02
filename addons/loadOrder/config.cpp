@@ -24,6 +24,7 @@ class CfgPatches {
             "ace_compat_cup_vehicles",
             "ace_gbu",
             "ace_hellfire",
+            "ace_missileguidance",
             "ace_main",
             "ace_rearm",
             "ace_refuel",

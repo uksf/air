@@ -1,4 +1,6 @@
-class ACE_Hellfire_AGM114L;
+class ACE_Hellfire_AGM114L : ACE_Hellfire_AGM114K {
+    class ace_missileguidance : ace_missileguidance {};
+};
 class GVAR(brimstone3) : ACE_Hellfire_AGM114L {
     author = "UKSF";
     displayName = "Brimstone III";
@@ -13,7 +15,7 @@ class GVAR(brimstone3) : ACE_Hellfire_AGM114L {
     thrust = 250;
     timeToLive = 120;
 
-    class ace_missileguidance {
+    class ace_missileguidance : ace_missileguidance {
         enabled = 1;
         canVanillaLock = 1;
         pitchRate = 40;  // degrees per second
