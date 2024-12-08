@@ -35,11 +35,6 @@ class CfgAmmo {
     class ammo_Missile_AMRAAM_D : ammo_Missile_MediumRangeAABase {
         ace_rearm_dummy = QGVAR(ammo_Missile_AMRAAM_D);
     };
-    class ace_aim120_d : ammo_Missile_AMRAAM_D {
-        flightProfiles[] = { "Direct", "Loft" };
-        class Direct {};
-        class Loft {};
-    };
 
 class BulletBase;
 class ammo_Penetrator_Base;

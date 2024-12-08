@@ -16,19 +16,19 @@ class CfgPatches {
             "cba_xeh",
 
             // ACE
-            "ace_aim120",
-            "ace_aim9",
+            "ace_missile_aim120",
+            "ace_missile_aim9",
             "ace_aircraft",
             "ace_cargo",
             "ace_common",
             "ace_compat_cup_vehicles",
-            "ace_gbu",
+            "ace_missile_gbu",
             "ace_hellfire",
             "ace_missileguidance",
             "ace_main",
             "ace_rearm",
             "ace_refuel",
-            "ace_sdb",
+            "ace_missile_sdb",
 
             // CUP
             "CUP_AirVehicles_LoadOrder",

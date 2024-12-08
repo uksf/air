@@ -23,7 +23,7 @@ class CfgMagazines {
     class PylonMissile_Bomb_GBU12_x1;
     class PylonRack_Bomb_GBU12_x2;
     class PylonRack_Bomb_SDB_x4;
-    class ace_aim9_PylonRack_1Rnd_aim132;
+    class ace_missile_aim9_PylonRack_1Rnd_aim132;
     class PylonRack_Missile_AMRAAM_D_x1;
     class PylonRack_Missile_AMRAAM_D_x2;
     class PylonMissile_Missile_AMRAAM_D_INT_x1;

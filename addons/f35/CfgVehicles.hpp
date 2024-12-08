@@ -514,19 +514,19 @@ class CfgVehicles {
                     };
                     class Default {
                         displayName = "Multi-Role";
-                        attachment[] = { "ace_aim9_PylonRack_aim132_x2", "ace_aim120_PylonRack_Missile_d_x2", "ace_gbu_PylonRack_Bomb_GBU12_x2", "ace_aim120_PylonMissile_Missile_d_INT_x1", "ace_sdb_PylonRack_bomb_SDB_x4", "ace_sdb_PylonRack_bomb_SDB_x4", "ace_aim120_PylonMissile_Missile_d_INT_x1", QEGVAR(weapons,brimstone3_pylonRack_3Rnd), "ace_aim120_PylonRack_Missile_d_x2", "ace_aim9_PylonRack_aim132_x2", QEGVAR(weapons,gunpod_pylon) };
+                        attachment[] = { "ace_missile_aim9_PylonRack_aim132_x2", "ace_missile_aim120_PylonRack_Missile_d_x2", "ace_missile_gbu_PylonRack_Bomb_GBU12_x2", "ace_missile_aim120_PylonMissile_Missile_d_INT_x1", "ace_missile_sdb_PylonRack_bomb_SDB_x4", "ace_missile_sdb_PylonRack_bomb_SDB_x4", "ace_missile_aim120_PylonMissile_Missile_d_INT_x1", QEGVAR(weapons,brimstone3_pylonRack_3Rnd), "ace_missile_aim120_PylonRack_Missile_d_x2", "ace_missile_aim9_PylonRack_aim132_x2", QEGVAR(weapons,gunpod_pylon) };
                     };
                     class CAS {
                         displayName = "CAS";
-                        attachment[] = { "ace_aim9_PylonRack_aim132_x1", QEGVAR(weapons,brimstone3_pylonRack_3Rnd), "ace_gbu_PylonRack_Bomb_GBU12_x2", "ace_aim120_PylonMissile_Missile_d_INT_x1", "ace_sdb_PylonRack_bomb_SDB_x4", "ace_sdb_PylonRack_bomb_SDB_x4", "ace_aim120_PylonMissile_Missile_d_INT_x1", "ace_gbu_PylonRack_Bomb_GBU12_x2", QEGVAR(weapons,brimstone3_pylonRack_3Rnd), "ace_aim9_PylonRack_aim132_x1", QEGVAR(weapons,gunpod_pylon) };
+                        attachment[] = { "ace_missile_aim9_PylonRack_aim132_x1", QEGVAR(weapons,brimstone3_pylonRack_3Rnd), "ace_missile_gbu_PylonRack_Bomb_GBU12_x2", "ace_missile_aim120_PylonMissile_Missile_d_INT_x1", "ace_missile_sdb_PylonRack_bomb_SDB_x4", "ace_missile_sdb_PylonRack_bomb_SDB_x4", "ace_missile_aim120_PylonMissile_Missile_d_INT_x1", "ace_missile_gbu_PylonRack_Bomb_GBU12_x2", QEGVAR(weapons,brimstone3_pylonRack_3Rnd), "ace_missile_aim9_PylonRack_aim132_x1", QEGVAR(weapons,gunpod_pylon) };
                     };
                     class CAS_Heavy {
                         displayName = "CAS (Heavy)";
-                        attachment[] = { "ace_aim9_PylonRack_aim132_x1", "ace_gbu_PylonRack_Bomb_GBU12_x2", "ace_gbu_PylonRack_Bomb_GBU12_x2", "ace_aim120_PylonMissile_Missile_d_INT_x1", "ace_sdb_PylonRack_bomb_SDB_x4", "ace_sdb_PylonRack_bomb_SDB_x4", "ace_aim120_PylonMissile_Missile_d_INT_x1", "ace_gbu_PylonRack_Bomb_GBU12_x2", "ace_gbu_PylonRack_Bomb_GBU12_x2", "ace_aim9_PylonRack_aim132_x1", QEGVAR(weapons,gunpod_pylon) };
+                        attachment[] = { "ace_missile_aim9_PylonRack_aim132_x1", "ace_missile_gbu_PylonRack_Bomb_GBU12_x2", "ace_missile_gbu_PylonRack_Bomb_GBU12_x2", "ace_missile_aim120_PylonMissile_Missile_d_INT_x1", "ace_missile_sdb_PylonRack_bomb_SDB_x4", "ace_missile_sdb_PylonRack_bomb_SDB_x4", "ace_missile_aim120_PylonMissile_Missile_d_INT_x1", "ace_missile_gbu_PylonRack_Bomb_GBU12_x2", "ace_missile_gbu_PylonRack_Bomb_GBU12_x2", "ace_missile_aim9_PylonRack_aim132_x1", QEGVAR(weapons,gunpod_pylon) };
                     };
                     class CAP {
                         displayName = "CAP";
-                        attachment[] = { "ace_aim9_PylonRack_aim132_x2", "ace_aim9_PylonRack_aim132_x2", "ace_aim120_PylonRack_Missile_d_x2", "ace_aim120_PylonMissile_Missile_d_INT_x1", "ace_aim120_PylonMissile_Missile_d_INT_x1", "ace_aim120_PylonMissile_Missile_d_INT_x1", "ace_aim120_PylonMissile_Missile_d_INT_x1", "ace_aim120_PylonRack_Missile_d_x2", "ace_aim9_PylonRack_aim132_x2", "ace_aim9_PylonRack_aim132_x2", QEGVAR(weapons,gunpod_pylon) };
+                        attachment[] = { "ace_missile_aim9_PylonRack_aim132_x2", "ace_missile_aim9_PylonRack_aim132_x2", "ace_missile_aim120_PylonRack_Missile_d_x2", "ace_missile_aim120_PylonMissile_Missile_d_INT_x1", "ace_missile_aim120_PylonMissile_Missile_d_INT_x1", "ace_missile_aim120_PylonMissile_Missile_d_INT_x1", "ace_missile_aim120_PylonMissile_Missile_d_INT_x1", "ace_missile_aim120_PylonRack_Missile_d_x2", "ace_missile_aim9_PylonRack_aim132_x2", "ace_missile_aim9_PylonRack_aim132_x2", QEGVAR(weapons,gunpod_pylon) };
                     };
                 };
                 class pylons {
@@ -540,7 +540,7 @@ class CfgVehicles {
                             "B_AMRAAM_D_RAIL_ACE_Only",
                             "B_AMRAAM_D_DUAL_RAIL_ACE_Only"
                         };
-                        attachment = "ace_aim9_PylonRack_aim132_x2";
+                        attachment = "ace_missile_aim9_PylonRack_aim132_x2";
                         priority = 5;
                     };
                     class pylons2 : pylons1 {
@@ -556,7 +556,7 @@ class CfgVehicles {
                             QEGVAR(weapons,brimstone3_pylon)
                         };
                         maxweight = 2500;
-                        attachment = "ace_aim120_PylonRack_Missile_d_x2";
+                        attachment = "ace_missile_aim120_PylonRack_Missile_d_x2";
                         priority = 4;
                     };
                     class pylons3 : pylons2 {
@@ -572,7 +572,7 @@ class CfgVehicles {
                             QEGVAR(weapons,brimstone3_pylon)
                         };
                         maxweight = 5000;
-                        attachment = "ace_gbu_PylonRack_Bomb_GBU12_x2";
+                        attachment = "ace_missile_gbu_PylonRack_Bomb_GBU12_x2";
                         priority = 3;
                     };
                     class pylons4 : pylons3 {
@@ -580,7 +580,7 @@ class CfgVehicles {
                         UIposition[] = { 0.45, 0.45 };
                         hardpoints[] = { "B_AMRAAM_D_INT_ACE_Only" };
                         maxweight = 350;
-                        attachment = "ace_aim120_PylonMissile_Missile_d_INT_x1";
+                        attachment = "ace_missile_aim120_PylonMissile_Missile_d_INT_x1";
                         priority = 2;
                         bay = 1;
                     };
@@ -594,7 +594,7 @@ class CfgVehicles {
                             QEGVAR(weapons,brimstone3_pylon)
                         };
                         maxweight = 2000;
-                        attachment = "ace_sdb_PylonRack_bomb_SDB_x4";
+                        attachment = "ace_missile_sdb_PylonRack_bomb_SDB_x4";
                         priority = 1;
                         bay = 1;
                     };
@@ -1150,15 +1150,15 @@ class CfgVehicles {
                     };
                     class Default {
                         displayName = "Multi-Role";
-                        attachment[] = { "", "", "", "ace_aim120_PylonMissile_Missile_d_INT_x1", "ace_gbu_PylonMissile_Bomb_GBU12_x1", "ace_sdb_PylonRack_bomb_SDB_x4", "ace_aim120_PylonMissile_Missile_d_INT_x1" };
+                        attachment[] = { "", "", "", "ace_missile_aim120_PylonMissile_Missile_d_INT_x1", "ace_missile_gbu_PylonMissile_Bomb_GBU12_x1", "ace_missile_sdb_PylonRack_bomb_SDB_x4", "ace_missile_aim120_PylonMissile_Missile_d_INT_x1" };
                     };
                     class CAS_Heavy {
                         displayName = "CAS";
-                        attachment[] = { "", "", "", "ace_aim120_PylonMissile_Missile_d_INT_x1", "ace_gbu_PylonMissile_Bomb_GBU12_x1", "ace_gbu_PylonMissile_Bomb_GBU12_x1", "ace_aim120_PylonMissile_Missile_d_INT_x1" };
+                        attachment[] = { "", "", "", "ace_missile_aim120_PylonMissile_Missile_d_INT_x1", "ace_missile_gbu_PylonMissile_Bomb_GBU12_x1", "ace_missile_gbu_PylonMissile_Bomb_GBU12_x1", "ace_missile_aim120_PylonMissile_Missile_d_INT_x1" };
                     };
                     class CAP {
                         displayName = "CAP";
-                        attachment[] = { "", "", "", "ace_aim120_PylonMissile_Missile_d_INT_x1", "ace_aim120_PylonMissile_Missile_d_INT_x1", "ace_aim120_PylonMissile_Missile_d_INT_x1", "ace_aim120_PylonMissile_Missile_d_INT_x1" };
+                        attachment[] = { "", "", "", "ace_missile_aim120_PylonMissile_Missile_d_INT_x1", "ace_missile_aim120_PylonMissile_Missile_d_INT_x1", "ace_missile_aim120_PylonMissile_Missile_d_INT_x1", "ace_missile_aim120_PylonMissile_Missile_d_INT_x1" };
                     };
                 };
                 class pylons : pylons {
@@ -1170,12 +1170,12 @@ class CfgVehicles {
                     class pylons3 : pylons1 {};
 
                     class pylons4 : pylons4 {
-                        attachment = "ace_aim120_PylonMissile_Missile_d_INT_x1";
+                        attachment = "ace_missile_aim120_PylonMissile_Missile_d_INT_x1";
                     };
                     class pylons5 : pylons5 {};
                     class pylons6 : pylons6 {};
                     class pylons7 : pylons7 {
-                        attachment = "ace_aim120_PylonMissile_Missile_d_INT_x1";
+                        attachment = "ace_missile_aim120_PylonMissile_Missile_d_INT_x1";
                     };
 
                     class pylons8 : pylons1 {};

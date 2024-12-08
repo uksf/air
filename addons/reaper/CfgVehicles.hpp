@@ -335,7 +335,7 @@ class CfgVehicles {
                         turret[] = { 0 };
                     };
                     class Pylons2 : Pylons1 {
-                        attachment = "ace_gbu_PylonMissile_Bomb_GBU12_x1_Drone";
+                        attachment = "ace_missile_gbu_PylonMissile_Bomb_GBU12_x1_Drone";
                         hardpoints[] = { "B_GBU12_ACE_DRONE" };
                         UIposition[] = { 0.2, 0.45 };
                     };
@@ -350,15 +350,15 @@ class CfgVehicles {
                 };
                 class Presets {
                     class Mixed {
-                        attachment[] = { "PylonRack_2Rnd_ACE_Hellfire_AGM114K_Drone", "ace_gbu_PylonMissile_Bomb_GBU12_x1_Drone", "ace_gbu_PylonMissile_Bomb_GBU12_x1_Drone", "PylonRack_2Rnd_ACE_Hellfire_AGM114N_Drone" };
+                        attachment[] = { "PylonRack_2Rnd_ACE_Hellfire_AGM114K_Drone", "ace_missile_gbu_PylonMissile_Bomb_GBU12_x1_Drone", "ace_missile_gbu_PylonMissile_Bomb_GBU12_x1_Drone", "PylonRack_2Rnd_ACE_Hellfire_AGM114N_Drone" };
                         displayName = "Mixed";
                     };
                     class AT {
-                        attachment[] = { "PylonRack_2Rnd_ACE_Hellfire_AGM114K_Drone", "ace_gbu_PylonMissile_Bomb_GBU12_x1_Drone", "ace_gbu_PylonMissile_Bomb_GBU12_x1_Drone", "PylonRack_2Rnd_ACE_Hellfire_AGM114K_Drone" };
+                        attachment[] = { "PylonRack_2Rnd_ACE_Hellfire_AGM114K_Drone", "ace_missile_gbu_PylonMissile_Bomb_GBU12_x1_Drone", "ace_missile_gbu_PylonMissile_Bomb_GBU12_x1_Drone", "PylonRack_2Rnd_ACE_Hellfire_AGM114K_Drone" };
                         displayName = "Anti-Tank";
                     };
                     class AP {
-                        attachment[] = { "PylonRack_2Rnd_ACE_Hellfire_AGM114N_Drone", "ace_gbu_PylonMissile_Bomb_GBU12_x1_Drone", "ace_gbu_PylonMissile_Bomb_GBU12_x1_Drone", "PylonRack_2Rnd_ACE_Hellfire_AGM114N_Drone" };
+                        attachment[] = { "PylonRack_2Rnd_ACE_Hellfire_AGM114N_Drone", "ace_missile_gbu_PylonMissile_Bomb_GBU12_x1_Drone", "ace_missile_gbu_PylonMissile_Bomb_GBU12_x1_Drone", "PylonRack_2Rnd_ACE_Hellfire_AGM114N_Drone" };
                         displayName = "Anti-Personnel";
                     };
                     class Empty {
