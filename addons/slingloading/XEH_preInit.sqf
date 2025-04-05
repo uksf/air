@@ -33,7 +33,8 @@ GVAR(liftCapacity) = [
     ["Heli_Attack_01_base_F", 5600],
     ["Heli_Transport_02_base_F", 5700],
     ["VTOL_01_base_F", 6700],
-    ["VTOL_02_base_F", 7000]
+    ["VTOL_02_base_F", 7000],
+    ["CUP_CH47F_base", 15000]
 ];
 
 GVAR(supportedVehicles) = [
