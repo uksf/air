@@ -21,6 +21,9 @@ GVAR(classLoadPointOffsets) = [
     ["CUP_CH47F_base", [-0.05, -2, -0.05]],  
     ["CUP_AW159_Unarmed_Base", [-0.05, -0.06, -0.05]]
 ];
+GVAR(classHookPointOverrides) = [
+    ["TBD_M119", [[0.3,-2.3,0.4], [-0.3,-2.3,0.4], [0.8,0.3,0.45], [-0.8,0.3,0.45]]]
+];
 
 GVAR(liftCapacity) = [
     ["UAV_01_base_F", 50],
@@ -47,7 +50,8 @@ GVAR(slingRules) = [
     ["Air", "CAN_SLING", "Tank"],
     ["Air", "CAN_SLING", "Air"],
     ["Air", "CAN_SLING", "Boat_F"],
-    ["Air", "CAN_SLING", "ReammoBox_F"]
+    ["Air", "CAN_SLING", "ReammoBox_F"],
+    ["Air", "CAN_SLING", QUGVAR(vehicles,L119)]
 ];
 
 GVAR(actionContext) = ACTION_CONTEXT_EMPTY;

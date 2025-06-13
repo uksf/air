@@ -102,7 +102,17 @@ FUNC(Get_Sling_Load_Points) = {
 
 FUNC(Get_Corner_Points) = {
     params [["_vehicle", objNull]];
+
     if (isNull _vehicle) exitWith {};
+
+    private _override = [];
+    {
+        if (_vehicle isKindOf _x#0) exitWith {
+            _override = _x#1;
+        };
+    } forEach GVAR(classHookPointOverrides);
+    if (_override isNotEqualTo []) exitWith {_override};
+
     private _widthFactor    = 0.5;
     private _lengthFactor    = 0.5;
     if (_vehicle isKindOf "Air") then {                     // Correct width and length factor for air
