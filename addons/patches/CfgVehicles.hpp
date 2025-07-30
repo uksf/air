@@ -75,6 +75,7 @@ class CfgVehicles {
     #include "helis\CfgApache.hpp"
     #include "helis\CfgChinook.hpp"
     #include "helis\CfgDauphin.hpp"
+    #include "helis\CfgGxDrones.hpp"
     #include "helis\CfgHC135.hpp"
     #include "helis\CfgHornet.hpp"
     #include "helis\CfgMerlin.hpp"

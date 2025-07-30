@@ -51,7 +51,8 @@ class CfgPatches {
             "MEA_Panther",
             "rksla3_aw159",
             "rksla3_pumahc",
-            "sps_black_hornet"
+            "sps_black_hornet",
+            "GX_DRONES"
         };
         author = QUOTE(UKSF);
         authors[] = { "Beswick.T" };
