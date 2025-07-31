@@ -30,8 +30,8 @@ class CfgMarkers {
         texture = QPATHTOF(data\markers\icon_wilcat_ca.paa);
     };
     class GVAR(wildcat_rksl): GVAR(apache) {
-        icon = "rksla3\rksla3-aw159\data\UI\њѕ*тђ_ca.paa";
-        texture = "rksla3\rksla3-aw159\data\UI\єїЫЮрѓљЯ*в_ca.paa";
+        icon = QPATHTOF(data\markers\icon_wilcat_ca.paa);
+        texture = QPATHTOF(data\markers\icon_wilcat_ca.paa);
     };
     class GVAR(wildcat_unarmed): GVAR(apache) {
         icon = QPATHTOF(data\markers\icon_wilcat_unarmed_ca.paa);
