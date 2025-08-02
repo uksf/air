@@ -17,7 +17,7 @@
             disabledPositions[] = {}; \
             limitedPositions[] = {{"cargo", "all"}}; \
             masterPositions[] = {"driver"}; \
-            numLimitedPositions = 3; \
+            numLimitedPositions = 5; \
             connectedByDefault = 1; \
         }; \
         class Intercom_2: Intercom_1 { \
