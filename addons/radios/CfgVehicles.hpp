@@ -117,6 +117,16 @@ class CfgVehicles {
         INTERCOM_AIR;
         RACKS_AIR;
     };
+    class CUP_B_UH60M_FFV_US;
+    class GVAR(pe_uh60m) : CUP_B_UH60M_FFV_US {
+        INTERCOM_AIR;
+        RACKS_AIR;
+    };
+    class CUP_B_MH60L_DAP_4x_US;
+    class GVAR(pe_mh60l) : CUP_B_MH60L_DAP_4x_US {
+        INTERCOM_AIR;
+        RACKS_AIR;
+    };
     class CUP_C_Merlin_HC3_IDAP_Rescue;
     class GVAR(eh101_idap) : CUP_C_Merlin_HC3_IDAP_Rescue {
         INTERCOM_AIR;

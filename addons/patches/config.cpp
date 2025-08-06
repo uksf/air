@@ -11,6 +11,8 @@ class CfgPatches {
             QGVAR(pe_mh6),
             QGVAR(pe_ah6),
             QGVAR(pe_uh60),
+            QGVAR(pe_uh60m),
+            QGVAR(pe_mh60l),
             QGVAR(eh101_idap),
 
             // Obsolete
