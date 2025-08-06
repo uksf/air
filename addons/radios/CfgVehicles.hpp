@@ -113,22 +113,22 @@ class CfgVehicles {
         RACKS_AIR;
     };
     class CUP_B_UH60L_Unarmed_FFV_MEV_US;
-    class GVAR(pe_uh60) : CUP_B_UH60L_Unarmed_FFV_MEV_US {
+    class EGVAR(patches,pe_uh60) : CUP_B_UH60L_Unarmed_FFV_MEV_US {
         INTERCOM_AIR;
         RACKS_AIR;
     };
     class CUP_B_UH60M_FFV_US;
-    class GVAR(pe_uh60m) : CUP_B_UH60M_FFV_US {
+    class EGVAR(patches,pe_uh60m) : CUP_B_UH60M_FFV_US {
         INTERCOM_AIR;
         RACKS_AIR;
     };
     class CUP_B_MH60L_DAP_4x_US;
-    class GVAR(pe_mh60l) : CUP_B_MH60L_DAP_4x_US {
+    class EGVAR(patches,pe_mh60l) : CUP_B_MH60L_DAP_4x_US {
         INTERCOM_AIR;
         RACKS_AIR;
     };
     class CUP_C_Merlin_HC3_IDAP_Rescue;
-    class GVAR(eh101_idap) : CUP_C_Merlin_HC3_IDAP_Rescue {
+    class EGVAR(patches,eh101_idap) : CUP_C_Merlin_HC3_IDAP_Rescue {
         INTERCOM_AIR;
         RACKS_AIR;
     };
