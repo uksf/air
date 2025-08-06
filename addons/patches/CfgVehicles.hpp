@@ -77,7 +77,6 @@ class CfgVehicles {
     #include "helis\CfgDauphin.hpp"
     #include "helis\CfgGxDrones.hpp"
     #include "helis\CfgHC135.hpp"
-    #include "helis\CfgHornet.hpp"
     #include "helis\CfgMerlin.hpp"
     #include "helis\CfgMerlinCUP.hpp"
     #include "helis\CfgPuma.hpp"
