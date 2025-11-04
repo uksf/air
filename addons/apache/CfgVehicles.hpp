@@ -75,12 +75,12 @@ class CfgVehicles {
                 cone[] = { 0.7, 1.3, 1, 0 };
             };
             class EngineExt {
-                sound[] = { "LAxemann\DynaSound\addons\DS_a_Kajman\sounds\Engine_Ext", 1.301, 1, 800 };
+                sound[] = { "\jsrs_2025\sounds_f_jsrs2025\vehicles\helicopters\mi48_kajman\turbine_ext_close.ogg", 1.4, 1, 800 };
                 frequency = "rotorSpeed";
                 volume = "2.2 * camPos * (0 max (rotorSpeed - 0.4))";
             };
             class EngineInt {
-                sound[] = { "LAxemann\DynaSound\addons\DS_a_Kajman\sounds\Engine_Int", 0.801, 1 };
+                sound[] = { "\jsrs_2025\sounds_f_jsrs2025\vehicles\helicopters\mi48_kajman\turbine_int.ogg", 1, 1 };
                 frequency = "rotorSpeed";
                 volume = "(1 - camPos) * 1.5 * (0 max (rotorSpeed - 0.4))";
             };
@@ -104,12 +104,12 @@ class CfgVehicles {
                     cone[] = { 0.7, 1.3, 1, 0 };
                 };
                 class EngineExt {
-                    sound[] = { "LAxemann\DynaSound\addons\DS_a_Kajman\sounds\Engine_Ext", 1.301, 1, 800 };
+                    sound[] = { "\jsrs_2025\sounds_f_jsrs2025\vehicles\helicopters\mi48_kajman\turbine_ext_close.ogg", 1.4, 1, 800 };
                     frequency = "rotorSpeed";
                     volume = "2.2 * camPos * (0 max (rotorSpeed - 0.4))";
                 };
                 class EngineInt {
-                    sound[] = { "LAxemann\DynaSound\addons\DS_a_Kajman\sounds\Engine_Int", 0.801, 1 };
+                    sound[] = { "\jsrs_2025\sounds_f_jsrs2025\vehicles\helicopters\mi48_kajman\turbine_int.ogg", 1, 1 };
                     frequency = "rotorSpeed";
                     volume = "(1 - camPos) * 1.5 * (0 max (rotorSpeed - 0.4))";
                 };

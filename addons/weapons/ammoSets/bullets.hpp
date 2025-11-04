@@ -14,7 +14,7 @@ class GVAR(gunpod_25mm_apex) : B_35mm_AA {
     soundHit3[] = { "A3\Sounds_F\arsenal\explosives\Grenades\Explosion_gng_grenades_03", 3.16228, 1, 1300 };
     soundHit4[] = { "A3\Sounds_F\arsenal\explosives\Grenades\Explosion_gng_grenades_04", 3.16228, 1, 1300 };
     multiSoundHit[] = { "soundHit1", 0.25, "soundHit2", 0.25, "soundHit3", 0.25, "soundHit4", 0.25 };
-    SoundSetExplosion[] = { "DS_Ex_Gau8_SoundSet" };
+    SoundSetExplosion[] = { "jsrs_2025_20mm_epl_soundset" };
     class CamShakeExplode {
         power = 6;
         duration = 1;

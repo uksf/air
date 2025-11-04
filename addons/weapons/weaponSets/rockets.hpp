@@ -29,7 +29,7 @@ class rksla3_aw159_wpn_crv7_lau5003 : missiles_DAR {
         class StandardSound {
             begin1[] = { "A3\Sounds_F\weapons\Rockets\new_rocket_8", 1.77828, 1.2, 1600 };
             soundBegin[] = { "begin1", 1 };
-            soundSetShot[] = { "DS_launcher_Small_Shot_SoundSet", "DS_rifle1_Tail_SoundSet" };
+            soundSetShot[] = { "jsrs_2025_rocketpods_shot_soundset" };
         };
     };
     class Ripple2 : Ripple1 {
