@@ -54,11 +54,11 @@ class CfgPatches {
             "GX_DRONES_CORE",
             "GX_DRONES_UAV_BLACKHORNET",
             "GX_DRONES_UAV_DRONE40",
-            "jsrs_soundmod_2025_Beta",
-            "jsrs_soundmod_2025_Beta_3cb_baf_vehicles",
-            "jsrs_soundmod_2025_Beta_3cb_BAF_weapons",
-            "jsrs_soundmod_2025_Beta_cup_weapons",
-            "jsrs_soundmod_2025_Beta_cup_vehicles"
+            "jsrs2025_config_c",
+            "jsrs2025_compat_3cb_baf_vehicles",
+            "jsrs2025_compat_3cb_BAF_weapons",
+            "jsrs2025_compat_cup_vehicles",
+            "jsrs2025_compat_cup_weapons"
         };
         author = QUOTE(UKSF);
         authors[] = { "Beswick.T" };
