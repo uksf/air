@@ -32,6 +32,7 @@ class CfgMagazines {
     class CUP_19Rnd_CRV7_FAT_M;
     class CUP_1200Rnd_TE1_Red_Tracer_M621_20mm_HE_M;
     class PylonRack_3Rnd_ACE_Hellfire_AGM114L;
+    class UK3CB_BAF_PylonPod_19Rnd_CRV7_PG_Base;
     
 #include "magazineSets\a2a.hpp"
 #include "magazineSets\bombs.hpp"

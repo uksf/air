@@ -38,7 +38,6 @@ class CfgAmmo {
 
 class BulletBase;
 class ammo_Penetrator_Base;
-class ammo_Bomb_SmallDiameterBase;
 class LaserBombCore;
 class M_Scalpel_AT;
 class B_35mm_AA;
