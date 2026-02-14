@@ -71,6 +71,15 @@ class CfgVehicles {
     class Plane_Fighter_03_base_F : Plane_Base_F {
         epeImpulseDamageCoef = 4;
     };
+    class Plane_Fighter_04_Base_F : Plane_Base_F {
+        epeImpulseDamageCoef = 4;
+    };
+    class UAV_05_Base_F : UAV {
+        epeImpulseDamageCoef = 4;
+    };
+    class UAV_06_base_F : Helicopter_Base_F {
+        epeImpulseDamageCoef = 4;
+    };
 
     #include "helis\CfgApache.hpp"
     #include "helis\CfgChinook.hpp"

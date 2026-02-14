@@ -68,6 +68,7 @@ class A400M_base_F : Plane_Base_F {
     EGVAR(common,towbarActionMemoryPoint) = "wheel_1_1_center";
     UGVAR(radios,rackChannels)[] = { 31, 40, 41 };
     maximumLoad = 20000;
+    epeImpulseDamageCoef = 10;
     class TransportMagazines {
         MACRO_ADDMAGAZINE(ACE_M14,2);
         MACRO_ADDMAGAZINE(ACE_HandFlare_Red,2);
