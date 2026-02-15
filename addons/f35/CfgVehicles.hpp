@@ -553,6 +553,7 @@ class CfgVehicles {
                             "B_AMRAAM_D_DUAL_RAIL_ACE_Only",
                             "B_GBU12_ACE_Only",
                             "B_GBU12_DUAL_RAIL_ACE_Only",
+                            "B_GBU12_TRIPLE_RAIL_ACE_Only",
                             QEGVAR(weapons,brimstone3_pylon)
                         };
                         maxweight = 2500;
@@ -569,6 +570,7 @@ class CfgVehicles {
                             "B_AMRAAM_D_DUAL_RAIL_ACE_Only",
                             "B_GBU12_ACE_Only",
                             "B_GBU12_DUAL_RAIL_ACE_Only",
+                            "B_GBU12_TRIPLE_RAIL_ACE_Only",
                             QEGVAR(weapons,brimstone3_pylon)
                         };
                         maxweight = 5000;
