@@ -46,8 +46,8 @@ for "_i" from 0 to _unloadCount do {
         ["ace_cargo_paradropItem", [_item, _vehicle, false]] call CBA_fnc_localEvent;
         [[
             "STR_ace_cargo_UnloadedItem",
-            getText (configFile >> "CfgVehicles" >> typeOf _item >> "displayName"),
-            getText (configFile >> "CfgVehicles" >> typeOf _vehicle >> "displayName")
+            getText (configOf _item >> "displayName"),
+            getText (configOf _vehicle >> "displayName")
         ], 3] call ace_common_fnc_displayTextStructured;
     }, [_vehicle, _item], _i + 1] call CBA_fnc_waitAndExecute;
 };

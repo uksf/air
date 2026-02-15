@@ -3,7 +3,7 @@ class StageTI
 	texture="u\uksf_air\addons\f35\data\glass_ca.paa";
 };
 surfaceInfo="A3\data_f\penetration\glass.bisurf";
-ambient[]={0.79607844,0.56470591,0.69411767s,1};
+ambient[]={0.79607844,0.56470591,0.69411767,1};
 diffuse[]={0.79607844,0.56470591,0.69411767,1};
 forcedDiffuse[]={0,0,0,1};
 emmisive[]={0,0,0,1};

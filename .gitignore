@@ -675,11 +675,19 @@ release
 
 # Signing keys
 *.biprivatekey
+.hemttprivatekey
 
 # HEMTT
+*.zip
+release/*
 releases/*
-keys/*
-.hemtt/local
+hemtt
+hemtt.exe
+.hemttout
+tools/temp
 
 ## SQFC
+sqfvm.exe
+ArmaScriptCompiler.exe
 *.sqfc
+target/

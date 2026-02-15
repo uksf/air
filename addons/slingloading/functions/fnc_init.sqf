@@ -748,7 +748,7 @@ FUNC(Retract_Ropes_Action_Check) = {
         // diag_log formatText ["%1%2%3%4%5", time, "s  (FUNC(Retract_Ropes_Action_Check)) EXIT 1"];
         [getConnectedUAV _unit, _unit] call FUNC(Can_Retract_Ropes)
     };
-    if (vehicle _unit == _unit) exitWith {
+    if (isNull objectParent _unit) exitWith {
         // diag_log formatText ["%1%2%3%4%5", time, "s  (FUNC(Retract_Ropes_Action_Check)) EXIT 2"];
         [cursorObject, _unit, true] call FUNC(Can_Retract_Ropes)
     };
@@ -815,7 +815,7 @@ FUNC(Retract_Ropes) = {
     private _existingCargo = _existingRopesAndCargo#1;
     private _cargoArray = ropeAttachedObjects _vehicle;
     // diag_log formatText ["%1%2%3%4%5", time, "s  (FUNC(Retract_Ropes)) _vehicle: ", _vehicle, "    _cargoArray: ", _cargoArray];
-    if (count _cargoArray > 0) then {
+    if (_cargoArray isNotEqualTo []) then {
         private _helper = (_cargoArray select {_x getVariable [QGVAR(Ropes_Pick_Up_Helper), false]})#0;
         if (isNil {_helper}) exitWith {};
         private _ropeHolder = attachedTo _helper;
@@ -882,7 +882,7 @@ FUNC(Deploy_Ropes_Action_Check) = {
         // diag_log formatText ["%1%2%3%4%5", time, "s  (FUNC(Deploy_Ropes_Action_Check)) EXIT 1"];
         [getConnectedUAV _unit, _unit] call FUNC(Can_Deploy_Ropes)
     };
-    if (vehicle _unit == _unit) exitWith {
+    if (isNull objectParent _unit) exitWith {
         // diag_log formatText ["%1%2%3%4%5", time, "s  (FUNC(Deploy_Ropes_Action_Check)) EXIT 2"];
         [cursorObject, _unit, true] call FUNC(Can_Deploy_Ropes)
     };
@@ -1038,7 +1038,7 @@ FUNC(Pickup_Ropes_Action_Check) = {
     params [["_unit", objNull]];
     if (isNull _unit) exitWith {false};
     // diag_log formatText ["%1%2%3%4%5", time, "s  (FUNC(Pickup_Ropes_Action_Check)) _target: ", _target, ", _this: ", _this];
-    if (vehicle _unit != _unit) exitWith {false};
+    if (!isNull objectParent _unit) exitWith {false};
     if !(isNil{_unit getVariable QGVAR(Ropes_Pick_Up_Helper)}) exitWith {false};
     
     private _ropeHandlingDistance = GVAR(RopeHandlingDistance);
@@ -1110,7 +1110,7 @@ FUNC(Attach_Ropes_Action_Check) = {
     // private _ropeAttachDistance = GVAR(RopeHandlingDistance) + (sizeOf typeOf _cargo / 10 max 2);
     private _ropeAttachDistance = GVAR(MaxDeployRetractDistance) + (sizeOf typeOf _cargo / 10 max 1);     
     // diag_log formatText ["%1%2%3%4%5", time, "s  (FUNC(Attach_Ropes_Action_Check)) check 1"];
-    if (vehicle _unit != _unit || _unit distance _cargo > _ropeAttachDistance || _vehicle == _cargo || !alive _cargo) exitWith {false};
+    if (!isNull objectParent _unit || _unit distance _cargo > _ropeAttachDistance || _vehicle == _cargo || !alive _cargo) exitWith {false};
     // diag_log formatText ["%1%2%3%4%5", time, "s  (FUNC(Attach_Ropes_Action_Check)) check 2"];
     if (_vehicle == _cargo getVariable [QGVAR(CarrierVehicle), objNull]) exitWith {false}; // let's not attach another rope from same vehicle to same cargo
     // diag_log formatText ["%1%2%3%4%5", time, "s  (FUNC(Attach_Ropes_Action_Check)) check 2"];
@@ -1171,7 +1171,7 @@ FUNC(Attach_Ropes) = {
 
 FUNC(Drop_Ropes_Action_Check) = {
     params [["_unit", objNull]];
-    if (isNull _unit || vehicle _unit != _unit) exitWith {false};
+    if (isNull _unit || !isNull objectParent _unit) exitWith {false};
 
     (_unit getVariable [QGVAR(Ropes_Vehicle), []]) isNotEqualTo []
 };

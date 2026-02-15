@@ -22,7 +22,7 @@ if !(isArray _towbarConfig) exitWith {
     false
 };
 
-private _baseCondition = vehicle ACE_player == ACE_player
+private _baseCondition = isNull objectParent ACE_player
 && isNull (ACE_controlledUAV#0)
 && !(isEngineOn _aircraft)
 && speed _aircraft < 1;

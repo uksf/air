@@ -15,7 +15,7 @@
 */
 params ["_vehicle", "_unit"];
 
-private _jumpPoints = getArray (configOf _aircraft >> QGVAR(staticLineJumpPoints));
+private _jumpPoints = getArray (configOf _vehicle >> QGVAR(staticLineJumpPoints));
 private _jumpPoint = _jumpPoints select ((_vehicle getCargoIndex _unit) % 2);
 private _jumpPosition = _vehicle modelToWorldVisualWorld (_vehicle selectionPosition _jumpPoint);
 _unit allowDamage false;

@@ -1,0 +1,20 @@
+[config.external_parent_case]
+enabled = false
+
+[config.file_type]
+options.allow_no_extension = true
+
+[config.unused_external]
+enabled = false
+
+[config.math_could_be_unquoted]
+enabled = false
+
+[sqf.command_case]
+enabled = false
+
+[sqf.if_assign]
+enabled = false
+
+[sqf.reasign_reserved_variable]
+enabled = false

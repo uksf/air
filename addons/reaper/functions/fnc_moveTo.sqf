@@ -20,7 +20,7 @@ private _screenPosition = screenToWorld [0.5, 0.5];
 private _targetHeightASL = _uav getVariable [QGVAR(targetHeightASL), 5000];
 private _targetHeightASLMeters = FEET_TO_METERS(_targetHeightASL);
 private _position = [_screenPosition#0, _screenPosition#1, _targetHeightASLMeters];
-private _waypoint = ((waypoints _group) select (count (waypoints _group)) - 1);
+private _waypoint = (waypoints _group) select -1;
 
 if (count (waypoints _group) <= 1) then {
     _waypoint = _group addWaypoint [_position, 0];

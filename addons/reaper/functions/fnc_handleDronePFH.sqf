@@ -45,7 +45,7 @@ if (((getWPPos [_uav, _currentWaypoint])#2) != 0) then {
 
 // Sets the height of all current waypoints to _targetHeightASL if set.
 if (_customWaypoint && !_heightChanged) then {
-    if (!(((getWPPos [_uav, _currentWaypoint])#2) == _targetHeightASLMeters)) then {
+    if (((getWPPos [_uav, _currentWaypoint])#2) != _targetHeightASLMeters) then {
         {
             private _pos = getWPPos _x;
             _pos set [2, _targetHeightASLMeters];

@@ -6,8 +6,9 @@
 #define URL QUOTE(uk-sf.co.uk)
 
 #include "\u\uksf_air\addons\main\script_version.hpp"
-#define VERSION MAJOR.MINOR.PATCHLVL
-#define VERSION_AR MAJOR,MINOR,PATCHLVL
+#define VERSION     MAJOR.MINOR
+#define VERSION_STR MAJOR.MINOR.PATCHLVL
+#define VERSION_AR  MAJOR,MINOR,PATCHLVL
 
 // MINIMAL required version for the Mod. Components can specify others..
 #define REQUIRED_VERSION 2.10

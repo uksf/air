@@ -16,6 +16,7 @@ class CfgVehicles {
         reportRemoteTargets = 1;
         reportOwnPosition = 1;
     };
+    class UAV;
     class Helicopter : Air {
         explosionShielding = 0.7;
         epeImpulseDamageCoef = 4;

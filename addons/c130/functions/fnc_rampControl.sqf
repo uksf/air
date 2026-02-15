@@ -18,7 +18,7 @@
 params ["_plane", ["_newPosition", 0]];
 
 private _bottomValue = (_newPosition * RAMP_HALF) min 1;
-private _topValue = [0, 1] select (_newPosition > 0);
+private _topValue = parseNumber (_newPosition > 0);
 
 _plane animateSource ["ramp_bottom", _bottomValue, 1];
 _plane animateSource ["ramp_top", _topValue, 1];
