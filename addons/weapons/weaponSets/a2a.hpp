@@ -1,5 +1,5 @@
 class ace_missile_aim9_aim132 : missiles_ASRAAM {
-    displayName = "AIM-132";
+    displayName = "ASRAAM";
     magazines[] = {
         "ace_missile_aim9_aim132_2Rnd",
         "ace_missile_aim9_aim132_2Rnd_MI02",

@@ -50,6 +50,7 @@ class CfgPatches {
             "HAFM_EC635",
             "MEA_Panther",
             "rksla3_aw159",
+            "rksla3_cvwp",
             "rksla3_pumahc",
             "GX_DRONES_CORE",
             "GX_DRONES_UAV_BLACKHORNET",

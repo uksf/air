@@ -33,11 +33,14 @@ class CfgMagazines {
     class CUP_1200Rnd_TE1_Red_Tracer_M621_20mm_HE_M;
     class PylonRack_3Rnd_ACE_Hellfire_AGM114L;
     class UK3CB_BAF_PylonPod_19Rnd_CRV7_PG_Base;
-    
+
 #include "magazineSets\a2a.hpp"
 #include "magazineSets\bombs.hpp"
 #include "magazineSets\brimstone.hpp"
 #include "magazineSets\bullets.hpp"
 #include "magazineSets\hellfire.hpp"
 #include "magazineSets\rockets.hpp"
+#include "magazineSets\meteor.hpp"
+#include "magazineSets\spear3.hpp"
+#include "magazineSets\stormshadow.hpp"
 };

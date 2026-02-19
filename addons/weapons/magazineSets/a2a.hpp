@@ -1,10 +1,10 @@
 class ace_missile_aim9_PylonRack_aim132_x1 : ace_missile_aim9_PylonRack_1Rnd_aim132 {
-    displayName = "AIM-132 x1";
-    model = "\A3\Weapons_F_Jets\Ammo\PylonPod_Missile_AA_08_Rail_x1_F";
+    displayName = "ASRAAM x1";
+    model = "\rksla3\rksla3-cvwp\racks\?ѓєёрѝѕхпі.p3d";
     hardpoints[] += { "B_AIM132_RAIL_ACE_Only" };
 };
 class ace_missile_aim9_PylonRack_aim132_x2 : ace_missile_aim9_PylonRack_aim132_x1 {
-    displayName = "AIM-132 x2";
+    displayName = "ASRAAM x2";
     count = 2;
     model = "\A3\Weapons_F_Jets\Ammo\PylonPod_Missile_AA_08_DualRail_x2_F";
     hardpoints[] = { "B_AIM132_DUAL_RAIL_ACE_Only" };

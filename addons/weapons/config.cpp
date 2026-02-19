@@ -6,8 +6,7 @@ class CfgPatches {
         units[] = {};
         weapons[] = {
             QGVAR(gunpod),
-            QGVAR(C130FlareLauncher),
-            QGVAR(brimstone3_launcher)
+            QGVAR(C130FlareLauncher)
         };
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {
@@ -19,6 +18,10 @@ class CfgPatches {
         VERSION_CONFIG;
     };
 };
+
+class ace_missileguidance_type_AMRAAM;
+class ace_missileguidance_type_Jdam;
+class ace_missileguidance_type_CruiseMissile;
 
 #include "CfgAmmo.hpp"
 #include "CfgEventHandlers.hpp"

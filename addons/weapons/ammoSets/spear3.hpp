@@ -1,7 +1,9 @@
-class rksla3_ammo_brimstone_2;
-class rksla3_ammo_brimstone_3 : rksla3_ammo_brimstone_2 {
+class rksla3_ammo_spear3 : M_Scalpel_AT {
+    hit = 200;
+    indirectHit = 60;
+    indirectHitRange = 5;
     maneuvrability = 0;
-    ace_rearm_dummy = QGVAR(ammo_missile_brimstone3);
+    ace_rearm_dummy = QGVAR(ammo_missile_spear3);
     SoundSetExplosion[] = { "JPEX_Missile_EXPLOSION_SoundSet", "JPEX_Missile_REFLECTOR_SoundSet" };
 
     weaponLockSystem = "8";
@@ -10,7 +12,7 @@ class rksla3_ammo_brimstone_3 : rksla3_ammo_brimstone_2 {
     laserLock = 0;
     irLock = 0;
 
-    missileLockMaxDistance = 12000;
+    missileLockMaxDistance = 20000;
     missileLockMinDistance = 250;
     missileLockMaxSpeed = 600;
     missileKeepLockedCone = 70;
@@ -18,8 +20,8 @@ class rksla3_ammo_brimstone_3 : rksla3_ammo_brimstone_2 {
     class ace_missileguidance {
         enabled = 1;
         canVanillaLock = 1;
-        pitchRate = 40;
-        yawRate = 40;
+        pitchRate = 35;
+        yawRate = 35;
         defaultSeekerType = "MillimeterWaveRadar";
         seekerTypes[] = { "MillimeterWaveRadar" };
         defaultSeekerLockMode = "LOBL";
@@ -31,11 +33,11 @@ class rksla3_ammo_brimstone_3 : rksla3_ammo_brimstone_2 {
         seekerAngle = 70;
         seekerAccuracy = 1;
         seekerMinRange = 1;
-        seekerMaxRange = 12000;
-        activeRadarEngageDistance = 2000;
+        seekerMaxRange = 20000;
+        activeRadarEngageDistance = 3000;
 
         defaultAttackProfile = "hellfire";
-        attackProfiles[] = { "hellfire" };
+        attackProfiles[] = { "hellfire", "hellfire_hi", "hellfire_lo" };
 
         class navigationStates {
             class initial {
@@ -57,17 +59,17 @@ class rksla3_ammo_brimstone_3 : rksla3_ammo_brimstone_2 {
                     componentType = "ActiveRadarSensorComponent";
                     class AirTarget {
                         minRange = 0;
-                        maxRange = 12000;
+                        maxRange = 20000;
                         objectDistanceLimitCoef = -1;
                         viewDistanceLimitCoef = -1;
                     };
                     class GroundTarget {
                         minRange = 0;
-                        maxRange = 12000;
+                        maxRange = 20000;
                         objectDistanceLimitCoef = -1;
                         viewDistanceLimitCoef = -1;
                     };
-                    typeRecognitionDistance = 3000;
+                    typeRecognitionDistance = 5000;
                     angleRangeHorizontal = 70;
                     angleRangeVertical = 70;
                     groundNoiseDistanceCoef = 0;

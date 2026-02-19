@@ -8,11 +8,13 @@ class CfgAmmo {
         ace_rearm_dummy = QGVAR(crv7);
         ACE_caliber = 70;
         ACE_hearing_caliber = 15;
+        model = "\rksla3\rksla3-cvwp\rockets\ѝп*пЩ.p3d";
     };
     class UK3CB_BAF_M_CRV7_Base : MissileBase {
         ace_rearm_dummy = QGVAR(crv7);
         ACE_caliber = 70;
         ACE_hearing_caliber = 15;
+        model = "\rksla3\rksla3-cvwp\rockets\ѝп*пЩ.p3d";
     };
     class M_AT;
     class rksla3_aw159_crv7_amo_M151 : M_AT {
@@ -25,9 +27,6 @@ class CfgAmmo {
     };
     class ammo_Missile_BIM9X : ammo_Missile_ShortRangeAABase {
         ace_rearm_dummy = QGVAR(ammo_Missile_BIM9X);
-    };
-    class M_Air_AA : MissileBase {
-        ace_rearm_dummy = QGVAR(ammo_Missile_AIM132);
     };
     class ammo_Missile_MediumRangeAABase : MissileBase {
         hit = 600; // 200
@@ -42,9 +41,12 @@ class LaserBombCore;
 class M_Scalpel_AT;
 class B_35mm_AA;
 
+#include "ammoSets\a2a.hpp"
 #include "ammoSets\bombs.hpp"
 #include "ammoSets\bullets.hpp"
 #include "ammoSets\hellfire.hpp"
-// Brimstone uses hellfire classes
 #include "ammoSets\brimstone.hpp"
+#include "ammoSets\meteor.hpp"
+#include "ammoSets\spear3.hpp"
+#include "ammoSets\stormshadow.hpp"
 };

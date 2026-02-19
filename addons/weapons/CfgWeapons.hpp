@@ -38,5 +38,4 @@ class CfgWeapons {
 #include "weaponSets\rockets.hpp"
 
 #include "weaponSets\hellfire.hpp"
-#include "weaponSets\brimstone.hpp"
 };

@@ -1,5 +1,6 @@
 class ace_missile_gbu_PylonMissile_Bomb_GBU12_x1 : PylonMissile_Bomb_GBU12_x1 {
     displayName = "GBU-12 x1";
+    model = "\rksla3\rksla3-common\proxies\rksla3_direct_rail.p3d";
     hardpoints[] += { "B_GBU12_ACE_Only" };
 };
 class ace_missile_gbu_PylonMissile_Bomb_GBU12_x1_Drone : ace_missile_gbu_PylonMissile_Bomb_GBU12_x1 {
@@ -8,6 +9,7 @@ class ace_missile_gbu_PylonMissile_Bomb_GBU12_x1_Drone : ace_missile_gbu_PylonMi
 };
 class ace_missile_gbu_PylonRack_Bomb_GBU12_x2 : PylonRack_Bomb_GBU12_x2 {
     displayName = "GBU-12 x2";
+    model = "\rksla3\rksla3-cvwp\racks\ЭпѝпўУе?Ь.p3d";
     hardpoints[] += { "B_GBU12_DUAL_RAIL_ACE_Only" };
 };
 class ace_missile_gbu_PylonRack_Bomb_GBU12_x3 : ace_missile_gbu_PylonRack_Bomb_GBU12_x2 {

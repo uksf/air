@@ -17,8 +17,8 @@ class ACE_Hellfire_AGM114K : M_Scalpel_AT {
     hit = 450;  // 150 (javelin 350)
     submunitionAmmo = QGVAR(penetrator_hellfire_stage1);
     SoundSetExplosion[] = { "JPEX_Missile_EXPLOSION_SoundSet", "JPEX_Missile_REFLECTOR_SoundSet", "JPEX_Big_Debris_SoundSet" };
-    model = QPATHTOF(data\AGM114\AGM114Hellfire.p3d);
-    proxyShape = QPATHTOF(data\AGM114\AGM114Hellfire_proxy.p3d);
+    model = "\rksla3\rksla3-cvwp\agm\ёРјџквц?тц.p3d";
+    proxyShape = "\rksla3\rksla3-cvwp\agm\ъЪЧХ?яйѝ.p3d";
     ace_rearm_dummy = QGVAR(ACE_Hellfire_AGM114);
     effectsMissileInit = "PylonBackEffects";
     class ace_missileguidance;
@@ -27,7 +27,7 @@ class ACE_Hellfire_AGM114K : M_Scalpel_AT {
 class ACE_Hellfire_AGM114K_drone : ACE_Hellfire_AGM114K {
     class ace_missileguidance : ace_missileguidance {
         enabled = 1;
-        seekerAngle = 180;
+        seekerAngle = 350;
     };
 };
 class ACE_Hellfire_AGM114N : ACE_Hellfire_AGM114K {
@@ -36,6 +36,28 @@ class ACE_Hellfire_AGM114N : ACE_Hellfire_AGM114K {
 class ACE_Hellfire_AGM114N_drone : ACE_Hellfire_AGM114N {
     class ace_missileguidance : ace_missileguidance {
         enabled = 1;
-        seekerAngle = 180;
+        seekerAngle = 350;
+    };
+};
+class ACE_Hellfire_AGM114L : ACE_Hellfire_AGM114K {
+    model = "\rksla3\rksla3-cvwp\agm\щьШ?йщќѓъ.p3d";
+    proxyShape = "\rksla3\rksla3-cvwp\agm\Чдб?џ.p3d";
+    class ace_missileguidance : ace_missileguidance {};
+};
+class ACE_Hellfire_AGM114R9X : ACE_Hellfire_AGM114K {
+    model = "\rksla3\rksla3-cvwp\agm\цўъг?Ь.p3d";
+    proxyShape = "\rksla3\rksla3-cvwp\agm\тѝўлЫШ*ч.p3d";
+    hit = 150;
+    indirectHit = 1;
+    indirectHitRange = 2;
+    warheadName = "HE";
+    submunitionAmmo = "";
+    explosionEffects = "";
+    class ace_missileguidance;
+};
+class ACE_Hellfire_AGM114R9X_drone : ACE_Hellfire_AGM114R9X {
+    class ace_missileguidance : ace_missileguidance {
+        enabled = 1;
+        seekerAngle = 350;
     };
 };
