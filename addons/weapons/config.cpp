@@ -23,6 +23,7 @@ class ace_missileguidance_type_AMRAAM;
 class ace_missileguidance_type_Jdam;
 class ace_missileguidance_type_CruiseMissile;
 
+#include "CfgExplosionEffects.hpp"
 #include "CfgAmmo.hpp"
 #include "CfgEventHandlers.hpp"
 #include "CfgMagazines.hpp"

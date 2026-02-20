@@ -27,7 +27,7 @@ class ACE_Hellfire_AGM114K : M_Scalpel_AT {
 class ACE_Hellfire_AGM114K_drone : ACE_Hellfire_AGM114K {
     class ace_missileguidance : ace_missileguidance {
         enabled = 1;
-        seekerAngle = 350;
+        seekerAngle = 175;
     };
 };
 class ACE_Hellfire_AGM114N : ACE_Hellfire_AGM114K {
@@ -36,7 +36,7 @@ class ACE_Hellfire_AGM114N : ACE_Hellfire_AGM114K {
 class ACE_Hellfire_AGM114N_drone : ACE_Hellfire_AGM114N {
     class ace_missileguidance : ace_missileguidance {
         enabled = 1;
-        seekerAngle = 350;
+        seekerAngle = 175;
     };
 };
 class ACE_Hellfire_AGM114L : ACE_Hellfire_AGM114K {
@@ -45,19 +45,24 @@ class ACE_Hellfire_AGM114L : ACE_Hellfire_AGM114K {
     class ace_missileguidance : ace_missileguidance {};
 };
 class ACE_Hellfire_AGM114R9X : ACE_Hellfire_AGM114K {
+    displayName = "AGM-114R9X";
+    displayNameShort = "AGM-114R9X";
+    description = "AGM-114R9X";
+    descriptionShort = "AGM-114R9X";
     model = "\rksla3\rksla3-cvwp\agm\rksl_agm114r9x_fired.p3d";
     proxyShape = "\rksla3\rksla3-cvwp\agm\rksl_agm114r9x_proxy.p3d";
-    hit = 150;
-    indirectHit = 1;
-    indirectHitRange = 2;
-    warheadName = "HE";
+    hit = 175;
+    indirectHit = 2;
+    indirectHitRange = 1;
+    warheadName = "";
     submunitionAmmo = "";
-    explosionEffects = "";
+    explosionEffects = QGVAR(R9X_Impact);
+    SoundSetExplosion[] = { "jsrs_2025_shell_blunt_hit_soundset" };
     class ace_missileguidance;
 };
 class ACE_Hellfire_AGM114R9X_drone : ACE_Hellfire_AGM114R9X {
     class ace_missileguidance : ace_missileguidance {
         enabled = 1;
-        seekerAngle = 350;
+        seekerAngle = 175;
     };
 };

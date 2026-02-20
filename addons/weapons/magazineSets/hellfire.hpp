@@ -47,6 +47,7 @@ class PylonRack_4Rnd_ACE_Hellfire_AGM114L : PylonRack_4Rnd_ACE_Hellfire_AGM114K 
 // Hellfire R9X
 class PylonRack_4Rnd_ACE_Hellfire_AGM114R9X : PylonRack_4Rnd_ACE_Hellfire_AGM114K {
     displayName = "AGM-114R9X x4";
+    displayNameShort = "AGM-114R9X";
     ammo = "ACE_Hellfire_AGM114R9X";
     pylonWeapon = "ace_hellfire_launcher_R9X";
 };
