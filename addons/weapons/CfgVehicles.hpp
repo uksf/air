@@ -4,22 +4,22 @@ class CfgVehicles {
         model = "\rksla3\rksla3-cvwp\agm\rksl_agm114k_proxy.p3d";
     };
     class GVAR(crv7): ace_rearm_defaultCarriedObject {
-        model = "\rksla3\rksla3-aw159\weapons\rksla3_crv7_m151_fired";
+        model = "\rksla3\rksla3-aw159\weapons\rksla3_crv7_m151_fired.p3d";
     };
     class GVAR(ammo_Missile_BIM9X): ace_rearm_defaultCarriedObject {
-        model = "\A3\Weapons_F_Jets\Ammo\Missile_AA_08_F";
+        model = "\A3\Weapons_F_Jets\Ammo\Missile_AA_08_F.p3d";
     };
     class GVAR(ammo_Missile_AIM132): ace_rearm_defaultCarriedObject {
         model = "\rksla3\rksla3-cvwp\aam\rksl_aim132asraam_proxy.p3d";
     };
     class GVAR(ammo_Missile_AMRAAM_D): ace_rearm_defaultCarriedObject {
-        model = "\A3\Weapons_F_Jets\Ammo\Missile_AA_06_fly_F";
+        model = "\A3\Weapons_F_Jets\Ammo\Missile_AA_06_fly_F.p3d";
     };
     class GVAR(ammo_Bomb_SDB): ace_rearm_defaultCarriedObject {
         model = "\A3\Weapons_F_Sams\Ammo\Bomb_05_F.p3d";
     };
     class ace_rearm_Bo_GBU12_LGB: ace_rearm_defaultCarriedObject {
-        model = "\rksla3\rksla3-cvwp\bombs\rksl_us_pw2_gbu12_proxy.p3d";
+        model = "\rksla3\rksla3-cvwp\bombs\rksl_uk_pw4_500_proxy.p3d";
     };
     class GVAR(ammo_missile_brimstone3): ace_rearm_defaultCarriedObject {
         model = "\rksla3\rksla3-cvwp\agm\rksl_brimstone_3_proxy.p3d";
