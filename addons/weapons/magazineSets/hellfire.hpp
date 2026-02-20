@@ -12,13 +12,13 @@ class PylonRack_3Rnd_ACE_Hellfire_AGM114K : 6Rnd_ACE_Hellfire_AGM114K {
 };
 class PylonRack_4Rnd_ACE_Hellfire_AGM114K : 6Rnd_ACE_Hellfire_AGM114K {
     displayName = "AGM-114K x4";
-    model = "\rksla3\rksla3-cvwp\racks\еъ*Ч.p3d";
+    model = "\rksla3\rksla3-cvwp\racks\rksla3_m299_4_rack.p3d";
     hardpoints[] += { "B_HELLFIRE" };
 };
 class PylonRack_2Rnd_ACE_Hellfire_AGM114K_Drone : PylonRack_4Rnd_ACE_Hellfire_AGM114K {
     displayName = "AGM-114K x2";
     ammo = "ACE_Hellfire_AGM114K_drone";
-    model = "\rksla3\rksla3-cvwp\racks\оѝъ?ъ.p3d";
+    model = "\rksla3\rksla3-cvwp\racks\rksla3_m310_2_rack.p3d";
     count = 2;
     mass = 170;
     pylonWeapon = "ace_hellfire_launcher_drone";
@@ -32,7 +32,7 @@ class PylonRack_4Rnd_ACE_Hellfire_AGM114N : PylonRack_4Rnd_ACE_Hellfire_AGM114K 
 class PylonRack_2Rnd_ACE_Hellfire_AGM114N_Drone : PylonRack_4Rnd_ACE_Hellfire_AGM114N {
     displayName = "AGM-114N x2";
     ammo = "ACE_Hellfire_AGM114N_drone";
-    model = "\rksla3\rksla3-cvwp\racks\оѝъ?ъ.p3d";
+    model = "\rksla3\rksla3-cvwp\racks\rksla3_m310_2_rack.p3d";
     count = 2;
     mass = 170;
     pylonWeapon = "ace_hellfire_launcher_drone_N";
@@ -53,7 +53,7 @@ class PylonRack_4Rnd_ACE_Hellfire_AGM114R9X : PylonRack_4Rnd_ACE_Hellfire_AGM114
 class PylonRack_2Rnd_ACE_Hellfire_AGM114R9X_Drone : PylonRack_4Rnd_ACE_Hellfire_AGM114R9X {
     displayName = "AGM-114R9X x2";
     ammo = "ACE_Hellfire_AGM114R9X_drone";
-    model = "\rksla3\rksla3-cvwp\racks\оѝъ?ъ.p3d";
+    model = "\rksla3\rksla3-cvwp\racks\rksla3_m310_2_rack.p3d";
     count = 2;
     mass = 170;
     pylonWeapon = "ace_hellfire_launcher_drone_R9X";

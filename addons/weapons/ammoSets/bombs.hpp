@@ -5,12 +5,12 @@ class ammo_Bomb_LaserGuidedBase : LaserBombCore {
     indirectHitRange = 20;  // 12
 };
 class Bo_GBU12_LGB : ammo_Bomb_LaserGuidedBase {
-    model = "\rksla3\rksla3-cvwp\bombs\уС*їцгСЪѝњ.p3d";
-    proxyShape = "\rksla3\rksla3-cvwp\bombs\го?ФЬТђрл.p3d";
+    model = "\rksla3\rksla3-cvwp\bombs\rksl_us_pw2_gbu12_fired.p3d";
+    proxyShape = "\rksla3\rksla3-cvwp\bombs\rksl_us_pw2_gbu12_proxy.p3d";
 };
 class CUP_Bo_GBU12_LGB : Bo_GBU12_LGB {
-    model = "\rksla3\rksla3-cvwp\bombs\уС*їцгСЪѝњ.p3d";
-    proxyShape = "\rksla3\rksla3-cvwp\bombs\го?ФЬТђрл.p3d";
+    model = "\rksla3\rksla3-cvwp\bombs\rksl_us_pw2_gbu12_fired.p3d";
+    proxyShape = "\rksla3\rksla3-cvwp\bombs\rksl_us_pw2_gbu12_proxy.p3d";
 };
 class ammo_Bomb_SmallDiameterBase : ammo_Bomb_LaserGuidedBase {
     hit = 4000; // 1800

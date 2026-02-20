@@ -8,13 +8,13 @@ class CfgAmmo {
         ace_rearm_dummy = QGVAR(crv7);
         ACE_caliber = 70;
         ACE_hearing_caliber = 15;
-        model = "\rksla3\rksla3-cvwp\rockets\ѝп*пЩ.p3d";
+        model = "\rksla3\rksla3-cvwp\rockets\rksl_crv7_m151_fired.p3d";
     };
     class UK3CB_BAF_M_CRV7_Base : MissileBase {
         ace_rearm_dummy = QGVAR(crv7);
         ACE_caliber = 70;
         ACE_hearing_caliber = 15;
-        model = "\rksla3\rksla3-cvwp\rockets\ѝп*пЩ.p3d";
+        model = "\rksla3\rksla3-cvwp\rockets\rksl_crv7_m151_fired.p3d";
     };
     class M_AT;
     class rksla3_aw159_crv7_amo_M151 : M_AT {

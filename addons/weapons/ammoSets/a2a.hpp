@@ -1,7 +1,7 @@
 class M_Air_AA : MissileBase {
     ace_rearm_dummy = QGVAR(ammo_Missile_AIM132);
-    model = "\rksla3\rksla3-cvwp\aam\Х?њэЦЩ.p3d";
-    proxyShape = "\rksla3\rksla3-cvwp\aam\ў*рлм.p3d";
+    model = "\rksla3\rksla3-cvwp\aam\rksl_aim132asraam_fired.p3d";
+    proxyShape = "\rksla3\rksla3-cvwp\aam\rksl_aim132asraam_proxy.p3d";
     hit = 400;
     indirectHitRange = 10;
     proximityExplosionDistance = 20;

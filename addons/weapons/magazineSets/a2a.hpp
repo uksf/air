@@ -1,6 +1,6 @@
 class ace_missile_aim9_PylonRack_aim132_x1 : ace_missile_aim9_PylonRack_1Rnd_aim132 {
     displayName = "ASRAAM x1";
-    model = "\rksla3\rksla3-cvwp\racks\?ѓєёрѝѕхпі.p3d";
+    model = "\rksla3\rksla3-cvwp\racks\rksla3_lau127.p3d";
     hardpoints[] += { "B_AIM132_RAIL_ACE_Only" };
 };
 class ace_missile_aim9_PylonRack_aim132_x2 : ace_missile_aim9_PylonRack_aim132_x1 {

@@ -9,7 +9,7 @@ class ace_missile_gbu_PylonMissile_Bomb_GBU12_x1_Drone : ace_missile_gbu_PylonMi
 };
 class ace_missile_gbu_PylonRack_Bomb_GBU12_x2 : PylonRack_Bomb_GBU12_x2 {
     displayName = "GBU-12 x2";
-    model = "\rksla3\rksla3-cvwp\racks\ЭпѝпўУе?Ь.p3d";
+    model = "\rksla3\rksla3-cvwp\racks\rksla3_bru61.p3d";
     hardpoints[] += { "B_GBU12_DUAL_RAIL_ACE_Only" };
 };
 class ace_missile_gbu_PylonRack_Bomb_GBU12_x3 : ace_missile_gbu_PylonRack_Bomb_GBU12_x2 {
