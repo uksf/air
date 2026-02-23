@@ -41,6 +41,7 @@ class LaserBombCore;
 class M_Scalpel_AT;
 class B_35mm_AA;
 
+#include "ammoSets\rockets.hpp"
 #include "ammoSets\a2a.hpp"
 #include "ammoSets\bombs.hpp"
 #include "ammoSets\bullets.hpp"

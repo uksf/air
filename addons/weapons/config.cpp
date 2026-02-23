@@ -20,6 +20,7 @@ class CfgPatches {
 };
 
 class ace_missileguidance_type_AMRAAM;
+class ace_missileguidance_type_Dagr;
 class ace_missileguidance_type_Jdam;
 class ace_missileguidance_type_CruiseMissile;
 

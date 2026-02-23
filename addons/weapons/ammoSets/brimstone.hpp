@@ -1,8 +1,19 @@
+class GVAR(penetrator_brimstone) : ammo_Penetrator_Base {
+    caliber = 80;
+    warheadName = "TandemHEAT";
+    hit = 5000;
+};
 class rksla3_ammo_brimstone_2;
 class rksla3_ammo_brimstone_3 : rksla3_ammo_brimstone_2 {
+    hit = 300; // 210
+    indirectHit = 50; // 70
+    indirectHitRange = 5; // 11
+    submunitionAmmo = QGVAR(penetrator_brimstone);
+    timeToLive = 40;
     maneuvrability = 0;
+    SoundSetExplosion[] = { "JPEX_Missile_EXPLOSION_SoundSet", "JPEX_Missile_REFLECTOR_SoundSet", "JPEX_Big_Debris_SoundSet" };
     ace_rearm_dummy = QGVAR(ammo_missile_brimstone3);
-    SoundSetExplosion[] = { "JPEX_Missile_EXPLOSION_SoundSet", "JPEX_Missile_REFLECTOR_SoundSet" };
+    effectsMissileInit = "PylonBackEffects";
 
     weaponLockSystem = "8";
     airLock = 1;

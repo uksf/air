@@ -1,10 +1,18 @@
+class GVAR(penetrator_spear) : ammo_Penetrator_Base {
+    caliber = 80;
+    warheadName = "TandemHEAT";
+    hit = 9000;
+};
 class rksla3_ammo_spear3 : M_Scalpel_AT {
-    hit = 200;
-    indirectHit = 60;
-    indirectHitRange = 5;
+    hit = 400; // 200
+    indirectHit = 60; // 60
+    indirectHitRange = 3; // 5
+    submunitionAmmo = QGVAR(penetrator_spear);
+    timeToLive = 60;
     maneuvrability = 0;
+    SoundSetExplosion[] = { "JPEX_Missile_EXPLOSION_SoundSet", "JPEX_Missile_REFLECTOR_SoundSet", "JPEX_Big_Debris_SoundSet" };
     ace_rearm_dummy = QGVAR(ammo_missile_spear3);
-    SoundSetExplosion[] = { "JPEX_Missile_EXPLOSION_SoundSet", "JPEX_Missile_REFLECTOR_SoundSet" };
+    effectsMissileInit = "PylonBackEffects";
 
     weaponLockSystem = "8";
     airLock = 1;
@@ -12,6 +20,7 @@ class rksla3_ammo_spear3 : M_Scalpel_AT {
     laserLock = 0;
     irLock = 0;
 
+    flightProfiles[] = {};
     missileLockMaxDistance = 20000;
     missileLockMinDistance = 250;
     missileLockMaxSpeed = 600;

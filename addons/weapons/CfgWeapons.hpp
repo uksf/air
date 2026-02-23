@@ -36,6 +36,6 @@ class CfgWeapons {
 #include "weaponSets\bullets.hpp"
 #include "weaponSets\flares.hpp"
 #include "weaponSets\rockets.hpp"
-
+#include "weaponSets\spear3.hpp"
 #include "weaponSets\hellfire.hpp"
 };
