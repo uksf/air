@@ -33,9 +33,10 @@ class CfgWeapons {
 
 #include "weaponSets\a2a.hpp"
 #include "weaponSets\bombs.hpp"
+#include "weaponSets\brimstone.hpp"
 #include "weaponSets\bullets.hpp"
 #include "weaponSets\flares.hpp"
+#include "weaponSets\hellfire.hpp"
 #include "weaponSets\rockets.hpp"
 #include "weaponSets\spear3.hpp"
-#include "weaponSets\hellfire.hpp"
 };

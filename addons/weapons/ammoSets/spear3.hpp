@@ -20,7 +20,7 @@ class rksla3_ammo_spear3 : M_Scalpel_AT {
     laserLock = 0;
     irLock = 0;
 
-    flightProfiles[] = {};
+    flightProfiles[] = { "Direct" };
     missileLockMaxDistance = 20000;
     missileLockMinDistance = 250;
     missileLockMaxSpeed = 600;

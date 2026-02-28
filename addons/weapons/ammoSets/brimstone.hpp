@@ -21,6 +21,7 @@ class rksla3_ammo_brimstone_3 : rksla3_ammo_brimstone_2 {
     laserLock = 0;
     irLock = 0;
 
+    flightProfiles[] = { "Direct" };
     missileLockMaxDistance = 12000;
     missileLockMinDistance = 250;
     missileLockMaxSpeed = 600;
