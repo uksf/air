@@ -4,16 +4,24 @@
         Tim Beswick
 
     Description:
-        Runs on get out
+        Handles crew getting out — stops damage PFH, clears cooldowns
 
     Parameters:
-        0: Heli <OBJECT>
-        1: Position <STRING>
+        0: Helicopter <OBJECT>
+        1: Role <STRING>
         2: Unit <OBJECT>
-        3: Turret <ARRAY>
 
     Return value:
         Nothing
 */
+params ["_helicopter", "_role", "_unit"];
 
-[GVAR(damageHandlerPFHID)] call CBA_fnc_removePerFrameHandler;
+if (_unit isNotEqualTo player) exitWith {};
+if (_role isNotEqualTo "driver" && {_role isNotEqualTo "gunner"}) exitWith {};
+
+if (_role isEqualTo "driver" && {GVAR(damageHandlerPFHID) isNotEqualTo -1}) then {
+    [GVAR(damageHandlerPFHID)] call CBA_fnc_removePerFrameHandler;
+    GVAR(damageHandlerPFHID) = -1;
+};
+
+GVAR(cooldowns) = createHashMap;

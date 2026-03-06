@@ -4,19 +4,21 @@
         Tim Beswick
 
     Description:
-        Runs on get in
+        Handles crew getting in — starts damage warning PFH for pilot
 
     Parameters:
-        0: Heli <OBJECT>
-        1: Position <STRING>
+        0: Helicopter <OBJECT>
+        1: Role <STRING>
         2: Unit <OBJECT>
-        3: Turret <ARRAY>
 
     Return value:
         Nothing
 */
-params ["_heli"];
+params ["_helicopter", "_role", "_unit"];
 
-if (player isEqualTo (driver _heli) || {player isEqualTo (gunner _heli)}) then {
-    [_heli] call FUNC(warning);
+if (_unit isNotEqualTo player) exitWith {};
+if (_role isNotEqualTo "driver" && {_role isNotEqualTo "gunner"}) exitWith {};
+
+if (_role isEqualTo "driver" && {GVAR(damageHandlerPFHID) isEqualTo -1}) then {
+    [_helicopter] call FUNC(warning);
 };

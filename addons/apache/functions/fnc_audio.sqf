@@ -4,26 +4,20 @@
         Tim Beswick
 
     Description:
-        Plays audio from queue with delays
+        Plays a warning sound if not on cooldown for the given category
 
     Parameters:
-        None
+        0: Sound class name <STRING>
+        1: Cooldown key <STRING>
 
     Return value:
         Nothing
 */
-// TODO: Make this use a proper queue
+params ["_sound", "_cooldownKey"];
 
-if (GVAR(audioQueue) isEqualTo []) exitWith {
-    GVAR(audioProcessing) = false;
-};
+private _cooldownDuration = GVAR(soundDurations) getOrDefault [_sound, 1.5];
+private _lastPlayed = GVAR(cooldowns) getOrDefault [_cooldownKey, -1];
+if (CBA_missionTime - _lastPlayed < _cooldownDuration) exitWith {};
 
-if (GVAR(audioProcessing)) exitWith {};
-GVAR(audioProcessing) = true;
-
-private _audio = GVAR(audioQueue) deleteAt 0;
-_audio params ["_sound", "_delay"];
-
-playsound [_sound, true];
-
-[{GVAR(audioProcessing) = false; call FUNC(audio)}, [], _delay] call CBA_fnc_waitAndExecute;
+GVAR(cooldowns) set [_cooldownKey, CBA_missionTime];
+playSound [_sound, true];

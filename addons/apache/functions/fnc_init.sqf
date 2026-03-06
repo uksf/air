@@ -4,26 +4,26 @@
         Tim Beswick
 
     Description:
-        Inits Apache
+        Initialises Apache
 
     Parameters:
-        0: Heli <OBJECT>
+        0: Helicopter <OBJECT>
 
     Return value:
         Nothing
 */
-params ["_heli"];
+params ["_helicopter"];
 
-if (local _heli) then {
-    _heli setVariable [QGVAR(previousTailDamage), 0, true];
-    _heli setVariable [QGVAR(previousMainDamage), 0, true];
-    _heli setVariable [QGVAR(previousE1Damage), 0, true];
-    _heli setVariable [QGVAR(previousE2Damage), 0, true];
-    _heli setVariable [QGVAR(previousGunDamage), 0, true];
-    _heli setVariable [QGVAR(previousInsDamage), 0, true];
-    _heli setVariable [QGVAR(cmMode), 0, true];
+if (local _helicopter) then {
+    _helicopter setVariable [QGVAR(previousTailDamage), 0, true];
+    _helicopter setVariable [QGVAR(previousMainDamage), 0, true];
+    _helicopter setVariable [QGVAR(previousE1Damage), 0, true];
+    _helicopter setVariable [QGVAR(previousE2Damage), 0, true];
+    _helicopter setVariable [QGVAR(previousGunDamage), 0, true];
+    _helicopter setVariable [QGVAR(previousInsDamage), 0, true];
+    _helicopter setVariable [QGVAR(cmMode), 0, true];
 };
 
-if (player in _heli) then {
-    [_heli] call FUNC(getIn);
+if (player isEqualTo driver _helicopter) then {
+    [_helicopter, "driver", player] call FUNC(getIn);
 };
