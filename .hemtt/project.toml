@@ -14,7 +14,4 @@ include = [
 ]
 
 [version]
-git_hash = 8
-
-[signing]
-authority = "uksf_air_{version}"
+git_hash = 0
