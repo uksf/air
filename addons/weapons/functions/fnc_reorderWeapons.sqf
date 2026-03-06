@@ -43,6 +43,10 @@ _orderedWeapons append _remaining;
 // Check if already in correct order
 if (_orderedWeapons isEqualTo _currentWeapons) exitWith {};
 
+// Save all magazine state before removing weapons
+// magazinesAllTurrets returns [magazine, turretPath, ammoCount]
+private _savedMagazines = magazinesAllTurrets _vehicle;
+
 // Remove all weapons then re-add in desired order
 {
     _vehicle removeWeapon _x;
@@ -51,3 +55,15 @@ if (_orderedWeapons isEqualTo _currentWeapons) exitWith {};
 {
     _vehicle addWeapon _x;
 } forEach _orderedWeapons;
+
+// Remove default magazines added by addWeapon, then restore the saved state
+{
+    _x params ["_mag", "_turretPath"];
+    _vehicle removeMagazineTurret [_mag, _turretPath];
+} forEach magazinesAllTurrets _vehicle;
+
+{
+    _x params ["_mag", "_turretPath", "_ammoCount"];
+    _vehicle addMagazineTurret [_mag, _turretPath];
+    _vehicle setMagazineTurretAmmo [_mag, _ammoCount, _turretPath];
+} forEach _savedMagazines;
