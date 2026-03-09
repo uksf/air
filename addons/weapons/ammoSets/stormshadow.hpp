@@ -1,10 +1,14 @@
 class GVAR(payload_stormshadow) : ammo_Penetrator_Base {
     caliber = 80;
     warheadName = "HE";
-    hit = 12000; // 5800
-    indirectHit = 1500; // 1200
+    hit = 12000;            // 5800
+    indirectHit = 1500;     // 1200
     indirectHitRange = 18;  // 20
     explosive = 1;
+    explosionEffects = "BombExplosion";
+    CraterEffects = "BombCrater";
+    triggerOnImpact = 1;
+    deleteParentWhenTriggered = 0;
 };
 class GVAR(penetrator_stormshadow) : ammo_Penetrator_Base {
     caliber = 80;
@@ -15,10 +19,10 @@ class GVAR(penetrator_stormshadow) : ammo_Penetrator_Base {
     explosive = 0;
     submunitionAmmo = QGVAR(payload_stormshadow);
     submunitionDirectionType = "SubmunitionModelDirection";
-    submunitionInitSpeed = 1000;
-    submunitionParentSpeedCoef = 0;
-    submunitionInitialOffset[] = {0, 0, -0.5};
-    triggerOnImpact = 1;
+    submunitionParentSpeedCoef = 1;
+    submunitionInitialOffset[] = { 0, 0, -0.5 };
+    triggerDistance = 1;
+    triggerOnImpact = 0;
     deleteParentWhenTriggered = 0;
 };
 class rksla3_ammo_kepd350;
@@ -27,9 +31,14 @@ class rksla3_ammo_stormshadow : rksla3_ammo_kepd350 {
     indirectHit = 10;
     indirectHitRange = 1;
     submunitionAmmo = QGVAR(penetrator_stormshadow);
+    submunitionDirectionType = "SubmunitionModelDirection";
+    submunitionParentSpeedCoef = 1;
+    submunitionInitialOffset[] = { 0, 0, 0 };
+    triggerDistance = 1;
+    triggerOnImpact = 0;
     maneuvrability = 0;
-    explosionEffects = "BombExplosion";
-    CraterEffects = "BombCrater";
+    explosionEffects = "";
+    CraterEffects = "";
     SoundSetExplosion[] = { "JPEX_Missile_EXPLOSION_SoundSet", "JPEX_Missile_REFLECTOR_SoundSet", "JPEX_Big_Debris_SoundSet" };
     ace_rearm_dummy = QGVAR(ammo_missile_stormshadow);
     effectsMissileInit = "PylonBackEffects_InitDelay";
@@ -65,7 +74,7 @@ class rksla3_ammo_stormshadow : rksla3_ammo_kepd350 {
                 transitionCondition = "";
                 seekerType = "SALH";
             };
-            states[] = {"cruise", "terminal"};
+            states[] = { "cruise", "terminal" };
         };
     };
 };

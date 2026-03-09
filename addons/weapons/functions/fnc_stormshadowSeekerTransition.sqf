@@ -32,7 +32,7 @@ private _stage = _attackProfileStateParams param [0, 0];
 if (_stage < 6) exitWith { false };
 
 // Check if SALH can find an active laser spot with the configured code
-private _laserResult = [getPosASL _projectile, vectorDir _projectile, _seekerAngle, _seekerMaxRange, [_wavelengthMin, _wavelengthMax], _laserCode, _projectile] call EFUNC(laser,seekerFindLaserSpot);
+private _laserResult = [getPosASL _projectile, vectorDir _projectile, _seekerAngle, _seekerMaxRange, [_wavelengthMin, _wavelengthMax], _laserCode, _projectile] call ace_laser_fnc_seekerFindLaserSpot;
 private _foundTargetPosition = _laserResult select 0;
 
 !isNil "_foundTargetPosition"
