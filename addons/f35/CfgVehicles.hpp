@@ -11,19 +11,6 @@ class CfgVehicles {
         scope = 1;
         author = QUOTE(UKSF);
         displayName = "F-35B Lightning II";
-        EGVAR(weapons,weaponOrder)[] = {
-            "CUP_weapon_mastersafe",
-            "Laserdesignator_pilotCamera",
-            QEGVAR(weapons,gunpod),
-            "ace_missile_aim9_aim132",
-            "ace_missile_aim120_aim120Launcher",
-            "rksla3_wpn_meteor",
-            "ace_missile_gbu_12",
-            "ace_missile_sdb_sdb",
-            "rksla3_wpn_brimstone_3",
-            "rksla3_wpn_spear3",
-            "rksla3_wpn_stormshadow"
-        };
         unitInfoType = "RscUnitInfoAirPlaneNoSpeed";
         unitInfoTypeLite = "RscUnitInfoAirPlaneNoSpeed";
         driverWeaponsInfoType = "RscOptics_CAS_01_TGP";
@@ -1100,6 +1087,19 @@ class CfgVehicles {
         EGVAR(common,towbarRotation)[] = { 0, 1, 0.015 };
         EGVAR(common,towbarActionMemoryPoint) = "Wheel_1_center";
         UGVAR(radios,rackChannels)[] = { 31, 40, 41 };
+        EGVAR(weapons,weaponOrder)[] = {
+            "CUP_weapon_mastersafe",
+            "Laserdesignator_pilotCamera",
+            QEGVAR(weapons,gunpod),
+            "ace_missile_aim9_aim132",
+            "ace_missile_aim120_aim120Launcher",
+            "rksla3_wpn_meteor",
+            "ace_missile_gbu_12",
+            "ace_missile_sdb_sdb",
+            "rksla3_wpn_brimstone_3",
+            "rksla3_wpn_spear3",
+            "rksla3_wpn_stormshadow"
+        };
         AAE_Have_AB = 1;
         AB_Source = "afterburner_hide";
         AAE_Alarm_Int = "AAE_Alarm";
