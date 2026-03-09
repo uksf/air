@@ -5,10 +5,10 @@ class GVAR(payload_stormshadow) : ammo_Penetrator_Base {
     indirectHit = 1500;     // 1200
     indirectHitRange = 18;  // 20
     explosive = 1;
-    explosionEffects = "BombExplosion";
-    CraterEffects = "BombCrater";
     triggerOnImpact = 1;
     deleteParentWhenTriggered = 0;
+    explosionEffects = "BombExplosion";
+    CraterEffects = "BombCrater";
 };
 class GVAR(penetrator_stormshadow) : ammo_Penetrator_Base {
     caliber = 80;
@@ -24,6 +24,8 @@ class GVAR(penetrator_stormshadow) : ammo_Penetrator_Base {
     triggerDistance = 1;
     triggerOnImpact = 0;
     deleteParentWhenTriggered = 0;
+    explosionEffects = "";
+    CraterEffects = "";
 };
 class rksla3_ammo_kepd350;
 class rksla3_ammo_stormshadow : rksla3_ammo_kepd350 {
