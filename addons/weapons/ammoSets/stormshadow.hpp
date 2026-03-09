@@ -5,9 +5,6 @@ class GVAR(payload_stormshadow) : ammo_Penetrator_Base {
     indirectHit = 1500; // 1200
     indirectHitRange = 18;  // 20
     explosive = 1;
-    explosionEffects = "BombExplosion";
-    CraterEffects = "BombCrater";
-    SoundSetExplosion[] = { "JPEX_Missile_EXPLOSION_SoundSet", "JPEX_Missile_REFLECTOR_SoundSet", "JPEX_Big_Debris_SoundSet" };
 };
 class GVAR(penetrator_stormshadow) : ammo_Penetrator_Base {
     caliber = 80;
@@ -31,6 +28,8 @@ class rksla3_ammo_stormshadow : rksla3_ammo_kepd350 {
     indirectHitRange = 1;
     submunitionAmmo = QGVAR(penetrator_stormshadow);
     maneuvrability = 0;
+    explosionEffects = "BombExplosion";
+    CraterEffects = "BombCrater";
     SoundSetExplosion[] = { "JPEX_Missile_EXPLOSION_SoundSet", "JPEX_Missile_REFLECTOR_SoundSet", "JPEX_Big_Debris_SoundSet" };
     ace_rearm_dummy = QGVAR(ammo_missile_stormshadow);
     effectsMissileInit = "PylonBackEffects_InitDelay";
@@ -49,5 +48,24 @@ class rksla3_ammo_stormshadow : rksla3_ammo_kepd350 {
 
     class ace_missileguidance : ace_missileguidance_type_CruiseMissile {
         enabled = 1;
+        seekerTypes[] = { "GPS", "SALH" };
+        seekLastTargetPos = 1;
+
+        seekerAngle = 90;
+        seekerAccuracy = 1;
+        seekerMinRange = 5;
+        seekerMaxRange = 25000;
+
+        class seekerStates {
+            class cruise {
+                transitionCondition = QFUNC(stormshadowSeekerTransition);
+                seekerType = "GPS";
+            };
+            class terminal {
+                transitionCondition = "";
+                seekerType = "SALH";
+            };
+            states[] = {"cruise", "terminal"};
+        };
     };
 };

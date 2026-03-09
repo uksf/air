@@ -33,7 +33,7 @@ class rksla3_ammo_spear3 : M_Scalpel_AT {
         pitchRate = 35;
         yawRate = 35;
         defaultSeekerType = "MillimeterWaveRadar";
-        seekerTypes[] = { "MillimeterWaveRadar" };
+        seekerTypes[] = { "MillimeterWaveRadar", "SALH" };
         defaultSeekerLockMode = "LOBL";
         seekerLockModes[] = { "LOBL" };
         defaultNavigationType = "Direct";

@@ -1,2 +1,2 @@
 PREP(correctPilotPylon);
-PREP(reorderWeapons);
+PREP(stormshadowSeekerTransition);

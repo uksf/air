@@ -33,7 +33,7 @@ class rksla3_ammo_brimstone_3 : rksla3_ammo_brimstone_2 {
         pitchRate = 40;
         yawRate = 40;
         defaultSeekerType = "MillimeterWaveRadar";
-        seekerTypes[] = { "MillimeterWaveRadar" };
+        seekerTypes[] = { "MillimeterWaveRadar", "SALH" };
         defaultSeekerLockMode = "LOBL";
         seekerLockModes[] = { "LOBL" };
         defaultNavigationType = "Direct";
