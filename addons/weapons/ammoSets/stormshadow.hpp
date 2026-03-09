@@ -5,6 +5,9 @@ class GVAR(payload_stormshadow) : ammo_Penetrator_Base {
     indirectHit = 1500; // 1200
     indirectHitRange = 18;  // 20
     explosive = 1;
+    explosionEffects = "BombExplosion";
+    CraterEffects = "BombCrater";
+    SoundSetExplosion[] = { "JPEX_Missile_EXPLOSION_SoundSet", "JPEX_Missile_REFLECTOR_SoundSet", "JPEX_Big_Debris_SoundSet" };
 };
 class GVAR(penetrator_stormshadow) : ammo_Penetrator_Base {
     caliber = 80;
