@@ -12,6 +12,9 @@
 
     Return Value:
         Nothing
+
+    Example:
+        [_uav, _state] call uksf_air_reaper_fnc_immobilise
 */
 params ["_uav", "_state"];
 

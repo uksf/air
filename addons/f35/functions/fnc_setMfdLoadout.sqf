@@ -11,6 +11,9 @@
 
     Return Value:
         Nothing
+
+    Example:
+        [_plane] call uksf_air_f35_fnc_setMfdLoadout
 */
 #define AIM9 ["ace_missile_aim9_PylonRack_aim132_x1", "ace_missile_aim9_PylonRack_aim132_x2"]
 #define AMMRAM ["ace_missile_aim120_PylonRack_Missile_d_x1", "ace_missile_aim120_PylonRack_Missile_d_x2", "ace_missile_aim120_PylonMissile_Missile_d_INT_x1", "rksla3_mag_meteor_lau127x1", "rksla3_mag_meteor_directx1"]

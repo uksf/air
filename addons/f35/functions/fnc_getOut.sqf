@@ -11,6 +11,9 @@
 
     Return Value:
         Nothing
+
+    Example:
+        call uksf_air_f35_fnc_getOut
 */
 
 [GVAR(pilotGroupPFH)] call CBA_fnc_removePerFrameHandler;

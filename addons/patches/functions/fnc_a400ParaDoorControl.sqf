@@ -15,6 +15,9 @@
 
     Return Value:
         Nothing
+
+    Example:
+        [_plane, _side, _state] call uksf_air_patches_fnc_a400ParaDoorControl
 */
 params ["_plane", "_side", "_state"];
 

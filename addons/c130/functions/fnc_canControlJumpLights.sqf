@@ -16,6 +16,9 @@
 
     Return Value:
         True if jump light control possible <BOOLEAN>
+
+    Example:
+        [_plane, _newState] call uksf_air_c130_fnc_canControlJumpLights
 */
 params ["_plane", ["_newState", 0]];
 

@@ -11,6 +11,9 @@
 
     Return Value:
         Nothing
+
+    Example:
+        call uksf_air_reaper_fnc_addDroneActions
 */
 
 private _action = [QGVAR(droneActionBehaviour), "Behaviour", "", {}, {true}, {

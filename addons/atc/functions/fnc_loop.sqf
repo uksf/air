@@ -12,6 +12,9 @@
 
     Return Value:
         None
+
+    Example:
+        [_player, _state] call uksf_air_atc_fnc_loop
 */
 
 #define INTERVAL 1

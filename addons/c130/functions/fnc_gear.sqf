@@ -12,6 +12,9 @@
 
     Return Value:
         Nothing
+
+    Example:
+        [_plane, _gearState] call uksf_air_c130_fnc_gear
 */
 params ["_plane", "_gearState"];
 

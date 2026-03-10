@@ -11,6 +11,9 @@
 
     Return Value:
         Nothing
+
+    Example:
+        call uksf_air_common_fnc_aaeCamshake
 */
 private _plane = _this;
 

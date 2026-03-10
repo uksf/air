@@ -12,6 +12,9 @@
 
     Return Value:
         Block keypress <BOOLEAN>
+
+    Example:
+        [_animation, _action] call uksf_air_equipment_fnc_marshallActionKeybind
 */
 params ["_animation", "_action"];
 

@@ -11,6 +11,9 @@
 
     Return Value:
         Nothing
+
+    Example:
+        [_plane] call uksf_air_f35_fnc_setNamePlate
 */
 #define UID_BESWICK "76561198041153310"
 #define UID_JOHNSON "76561198006819449"

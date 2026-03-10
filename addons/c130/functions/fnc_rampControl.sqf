@@ -12,6 +12,9 @@
 
     Return Value:
         Nothing
+
+    Example:
+        [_plane, _newPosition] call uksf_air_c130_fnc_rampControl
 */
 #define RAMP_HALF 0.6
 

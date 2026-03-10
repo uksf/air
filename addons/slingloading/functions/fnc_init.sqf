@@ -11,6 +11,9 @@
 
     Return Value:
         Nothing
+
+    Example:
+        call uksf_air_slingloading_fnc_init
 */
 
 FUNC(Get_Sling_Load_Points) = {

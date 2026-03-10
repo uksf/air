@@ -16,6 +16,9 @@
 
     Return Value:
         Nothing
+
+    Example:
+        [_plane, _newState] call uksf_air_c130_fnc_jumpLightControl
 */
 params ["_plane", ["_newState", 0]];
 

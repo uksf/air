@@ -16,6 +16,9 @@
 
     Return Value:
         Nothing
+
+    Example:
+        [_args, _idPFH] call uksf_air_reaper_fnc_handleDronePFH
 */
 params ["_args", "_idPFH"];
 _args params ["_uav", "_seat", "_heightChanged", "_lastWaypoint"];

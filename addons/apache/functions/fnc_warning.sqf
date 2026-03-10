@@ -12,6 +12,9 @@
 
     Return value:
         Nothing
+
+    Example:
+        [_helicopter] call uksf_air_apache_fnc_warning
 */
 params ["_helicopter"];
 

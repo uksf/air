@@ -12,6 +12,9 @@
 
     Return Value:
         Boolean
+
+    Example:
+        [_vehicle, _unit] call uksf_air_common_fnc_canStaticLineJump
 */
 params ["_vehicle", "_unit"];
 

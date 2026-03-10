@@ -11,6 +11,9 @@
 
     Return Value:
         Nothing
+
+    Example:
+        [_position] call uksf_air_slingloading_fnc_operateRopes
 */
 params ["_position"];
 

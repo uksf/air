@@ -11,5 +11,8 @@
 
     Return Value:
         Nothing
+
+    Example:
+        call uksf_air_common_fnc_aaeCamshakeWrapper
 */
 call FUNC(aaeCamshake);

@@ -11,6 +11,9 @@
 
     Return Value:
         Nothing
+
+    Example:
+        [_plane, _newSpeedBrake] call uksf_air_f35_fnc_animateSpeedBreak
 */
 params ["_plane", "_newSpeedBrake"];
 

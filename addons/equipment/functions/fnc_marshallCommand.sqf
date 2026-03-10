@@ -14,6 +14,9 @@
 
     Return Value:
         None
+
+    Example:
+        [_unit, _animations] call uksf_air_equipment_fnc_marshallCommand
 */
 params ["_unit", "_animations"];
 _animations params ["_animation", "_action"];

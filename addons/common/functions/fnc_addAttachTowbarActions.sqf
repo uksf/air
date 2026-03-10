@@ -11,6 +11,9 @@
 
     Return Value:
         Nothing
+
+    Example:
+        [_aircraft] call uksf_air_common_fnc_addAttachTowbarActions
 */
 params ["_aircraft"];
 

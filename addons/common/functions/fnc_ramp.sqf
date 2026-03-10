@@ -11,6 +11,9 @@
 
     Return Value:
         Nothing
+
+    Example:
+        call uksf_air_common_fnc_ramp
 */
 
 private _vehicle = vehicle ACE_player;

@@ -11,6 +11,9 @@
 
     Return Value:
         Nothing
+
+    Example:
+        [_uav] call uksf_air_reaper_fnc_init
 */
 params ["_uav"];
 

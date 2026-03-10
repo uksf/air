@@ -11,6 +11,9 @@
 
     Return Value:
         None
+
+    Example:
+        [_vehicle] call uksf_air_weapons_fnc_correctPilotPylon
 */
 params ["_vehicle"];
 

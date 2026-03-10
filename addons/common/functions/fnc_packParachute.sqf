@@ -12,6 +12,9 @@
 
     Return Value:
         None
+
+    Example:
+        [_chute, _unit] call uksf_air_common_fnc_packParachute
 */
 params ["_chute", "_unit"];
 

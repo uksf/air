@@ -14,6 +14,9 @@
 
     Return Value:
         True if control possible <BOOLEAN>
+
+    Example:
+        [_plane, _canLoadmasterControl] call uksf_air_common_fnc_canControl
 */
 params ["_plane", ["_canLoadmasterControl", false]];
 

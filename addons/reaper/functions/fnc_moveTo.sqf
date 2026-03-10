@@ -12,6 +12,9 @@
 
     Return Value:
         Nothing
+
+    Example:
+        [_uav, _type] call uksf_air_reaper_fnc_moveTo
 */
 params ["_uav", "_type"];
 

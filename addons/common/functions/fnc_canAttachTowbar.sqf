@@ -14,6 +14,9 @@
 
     Return Value:
         True if can attach/detach <BOOLEAN>
+
+    Example:
+        [_aircraft, _attach] call uksf_air_common_fnc_canAttachTowbar
 */
 params ["_aircraft", "_attach"];
 

@@ -12,6 +12,9 @@
 
     Return Value:
         None
+
+    Example:
+        [_vehicle, _unit] call uksf_air_common_fnc_staticLineJump
 */
 params ["_vehicle", "_unit"];
 

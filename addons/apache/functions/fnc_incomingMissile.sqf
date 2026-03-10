@@ -14,6 +14,9 @@
 
     Return value:
         Nothing
+
+    Example:
+        [_aircraft, _missileType, _hostile] call uksf_air_apache_fnc_incomingMissile
 */
 #define MISSILE_WARNING_COOLDOWN 5
 

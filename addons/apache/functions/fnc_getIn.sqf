@@ -13,6 +13,9 @@
 
     Return value:
         Nothing
+
+    Example:
+        [_helicopter, _role, _unit] call uksf_air_apache_fnc_getIn
 */
 params ["_helicopter", "_role", "_unit"];
 

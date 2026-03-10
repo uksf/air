@@ -15,6 +15,9 @@
 
     Return Value:
         Should transition <BOOL>
+
+    Example:
+        [_args] call uksf_air_weapons_fnc_stormshadowSeekerTransition
 */
 
 params ["_args"];

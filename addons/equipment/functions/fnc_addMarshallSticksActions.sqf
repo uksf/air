@@ -11,6 +11,9 @@
 
     Return Value:
         None
+
+    Example:
+        call uksf_air_equipment_fnc_addMarshallSticksActions
 */
 
 private _fnc_getChildren = {

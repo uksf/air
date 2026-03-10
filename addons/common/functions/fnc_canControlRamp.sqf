@@ -12,6 +12,9 @@
 
     Return Value:
         True if ramp control possible <BOOLEAN>
+
+    Example:
+        [_plane, _newPosition] call uksf_air_common_fnc_canControlRamp
 */
 params ["_plane", ["_newPosition", 0]];
 

@@ -12,6 +12,9 @@
 
     Return value:
         Nothing
+
+    Example:
+        [_sound, _cooldownKey] call uksf_air_apache_fnc_audio
 */
 params ["_sound", "_cooldownKey"];
 

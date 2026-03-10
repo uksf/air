@@ -11,6 +11,9 @@
 
     Return Value:
         None
+
+    Example:
+        [_aircraft] call uksf_air_atc_fnc_getMarker
 */
 params ["_aircraft"];
 

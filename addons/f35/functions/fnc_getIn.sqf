@@ -11,6 +11,9 @@
 
     Return Value:
         Nothing
+
+    Example:
+        [_plane] call uksf_air_f35_fnc_getIn
 */
 params ["_plane"];
 
