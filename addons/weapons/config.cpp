@@ -41,6 +41,6 @@ class PreloadTextures {
     class CfgInGameUI {
         class CfgWeaponModeTextures {
             LOFT = "*";
-        }
+        };
     };
 };
