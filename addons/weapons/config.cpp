@@ -24,9 +24,9 @@ class ace_missileguidance_type_Dagr;
 class ace_missileguidance_type_Jdam;
 class ace_missileguidance_type_CruiseMissile;
 
-#include "CfgExplosionEffects.hpp"
 #include "CfgAmmo.hpp"
 #include "CfgEventHandlers.hpp"
+#include "CfgExplosionEffects.hpp"
 #include "CfgMagazines.hpp"
 #include "CfgNonAIVehicles.hpp"
 #include "CfgVehicles.hpp"
@@ -39,6 +39,8 @@ class CfgInGameUI {
 };
 class PreloadTextures {
     class CfgInGameUI {
-        LOFT = "*";
+        class CfgWeaponModeTextures {
+            LOFT = "*";
+        }
     };
 };
