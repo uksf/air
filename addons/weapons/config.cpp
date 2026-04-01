@@ -10,7 +10,8 @@ class CfgPatches {
         };
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {
-            "uksf_air_common"
+            "uksf_air_common",
+            "ace_missile_cruise"
         };
         author = QUOTE(UKSF);
         authors[] = { "Beswick.T" };
