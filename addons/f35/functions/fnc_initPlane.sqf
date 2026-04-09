@@ -30,6 +30,7 @@ if (hasInterface || isServer) then {
         
         if (!alive _plane) exitWith {
             [_idPFH] call CBA_fnc_removePerFrameHandler;
+            [_plane] call FUNC(afterburnerLight);
         };
 
         if (local _plane) then {
@@ -48,5 +49,7 @@ if (hasInterface || isServer) then {
                 _args set [1, CBA_missionTime];
             };
         };
+
+        [_plane] call FUNC(afterburnerLight);
     }, 0, [_plane, CBA_missionTime]] call CBA_fnc_addPerFrameHandler;
 };

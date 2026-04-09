@@ -1,4 +1,5 @@
 PREP(afterburner);
+PREP(afterburnerLight);
 PREP(animateSpeedBreak);
 PREP(animateThrustVector);
 PREP(getIn);

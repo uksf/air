@@ -1087,8 +1087,6 @@ class CfgVehicles {
         EGVAR(common,towbarRotation)[] = { 0, 1, 0.015 };
         EGVAR(common,towbarActionMemoryPoint) = "Wheel_1_center";
         UGVAR(radios,rackChannels)[] = { 31, 40, 41 };
-        AAE_Have_AB = 1;
-        AB_Source = "afterburner_hide";
         AAE_Alarm_Int = "AAE_Alarm";
         AAE_Rumble_Int = "AAE_Rumble";
         AAE_GBreathe = "AAE_GBreathe";
@@ -1097,7 +1095,6 @@ class CfgVehicles {
         Taxiing = "AAE_RumbleG";
         AAE_Touchdown_Int = "TouchDown_Int";
         AAE_Touchdown_Ext[] = { "MG8\AVDAVFX\snd\touchdown.ogg", 1, 1, 1500 };
-        AAE_Burner_Offset[] = { 0, -12, 0 };
         AAE_WheelsContact[] = { "wheel_1_contact", "wheel_2_contact", "wheel_3_contact" };
         class AAE_Config_Handler {
             Beach[] = {
