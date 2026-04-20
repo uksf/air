@@ -71,16 +71,18 @@ GVAR(loopPFHID) = [{
             _marker setMarkerColorLocal "ColorWEST";
 
             private _text = groupId _x;
-            if (_tier isEqualTo 2 && {!isNull _leaderVehicle} && {_leaderVehicle isKindOf "Air"}) then {
-                private _speed = (speed _leaderVehicle) / MULTIPLIER_SPEED;
-                private _altitudeATL = ((getPos _leaderVehicle) select 2) * MULTIPLIER_FEET;
-                private _altitudeASL = ((getPosASL _leaderVehicle) select 2) * MULTIPLIER_FEET;
+            if (!isNull _leaderVehicle && {_leaderVehicle isKindOf "Air"}) then {
                 private _direction = round (getDir _leaderVehicle);
-                private _formattedSpeed = if (_speed > 50) then {ROUND_TO_10(_speed)} else {round _speed};
-                private _formattedAltitudeATL = if (_altitudeATL > 100) then {ROUND_TO_10(_altitudeATL)} else {round _altitudeATL};
-                private _formattedAltitudeASL = if (_altitudeASL > 100) then {ROUND_TO_10(_altitudeASL)} else {round _altitudeASL};
-                _text = format ["%1 %2kn %3ft %4ft %5°", _text, _formattedSpeed, _formattedAltitudeATL, _formattedAltitudeASL, (round (_direction / 5)) * 5];
                 _marker setMarkerDirLocal _direction;
+                if (_tier isEqualTo 2) then {
+                    private _speed = (speed _leaderVehicle) / MULTIPLIER_SPEED;
+                    private _altitudeATL = ((getPos _leaderVehicle) select 2) * MULTIPLIER_FEET;
+                    private _altitudeASL = ((getPosASL _leaderVehicle) select 2) * MULTIPLIER_FEET;
+                    private _formattedSpeed = if (_speed > 50) then {ROUND_TO_10(_speed)} else {round _speed};
+                    private _formattedAltitudeATL = if (_altitudeATL > 100) then {ROUND_TO_10(_altitudeATL)} else {round _altitudeATL};
+                    private _formattedAltitudeASL = if (_altitudeASL > 100) then {ROUND_TO_10(_altitudeASL)} else {round _altitudeASL};
+                    _text = format ["%1 %2kn %3ft %4ft %5°", _text, _formattedSpeed, _formattedAltitudeATL, _formattedAltitudeASL, (round (_direction / 5)) * 5];
+                };
             };
 
             _marker setMarkerTextLocal _text;
@@ -109,16 +111,18 @@ GVAR(loopPFHID) = [{
             _marker setMarkerColorLocal "ColorWEST";
             _marker setMarkerTextLocal (groupId group (crew _x select 0));
 
-            if (_tier isEqualTo 2 && {_x isKindOf "Air"}) then {
-                private _speed = (speed _x) / MULTIPLIER_SPEED;
-                private _altitudeATL = ((getPos _x) select 2) * MULTIPLIER_FEET;
-                private _altitudeASL = ((getPosASL _x) select 2) * MULTIPLIER_FEET;
+            if (_x isKindOf "Air") then {
                 private _direction = round (getDir _x);
-                private _formattedSpeed = if (_speed > 50) then {ROUND_TO_10(_speed)} else {round _speed};
-                private _formattedAltitudeATL = if (_altitudeATL > 100) then {ROUND_TO_10(_altitudeATL)} else {round _altitudeATL};
-                private _formattedAltitudeASL = if (_altitudeASL > 100) then {ROUND_TO_10(_altitudeASL)} else {round _altitudeASL};
-                _marker setMarkerTextLocal format ["%1 %2kn %3ft %4ft %5°", groupId group (crew _x select 0), _formattedSpeed, _formattedAltitudeATL, _formattedAltitudeASL, (round (_direction / 5)) * 5];
                 _marker setMarkerDirLocal _direction;
+                if (_tier isEqualTo 2) then {
+                    private _speed = (speed _x) / MULTIPLIER_SPEED;
+                    private _altitudeATL = ((getPos _x) select 2) * MULTIPLIER_FEET;
+                    private _altitudeASL = ((getPosASL _x) select 2) * MULTIPLIER_FEET;
+                    private _formattedSpeed = if (_speed > 50) then {ROUND_TO_10(_speed)} else {round _speed};
+                    private _formattedAltitudeATL = if (_altitudeATL > 100) then {ROUND_TO_10(_altitudeATL)} else {round _altitudeATL};
+                    private _formattedAltitudeASL = if (_altitudeASL > 100) then {ROUND_TO_10(_altitudeASL)} else {round _altitudeASL};
+                    _marker setMarkerTextLocal format ["%1 %2kn %3ft %4ft %5°", groupId group (crew _x select 0), _formattedSpeed, _formattedAltitudeATL, _formattedAltitudeASL, (round (_direction / 5)) * 5];
+                };
             };
             GVAR(markers) pushBack _markerName;
         } forEach (vehicles select {side _x isEqualTo _playerSide && {!(_x isKindOf "Static")}});
