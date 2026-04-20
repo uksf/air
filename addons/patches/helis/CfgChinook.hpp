@@ -300,6 +300,7 @@ class CUP_CH47F_base : Helicopter_Base_H {
     EGVAR(common,towbarOffset)[] = { 1.6, -0.6, -0.19 };
     EGVAR(common,towbarRotation)[] = { 0, -1, 0.036 };
     EGVAR(common,towbarActionMemoryPoint) = "doplnovani";
+    acre_infantryPhonePosition[] = { 1.0, -7.5, -1.3 };
     #include "..\hmds\MFDGeneral.hpp"
 };
 class CUP_B_CH47F_GB : CUP_CH47F_base {
