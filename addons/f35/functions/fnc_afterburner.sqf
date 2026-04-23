@@ -33,11 +33,11 @@ private _throttle = airplaneThrottle _plane;
 if (!isEngineOn _plane || {_throttle < THROTTLE_ENGAGE} || {_plane getHitPointDamage HIT_ENGINE > 0.8} || {_plane animationPhase ANIMATION_THRUSTVECTOR > -1}) exitWith {
     if (_plane getVariable [QGVAR(afterburnerEngaged), false]) then {
         _plane animateSource [ANIMATION_HIDE, 0, true];
-        _plane setVariable [QGVAR(afterburnerEngaged), false, true];
+        _plane setVariable [QGVAR(afterburnerEngaged), false];
     };
 };
 if (!(_plane getVariable [QGVAR(afterburnerEngaged), false])) then {
-    _plane setVariable [QGVAR(afterburnerEngaged), true, true];
+    _plane setVariable [QGVAR(afterburnerEngaged), true];
     GVAR(afterburnerTick) = time + 1;
 };
 

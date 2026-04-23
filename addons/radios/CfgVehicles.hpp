@@ -76,6 +76,7 @@ class CfgVehicles {
     };
     class Helicopter_Base_H;
     class CUP_CH47F_base : Helicopter_Base_H {
+        acre_infantryPhonePosition[] = { 1.28, -5.9, -2.1 };
         INTERCOM_AIR;
         RACKS_AIR;
     };

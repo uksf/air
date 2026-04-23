@@ -1087,6 +1087,10 @@ class CfgVehicles {
         EGVAR(common,towbarRotation)[] = { 0, 1, 0.015 };
         EGVAR(common,towbarActionMemoryPoint) = "Wheel_1_center";
         UGVAR(radios,rackChannels)[] = { 31, 40, 41 };
+        // AAE patches Plane_Fighter_01_Base_F with AAE_Have_AB = 1 in
+        // Wing_Effect/Jet_Configs.hpp — explicitly override so AAE's burner
+        // reflector vehicle does not spawn. We handle the AB light ourselves.
+        AAE_Have_AB = 0;
         AAE_Alarm_Int = "AAE_Alarm";
         AAE_Rumble_Int = "AAE_Rumble";
         AAE_GBreathe = "AAE_GBreathe";

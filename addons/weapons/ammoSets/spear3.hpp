@@ -9,6 +9,7 @@ class rksla3_ammo_spear3 : M_Scalpel_AT {
     indirectHitRange = 3; // 5
     submunitionAmmo = QGVAR(penetrator_spear);
     timeToLive = 90;
+    initTime = 1;
     thrustTime = 90; // turbojet sustainer - maintains thrust throughout flight
     maneuvrability = 0;
     SoundSetExplosion[] = { "JPEX_Missile_EXPLOSION_SoundSet", "JPEX_Missile_REFLECTOR_SoundSet", "JPEX_Big_Debris_SoundSet" };

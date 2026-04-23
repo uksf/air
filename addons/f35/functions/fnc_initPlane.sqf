@@ -27,7 +27,7 @@ if (hasInterface || isServer) then {
     [{
         params ["_args", "_idPFH"];
         _args params ["_plane", "_previousTime"];
-        
+
         if (!alive _plane) exitWith {
             [_idPFH] call CBA_fnc_removePerFrameHandler;
             [_plane] call FUNC(afterburnerLight);

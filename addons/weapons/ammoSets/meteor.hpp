@@ -3,6 +3,7 @@ class rksla3_ammo_meteor : ammo_Missile_LongRangeAABase {
     hit = 600;
     indirectHit = 120;
     maneuvrability = 0;
+    initTime = 0.5;
     ace_rearm_dummy = QGVAR(ammo_missile_meteor);
     SoundSetExplosion[] = { "JPEX_Missile_EXPLOSION_SoundSet", "JPEX_Missile_REFLECTOR_SoundSet" };
 
