@@ -41,7 +41,7 @@ class CfgVehicles {
         crew = "UKSF_B_Pilot_656";
         typicalCargo[] = { "UKSF_B_Pilot_656", "UKSF_B_Pilot_656" };
         armor = 150;
-        FUEL(870,75);
+        FUEL(1422,75); // AH-64D real internal: 376 US gal / 1422 L
         startDuration = 70;
         explosionShielding = 2;
         epeImpulseDamageCoef = 5;

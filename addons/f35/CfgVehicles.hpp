@@ -11,6 +11,7 @@ class CfgVehicles {
         scope = 1;
         author = QUOTE(UKSF);
         displayName = "F-35B Lightning II";
+        FUEL(7750,75); // F-35B real internal: 13,500 lb / ~7,750 L
         unitInfoType = "RscUnitInfoAirPlaneNoSpeed";
         unitInfoTypeLite = "RscUnitInfoAirPlaneNoSpeed";
         driverWeaponsInfoType = "RscOptics_CAS_01_TGP";

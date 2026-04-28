@@ -8,7 +8,7 @@ class UK3CB_BAF_Wildcat_Base : Heli_light_03_base_F {
     faction = "CUP_B_GB";
     crew = "UKSF_B_Pilot_7";
     typicalCargo[] = { "UKSF_B_Pilot_7" };
-    FUEL(836,60);
+    FUEL(1275,60); // AW159 real internal: ~1275 L (1007 kg fuel)
     weapons[] = { "UK3CB_BAF_CMFlareLauncher" };
     magazines[] = { "168Rnd_CMFlare_Chaff_Magazine" };
     startDuration = 30;
@@ -322,7 +322,7 @@ class rksla3_aw159_hma2 : rksla3_aw159_base {
     vehicleClass = "Air";
     crew = "UKSF_B_Pilot_7";
     typicalCargo[] = { "UKSF_B_Pilot_7" };
-    FUEL(836,60);
+    FUEL(1275,60); // AW159 real internal: ~1275 L
     startDuration = 30;
     unitInfoType = "RscUnitInfoNoSpeed";
     attenuationEffectType = "HeliAttenuation";

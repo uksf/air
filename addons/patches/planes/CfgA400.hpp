@@ -1,7 +1,7 @@
 class A400M_base_F : Plane_Base_F {
     unitInfoType = "RscUnitInfoAirPlaneNoSpeed";
     unitInfoTypeLite = "RscUnitInfoAirPlaneNoSpeed";
-    fuelCapacity = 2000;
+    FUEL(63750,120); // A400M real internal: 51 t / ~63,750 L
     altFullForce = 10000;
     thrustCoef[] = { 1.42, 1.38, 1.34, 1.3, 1.25, 1.2, 1.19, 1.18, 1.17, 1.17, 1.16, 1.16, 1.1, 1, 0.7, 0.2, 0 }; // Check 400 knots
     armor = 150;

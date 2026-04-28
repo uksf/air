@@ -28,7 +28,8 @@ class CfgPatches {
             "uksf_gear",
             "uksf_units",
             "uksf_air_f35",
-            QGVAR(prep)
+            QGVAR(prep),
+            QGVAR(fuel)
         };
         author = QUOTE(UKSF);
         authors[] = { "Beswick.T" };

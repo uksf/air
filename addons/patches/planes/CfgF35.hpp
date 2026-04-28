@@ -2,6 +2,7 @@ class CUP_F35B_base : Plane {
     envelope[] = { 0, 1.75, 5.9, 7, 9.8, 10.3, 10.5, 10.9, 9.2, 7.8, 5, 3.8, 0.5, 0 };
     aileronSensitivity = 1.2;
     armor = 90;
+    ace_refuel_fuelCapacity = 7750; // F-35B real internal: 13,500 lb / ~7,750 L
     damageResistance = 0.004;
     attenuationEffectType = "PlaneAttenuation";
     soundEngineOnInt[] = { "A3\Sounds_F_Jets\vehicles\air\Plane_Fighter_01\B_PLANE_FIGHTER_01_engine_start_int", 1, 1 };

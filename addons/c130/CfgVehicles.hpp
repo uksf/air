@@ -82,7 +82,7 @@ class CfgVehicles {
         audible = 6;
         armor = 150;
         armorWheels = 4000;
-        fuelCapacity = 2000;
+        FUEL(25553,120); // C-130J real internal: 6755 US gal / ~25,553 L
         armorStructured = 1;
         showNVGCargo[] = { 1 };
         brakeDistance = 200;

@@ -37,7 +37,7 @@ class CfgVehicles {
         thrustCoef[] = { 1.36, 1.3, 1.2, 1.1, 1.0, 0.9, 0.8, 0.7, 0.61, 0.3, 0, 0, 0 };
         envelope[] = { 0, 1, 1.3, 1.5, 1.6, 1.8, 2.8, 3.9, 5.4, 7.0, 8.9, 9.5, 9.3, 8.6, 8.3, 8.2, 7.6 };
         landingSpeed = 90; // 140
-        fuelCapacity = 1850;  // 270
+        FUEL(2260,360); // MQ-9 Reaper real internal: 4000 lb / ~2260 L (Jet-A)
         unitInfoType = "RscOptics_AV_airplane_pilot";
         class Turrets : Turrets {
             class MainTurret : MainTurret {
