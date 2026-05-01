@@ -17,6 +17,7 @@ class M_Air_AA : MissileBase {
     ace_frag_metal = 3800;        // ~3.8kg fragments
     ace_frag_gurney_c = 2700;
     ace_frag_gurney_k = 0.5;
+    ace_frag_randomFraction = 0.05;  // air-to-air at altitude
     ace_frag_classes[] = { QGVAR(frag_a2a_sr) };
     class Components {
         class SensorsManagerComponent {

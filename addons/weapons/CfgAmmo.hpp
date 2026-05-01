@@ -37,6 +37,7 @@ class CfgAmmo {
         ace_frag_metal = 3600;
         ace_frag_gurney_c = 2700;
         ace_frag_gurney_k = 0.5;
+        ace_frag_randomFraction = 0.05;
         ace_frag_classes[] = { QGVAR(frag_a2a_sr) };
     };
     class ammo_Missile_MediumRangeAABase : MissileBase {
@@ -54,6 +55,7 @@ class CfgAmmo {
         ace_frag_metal = 8000;
         ace_frag_gurney_c = 2700;
         ace_frag_gurney_k = 0.5;
+        ace_frag_randomFraction = 0.05;
         ace_frag_classes[] = { QGVAR(frag_a2a_mr) };
     };
 
