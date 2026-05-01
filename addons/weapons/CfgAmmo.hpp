@@ -25,14 +25,36 @@ class CfgAmmo {
     class ammo_Missile_ShortRangeAABase : MissileBase {
         hit = 400; // 130
     };
+    // AIM-9X Sidewinder: ~9.4kg WDU-17 annular blast-frag. Vanilla short-range base
+    // reference: iH=85 iHR=10. Tightened iHR for frag-dominant kill profile.
     class ammo_Missile_BIM9X : ammo_Missile_ShortRangeAABase {
         ace_rearm_dummy = QGVAR(ammo_Missile_BIM9X);
+        indirectHit = 85;
+        indirectHitRange = 4;
+        ace_frag_skip = 0;
+        ace_frag_force = 1;
+        ace_frag_charge = 1700;
+        ace_frag_metal = 3600;
+        ace_frag_gurney_c = 2700;
+        ace_frag_gurney_k = 0.5;
+        ace_frag_classes[] = { QGVAR(frag_a2a_sr) };
     };
     class ammo_Missile_MediumRangeAABase : MissileBase {
         hit = 600; // 200
     };
+    // AIM-120D AMRAAM: ~22kg WDU-33 blast-frag. Vanilla medium-range base reference:
+    // hit=600 iH=125 iHR=13. Tightened iHR for frag-dominant kill profile.
     class ammo_Missile_AMRAAM_D : ammo_Missile_MediumRangeAABase {
         ace_rearm_dummy = QGVAR(ammo_Missile_AMRAAM_D);
+        indirectHit = 125;
+        indirectHitRange = 5;
+        ace_frag_skip = 0;
+        ace_frag_force = 1;
+        ace_frag_charge = 3800;
+        ace_frag_metal = 8000;
+        ace_frag_gurney_c = 2700;
+        ace_frag_gurney_k = 0.5;
+        ace_frag_classes[] = { QGVAR(frag_a2a_mr) };
     };
 
 class BulletBase;

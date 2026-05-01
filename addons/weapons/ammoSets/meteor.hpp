@@ -1,7 +1,12 @@
 class ammo_Missile_LongRangeAABase;
+// Meteor: 25kg HE-fragmentation warhead, Mach 4 ramjet, BVR. Pre-formed steel/tungsten
+// fragments dominate lethality; small overpressure plateau (~5m). Vanilla MediumRangeAA
+// reference: hit=600 iH=125 iHR=13. Meteor sized higher hit (bigger warhead) but smaller
+// iHR (frag-dominant — overpressure isn't the killer at BVR ranges).
 class rksla3_ammo_meteor : ammo_Missile_LongRangeAABase {
     hit = 750;
-    indirectHit = 155;
+    indirectHit = 130;
+    indirectHitRange = 5;
     maneuvrability = 0;
     initTime = 0.5;
     maxSpeed = 1340;
@@ -12,9 +17,12 @@ class rksla3_ammo_meteor : ammo_Missile_LongRangeAABase {
     sideAirFriction = 0.18;
     ace_rearm_dummy = QGVAR(ammo_missile_meteor);
     ace_frag_skip = 0;
-    ace_frag_charge = 80;
-    ace_frag_metal = 145;
-    ace_frag_classes[] = { "ace_frag_small", "ace_frag_medium", "ace_frag_medium" };
+    ace_frag_force = 1;
+    ace_frag_charge = 4500;       // ~4.5kg HE (PBX)
+    ace_frag_metal = 9500;        // ~9.5kg pre-formed fragments
+    ace_frag_gurney_c = 2700;     // PBX/RDX modern HE
+    ace_frag_gurney_k = 0.5;      // cylindrical geometry
+    ace_frag_classes[] = { QGVAR(frag_a2a_bvr) };
     SoundSetExplosion[] = { "JPEX_Missile_EXPLOSION_SoundSet", "JPEX_Missile_REFLECTOR_SoundSet" };
 
     flightProfiles[] = { "Direct", "TopDown" };
@@ -25,6 +33,7 @@ class rksla3_ammo_meteor : ammo_Missile_LongRangeAABase {
         enabled = 1;
         pitchRate = 45;
         yawRate = 45;
+        proximityRadius = 10;
         navigationGain = 4;
         minimumSpeedFilter = 10;
         minimumTimeFilter = 5e-05;
