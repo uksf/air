@@ -22,7 +22,6 @@ class rksla3_ammo_meteor : ammo_Missile_LongRangeAABase {
     ace_frag_metal = 9500;        // ~9.5kg pre-formed fragments
     ace_frag_gurney_c = 2700;     // PBX/RDX modern HE
     ace_frag_gurney_k = 0.5;      // cylindrical geometry
-    ace_frag_randomFraction = 0.05;  // suppress omnidirectional spray (air-to-air at altitude)
     ace_frag_classes[] = { QGVAR(frag_a2a_bvr) };
     SoundSetExplosion[] = { "JPEX_Missile_EXPLOSION_SoundSet", "JPEX_Missile_REFLECTOR_SoundSet" };
 
@@ -34,7 +33,7 @@ class rksla3_ammo_meteor : ammo_Missile_LongRangeAABase {
         enabled = 1;
         pitchRate = 45;
         yawRate = 45;
-        proximityRadius = 10;
+        proximityRadius = 12;       // BVR-class envelope - larger than AMRAAM baseline (10m)
         navigationGain = 4;
         minimumSpeedFilter = 10;
         minimumTimeFilter = 5e-05;
