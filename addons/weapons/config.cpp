@@ -21,6 +21,15 @@ class CfgPatches {
 };
 
 class ace_missileguidance_type_AMRAAM;
+class ace_missileguidance_type_ASRAAM;
+class ace_missileguidance_type_Sidewinder;
+class ace_missileguidance_type_Stinger;
+class ace_missileguidance_type_RAM;
+class ace_missileguidance_type_ESSM;
+class ace_missileguidance_type_Patriot;
+class ace_missileguidance_type_S400;
+class ace_missileguidance_type_R73;
+class ace_missileguidance_type_R77;
 class ace_missileguidance_type_Dagr;
 class ace_missileguidance_type_Jdam;
 class ace_missileguidance_type_CruiseMissile;

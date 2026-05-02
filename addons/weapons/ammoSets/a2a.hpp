@@ -69,4 +69,12 @@ class GVAR(frag_a2a_bvr) : GVAR(frag_a2a_base) { hit = 100; };
 class GVAR(frag_a2a_mr)  : GVAR(frag_a2a_base) { hit = 80; };
 // Short-range (ASRAAM/Sidewinder): smaller per-frag energy, fewer total frags
 class GVAR(frag_a2a_sr)  : GVAR(frag_a2a_base) { hit = 60; };
+// MANPADS (Stinger/Igla/Strela): ~1kg warhead, smallest per-frag energy
+class GVAR(frag_a2a_manpad) : GVAR(frag_a2a_base) { hit = 50; };
+// Naval CIWS (RIM-116 RAM): 9.1kg blast-frag, larger per-frag than SR
+class GVAR(frag_a2a_naval_ciws) : GVAR(frag_a2a_base) { hit = 90; };
+// Naval medium-range (ESSM / Sea Sparrow): ~39kg warhead, large pre-formed fragments
+class GVAR(frag_a2a_naval_mr) : GVAR(frag_a2a_base) { hit = 130; };
+// Long-range strategic SAM (Patriot / S-400): massive warhead, heaviest fragments
+class GVAR(frag_a2a_sam_lr) : GVAR(frag_a2a_base) { hit = 160; };
 

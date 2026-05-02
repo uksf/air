@@ -1,4 +1,3 @@
-class ammo_Missile_LongRangeAABase;
 // Meteor: 25kg HE-fragmentation warhead, Mach 4 ramjet, BVR. Pre-formed steel/tungsten
 // fragments dominate lethality; small overpressure plateau (~5m). Vanilla MediumRangeAA
 // reference: hit=600 iH=125 iHR=13. Meteor sized higher hit (bigger warhead) but smaller
