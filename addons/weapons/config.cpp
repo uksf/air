@@ -29,6 +29,7 @@ class ace_missileguidance_type_ESSM;
 class ace_missileguidance_type_Patriot;
 class ace_missileguidance_type_S400;
 class ace_missileguidance_type_R73;
+class ace_missileguidance_type_R74;
 class ace_missileguidance_type_R77;
 class ace_missileguidance_type_Dagr;
 class ace_missileguidance_type_Jdam;
