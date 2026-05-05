@@ -1,14 +1,15 @@
-// Meteor: 25kg HE-fragmentation warhead, Mach 4 ramjet, BVR. Pre-formed steel/tungsten
+// Meteor: 25kg HE-fragmentation warhead, ramjet sustain, BVR. Pre-formed steel/tungsten
 // fragments dominate lethality; small overpressure plateau (~5m). Vanilla MediumRangeAA
 // reference: hit=600 iH=125 iHR=13. Meteor sized higher hit (bigger warhead) but smaller
 // iHR (frag-dominant — overpressure isn't the killer at BVR ranges).
+// Speed clamped below real Mach 4+ for prox-fuze reliability on desyncy servers.
 class rksla3_ammo_meteor : ammo_Missile_LongRangeAABase {
     hit = 750;
     indirectHit = 130;
     indirectHitRange = 5;
     maneuvrability = 0;
     initTime = 0.5;
-    maxSpeed = 1340;
+    maxSpeed = 1000;
     thrust = 400;
     thrustTime = 60;
     timeToLive = 150;
@@ -32,7 +33,7 @@ class rksla3_ammo_meteor : ammo_Missile_LongRangeAABase {
         enabled = 1;
         pitchRate = 45;
         yawRate = 45;
-        proximityRadius = 12;       // BVR-class envelope - larger than AMRAAM baseline (10m)
+        proximityRadius = 15;       // BVR-class envelope - larger than AMRAAM baseline (10m); extra margin for tick-skip
         navigationGain = 4;
         minimumSpeedFilter = 10;
         minimumTimeFilter = 5e-05;
