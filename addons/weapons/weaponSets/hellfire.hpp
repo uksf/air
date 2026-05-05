@@ -3,6 +3,14 @@ class ace_hellfire_launcher : RocketPods {
 };
 class ace_hellfire_launcher_N : ace_hellfire_launcher {
     displayName = "AGM-114N";
+    magazines[] = {
+        "6Rnd_ACE_Hellfire_AGM114N",
+        "PylonMissile_1Rnd_ACE_Hellfire_AGM114N",
+        "PylonRack_1Rnd_ACE_Hellfire_AGM114N",
+        "PylonRack_3Rnd_ACE_Hellfire_AGM114N",
+        "PylonRack_4Rnd_ACE_Hellfire_AGM114N",
+        "GX_PylonRack_2Rnd_ACE_Hellfire_AGM114N"
+    };
 };
 class ace_hellfire_launcher_drone : ace_hellfire_launcher {
     magazines[] = { "PylonRack_2Rnd_ACE_Hellfire_AGM114K_Drone" };
@@ -12,6 +20,14 @@ class ace_hellfire_launcher_drone_N : ace_hellfire_launcher_N {
 };
 class ace_hellfire_launcher_L : ace_hellfire_launcher {
     displayName = "AGM-114L";
+    magazines[] = {
+        "6Rnd_ACE_Hellfire_AGM114L",
+        "PylonMissile_1Rnd_ACE_Hellfire_AGM114L",
+        "PylonRack_1Rnd_ACE_Hellfire_AGM114L",
+        "PylonRack_3Rnd_ACE_Hellfire_AGM114L",
+        "PylonRack_4Rnd_ACE_Hellfire_AGM114L",
+        "GX_PylonRack_2Rnd_ACE_Hellfire_AGM114L"
+    };
 };
 class ace_hellfire_launcher_R9X : ace_hellfire_launcher {
     displayName = "AGM-114R9X";
