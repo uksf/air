@@ -43,3 +43,10 @@ class rksla3_aw159_wpn_crv7_lau5003 : missiles_DAR {
         burst = 4;
     };
 };
+class UK3CB_BAF_Missiles_CRV7_PG : RocketPods {
+    weaponLockSystem = 0;
+    canLock = 0;
+    ace_laser_canSelect = 1;
+    lockingTargetSound[] = {"", 0, 1};
+    lockedTargetSound[] = {"", 0, 1};
+};

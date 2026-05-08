@@ -44,3 +44,10 @@ GVAR(pilotGroupPFH) = [{
         };
     };
 }, 2, [_plane]] call CBA_fnc_addPerFrameHandler;
+
+if (hasInterface && {ACE_player == driver _plane}) then {
+    if (GVAR(wpCameraPFH) != -1) then {
+        [GVAR(wpCameraPFH)] call CBA_fnc_removePerFrameHandler;
+    };
+    GVAR(wpCameraPFH) = [FUNC(handleWPCamera), 0, [_plane]] call CBA_fnc_addPerFrameHandler;
+};

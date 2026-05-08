@@ -21,3 +21,11 @@ if (!GVAR(inGroup)) then {
     [ACE_player] joinSilent GVAR(group);
     GVAR(inGroup) = true;
 };
+
+if (hasInterface && {GVAR(wpCameraPFH) != -1}) then {
+    [GVAR(wpCameraPFH)] call CBA_fnc_removePerFrameHandler;
+    GVAR(wpCameraPFH) = -1;
+    if (!isNil {GVAR(wpCameraCC)}) then {
+        GVAR(wpCameraCC) ppEffectEnable false;
+    };
+};
