@@ -1,11 +1,16 @@
 PREP(aaeCamshake);
 PREP(addAttachTowbarActions);
 PREP(addStaticLineActions);
+PREP(auditAirSensorCapabilities);
 PREP(canAttachTowbar);
 PREP(canControl);
 PREP(canControlRamp);
 PREP(canStaticLineJump);
+PREP(classifyMissileGuidance);
+PREP(initSensorPanelExtension);
+PREP(onIncomingMissile);
 PREP(packParachute);
 PREP(paradropCargo);
 PREP(ramp);
+PREP(renderSensorPanel);
 PREP(staticLineJump);
