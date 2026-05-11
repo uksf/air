@@ -7,29 +7,27 @@
         Per-frame (0.1s tick) render of the SENS panel extension. Reads the
         player vehicle's activeThreats hashmap, prunes entries whose missile
         is dead, retargeted off this aircraft (ACE guidance variable or
-        velocity vector pointing away), or whose TTL has expired. Sets each
-        label's alpha to either 0 (no threat of that type) or a blink pattern
-        (300ms on/off) with full alpha on the colour set in
-        initSensorPanelExtension.
+        velocity vector pointing away), or whose TTL has expired. Builds a
+        single structured-text label containing "RDR" (red) and/or "IR"
+        (yellow) for the active source types, with alpha driven by a 300ms
+        on/off blink pattern.
 
     Parameter(s):
-        0: RDR control <CONTROL>
-        1: IR control <CONTROL>
+        0: Structured-text control <CONTROL>
 
     Return Value:
         Nothing
 
     Example:
-        [_rdrCtrl, _irCtrl] call uksf_air_common_fnc_renderSensorPanel
+        [_sourcesCtrl] call uksf_air_common_fnc_renderSensorPanel
 */
 #define BLINK_PERIOD 0.6
 
-params ["_rdrCtrl", "_irCtrl"];
+params ["_sourcesCtrl"];
 
 private _vehicle = vehicle player;
 if (_vehicle isEqualTo player) exitWith {
-    _rdrCtrl ctrlSetTextColor [1, 0.2, 0.2, 0];
-    _irCtrl ctrlSetTextColor [1, 1, 0.2, 0];
+    _sourcesCtrl ctrlSetStructuredText parseText "";
 };
 
 private _threats = _vehicle getVariable [QGVAR(activeThreats), createHashMap];
@@ -73,11 +71,20 @@ private _hasIR = false;
     };
 } forEach _threats;
 
+if (!_hasRDR && !_hasIR) exitWith {
+    _sourcesCtrl ctrlSetStructuredText parseText "";
+};
+
 private _blinkOn = ((CBA_missionTime / (BLINK_PERIOD / 2)) mod 2) < 1;
-private _alpha = [0.3, 1.0] select _blinkOn;
+// Hex alpha for the structured-text colour tags (#AARRGGBB)
+private _alphaHex = if (_blinkOn) then { "FF" } else { "4D" };
 
-private _rdrAlpha = if (_hasRDR) then { _alpha } else { 0 };
-private _irAlpha = if (_hasIR) then { _alpha } else { 0 };
+private _parts = [];
+if (_hasRDR) then {
+    _parts pushBack format ["<t color='#%1FF3333'>RDR</t>", _alphaHex];
+};
+if (_hasIR) then {
+    _parts pushBack format ["<t color='#%1FFFF33'>IR</t>", _alphaHex];
+};
 
-_rdrCtrl ctrlSetTextColor [1, 0.2, 0.2, _rdrAlpha];
-_irCtrl ctrlSetTextColor [1, 1, 0.2, _irAlpha];
+_sourcesCtrl ctrlSetStructuredText parseText format ["<t align='center'>%1</t>", _parts joinString " "];
