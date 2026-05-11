@@ -6,9 +6,11 @@
     Description:
         Per-frame (0.1s tick) render of the SENS panel extension. Reads the
         player vehicle's activeThreats hashmap, prunes entries whose missile
-        is dead/null or whose TTL has expired, and sets each label's alpha to
-        either 0 (no threat of that type) or a blink pattern (300ms on/off)
-        with full alpha on the colour set in initSensorPanelExtension.
+        is dead, retargeted off this aircraft (ACE guidance variable or
+        velocity vector pointing away), or whose TTL has expired. Sets each
+        label's alpha to either 0 (no threat of that type) or a blink pattern
+        (300ms on/off) with full alpha on the colour set in
+        initSensorPanelExtension.
 
     Parameter(s):
         0: RDR control <CONTROL>
@@ -34,10 +36,23 @@ private _threats = _vehicle getVariable [QGVAR(activeThreats), createHashMap];
 
 // Prune
 private _toRemove = [];
+private _vehiclePosition = getPosASL _vehicle;
 {
     _y params ["_source", "_expiry", "_missile"];
     if (CBA_missionTime > _expiry) then { _toRemove pushBack _x; };
-    if (!isNull _missile && {!alive _missile}) then { _toRemove pushBack _x; };
+    if (isNull _missile || {!alive _missile}) then { _toRemove pushBack _x; };
+    if (!isNull _missile && {alive _missile}) then {
+        // ACE-guided missile retargeted to something other than us
+        private _aceTarget = _missile getVariable ["ace_missileguidance_target", objNull];
+        if (!isNull _aceTarget && {_aceTarget isNotEqualTo _vehicle}) then {
+            _toRemove pushBack _x;
+        };
+        // Missile velocity no longer heading toward us (covers vanilla retargets and decoy capture)
+        private _toVehicle = _vehiclePosition vectorDiff (getPosASL _missile);
+        if ((velocity _missile) vectorDotProduct _toVehicle <= 0) then {
+            _toRemove pushBack _x;
+        };
+    };
 } forEach _threats;
 
 {

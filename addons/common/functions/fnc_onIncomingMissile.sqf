@@ -35,14 +35,8 @@ private _source = [_ammoType] call FUNC(classifyMissileGuidance);
 if (_source isEqualTo "") exitWith {};
 
 private _missile = nearestObject [_firer, _ammoType];
+if (isNull _missile) exitWith {};
 
 private _threats = _aircraft getVariable [QGVAR(activeThreats), createHashMap];
-private _key = if (isNull _missile) then {
-    // missile object not yet spawned at firer position — fall back to firer-keyed entry
-    format ["firer_%1_%2", netId _firer, _ammoType]
-} else {
-    netId _missile
-};
-
-_threats set [_key, [_source, CBA_missionTime + THREAT_TTL_SECONDS, _missile]];
+_threats set [netId _missile, [_source, CBA_missionTime + THREAT_TTL_SECONDS, _missile]];
 _aircraft setVariable [QGVAR(activeThreats), _threats];
