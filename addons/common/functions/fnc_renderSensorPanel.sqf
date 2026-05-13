@@ -14,19 +14,26 @@
 
     Parameter(s):
         0: Structured-text control <CONTROL>
+        1: SENS background control (IDC 15110) <CONTROL>
 
     Return Value:
         Nothing
 
     Example:
-        [_sourcesCtrl] call uksf_air_common_fnc_renderSensorPanel
+        [_sourcesCtrl, _background] call uksf_air_common_fnc_renderSensorPanel
 */
 #define BLINK_PERIOD 0.6
 
-params ["_sourcesCtrl"];
+params ["_sourcesCtrl", "_background"];
 
 private _vehicle = vehicle player;
 if (_vehicle isEqualTo player) exitWith {
+    _sourcesCtrl ctrlSetStructuredText parseText "";
+};
+
+// Hide if the SENS panel itself is not currently shown (player cycled to a
+// different custom-info panel, or toggled the column off)
+if (isNull _background || {!ctrlShown _background}) exitWith {
     _sourcesCtrl ctrlSetStructuredText parseText "";
 };
 

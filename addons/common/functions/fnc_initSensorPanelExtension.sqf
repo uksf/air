@@ -5,9 +5,13 @@
 
     Description:
         On RscCustomInfoSensors (IDD 314) load, ctrlCreate a single structured
-        text control anchored 1 cell above the existing SENS panel. The render
-        PFH builds coloured "RDR" / "IR" / "RDR IR" markup each tick from the
-        player vehicle's activeThreats hashmap and applies blink alpha.
+        text control anchored above the SENS panel background (IDC 15110).
+        Geometry is read from the actual background's ctrlPosition so the
+        extension lines up whether the player has the sensor panel slotted on
+        the left or the right custom-info column. The render PFH builds
+        coloured "RDR" / "IR" / "RDR IR" markup each tick from the player
+        vehicle's activeThreats hashmap, gated on the SENS background being
+        shown (panel can be cycled or toggled off independently).
 
         Idempotent: marks the display with an attached flag and bails early
         on re-entry. PFH is removed on display unload via display EH.
@@ -25,31 +29,29 @@ params ["_display"];
 
 if (isNull _display) exitWith {};
 if (_display getVariable [QGVAR(panelExtAttached), false]) exitWith {};
+
+private _background = _display displayCtrl 15110;
+if (isNull _background) exitWith {};
 _display setVariable [QGVAR(panelExtAttached), true];
 
-private _cellW = profileNamespace getVariable ["IGUI_GRID_CUSTOMINFORIGHT_W", (10 * (((safezoneW / safezoneH) min 1.2) / 40))];
-private _cellH = profileNamespace getVariable ["IGUI_GRID_CUSTOMINFORIGHT_H", (10 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25))];
-private _pixelW = ((safezoneW / safezoneH) min 1.2) / 40;
+(ctrlPosition _background) params ["_bgX", "_bgY", "_bgW", "_bgH"];
 private _pixelH = (((safezoneW / safezoneH) min 1.2) / 1.2) / 25;
-
-// Single structured-text control sitting 1.2 pixel rows above SENS title
-private _yAnchor = -1.2 * _pixelH;
 private _labelH = 1.0 * _pixelH;
-private _labelW = _cellW;
+private _yAnchor = _bgY - 1.2 * _pixelH;
 
 private _sourcesCtrl = _display ctrlCreate ["RscStructuredText", -1];
 _sourcesCtrl ctrlSetBackgroundColor [0, 0, 0, 0];
-_sourcesCtrl ctrlSetPosition [0, _yAnchor, _labelW, _labelH];
+_sourcesCtrl ctrlSetPosition [_bgX, _yAnchor, _bgW, _labelH];
 _sourcesCtrl ctrlCommit 0;
 
 private _pfhId = [{
     params ["_args", "_idPFH"];
-    _args params ["_display", "_sourcesCtrl"];
+    _args params ["_display", "_sourcesCtrl", "_background"];
     if (isNull _display) exitWith {
         [_idPFH] call CBA_fnc_removePerFrameHandler;
     };
-    [_sourcesCtrl] call FUNC(renderSensorPanel);
-}, 0.1, [_display, _sourcesCtrl]] call CBA_fnc_addPerFrameHandler;
+    [_sourcesCtrl, _background] call FUNC(renderSensorPanel);
+}, 0.1, [_display, _sourcesCtrl, _background]] call CBA_fnc_addPerFrameHandler;
 
 _display displayAddEventHandler ["Unload", {
     params ["_display"];
