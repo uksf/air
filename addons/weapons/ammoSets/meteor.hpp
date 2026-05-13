@@ -7,8 +7,8 @@ class rksla3_ammo_meteor : ammo_Missile_LongRangeAABase {
     hit = 750;
     indirectHit = 130;
     indirectHitRange = 5;
-    maneuvrability = 0;
-    initTime = 0.5;
+    maneuvrability = 23;
+    initTime = 0.1;
     maxSpeed = 1000;
     thrust = 400;
     thrustTime = 60;
@@ -31,10 +31,11 @@ class rksla3_ammo_meteor : ammo_Missile_LongRangeAABase {
 
     class ace_missileguidance : ace_missileguidance_type_AMRAAM {
         enabled = 1;
-        pitchRate = 45;
-        yawRate = 45;
+        pitchRate = 60;
+        yawRate = 60;
         proximityRadius = 15;       // BVR-class envelope - larger than AMRAAM baseline (10m); extra margin for tick-skip
-        navigationGain = 4;
+        proximityArmingTime = 0.5;  // arm within ~500m for close head-on shots
+        navigationGain = 3;
         minimumSpeedFilter = 10;
         minimumTimeFilter = 5e-05;
         maxTerrainCheck = 20000;
