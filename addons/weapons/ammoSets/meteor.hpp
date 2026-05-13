@@ -35,6 +35,8 @@ class rksla3_ammo_meteor : ammo_Missile_LongRangeAABase {
         yawRate = 60;
         proximityRadius = 15;       // BVR-class envelope - larger than AMRAAM baseline (10m); extra margin for tick-skip
         proximityArmingTime = 0.5;  // arm within ~500m for close head-on shots
+        defaultNavigationType = "AugmentedProportionalNavigation";  // real Meteor uses APN-class law w/ target accel feedforward
+        navigationTypes[] = { "AugmentedProportionalNavigation" };
         navigationGain = 3;
         minimumSpeedFilter = 10;
         minimumTimeFilter = 5e-05;
