@@ -2,7 +2,8 @@
 // fragments dominate lethality; small overpressure plateau (~5m). Vanilla MediumRangeAA
 // reference: hit=600 iH=125 iHR=13. Meteor sized higher hit (bigger warhead) but smaller
 // iHR (frag-dominant — overpressure isn't the killer at BVR ranges).
-// Speed clamped below real Mach 4+ for prox-fuze reliability on desyncy servers.
+// Speed clamped to 1000 m/s (real Mach 4+) to keep terminal closure manageable for
+// CPA prediction + AugmentedProportionalNavigation tracking under server desync.
 class rksla3_ammo_meteor : ammo_Missile_LongRangeAABase {
     hit = 750;
     indirectHit = 130;
