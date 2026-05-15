@@ -7,34 +7,31 @@
         Per-frame (0.1s tick) render of the SENS panel extension. Reads the
         player vehicle's activeThreats hashmap, prunes entries whose missile
         is dead, retargeted off this aircraft (ACE guidance variable or
-        velocity vector pointing away), or whose TTL has expired. Builds a
-        single structured-text label containing "RDR" (red) and/or "IR"
-        (yellow) for the active source types, with alpha driven by a 300ms
-        on/off blink pattern.
+        velocity vector pointing away), or whose TTL has expired.
+
+        The background colour is the primary threat signal — colour-coded per
+        active source mix (RDR=red, IR=amber, both=orange). The text label
+        is plain white for contrast against any of those colours. Background
+        alpha pulses 0.7 / 0.15 on a 300ms on/off blink to draw the eye
+        without fully occluding the SENS panel underneath.
 
     Parameter(s):
         0: Structured-text control <CONTROL>
-        1: SENS background control (IDC 15110) <CONTROL>
 
     Return Value:
         Nothing
 
     Example:
-        [_sourcesCtrl, _background] call uksf_air_common_fnc_renderSensorPanel
+        [_sourcesCtrl] call uksf_air_common_fnc_renderSensorPanel
 */
 #define BLINK_PERIOD 0.6
 
-params ["_sourcesCtrl", "_background"];
+params ["_sourcesCtrl"];
 
 private _vehicle = vehicle player;
 if (_vehicle isEqualTo player) exitWith {
     _sourcesCtrl ctrlSetStructuredText parseText "";
-};
-
-// Hide if the SENS panel itself is not currently shown (player cycled to a
-// different custom-info panel, or toggled the column off)
-if (isNull _background || {!ctrlShown _background}) exitWith {
-    _sourcesCtrl ctrlSetStructuredText parseText "";
+    _sourcesCtrl ctrlSetBackgroundColor [0, 0, 0, 0];
 };
 
 private _threats = _vehicle getVariable [QGVAR(activeThreats), createHashMap];
@@ -80,18 +77,22 @@ private _hasIR = false;
 
 if (!_hasRDR && !_hasIR) exitWith {
     _sourcesCtrl ctrlSetStructuredText parseText "";
+    _sourcesCtrl ctrlSetBackgroundColor [0, 0, 0, 0];
 };
 
 private _blinkOn = ((CBA_missionTime / (BLINK_PERIOD / 2)) mod 2) < 1;
-// Hex alpha for the structured-text colour tags (#AARRGGBB)
-private _alphaHex = if (_blinkOn) then { "FF" } else { "4D" };
+
+private _bgColour = switch (true) do {
+    case (_hasRDR && _hasIR): { [0.85, 0.35, 0, 0] };  // orange
+    case (_hasRDR):           { [0.7,  0.05, 0.05, 0] };  // red
+    case (_hasIR):            { [0.9,  0.6,  0, 0] };  // amber
+    default { [0, 0, 0, 0] };
+};
+_bgColour set [3, [0.15, 0.7] select _blinkOn];
 
 private _parts = [];
-if (_hasRDR) then {
-    _parts pushBack format ["<t color='#%1FF3333'>RDR</t>", _alphaHex];
-};
-if (_hasIR) then {
-    _parts pushBack format ["<t color='#%1FFFF33'>IR</t>", _alphaHex];
-};
+if (_hasRDR) then { _parts pushBack "RDR" };
+if (_hasIR) then { _parts pushBack "IR" };
 
-_sourcesCtrl ctrlSetStructuredText parseText format ["<t align='center'>%1</t>", _parts joinString " "];
+_sourcesCtrl ctrlSetStructuredText parseText format ["<t align='center' color='#FFFFFFFF'>%1</t>", _parts joinString " "];
+_sourcesCtrl ctrlSetBackgroundColor _bgColour;

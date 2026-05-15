@@ -10,7 +10,7 @@ if (!hasInterface) exitWith {};
     private _hasRWR = isClass (configOf _vehicle >> "Components" >> "SensorsManagerComponent" >> "Components" >> "PassiveRadarSensorComponent");
     if (!_hasRWR) exitWith {};
 
-    private _deadline = CBA_missionTime + 5;
+    private _deadline = CBA_missionTime + 15;
     [{
         params ["_args", "_idPFH"];
         _args params ["_deadline"];
@@ -19,9 +19,9 @@ if (!hasInterface) exitWith {};
         };
         private _display = uiNamespace getVariable ["RscCustomInfoSensors", displayNull];
         if (isNull _display) exitWith {};
-        [_idPFH] call CBA_fnc_removePerFrameHandler;
-        if (!(_display getVariable [QGVAR(panelExtAttached), false])) then {
-            [_display] call FUNC(initSensorPanelExtension);
+        [_display] call FUNC(initSensorPanelExtension);
+        if (_display getVariable [QGVAR(panelExtAttached), false]) then {
+            [_idPFH] call CBA_fnc_removePerFrameHandler;
         };
     }, 0.25, [_deadline]] call CBA_fnc_addPerFrameHandler;
-}] call CBA_fnc_addPlayerEventHandler;
+}, true] call CBA_fnc_addPlayerEventHandler;

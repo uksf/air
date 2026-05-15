@@ -5,13 +5,12 @@
 
     Description:
         On RscCustomInfoSensors (IDD 314) load, ctrlCreate a single structured
-        text control anchored above the SENS panel background (IDC 15110).
-        Geometry is read from the actual background's ctrlPosition so the
+        text control anchored above the SENS Title control (IDC 15112).
+        Geometry is read from the actual Title's ctrlPosition so the
         extension lines up whether the player has the sensor panel slotted on
         the left or the right custom-info column. The render PFH builds
         coloured "RDR" / "IR" / "RDR IR" markup each tick from the player
-        vehicle's activeThreats hashmap, gated on the SENS background being
-        shown (panel can be cycled or toggled off independently).
+        vehicle's activeThreats hashmap.
 
         Idempotent: marks the display with an attached flag and bails early
         on re-entry. PFH is removed on display unload via display EH.
@@ -30,28 +29,26 @@ params ["_display"];
 if (isNull _display) exitWith {};
 if (_display getVariable [QGVAR(panelExtAttached), false]) exitWith {};
 
-private _background = _display displayCtrl 15110;
-if (isNull _background) exitWith {};
+private _title = _display displayCtrl 15112;
+if (isNull _title) exitWith {};
 _display setVariable [QGVAR(panelExtAttached), true];
 
-(ctrlPosition _background) params ["_bgX", "_bgY", "_bgW", "_bgH"];
-private _pixelH = (((safezoneW / safezoneH) min 1.2) / 1.2) / 25;
-private _labelH = 1.0 * _pixelH;
-private _yAnchor = _bgY - 1.2 * _pixelH;
+(ctrlPosition _title) params ["_titleX", "_titleY", "_titleW", "_titleH"];
+private _yAnchor = _titleY - 1.2 * _titleH;
 
 private _sourcesCtrl = _display ctrlCreate ["RscStructuredText", -1];
 _sourcesCtrl ctrlSetBackgroundColor [0, 0, 0, 0];
-_sourcesCtrl ctrlSetPosition [_bgX, _yAnchor, _bgW, _labelH];
+_sourcesCtrl ctrlSetPosition [_titleX, _yAnchor, _titleW, _titleH];
 _sourcesCtrl ctrlCommit 0;
 
 private _pfhId = [{
     params ["_args", "_idPFH"];
-    _args params ["_display", "_sourcesCtrl", "_background"];
+    _args params ["_display", "_sourcesCtrl"];
     if (isNull _display) exitWith {
         [_idPFH] call CBA_fnc_removePerFrameHandler;
     };
-    [_sourcesCtrl, _background] call FUNC(renderSensorPanel);
-}, 0.1, [_display, _sourcesCtrl, _background]] call CBA_fnc_addPerFrameHandler;
+    [_sourcesCtrl] call FUNC(renderSensorPanel);
+}, 0.1, [_display, _sourcesCtrl]] call CBA_fnc_addPerFrameHandler;
 
 _display displayAddEventHandler ["Unload", {
     params ["_display"];
