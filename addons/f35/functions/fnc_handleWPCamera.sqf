@@ -28,7 +28,7 @@ if (!alive _plane || {vehicle ACE_player != _plane}) exitWith {
     GVAR(wpCameraPFH) = -1;
 };
 
-private _enabled = ACE_player getVariable [QGVAR(wpCamera), EGVAR(nightvision,alwaysUseWP)];
+private _enabled = ACE_player getVariable [QGVAR(wpCamera), ace_nightvision_alwaysUseWP];
 private _inCamera = cameraView == "GUNNER";
 private _nvg = currentVisionMode _plane == 1;
 

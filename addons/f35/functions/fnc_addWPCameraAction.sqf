@@ -25,7 +25,7 @@ private _action = [
     {
         ACE_player setVariable [
             QGVAR(wpCamera),
-            !(ACE_player getVariable [QGVAR(wpCamera), EGVAR(nightvision,alwaysUseWP)])
+            !(ACE_player getVariable [QGVAR(wpCamera), ace_nightvision_alwaysUseWP])
         ];
     },
     {vehicle ACE_player isKindOf QGVAR(base)},
