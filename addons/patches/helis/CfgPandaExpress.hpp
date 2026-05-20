@@ -1,6 +1,11 @@
-class Heli_Light_01_unarmed_base_F;
+class Heli_Light_01_unarmed_base_F : Heli_Light_01_base_F {
+    class Turrets;
+};
 class B_Heli_Light_01_F : Heli_Light_01_unarmed_base_F {
     class Components;
+    class Turrets : Turrets {
+        class CopilotTurret;
+    };
 };
 class GVAR(pe_mh6) : B_Heli_Light_01_F {
     faction = "CUP_B_GB";
@@ -14,6 +19,12 @@ class GVAR(pe_mh6) : B_Heli_Light_01_F {
     lockDetectionSystem = "8 + 4";
     incomingMissileDetectionSystem = "8 + 16";
     UGVAR(radios,rackChannels)[] = { 30,40,41 };
+    class Turrets : Turrets {
+        class CopilotTurret : CopilotTurret {
+            weapons[] += { "UK3CB_BAF_CMFlareLauncher" };
+            magazines[] += { "168Rnd_CMFlare_Chaff_Magazine" };
+        };
+    };
     class Components : Components {
         class VehicleSystemsDisplayManagerComponentLeft : DefaultVehicleSystemsDisplayManagerLeft {
             defaultDisplay = "EmptyDisplay";
@@ -110,9 +121,15 @@ class GVAR(pe_mh6) : B_Heli_Light_01_F {
 #include "..\hmds\MFDGeneral.hpp"
 };
 
-class Heli_Light_01_dynamicLoadout_base_F;
+class Heli_Light_01_armed_base_F;
+class Heli_Light_01_dynamicLoadout_base_F : Heli_Light_01_armed_base_F {
+    class Turrets;
+};
 class B_Heli_Light_01_dynamicLoadout_F : Heli_Light_01_dynamicLoadout_base_F {
     class Components;
+    class Turrets : Turrets {
+        class CopilotTurret;
+    };
 };
 class GVAR(pe_ah6) : B_Heli_Light_01_dynamicLoadout_F {
     faction = "CUP_B_GB";
@@ -126,6 +143,12 @@ class GVAR(pe_ah6) : B_Heli_Light_01_dynamicLoadout_F {
     lockDetectionSystem = "8 + 4";
     incomingMissileDetectionSystem = "8 + 16";
     UGVAR(radios,rackChannels)[] = { 30,40,41 };
+    class Turrets : Turrets {
+        class CopilotTurret : CopilotTurret {
+            weapons[] += { "UK3CB_BAF_CMFlareLauncher" };
+            magazines[] += { "168Rnd_CMFlare_Chaff_Magazine" };
+        };
+    };
     class Components : Components {
         class VehicleSystemsDisplayManagerComponentLeft : DefaultVehicleSystemsDisplayManagerLeft {
             defaultDisplay = "EmptyDisplay";
@@ -224,12 +247,12 @@ class GVAR(pe_ah6) : B_Heli_Light_01_dynamicLoadout_F {
 
 class CUP_Uh60_Unarmed_FFV_Base;
 class CUP_Uh60L_Unarmed_FFV_Base : CUP_Uh60_Unarmed_FFV_Base {
-    // class Turrets;
+    class Turrets;
 };
 class CUP_B_UH60L_Unarmed_FFV_MEV_US : CUP_Uh60L_Unarmed_FFV_Base {
-    // class Turrets : Turrets {
-    //     class CopilotTurret;
-    // };
+    class Turrets : Turrets {
+        class CopilotTurret;
+    };
     class Components;
 };
 class GVAR(pe_uh60) : CUP_B_UH60L_Unarmed_FFV_MEV_US {
@@ -419,6 +442,12 @@ class GVAR(pe_uh60) : CUP_B_UH60L_Unarmed_FFV_MEV_US {
     //         gunnerHasFlares = 0;
     //     };
     // };
+    class Turrets : Turrets {
+        class CopilotTurret : CopilotTurret {
+            weapons[] += { "UK3CB_BAF_CMFlareLauncher" };
+            magazines[] += { "168Rnd_CMFlare_Chaff_Magazine" };
+        };
+    };
     class Components : Components {
         class VehicleSystemsDisplayManagerComponentLeft : DefaultVehicleSystemsDisplayManagerLeft {
             defaultDisplay = "EmptyDisplay";
@@ -515,9 +544,15 @@ class GVAR(pe_uh60) : CUP_B_UH60L_Unarmed_FFV_MEV_US {
 #include "..\hmds\MFDGeneral.hpp"
 };
 
-class CUP_Uh60_FFV_Base;
+class CUP_Uh60_Base;
+class CUP_Uh60_FFV_Base : CUP_Uh60_Base {
+    class Turrets;
+};
 class CUP_B_UH60M_FFV_US : CUP_Uh60_FFV_Base {
     class Components;
+    class Turrets : Turrets {
+        class CopilotTurret;
+    };
 };
 class GVAR(pe_uh60m) : CUP_B_UH60M_FFV_US {
     scope = 2;
@@ -534,6 +569,12 @@ class GVAR(pe_uh60m) : CUP_B_UH60M_FFV_US {
     lockDetectionSystem = "8 + 4";
     incomingMissileDetectionSystem = "8 + 16";
     UGVAR(radios,rackChannels)[] = { 30,40,41 };
+    class Turrets : Turrets {
+        class CopilotTurret : CopilotTurret {
+            weapons[] += { "UK3CB_BAF_CMFlareLauncher" };
+            magazines[] += { "168Rnd_CMFlare_Chaff_Magazine" };
+        };
+    };
     class Components : Components {
         class VehicleSystemsDisplayManagerComponentLeft : DefaultVehicleSystemsDisplayManagerLeft {
             defaultDisplay = "EmptyDisplay";
@@ -630,9 +671,14 @@ class GVAR(pe_uh60m) : CUP_B_UH60M_FFV_US {
 #include "..\hmds\MFDGeneral.hpp"
 };
 
-class CUP_MH60L_Dap_4x_Dynamic_Base;
+class CUP_MH60L_Dap_4x_Dynamic_Base : CUP_Uh60_Base {
+    class Turrets;
+};
 class CUP_B_MH60L_DAP_4x_US : CUP_MH60L_Dap_4x_Dynamic_Base {
     class Components;
+    class Turrets : Turrets {
+        class CopilotTurret;
+    };
 };
 class GVAR(pe_mh60l) : CUP_B_MH60L_DAP_4x_US {
     scope = 2;
@@ -649,6 +695,12 @@ class GVAR(pe_mh60l) : CUP_B_MH60L_DAP_4x_US {
     lockDetectionSystem = "8 + 4";
     incomingMissileDetectionSystem = "8 + 16";
     UGVAR(radios,rackChannels)[] = { 30,40,41 };
+    class Turrets : Turrets {
+        class CopilotTurret : CopilotTurret {
+            weapons[] += { "UK3CB_BAF_CMFlareLauncher" };
+            magazines[] += { "168Rnd_CMFlare_Chaff_Magazine" };
+        };
+    };
     class Components : Components {
         class VehicleSystemsDisplayManagerComponentLeft : DefaultVehicleSystemsDisplayManagerLeft {
             defaultDisplay = "EmptyDisplay";
@@ -745,9 +797,14 @@ class GVAR(pe_mh60l) : CUP_B_MH60L_DAP_4x_US {
 #include "..\hmds\MFDGeneral.hpp"
 };
 
-class CUP_Merlin_Rescue_Base;
+class CUP_Merlin_Rescue_Base : Helicopter_Base_H {
+    class Turrets;
+};
 class CUP_C_Merlin_HC3_IDAP_Rescue : CUP_Merlin_Rescue_Base {
     class Components;
+    class Turrets : Turrets {
+        class CopilotTurret;
+    };
 };
 class GVAR(eh101_idap) : CUP_C_Merlin_HC3_IDAP_Rescue {
     scope = 2;
@@ -766,6 +823,12 @@ class GVAR(eh101_idap) : CUP_C_Merlin_HC3_IDAP_Rescue {
     incomingMissileDetectionSystem = "8 + 16";
     attendant = 1;
     UGVAR(radios,rackChannels)[] = { 30,40,41 };
+    class Turrets : Turrets {
+        class CopilotTurret : CopilotTurret {
+            weapons[] += { "UK3CB_BAF_CMFlareLauncher" };
+            magazines[] += { "168Rnd_CMFlare_Chaff_Magazine" };
+        };
+    };
     class Components : Components {
         class VehicleSystemsDisplayManagerComponentLeft : DefaultVehicleSystemsDisplayManagerLeft {
             defaultDisplay = "EmptyDisplay";

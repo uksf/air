@@ -1,6 +1,9 @@
 #include "script_component.hpp"
 #include "initKeybinds.inc.sqf"
 
+[QGVAR(applyMagazineAmmo), {call FUNC(applyMagazineAmmo)}] call CBA_fnc_addEventHandler;
+["ace_rearm_rearmSuccessLocalEH", {call FUNC(onCountermeasureRearmed)}] call CBA_fnc_addEventHandler;
+
 if (!hasInterface) exitWith {};
 
 ["vehicle", {

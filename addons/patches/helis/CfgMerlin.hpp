@@ -5,7 +5,7 @@ class UK3CB_BAF_Merlin_Base : Heli_Transport_02_base_F {
     typicalCargo[] = { "UKSF_B_Pilot_7" };
     FUEL(3222,100);
     weapons[] = { "UK3CB_BAF_CMFlareLauncher" };
-    magazines[] = { "120Rnd_CMFlare_Chaff_Magazine" };
+    magazines[] = { "168Rnd_CMFlare_Chaff_Magazine" };
     startDuration = 60;
     cyclicAsideForceCoef = 1.1; // 1
     cyclicForwardForceCoef = 1;
@@ -81,6 +81,12 @@ class UK3CB_BAF_Merlin_Base : Heli_Transport_02_base_F {
             };
         };
     };
+    class Turrets : Turrets {
+        class CopilotTurret : CopilotTurret {
+            weapons[] += { "UK3CB_BAF_CMFlareLauncher" };
+            magazines[] += { "168Rnd_CMFlare_Chaff_Magazine" };
+        };
+    };
     ace_cookoff_cookoffSelections[] = { "motor" };
     UGVAR(radios,rackChannels)[] = { 31, 40, 41 };
     LESH_canBeTowed = 0;
@@ -91,6 +97,15 @@ class UK3CB_BAF_Merlin_Base : Heli_Transport_02_base_F {
     EGVAR(common,towbarRotation)[] = { 0, 1, 0.04 };
     EGVAR(common,towbarActionMemoryPoint) = "wheel_front_axis";
 #include "..\hmds\MFDMerlin.hpp"
+};
+
+class UK3CB_BAF_Merlin_HC3_Base : UK3CB_BAF_Merlin_Base {
+    class Turrets : Turrets {
+        class CopilotTurret : CopilotTurret {
+            weapons[] += { "UK3CB_BAF_CMFlareLauncher" };
+            magazines[] += { "168Rnd_CMFlare_Chaff_Magazine" };
+        };
+    };
 };
 
 HIDE_CLASS_WITH_BASE(UK3CB_BAF_Merlin_HC3_18,UK3CB_BAF_Merlin_HC3_Unarmed_Base);
@@ -155,7 +170,15 @@ class UK3CB_BAF_Merlin_HC4_CSAR : UK3CB_BAF_Merlin_HC3_CSAR {
     class TransportBackpacks {};
 };
 
-HIDE_CLASS(UK3CB_BAF_Merlin_HM2_Base,UK3CB_BAF_Merlin_Base);
+class UK3CB_BAF_Merlin_HM2_Base : UK3CB_BAF_Merlin_Base {
+    HIDE;
+    class Turrets : Turrets {
+        class CoPilotTurret : CopilotTurret {
+            weapons[] += { "UK3CB_BAF_CMFlareLauncher" };
+            magazines[] += { "168Rnd_CMFlare_Chaff_Magazine" };
+        };
+    };
+};
 HIDE_CLASS(UK3CB_BAF_Merlin_HM2_Unarmed_Base,UK3CB_BAF_Merlin_HM2_Base);
 class UK3CB_BAF_Merlin_HM2_18 : UK3CB_BAF_Merlin_HM2_Unarmed_Base {
     faction = "CUP_B_GB";

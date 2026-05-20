@@ -59,6 +59,10 @@ class rksla3_pumahc_base: Helicopter_Base_H {
     };
     class Turrets: Turrets {
         class MainTurret;
+        class CopilotTurret : CopilotTurret {
+            weapons[] += { "UK3CB_BAF_CMFlareLauncher" };
+            magazines[] += { "120Rnd_CMFlare_Chaff_Magazine" };
+        };
     };
     class pilotCamera {
         class OpticsIn {

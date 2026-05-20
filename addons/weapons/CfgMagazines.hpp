@@ -20,6 +20,13 @@ class CfgMagazines {
         hardpoints[] = { QGVAR(gunpod) };
     };
 
+    class 300Rnd_CMFlare_Chaff_Magazine;
+    class GVAR(CMFlare_Chaff_1200Rnd_Magazine) : 300Rnd_CMFlare_Chaff_Magazine {
+        count = 1200;
+        displayName = "Chaff/Flares (1200)";
+        displayNameShort = "Chaff/Flares";
+    };
+
     class PylonMissile_Bomb_GBU12_x1;
     class PylonRack_Bomb_GBU12_x2;
     class PylonRack_Bomb_SDB_x4;

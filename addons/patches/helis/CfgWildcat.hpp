@@ -114,6 +114,8 @@ class UK3CB_BAF_Wildcat_Base : Heli_light_03_base_F {
     };
     class Turrets : Turrets {
         class MainTurret : MainTurret {
+            weapons[] += { "UK3CB_BAF_CMFlareLauncher" };
+            magazines[] += { "168Rnd_CMFlare_Chaff_Magazine" };
             class OpticsIn {
                 class WideNGS {
                     opticsDisplayName = "WNGS";
@@ -235,28 +237,60 @@ class UK3CB_BAF_Wildcat_Base : Heli_light_03_base_F {
     EGVAR(common,towbarActionMemoryPoint) = "wheel_front_axis";
 };
 
-class UK3CB_BAF_Wildcat_AH1_6_Base;
+class UK3CB_BAF_Wildcat_AH1_Base : UK3CB_BAF_Wildcat_Base {
+    class Turrets;
+};
+class UK3CB_BAF_Wildcat_AH1_6_Base : UK3CB_BAF_Wildcat_AH1_Base {
+    class Turrets : Turrets {
+        class MainTurret;
+    };
+};
 class UK3CB_BAF_Wildcat_AH1_6_Armed: UK3CB_BAF_Wildcat_AH1_6_Base {
     crew = "UKSF_B_Pilot_656";
     typicalCargo[] = { "UKSF_B_Pilot_656" };
     weapons[] = { "CUP_weapon_mastersafe", "UK3CB_BAF_CMFlareLauncher" };
     magazines[] = { "168Rnd_CMFlare_Chaff_Magazine" };
+    class Turrets : Turrets {
+        class MainTurret : MainTurret {
+            weapons[] += { "UK3CB_BAF_CMFlareLauncher" };
+            magazines[] += { "168Rnd_CMFlare_Chaff_Magazine" };
+        };
+    };
     INVENTORY_AIRCRAFT;
 };
-class UK3CB_BAF_Wildcat_AH1_8_Base;
+class UK3CB_BAF_Wildcat_AH1_8_Base : UK3CB_BAF_Wildcat_AH1_Base {
+    class Turrets : Turrets {
+        class MainTurret;
+    };
+};
 class UK3CB_BAF_Wildcat_AH1_8_Armed: UK3CB_BAF_Wildcat_AH1_8_Base {
     crew = "UKSF_B_Pilot_656";
     typicalCargo[] = { "UKSF_B_Pilot_656" };
     weapons[] = { "CUP_weapon_mastersafe", "UK3CB_BAF_CMFlareLauncher" };
     magazines[] = { "168Rnd_CMFlare_Chaff_Magazine" };
+    class Turrets : Turrets {
+        class MainTurret : MainTurret {
+            weapons[] += { "UK3CB_BAF_CMFlareLauncher" };
+            magazines[] += { "168Rnd_CMFlare_Chaff_Magazine" };
+        };
+    };
     INVENTORY_AIRCRAFT;
 };
 class UK3CB_BAF_Wildcat_AH1_TRN_8A : UK3CB_BAF_Wildcat_AH1_8_Base {
+    class Turrets : Turrets {
+        class MainTurret : MainTurret {
+            weapons[] += { "UK3CB_BAF_CMFlareLauncher" };
+            magazines[] += { "168Rnd_CMFlare_Chaff_Magazine" };
+        };
+    };
     INVENTORY_AIRCRAFT;
 };
 class UK3CB_BAF_Wildcat_HMA2_Base: UK3CB_BAF_Wildcat_Base {
     class Components : Components {
         class SensorsManagerComponent;
+    };
+    class Turrets : Turrets {
+        class MainTurret;
     };
 };
 class UK3CB_BAF_Wildcat_HMA2_8_Base : UK3CB_BAF_Wildcat_HMA2_Base {
@@ -264,6 +298,9 @@ class UK3CB_BAF_Wildcat_HMA2_8_Base : UK3CB_BAF_Wildcat_HMA2_Base {
         class SensorsManagerComponent : SensorsManagerComponent {
             class Components;
         };
+    };
+    class Turrets : Turrets {
+        class MainTurret;
     };
 };
 class UK3CB_BAF_Wildcat_HMA2_TRN_8A : UK3CB_BAF_Wildcat_HMA2_8_Base {
@@ -292,6 +329,12 @@ class UK3CB_BAF_Wildcat_HMA2_TRN_8A : UK3CB_BAF_Wildcat_HMA2_8_Base {
                     animDirection = "mainGun";
                 };
             };
+        };
+    };
+    class Turrets : Turrets {
+        class MainTurret : MainTurret {
+            weapons[] += { "UK3CB_BAF_CMFlareLauncher" };
+            magazines[] += { "168Rnd_CMFlare_Chaff_Magazine" };
         };
     };
     INVENTORY_AIRCRAFT;
@@ -349,8 +392,8 @@ class rksla3_aw159_hma2 : rksla3_aw159_base {
     };
     class Turrets : Turrets {
         class MainTurret : MainTurret {
-            weapons[] = { "UK3CB_BAF_Laserdesignator_mounted" };
-            magazines[] = { "Laserbatteries" };
+            weapons[] = { "UK3CB_BAF_Laserdesignator_mounted", "UK3CB_BAF_CMFlareLauncher" };
+            magazines[] = { "Laserbatteries", "168Rnd_CMFlare_Chaff_Magazine" };
             primaryGunner = 1;
             canEject = 1;
             showHMD = 1;

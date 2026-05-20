@@ -1,4 +1,5 @@
 class GVAR(C130FlareLauncher) : CMFlareLauncher {
+    magazines[] += { QGVAR(CMFlare_Chaff_1200Rnd_Magazine) };
     modes[] = { "Single", "Burst1", "Burst2", "Burst3", "Burst4", "Burst5", "Burst6", "AIBurst" };
     class Single : Mode_SemiAuto {
         reloadTime = 0.125;
@@ -18,6 +19,7 @@ class GVAR(C130FlareLauncher) : CMFlareLauncher {
         autoFire = "true";
         displayName = "40F/1.25S";
         burst = 10;
+        multiplier = 4;
         sounds[] = { "StandardSound" };
         class StandardSound {
             begin1[] = { "A3\Sounds_F\weapons\HMG\HMG_grenade", 1, 1, 300 };

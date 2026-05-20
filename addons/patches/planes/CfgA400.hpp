@@ -1,4 +1,7 @@
 class A400M_base_F : Plane_Base_F {
+    class Turrets : Turrets {
+        class MainTurret;
+    };
     unitInfoType = "RscUnitInfoAirPlaneNoSpeed";
     unitInfoTypeLite = "RscUnitInfoAirPlaneNoSpeed";
     FUEL(63750,120); // A400M real internal: 51 t / ~63,750 L
@@ -6,7 +9,7 @@ class A400M_base_F : Plane_Base_F {
     thrustCoef[] = { 1.42, 1.38, 1.34, 1.3, 1.25, 1.2, 1.19, 1.18, 1.17, 1.17, 1.16, 1.16, 1.1, 1, 0.7, 0.2, 0 }; // Check 400 knots
     armor = 150;
     weapons[] = { QEGVAR(weapons,C130FlareLauncher) };
-    magazines[] = { "300Rnd_CMFlare_Chaff_Magazine", "300Rnd_CMFlare_Chaff_Magazine" };
+    magazines[] = { QEGVAR(weapons,CMFlare_Chaff_1200Rnd_Magazine) };
     gunnerhasflares = 1;
     lockDetectionSystem = "8 + 4";
     class Components : Components {
@@ -255,7 +258,14 @@ class A400M_base_F : Plane_Base_F {
     };
     #include "..\hmds\MFDA400M.hpp"
 };
-class B_A400M_UK_CAMO_F : A400M_base_F {};
+class B_A400M_UK_CAMO_F : A400M_base_F {
+    class Turrets : Turrets {
+        class MainTurret : MainTurret {
+            weapons[] += { QEGVAR(weapons,C130FlareLauncher) };
+            magazines[] += { QEGVAR(weapons,CMFlare_Chaff_1200Rnd_Magazine) };
+        };
+    };
+};
 class GVAR(a400m_raf) : B_A400M_UK_CAMO_F {
     faction = "CUP_B_GB";
     displayName = "A400M";

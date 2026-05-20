@@ -119,8 +119,8 @@ class CfgVehicles {
             class MainTurret : MainTurret {
                 #include "MFDGunner.hpp"
                 turretInfoType = "RscOptics_GENERAL_FLIR";
-                weapons[] = { "CUP_weapon_mastersafe", "UK3CB_BAF_Laserdesignator_mounted", "CUP_Vacannon_M230_veh" };
-                magazines[] = { "Laserbatteries", "CUP_1200Rnd_TE1_Red_Tracer_30x113mm_M789_HEDP_M" };
+                weapons[] = { "CUP_weapon_mastersafe", "UK3CB_BAF_Laserdesignator_mounted", "CUP_Vacannon_M230_veh", "UK3CB_BAF_CMFlareLauncher" };
+                magazines[] = { "Laserbatteries", "CUP_1200Rnd_TE1_Red_Tracer_30x113mm_M789_HEDP_M", "168Rnd_CMFlare_Chaff_Magazine" };
                 class OpticsIn {
                     class WideNGS {
                         opticsDisplayName = "WNGS";

@@ -109,7 +109,7 @@ class CfgVehicles {
         driverCompartments = "Compartment1";
         cargoCompartments[] = { "Compartment1" };
         weapons[] = { QEGVAR(weapons,C130FlareLauncher) };
-        magazines[] = { "300Rnd_CMFlare_Chaff_Magazine" };
+        magazines[] = { QEGVAR(weapons,CMFlare_Chaff_1200Rnd_Magazine) };
         memoryPointCM[] = { "flare_launcher1", "flare_launcher2", "flare_launcher3", "flare_launcher4" };
         memoryPointCMDir[] = { "flare_launcher1_dir", "flare_launcher2_dir", "flare_launcher3_dir", "flare_launcher4_dir" };
         soundGetIn[] = { QPATHTOF(data\sounds\close),0.31622776,1 };
@@ -595,6 +595,8 @@ class CfgVehicles {
                 };
                 speedZoomMaxSpeed = 0;
                 speedZoomMaxFOV = 0.75;
+                weapons[] += { QEGVAR(weapons,C130FlareLauncher) };
+                magazines[] += { QEGVAR(weapons,CMFlare_Chaff_1200Rnd_Magazine) };
 #include "MFD.hpp"
             };
             class FlightEngineerTurret : NewTurret {
@@ -669,6 +671,8 @@ class CfgVehicles {
                     minAngleY = -170;
                     maxAngleY = 170;
                 };
+                weapons[] += { QEGVAR(weapons,C130FlareLauncher) };
+                magazines[] += { QEGVAR(weapons,CMFlare_Chaff_1200Rnd_Magazine) };
             };
             class LoadMasterRightDoorTurret : LoadMasterLeftDoorTurret {
                 proxyIndex = 4;

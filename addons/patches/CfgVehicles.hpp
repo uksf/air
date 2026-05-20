@@ -50,6 +50,7 @@ class CfgVehicles {
         explosionShielding = 0.6;
         epeImpulseDamageCoef = 4;
         crewCrashProtection = 1;
+        class Turrets;
     };
     class Plane_Base_F : Plane {
         class Turrets;

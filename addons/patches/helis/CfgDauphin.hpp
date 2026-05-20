@@ -68,6 +68,9 @@ class MEA_Pantera_Base : Helicopter_Base_H {
             tireForceAppPointOffset = "wheel_l_center";
         };
     };
+    class Turrets : Turrets {
+        class MEA_CopilotTurret;
+    };
     LESH_canBeTowed = 0;
     LESH_towFromFront = 1;
     LESH_AxisOffsetTarget[] = { 0, 8.365, -1.71 };
@@ -86,6 +89,12 @@ class GVAR(dauphin) : MEA_Pantera_Base {
     hiddenSelections[] = { "decals" };
     hiddenSelectionsTextures[] = { "" };
     startDuration = 45;
+    class Turrets : Turrets {
+        class MEA_CopilotTurret : MEA_CopilotTurret {
+            weapons[] += { "UK3CB_BAF_CMFlareLauncher" };
+            magazines[] += { "168Rnd_CMFlare_Chaff_Magazine" };
+        };
+    };
     INVENTORY_AIRCRAFT;
 };
 DEPRECATE_CLASS(uksf_air_dauphin,GVAR(dauphin));

@@ -10,12 +10,22 @@ class SensorTemplatePassiveRadar;
 class SensorTemplateVisual;
 class SensorTemplateDataLink;
 class CfgVehicles {
-    class UAV_02_dynamicLoadout_base_F;
+    class UAV_02_base_F;
+    class UAV_02_dynamicLoadout_base_F : UAV_02_base_F {
+        class Sounds;
+    };
     class UK3CB_BAF_MQ9_Reaper_Base : UAV_02_dynamicLoadout_base_F {
         class Turrets {
             class MainTurret;
         };
         class Components;
+        class Sounds : Sounds {
+            class EngineLowIn;
+            class EngineHighIn;
+            class ForsageIn;
+            class WindNoiseIn;
+            class RainInt;
+        };
     };
     class GVAR(raf) : UK3CB_BAF_MQ9_Reaper_Base {
         scope = 2;
@@ -381,34 +391,16 @@ class CfgVehicles {
             distance = 0;
             minSpeed = 1000;
         };
+        // Mute internal/cockpit-view engine audio so UAV terminal operators hear silence.
+        // External (Out) sounds inherit from parent so bystanders still hear the drone.
         soundEngineOnInt[] = { "A3\Sounds_F\air\UAV_02\UAV_02_start_ext", 0, 1 };
         soundEngineOffInt[] = { "A3\Sounds_F\air\UAV_02\UAV_02_stop_int", 0, 1 };
-        class Sounds {
-            class EngineLowIn {
-                sound[] = { "A3\Sounds_F\air\UAV_02\UAV_02_low_int", 0, 1 };
-                frequency = "1.0 min (rpm + 0.5)";
-                volume = "(1-camPos)*(rpm factor[0.95, 0])*(rpm factor[0, 0.95])";
-            };
-            class EngineHighIn {
-                sound[] = { "A3\Sounds_F\air\UAV_02\UAV_02_high_int", 0, 1 };
-                frequency = "(rpm factor[0.5, 1.0])";
-                volume = "(1-camPos)*(rpm factor[0.2, 1.0])";
-            };
-            class ForsageIn {
-                sound[] = { "A3\Sounds_F\air\UAV_02\UAV_02_forsage_int", 0, 1 };
-                frequency = "1";
-                volume = "engineOn*(1-camPos)*(thrust factor[0.6, 1.0])";
-            };
-            class WindNoiseIn {
-                sound[] = { "A3\Sounds_F\air\UAV_02\noise", 0, 1 };
-                frequency = "(0.3+(1.005*(speed factor[1, 50])))";
-                volume = "(1-camPos)*(speed factor[1, 50])";
-            };
-            class RainInt {
-                sound[] = { "A3\Sounds_F\vehicles\noises\rain2_ext", 0, 1, 100 };
-                frequency = 1;
-                volume = "(1-camPos)*(rain - rotorSpeed/2)*2";
-            };
+        class Sounds : Sounds {
+            class EngineLowIn : EngineLowIn { volume = "0"; };
+            class EngineHighIn : EngineHighIn { volume = "0"; };
+            class ForsageIn : ForsageIn { volume = "0"; };
+            class WindNoiseIn : WindNoiseIn { volume = "0"; };
+            class RainInt : RainInt { volume = "0"; };
         };
         LESH_canBeTowed = 0;
         LESH_towFromFront = 1;

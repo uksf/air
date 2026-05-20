@@ -45,6 +45,8 @@ class CUP_CH47F_base : Helicopter_Base_H {
             soundAttenuationTurret = "HeliAttenuationGunner";
         };
         class CopilotTurret : CopilotTurret {
+            weapons[] += { "UK3CB_BAF_CMFlareLauncher" };
+            magazines[] += { "168Rnd_CMFlare_Chaff_Magazine" };
             primaryGunner = 1;
             memoryPointsGetInGunner = "pos cargo";
             memoryPointsGetInGunnerDir = "pos cargo dir";
@@ -409,8 +411,8 @@ class CUP_B_CH47F_GB : CUP_CH47F_base {
             commanding = -1;
             gunnerAction = "CUP_CH47_Gunner01";
             gunnerInAction = "CUP_CH47_Gunner01";
-            weapons[] = { "CUP_Vlmg_L7A2_veh" };
-            magazines[] = { "CUP_100Rnd_TE4_LRT4_Red_Tracer_762x51_Belt_M", "CUP_100Rnd_TE4_LRT4_Red_Tracer_762x51_Belt_M", "CUP_100Rnd_TE4_LRT4_Red_Tracer_762x51_Belt_M", "CUP_100Rnd_TE4_LRT4_Red_Tracer_762x51_Belt_M", "CUP_100Rnd_TE4_LRT4_Red_Tracer_762x51_Belt_M" };
+            weapons[] = { "CUP_Vlmg_L7A2_veh", "UK3CB_BAF_CMFlareLauncher" };
+            magazines[] = { "CUP_100Rnd_TE4_LRT4_Red_Tracer_762x51_Belt_M", "CUP_100Rnd_TE4_LRT4_Red_Tracer_762x51_Belt_M", "CUP_100Rnd_TE4_LRT4_Red_Tracer_762x51_Belt_M", "CUP_100Rnd_TE4_LRT4_Red_Tracer_762x51_Belt_M", "CUP_100Rnd_TE4_LRT4_Red_Tracer_762x51_Belt_M", "168Rnd_CMFlare_Chaff_Magazine" };
             gunBeg = "muzzle_3";
             gunEnd = "chamber_3";
             primaryGunner = 0;
