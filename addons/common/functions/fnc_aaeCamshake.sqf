@@ -28,7 +28,7 @@ if (_distance >= camshake_sdr) exitWith {};
 
 private _velocityScale = linearConversion [0, 200, abs (speed _plane), 0, 1, true];
 private _massScale = linearConversion [500, 8000, _mass, 0.1, 1, true];
-private _force = (linearConversion [5, camshake_sdr, _distance, 1, 0.01, true]) * _massScale * _velocityScale;
+private _force = (linearConversion [5, camshake_sdr, _distance, 1.2, 0.012, true]) * _massScale * _velocityScale;
 private _frequency = linearConversion [50, camshake_sdr, _distance, 20, 8, true];
 
 addCamShake [_force, 0.5, _frequency];
