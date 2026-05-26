@@ -37,8 +37,8 @@ class rksla3_ammo_spear3 : M_Scalpel_AT {
         seekerTypes[] = { "MillimeterWaveRadar", "SALH" };
         defaultSeekerLockMode = "LOBL";
         seekerLockModes[] = { "LOBL" };
-        defaultNavigationType = "Direct";
-        navigationTypes[] = { "Direct", "ZeroEffortMiss" };
+        defaultNavigationType = "AugmentedProportionalNavigation";
+        navigationTypes[] = { "AugmentedProportionalNavigation" };
 
         seekLastTargetPos = 1;
         seekerAngle = 70;
@@ -47,20 +47,8 @@ class rksla3_ammo_spear3 : M_Scalpel_AT {
         seekerMaxRange = 20000;
         activeRadarEngageDistance = 3000;
 
-        defaultAttackProfile = "hellfire";
-        attackProfiles[] = { "hellfire", "hellfire_hi", "hellfire_lo" };
-
-        class navigationStates {
-            class initial {
-                transitionCondition = "ace_hellfire_fnc_midCourseTransition";
-                navigationType = "Direct";
-            };
-            class terminal {
-                transitionCondition = "";
-                navigationType = "ZeroEffortMiss";
-            };
-            states[] = { "initial", "terminal" };
-        };
+        defaultAttackProfile = "DIR";
+        attackProfiles[] = { "DIR" };
     };
 
     class Components {
