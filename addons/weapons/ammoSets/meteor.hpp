@@ -17,13 +17,7 @@ class rksla3_ammo_meteor : ammo_Missile_LongRangeAABase {
     airFriction = 0.06;
     sideAirFriction = 0.18;
     ace_rearm_dummy = QGVAR(ammo_missile_meteor);
-    ace_frag_skip = 0;
-    ace_frag_force = 1;
-    ace_frag_charge = 4500;       // ~4.5kg HE (PBX)
-    ace_frag_metal = 9500;        // ~9.5kg pre-formed fragments
-    ace_frag_gurney_c = 2700;     // PBX/RDX modern HE
-    ace_frag_gurney_k = 0.5;      // cylindrical geometry
-    ace_frag_classes[] = { QGVAR(frag_a2a_bvr) };
+    A2A_FRAG(4500,9500,bvr);      // ~4.5kg HE (PBX) / ~9.5kg pre-formed fragments
     SoundSetExplosion[] = { "JPEX_Missile_EXPLOSION_SoundSet", "JPEX_Missile_REFLECTOR_SoundSet" };
 
     flightProfiles[] = { "Direct", "TopDown" };
