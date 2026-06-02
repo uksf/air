@@ -31,7 +31,16 @@ class CfgWeapons {
     class MissileLauncher;
     class Missile_AGM_02_Plane_CAS_01_F;
 
+    // Air-defence engagement overhaul — external PARENTS of the enemy classes patched in airdefence.hpp.
+    // (MissileLauncher / CannonCore already declared above. The patched classes themselves are not
+    // forward-declared — they are defined directly with their real parent in airdefence.hpp.)
+    // NB: missiles_ASRAAM / weapon_AMRAAMLauncher above are UKSF kit parents and are NOT patched here.
+    class Launcher_Base_F;
+    class missiles_titan;
+    class CUP_Vacannon_GSh302K_veh;
+
 #include "weaponSets\a2a.hpp"
+#include "weaponSets\airdefence.hpp"
 #include "weaponSets\bombs.hpp"
 #include "weaponSets\brimstone.hpp"
 #include "weaponSets\bullets.hpp"

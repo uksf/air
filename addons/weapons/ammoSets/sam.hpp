@@ -37,11 +37,53 @@ class rhs_ammo_9k32 : M_Titan_AA {
 };
 
 // AIM-9L Sidewinder (CUP F-15/F-16/A-10): 9.4kg WDU-17 annular blast-frag.
+// Seeker/lock nudged 5000 -> 5500 to align with the WVR-IR engagement envelope.
 class CUP_M_AIM_9L_Sidewinder_AA : MissileBase {
     indirectHit = 85;
     indirectHitRange = 4;
     A2A_FRAG(1700,3600,sr);
     ACE_GUIDANCE(Sidewinder);
+    missileLockMaxDistance = 5500;
+    class Components {
+        class SensorsManagerComponent {
+            class Components {
+                class IRSensorComponent {
+                    componentType = "IRSensorComponent";
+                    angleRangeHorizontal = 180;
+                    angleRangeVertical = 180;
+                    maxTrackableSpeed = 600;
+                    class AirTarget { minRange = 500; maxRange = 5500; objectDistanceLimitCoef = -1; viewDistanceLimitCoef = 1; };
+                    class GroundTarget { minRange = 500; maxRange = 4000; objectDistanceLimitCoef = 1; viewDistanceLimitCoef = 1; };
+                };
+            };
+        };
+    };
+};
+
+// Vanilla static Titan AA round (M_Titan_AA_static; B/O/I_static_AA_F launchers). Leaf-override only —
+// raises the IR seeker 3500 -> 5000 and lets it track fast jets (missileLockMaxSpeed 250 -> 500) without
+// touching the shared M_Titan_AA base (which bleeds to Strela/Igla/Stinger/Zephyr). This is the real
+// "engaged too close" fix for static Titan AA (its weapon mode already reaches 5 km).
+// (M_Titan_AA is defined earlier in CfgAmmo.hpp, same scope.)
+class M_Titan_AA_static : M_Titan_AA {
+    missileLockMaxDistance = 5000;
+    missileLockMaxSpeed = 500;
+    class Components : Components {
+        class SensorsManagerComponent {
+            class Components {
+                class IRSensorComponent {
+                    componentType = "IRSensorComponent";
+                    angleRangeHorizontal = 7;
+                    angleRangeVertical = 4.5;
+                    maxTrackableSpeed = 500;
+                    groundNoiseDistanceCoef = 0.2;
+                    maxGroundNoiseDistance = 50;
+                    class AirTarget { minRange = 500; maxRange = 5000; objectDistanceLimitCoef = -1; viewDistanceLimitCoef = 1; };
+                    class GroundTarget { minRange = 500; maxRange = 2500; objectDistanceLimitCoef = 1; viewDistanceLimitCoef = 1; };
+                };
+            };
+        };
+    };
 };
 
 // RIM-7 Sea Sparrow (CUP frigate naval AA): WDU-27 ~39.5kg continuous-rod warhead.

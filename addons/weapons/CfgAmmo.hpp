@@ -76,6 +76,7 @@ class CfgAmmo {
         indirectHitRange = 3;
         A2A_FRAG(1000,2000,manpad);
         ACE_GUIDANCE(Stinger);
+        class Components;   // fwd-decl so M_Titan_AA_static (sam.hpp) can : Components → real inherited sensor
     };
     // AIM-120A AMRAAM (BIS "Zephyr"): vanilla MR base for AAF Buzzard etc. Inherits from
     // M_Titan_AA; explicit ace_missileguidance override needed so it doesn't fall through
