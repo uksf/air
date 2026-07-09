@@ -6,6 +6,26 @@
 
 if (!hasInterface) exitWith {};
 
+// Strip A3TI's LTM keybinds (Toggle LTM / Toggle LTM Mode). The LTM functions are
+// already neutered via CfgFunctions, but A3TI still registers the keybinds (Toggle
+// LTM defaults to L); remove just those two entries so they don't clutter or bind.
+// Reaches into CBA keybinding internals - if they ever return, CBA changed them.
+{
+    private _action = toLower format ["A3TI$%1", _x];
+    private _entry = cba_keybinding_actions getVariable _action;
+    if (!isNil "_entry") then {
+        {
+            [format ["%1_down_%2", _action, _forEachIndex], "keydown"] call CBA_fnc_removeKeyHandler;
+            [format ["%1_up_%2", _action, _forEachIndex], "keyup"] call CBA_fnc_removeKeyHandler;
+        } forEach (_entry param [2, []]);
+        cba_keybinding_actions setVariable [_action, nil];
+    };
+} forEach ["ltm_toggle", "ltm_toggle_mode"];
+private _a3tiInfo = cba_keybinding_addons getVariable "A3TI";
+if (!isNil "_a3tiInfo") then {
+    _a3tiInfo set [1, (_a3tiInfo select 1) - ["ltm_toggle", "ltm_toggle_mode"]];
+};
+
 ["vehicle", {
     params ["_player", "_vehicle"];
     if (_vehicle isEqualTo _player) exitWith {};
