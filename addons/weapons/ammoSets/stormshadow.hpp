@@ -35,10 +35,13 @@ class GVAR(penetrator_stormshadow) : ammo_Penetrator_Base {
 };
 class rksla3_ammo_kepd350;
 class rksla3_ammo_stormshadow : rksla3_ammo_kepd350 {
+    // explosive MUST be 0 on the outer shell: terrain impact with explosive>0 takes the
+    // detonation path and skips submunition spawn (dev-test: ground FAIL_CHAIN, vehicles PASS).
+    // Precursor punch is the AP penetrator stage; HE blast is the payload stage only.
     hit = 100;
-    indirectHit = 50;
-    indirectHitRange = 4;
-    explosive = 0.5;
+    indirectHit = 0;
+    indirectHitRange = 0;
+    explosive = 0;
     submunitionAmmo = QGVAR(penetrator_stormshadow);
     submunitionDirectionType = "SubmunitionModelDirection";
     submunitionInitSpeed = 1000;
