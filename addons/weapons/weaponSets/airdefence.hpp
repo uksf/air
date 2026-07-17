@@ -35,14 +35,25 @@ class missiles_Zephyr : MissileLauncher {
     midRange = 7000;
 };
 
-// AIM-9L Sidewinder (CUP F-15/F-16/A-10/AV-8B/AH) — IR WVR. Children (_4Rnd/_2Rnd/_1Rnd/_Int) + *_W aliases inherit.
-class CUP_Vmlauncher_AIM9L_veh : MissileLauncher {
+// AIM-9L Sidewinder (CUP F-15/F-16/A-10/AV-8B/AH) — IR WVR.
+// Patch the _4Rnd ROOT (not CUP_Vmlauncher_AIM9L_veh leaf) so _2Rnd/_1Rnd/_Int and *_W aliases inherit reload+range.
+class CUP_Vmlauncher_AIM9L_veh_4Rnd : MissileLauncher {
     reloadTime = 3;
     minRangeProbab = 0.3;
     midRange = 3500;
     midRangeProbab = 0.85;
     maxRange = 5500;
     maxRangeProbab = 0.6;
+};
+
+// CUP R-73 on L-39 / Su-25 / Su-34 (separate line from vanilla weapon_R73Launcher / Shikra).
+// Parent chain: RocketPods <- Missile_AA_04 <- Missile_AA_03 <- CUP_Vmlauncher_R73_veh.
+class CUP_Vmlauncher_R73_veh : Missile_AA_03_Plane_CAS_02_F {
+    reloadTime = 3;
+    midRange = 3500;
+    midRangeProbab = 0.85;
+    maxRange = 5500;
+    maxRangeProbab = 0.7;
 };
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -200,5 +211,22 @@ class CUP_Vacannon_2A38M_veh : CUP_Vacannon_GSh302K_veh {
         midRangeProbab = 0.6;
         maxRange = 2500;
         maxRangeProbab = 0.5;
+    };
+};
+
+// CUP M163 VADS M168 Vulcan 20 mm. Modes Manual/close/short/medium/Far. Naval Phalanx inherits this.
+class CUP_Vacannon_M168_M163VADS : CannonCore {
+    aiDispersionCoefX = 8;
+    aiDispersionCoefY = 8;
+    class Manual;
+    class close : Manual {
+        aiDispersionCoefX = 8;
+        aiDispersionCoefY = 8;
+    };
+    class Far : close {
+        midRange = 1500;
+        midRangeProbab = 0.6;
+        maxRange = 2500;
+        maxRangeProbab = 0.4;
     };
 };

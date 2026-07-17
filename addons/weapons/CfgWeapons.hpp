@@ -38,6 +38,7 @@ class CfgWeapons {
     class Launcher_Base_F;
     class missiles_titan;
     class CUP_Vacannon_GSh302K_veh;
+    class Missile_AA_03_Plane_CAS_02_F;
 
 #include "weaponSets\a2a.hpp"
 #include "weaponSets\airdefence.hpp"

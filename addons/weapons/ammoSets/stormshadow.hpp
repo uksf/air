@@ -1,28 +1,13 @@
-class GVAR(payload_stormshadow) : ammo_Penetrator_Base {
+// Single-stage penetrator (hellfire pattern). Nested payload->penetrator was unreliable on impact.
+class GVAR(penetrator_stormshadow) : ammo_Penetrator_Base {
     caliber = 80;
     warheadName = "HE";
-    hit = 12000;            // 5800
-    indirectHit = 1500;     // 1200
-    indirectHitRange = 18;  // 20
+    hit = 12000;
+    indirectHit = 1500;
+    indirectHitRange = 18;
     explosive = 1;
     explosionEffects = "BombExplosion";
     CraterEffects = "BombCrater";
-};
-class GVAR(penetrator_stormshadow) : ammo_Penetrator_Base {
-    caliber = 80;
-    warheadName = "AP";
-    hit = 500;
-    indirectHit = 0;
-    indirectHitRange = 0;
-    explosive = 0;
-    submunitionAmmo = QGVAR(payload_stormshadow);
-    submunitionDirectionType = "SubmunitionModelDirection";
-    submunitionParentSpeedCoef = 1;
-    submunitionInitialOffset[] = { 0, 0, -0.5 };
-    deleteParentWhenTriggered = 0;
-    triggerOnImpact = 1;
-    explosionEffects = "";
-    CraterEffects = "";
 };
 class rksla3_ammo_kepd350;
 class rksla3_ammo_stormshadow : rksla3_ammo_kepd350 {
@@ -33,7 +18,7 @@ class rksla3_ammo_stormshadow : rksla3_ammo_kepd350 {
     submunitionDirectionType = "SubmunitionModelDirection";
     submunitionParentSpeedCoef = 1;
     submunitionInitialOffset[] = { 0, 0, 0 };
-    deleteParentWhenTriggered = 0;
+    deleteParentWhenTriggered = 1;
     triggerOnImpact = 1;
     maneuvrability = 0;
     explosionEffects = "";
