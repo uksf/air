@@ -37,6 +37,7 @@ class CfgWeapons {
     // NB: missiles_ASRAAM / weapon_AMRAAMLauncher above are UKSF kit parents and are NOT patched here.
     class Launcher_Base_F;
     class missiles_titan;
+    class missiles_SAAMI;
     class CUP_Vacannon_GSh302K_veh;
     class Missile_AA_03_Plane_CAS_02_F;
 

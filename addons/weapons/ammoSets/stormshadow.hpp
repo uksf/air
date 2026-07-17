@@ -1,24 +1,50 @@
-// Single-stage penetrator (hellfire pattern). Nested payload->penetrator was unreliable on impact.
-class GVAR(penetrator_stormshadow) : ammo_Penetrator_Base {
-    caliber = 80;
+// BROACH-style dual stage: outer shell -> AP precursor penetrator -> HE follow-through.
+// Vanilla tandem pattern (Titan/Scalpel): submunitionInitSpeed + ParentSpeedCoef=0 so the
+// child keeps forward velocity when the parent dies on impact. ParentSpeedCoef=1 was the
+// dud — child inherited the dying missile's near-zero speed and never punched through.
+class GVAR(payload_stormshadow) : ammo_Penetrator_Base {
+    caliber = 40;
     warheadName = "HE";
     hit = 12000;
     indirectHit = 1500;
     indirectHitRange = 18;
     explosive = 1;
+    typicalSpeed = 800;
+    timeToLive = 0.2;
     explosionEffects = "BombExplosion";
     CraterEffects = "BombCrater";
+};
+class GVAR(penetrator_stormshadow) : ammo_Penetrator_Base {
+    caliber = 80;
+    warheadName = "AP";
+    hit = 500;
+    indirectHit = 0;
+    indirectHitRange = 0;
+    explosive = 0;
+    typicalSpeed = 1000;
+    timeToLive = 0.25;
+    submunitionAmmo = QGVAR(payload_stormshadow);
+    submunitionDirectionType = "SubmunitionModelDirection";
+    submunitionInitSpeed = 800;
+    submunitionParentSpeedCoef = 0;
+    submunitionInitialOffset[] = { 0, 0, -0.3 };
+    triggerOnImpact = 1;
+    deleteParentWhenTriggered = 0;
+    explosionEffects = "";
+    CraterEffects = "";
 };
 class rksla3_ammo_kepd350;
 class rksla3_ammo_stormshadow : rksla3_ammo_kepd350 {
     hit = 100;
-    indirectHit = 10;
-    indirectHitRange = 1;
+    indirectHit = 50;
+    indirectHitRange = 4;
+    explosive = 0.5;
     submunitionAmmo = QGVAR(penetrator_stormshadow);
     submunitionDirectionType = "SubmunitionModelDirection";
-    submunitionParentSpeedCoef = 1;
-    submunitionInitialOffset[] = { 0, 0, 0 };
-    deleteParentWhenTriggered = 1;
+    submunitionInitSpeed = 1000;
+    submunitionParentSpeedCoef = 0;
+    submunitionInitialOffset[] = { 0, 0, -0.2 };
+    deleteParentWhenTriggered = 0;
     triggerOnImpact = 1;
     maneuvrability = 0;
     explosionEffects = "";

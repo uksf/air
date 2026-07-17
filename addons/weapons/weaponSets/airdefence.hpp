@@ -230,3 +230,12 @@ class CUP_Vacannon_M168_M163VADS : CannonCore {
         maxRangeProbab = 0.4;
     };
 };
+
+// ACE FIM-92 vehicle/manpad leaf (Bardelas / Wiesel / LT-01 AA). Parent missiles_SAAMI midRange=1500
+// left the AI engaging way inside the Stinger envelope; match CUP vehicle Stinger commitment.
+class ace_missile_manpad_FIM92 : missiles_SAAMI {
+    reloadTime = 5;
+    midRange = 3500;
+    midRangeProbab = 0.85;
+    maxRangeProbab = 0.7;
+};
