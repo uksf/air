@@ -44,6 +44,7 @@ class CfgPatches {
             "UK3CB_BAF_Vehicles_Wildcat",
 
             // Other
+            "A3TI",
             "A400M",
             "AVDAVFX",
             "CXS_LightSticks",

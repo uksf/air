@@ -16,4 +16,12 @@ class CfgFunctions {
             };
         };
     };
+    class A3TI {
+        class LTM {
+            class createLTM     { file = QPATHTOF(functions\fnc_a3tiStub.sqf); };
+            class pfhLTM        { file = QPATHTOF(functions\fnc_a3tiStub.sqf); };
+            class toggleLTM     { file = QPATHTOF(functions\fnc_a3tiStub.sqf); };
+            class toggleLTMmode { file = QPATHTOF(functions\fnc_a3tiStub.sqf); };
+        };
+    };
 };
