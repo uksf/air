@@ -27,8 +27,8 @@
 #define BOX_HALF_ANGLE 13
 #define DOT_TEXTURE QPATHTOEF(f35,mfd\circle.paa)
 #define DOT_COLS 3
-#define DOT_ROWS 9
-#define DOT_SIZE 0.35
+#define DOT_ROWS 15
+#define DOT_SIZE 0.12
 #define LABEL_MARGIN_DEG 3
 #define BLINK_PERIOD 0.6
 

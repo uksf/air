@@ -27,8 +27,7 @@
         [_plane, _missile, 0] call uksf_air_common_fnc_computeNotchGeometry
 */
 #define HYSTERESIS_MARGIN 15
-#define HALFWIDTH_MIN 2
-#define HALFWIDTH_MAX 18
+#define HALFWIDTH_MAX 60
 
 params ["_aircraft", "_missile", ["_prevSide", 0]];
 
@@ -51,17 +50,40 @@ private _minimumSpeed = [configOf _missile >> "ace_missileguidance" >> "minimumS
 
 private _inNotch = _closingSpeed <= _minimumSpeed;
 
-// Azimuth tolerance: closingSpeed only sees the HORIZONTAL velocity component along
-// the LOS, so the true tolerance widens when you're pitched (less horizontal speed ->
-// easier to drop under the threshold). Use horizontal speed, not 3D, for halfWidth.
+// Solve the notch window exactly. Along a heading h, the closing speed is
+// A * cos(h - bearing) + C, where A is the horizontal velocity component scaled by the
+// horizontal part of the LOS and C is the vertical contribution. In-notch is
+// |A * cos(h - bearing) + C| <= minimumSpeed, which gives an interval of cos values.
+// The window is neither centred on the 90 deg beam nor symmetric once the missile is
+// above or below the aircraft, so derive both the centre and the half-width from it.
 private _horizSpeed = vectorMagnitude [_velocity select 0, _velocity select 1, 0];
-private _ratio = (_minimumSpeed / (_horizSpeed max 1)) min 1;
-private _halfWidth = (asin _ratio) max HALFWIDTH_MIN min HALFWIDTH_MAX;
+private _losUnit = vectorNormalized _delta;
+private _scale = _horizSpeed * (vectorMagnitude [_losUnit select 0, _losUnit select 1, 0]);
+private _verticalTerm = (_velocity select 2) * (_losUnit select 2);
+
+private _centreOffset = 90;
+private _halfWidth = 0;
+if (_scale < 0.1) then {
+    // No horizontal component to trade: heading cannot change the closing speed
+    if (abs _verticalTerm <= _minimumSpeed) then { _halfWidth = HALFWIDTH_MAX };
+} else {
+    private _cosHigh = ((_minimumSpeed - _verticalTerm) / _scale) max -1 min 1;
+    private _cosLow = ((- _minimumSpeed - _verticalTerm) / _scale) max -1 min 1;
+    private _angleNear = acos _cosHigh;
+    private _angleFar = acos _cosLow;
+    if (_angleFar < _angleNear) then {
+        // Window closed: sit on the heading with the lowest achievable closing speed
+        _centreOffset = acos (((- _verticalTerm) / _scale) max -1 min 1);
+    } else {
+        _centreOffset = (_angleNear + _angleFar) / 2;
+        _halfWidth = ((_angleFar - _angleNear) / 2) min HALFWIDTH_MAX;
+    };
+};
 
 // Two beam solutions; pick side nearest velocity heading, with hysteresis
 private _velHeading = (_velocity select 0) atan2 (_velocity select 1);
-private _beamPlus = _bearing + 90;   // side = 1
-private _beamMinus = _bearing - 90;  // side = -1
+private _beamPlus = _bearing + _centreOffset;   // side = 1
+private _beamMinus = _bearing - _centreOffset;  // side = -1
 
 // Angular distance helper (0..180)
 private _angDiff = {
@@ -86,7 +108,7 @@ if (_side == 0) then {
     };
 };
 
-private _beamAzimuth = _bearing + (90 * _side);
+private _beamAzimuth = _bearing + (_centreOffset * _side);
 private _rangeKm = (_aircraftPos vectorDistance _missilePos) / 1000;
 
 [_beamAzimuth, _halfWidth, _inNotch, _side, _rangeKm]
