@@ -23,3 +23,11 @@ class Extended_Init_EventHandlers {
         };
     };
 };
+
+class Extended_Local_EventHandlers {
+    class GVAR(raf) {
+        class ADDON {
+            local = QUOTE(if (_this select 1) then { (_this select 0) setVehicleRadar 1; (_this select 0) setVehicleReportRemoteTargets true; });
+        };
+    };
+};
