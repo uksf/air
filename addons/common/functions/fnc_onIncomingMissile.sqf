@@ -28,6 +28,11 @@
 params ["_aircraft", "_ammoType", "_firer"];
 
 if (!alive _aircraft) exitWith {};
+
+if (local _aircraft && {isVehicleRadarOn _aircraft}) then {
+    [_aircraft, _firer] call FUNC(interrogateTarget);
+};
+
 if (!hasInterface) exitWith {};
 if (vehicle player isNotEqualTo _aircraft) exitWith {};
 
