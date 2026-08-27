@@ -16,7 +16,7 @@ GVAR(handlerUav) = -1;
     TRACE_4("ACE_controlledUAV EH",_uav,_seatAI,_turret,_position);
 
     if (!isNull _seatAI) then {
-        player action ["ActiveSensorsOn", _uav];
+        _seatAI action ["ActiveSensorsOn", _uav];
         GVAR(handlerUav) = [FUNC(handleDronePFH), 0, [_uav, _position, false, 1]] call CBA_fnc_addPerFrameHandler;
     } else {
         [GVAR(handlerUav)] call CBA_fnc_removePerFrameHandler;
