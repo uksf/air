@@ -122,7 +122,10 @@ class CfgVehicles {
         memoryPointCMDir[] = { "FlareLauncher_1_dir" };
         memoryPointLDust = "WheelDust_left_pos";
         memoryPointRDust = "WheelDust_right_pos";
+        disableInventory = 0;
+        supplyRadius = 4.5; // doplnovani is in the cockpit, ~3.9 m from a player standing at the cockpit side
         maximumLoad = 200;
+        transportMaxBackpacks = 1;
         weapons[] = { "CUP_weapon_mastersafe", "Laserdesignator_pilotCamera", "UK3CB_BAF_CMFlareLauncher" };
         magazines[] = { "Laserbatteries", "240Rnd_CMFlare_Chaff_Magazine" };
         soundSetSonicBoom[] = { QGVAR(sonicboom_soundset) };
