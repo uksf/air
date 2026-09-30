@@ -14,14 +14,16 @@ Inspect:
   anims      <model> [filter]              model animations: type, source, phase and value range
   bones      <model> <lod> [filter]        bones with the vertices they move and the animations driving them
   selection  <model> <lod> <name>          a selection's sections, textures, vertex extent and bone weights
+  sections   <model> <lod> [x0 x1 y0 y1 z0 z1]
+                                           sections with texture, extent and bones, optionally inside a box
   roundtrip  <model>                       read and re-write in memory; reports differing bytes
   export-obj <model> <lod> <out.obj>       write a LOD as Wavefront OBJ (see silhouette.js)
 
 Edit (each output is re-read and must serialize to the same bytes):
   set-source   <in> <out> <anim> <source> [clamp|mirror|loop]
                                            point an animation at another source, optionally its address
-  bind         <in> <out> <lod> <selection> <bone>
-                                           weight an unweighted sectional selection to a bone
+  bind         <in> <out> <lod> <selection|#section> <bone> [x0 x1 y0 y1 z0 z1]
+                                           weight unweighted faces (optionally only those inside a box) to a bone
   remap        <in> <out> <rule>...        rule = oldModel|oldId|newModel|newId; @file reads rules, one per line
   add-proxies  <in> <out> <template> <filter>
                                            copy LOD 0 proxies matching filter into the memory LOD
@@ -165,7 +167,11 @@ try
         }
         case "bind":
             Need(6);
-            Selections.Bind(input, args[2], args[3], args[4], args[5]);
+            Selections.Bind(input, args[2], args[3], args[4], args[5], args.Length >= 12 ? args.Skip(6).Take(6).Select(Odol.ParseFloat).ToArray() : null);
+            break;
+        case "sections":
+            Need(3);
+            Selections.ListSections(input, args[2], args.Length >= 9 ? args.Skip(3).Take(6).Select(Odol.ParseFloat).ToArray() : null);
             break;
         case "selection":
             Need(4);
