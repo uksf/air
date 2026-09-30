@@ -26,13 +26,10 @@ hemtt utils pbo extract "$ARMA/Addons/air_f_gamma.pbo" 'Plane_Fighter_03\Plane_F
 "$odol" set-source "$work/1a.p3d" "$work/1b.p3d" rotor_R rotor loop
 "$odol" set-source "$work/1b.p3d" "$work/1c.p3d" vrtule_0 rotor loop
 "$odol" set-source "$work/1c.p3d" "$work/1d.p3d" vrtule_1 rotor loop
-# The flame discs and the exhaust duct (section 9, the turbine image) inside each nozzle were never
-# weighted to their vrtule bones, so they never spun. The duct is round, so turning it turns the image.
+# The flame discs inside each nozzle were never weighted to their vrtule bones, so they never spun.
 "$odol" bind "$work/1d.p3d" "$work/1e.p3d" 0 burner_fire_1_left "vrtule 0"
 "$odol" bind "$work/1e.p3d" "$work/1f.p3d" 0 burner_fire_1_right "vrtule 1"
-"$odol" bind "$work/1f.p3d" "$work/1g.p3d" 0 "#9" "vrtule 0" 0 1.2 -1 1 4 5.7
-"$odol" bind "$work/1g.p3d" "$work/1h.p3d" 0 "#9" "vrtule 1" -1.2 0 -1 1 4 5.7
-"$odol" remap "$work/1h.p3d" "$work/2.p3d" "@$here/typhoon.rules"
+"$odol" remap "$work/1f.p3d" "$work/2.p3d" "@$here/typhoon.rules"
 "$odol" add-proxies "$work/2.p3d" "$work/3.p3d" "$work/buzzard.p3d" pylonpod
 
 # Model +Z points aft. Cockpit supply point, ejection seat start, and landing-gear contacts for AAE.
