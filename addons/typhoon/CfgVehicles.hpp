@@ -8,7 +8,11 @@ class CfgVehicles {
     class EAWS_EF2000 : Plane_Fighter_03_base_F {
         class AnimationSources;
         class EventHandlers;
-        class MFD;
+        class MFD {
+            class HUD;
+            class MFD_LH;
+            class MFD_RH;
+        };
         class pilotCamera;
     };
     class GVAR(base) : EAWS_EF2000 {

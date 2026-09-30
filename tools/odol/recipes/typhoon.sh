@@ -20,7 +20,13 @@ hemtt utils pbo extract "$ARMA/Addons/air_f_gamma.pbo" 'Plane_Fighter_03\Plane_F
 
 # The tail hook follows the gear by default; uksf_air defines the "hook" source and holds it stowed.
 "$odol" set-source "$work/0.p3d" "$work/1.p3d" towhook hook
-"$odol" remap "$work/1.p3d" "$work/2.p3d" "@$here/typhoon.rules"
+# Engine fans. rotor rises continuously, so clamp stops them after one turn; vrtule_0/1 used
+# sources that do not exist.
+"$odol" set-source "$work/1.p3d" "$work/1a.p3d" rotor_L rotor loop
+"$odol" set-source "$work/1a.p3d" "$work/1b.p3d" rotor_R rotor loop
+"$odol" set-source "$work/1b.p3d" "$work/1c.p3d" vrtule_0 rotor loop
+"$odol" set-source "$work/1c.p3d" "$work/1d.p3d" vrtule_1 rotor loop
+"$odol" remap "$work/1d.p3d" "$work/2.p3d" "@$here/typhoon.rules"
 "$odol" add-proxies "$work/2.p3d" "$work/3.p3d" "$work/buzzard.p3d" pylonpod
 
 # Model +Z points aft. Cockpit supply point, ejection seat start, and landing-gear contacts for AAE.

@@ -28,8 +28,12 @@ Run `odol roundtrip <model>` on any new model first. Zero differing bytes means 
 - `remap` retargets proxies and renames their selections. Dynamic pylons need a `pylonpod` proxy per pylon in the visual LODs, numbered to match `TransportPylonsComponent` pylon N. Other proxy types do not take pylon stores.
 - `add-proxies` copies matching LOD 0 proxies into the memory LOD. The engine reads store and launch positions from memory-LOD proxies, so pylons without them load but fire from a fallback point.
 - `add-point` adds a named memory point, for example `doplnovani` (inventory and supply position), `pos_eject`, or `wheel_N_contact` for AAE.
-- `set-source` points a model animation at another `AnimationSources` entry. The config must define that source.
+- `set-source` points a model animation at another source: an engine source such as `rotor`, or a config `AnimationSources` entry the config defines. Continuously rising sources such as `rotor` need address `loop`; `clamp` stops after one turn. `anims` shows each animation's source, address and bound LODs.
 - The memory-LOD edits copy their structure from a template model. The A-143 Buzzard (`air_f_gamma.pbo`, `Plane_Fighter_03\Plane_Fighter_03_F.p3d`) works. `add-proxies` only supports a memory LOD that has no faces yet.
+
+## Pylon-menu picture
+
+`odol export-obj <model> 0 v.obj`, `odol export-obj <model> geometry g.obj`, then `node tools/odol/silhouette.js v.obj out.png --clip g.obj --points points.json` renders a vanilla-style top view (2048x1024, nose left) and prints a `UIposition` for each pylon proxy position. Convert with `hemtt utils paa convert out.png loadout_ca.paa`. Spread boxes that land within about 0.05 of each other.
 
 ## Limits
 

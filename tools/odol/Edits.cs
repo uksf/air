@@ -39,19 +39,35 @@ static class Edits
 
     static string Path(string p) => p.Replace('/', '\\').ToLowerInvariant();
 
-    // Points a model animation at a different config AnimationSources entry. The config must define
-    // that source, or the engine logs "unknown animation source" and the animation stays still.
-    public static void SetSource(string input, string output, string animName, string source)
+    static readonly string[] Addresses = ["clamp", "mirror", "loop"];
+
+    // Points a model animation at another source: an engine source such as rotor, or a config
+    // AnimationSources entry. An unknown source logs "unknown animation source" and never moves.
+    // Continuously rising sources such as rotor need address loop; clamp stops after one turn.
+    public static void SetSource(string input, string output, string animName, string source, string address)
     {
         var odol = Odol.Load(input);
         var hits = odol.Animations.AnimationClasses.Where(a => a.AnimName.Equals(animName, StringComparison.OrdinalIgnoreCase)).ToList();
         if (hits.Count == 0) throw new Exception($"no animation {animName}");
+        int addr = address == null ? -1 : Array.IndexOf(Addresses, address.ToLowerInvariant());
+        if (address != null && addr < 0) throw new Exception($"address must be {string.Join(", ", Addresses)}");
         foreach (var a in hits)
         {
-            Console.WriteLine($"{a.AnimName}: source {a.AnimSource} -> {source}");
+            Console.WriteLine($"{a.AnimName}: source {a.AnimSource} -> {source}{(addr < 0 ? "" : $", address {Addresses[a.SourceAddress]} -> {Addresses[addr]}")}");
             Odol.Set(typeof(AnimationClass), a, "AnimSource", source);
+            if (addr >= 0) Odol.Set(typeof(AnimationClass), a, "SourceAddress", (uint)addr);
         }
         Odol.Save(odol, output);
+    }
+
+    // Writes a LOD as Wavefront OBJ in model coordinates, for rendering or inspection elsewhere.
+    public static void ExportObj(string input, string lodName, string output)
+    {
+        var lod = Odol.FindLod(Odol.Load(input), lodName);
+        using var w = new StreamWriter(output);
+        foreach (var v in lod.Vertices) w.WriteLine(FormattableString.Invariant($"v {v.X} {v.Y} {v.Z}"));
+        foreach (var f in lod.Polygons.Faces) w.WriteLine("f " + string.Join(' ', f.VertexIndices.Select(i => i + 1)));
+        Console.WriteLine($"wrote {output}: {lod.Vertices.Count} vertices, {lod.Polygons.Faces.Length} faces");
     }
 
     // Appends one vertex copying the template vertex's clip flag, normal and bone reference.

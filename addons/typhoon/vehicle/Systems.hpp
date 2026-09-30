@@ -3,6 +3,10 @@
 
 // F-35 helmet display, hidden while the pilot looks through the Typhoon's own HUD.
 class MFD : MFD {
+    // The EAWS glass HUD and cockpit displays, declared ahead of the HMD.
+    class HUD : HUD {};
+    class MFD_LH : MFD_LH {};
+    class MFD_RH : MFD_RH {};
 // user40 is HMD_USER_VALUE, set by fnc_hmdVisibility.
 #define HMD_DRAW_CONDITION "on*(user40>0.5)"
 #include "\u\uksf_air\addons\f35\hmd\hmd.hpp"

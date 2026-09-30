@@ -13,9 +13,11 @@ Inspect:
   dump       <model> <lod>                 raw LOD, section, polygon and UV set fields
   anims      <model> [filter]              model animations: type, source, phase and value range
   roundtrip  <model>                       read and re-write in memory; reports differing bytes
+  export-obj <model> <lod> <out.obj>       write a LOD as Wavefront OBJ (see silhouette.js)
 
 Edit (each output is re-read and must serialize to the same bytes):
-  set-source   <in> <out> <anim> <source>  point an animation at another animation source
+  set-source   <in> <out> <anim> <source> [clamp|mirror|loop]
+                                           point an animation at another source, optionally its address
   remap        <in> <out> <rule>...        rule = oldModel|oldId|newModel|newId; @file reads rules, one per line
   add-proxies  <in> <out> <template> <filter>
                                            copy LOD 0 proxies matching filter into the memory LOD
@@ -137,16 +139,33 @@ try
         case "anims":
         {
             var filter = args.Length > 2 ? args[2] : "";
-            foreach (var a in Odol.Load(input).Animations?.AnimationClasses ?? [])
+            var model = Odol.Load(input);
+            var classes = model.Animations?.AnimationClasses ?? [];
+            for (int k = 0; k < classes.Length; k++)
             {
+                var a = classes[k];
+                // LODs in which the animation drives a bone; an animation bound in none never moves.
+                var bound = model.Lods.Where((l, j) => model.Animations.Anims2Bones[j][k] >= 0).Select(l => l.Resolution.ToString("G3", CultureInfo.InvariantCulture));
                 if (!a.AnimName.Contains(filter, StringComparison.OrdinalIgnoreCase) && !a.AnimSource.Contains(filter, StringComparison.OrdinalIgnoreCase)) continue;
-                Console.WriteLine($"{a.AnimName,-32} source {a.AnimSource,-20} type {a.AnimType} phase {a.MinPhase:G4}..{a.MaxPhase:G4} value {a.MinValue:G4}..{a.MaxValue:G4}");
+                // Source address: 0 clamp, 1 mirror, 2 loop.
+                var range = a.AnimType switch
+                {
+                    <= 3 => $" angle {a.Angle0 * 180 / MathF.PI:G4}..{a.Angle1 * 180 / MathF.PI:G4} deg",
+                    <= 7 => $" offset {a.Offset0:G4}..{a.Offset1:G4}",
+                    9 => $" hide at {a.HideValue:G4}",
+                    _ => "",
+                };
+                Console.WriteLine($"{a.AnimName,-32} source {a.AnimSource,-20} type {a.AnimType} address {a.SourceAddress} value {a.MinValue:G4}..{a.MaxValue:G4}{range} bones in LOD {string.Join(',', bound)}");
             }
             break;
         }
         case "set-source":
             Need(5);
-            Edits.SetSource(input, args[2], args[3], args[4]);
+            Edits.SetSource(input, args[2], args[3], args[4], args.Length > 5 ? args[5] : null);
+            break;
+        case "export-obj":
+            Need(4);
+            Edits.ExportObj(input, args[2], args[3]);
             break;
         case "roundtrip":
         {

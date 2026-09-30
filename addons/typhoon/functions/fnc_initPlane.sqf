@@ -24,7 +24,7 @@ if !(hasInterface || isServer) exitWith {};
 
 [{
     params ["_args", "_idPFH"];
-    _args params ["_plane", "_nextNozzleCheck"];
+    _args params ["_plane", "_nextNozzleCheck", "_engineWasOn"];
 
     if (!alive _plane) exitWith {
         [_idPFH] call CBA_fnc_removePerFrameHandler;
@@ -42,7 +42,15 @@ if !(hasInterface || isServer) exitWith {};
         };
     };
 
+    if (hasInterface) then {
+        private _engineOn = isEngineOn _plane;
+        if (_engineOn && {!_engineWasOn} && {speed _plane < 10}) then {
+            [_plane] call FUNC(apuSmoke);
+        };
+        _args set [2, _engineOn];
+    };
+
     if (hasInterface && {ACE_player == driver _plane}) then {
         [_plane] call FUNC(hmdVisibility);
     };
-}, 0, [_plane, 0]] call CBA_fnc_addPerFrameHandler;
+}, 0, [_plane, 0, isEngineOn _plane]] call CBA_fnc_addPerFrameHandler;
