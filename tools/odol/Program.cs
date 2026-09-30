@@ -12,12 +12,16 @@ Inspect:
   verts      <model> <lod>                 every vertex in a LOD
   dump       <model> <lod>                 raw LOD, section, polygon and UV set fields
   anims      <model> [filter]              model animations: type, source, phase and value range
+  bones      <model> <lod> [filter]        bones with the vertices they move and the animations driving them
+  selection  <model> <lod> <name>          a selection's sections, textures, vertex extent and bone weights
   roundtrip  <model>                       read and re-write in memory; reports differing bytes
   export-obj <model> <lod> <out.obj>       write a LOD as Wavefront OBJ (see silhouette.js)
 
 Edit (each output is re-read and must serialize to the same bytes):
   set-source   <in> <out> <anim> <source> [clamp|mirror|loop]
                                            point an animation at another source, optionally its address
+  bind         <in> <out> <lod> <selection> <bone>
+                                           weight an unweighted sectional selection to a bone
   remap        <in> <out> <rule>...        rule = oldModel|oldId|newModel|newId; @file reads rules, one per line
   add-proxies  <in> <out> <template> <filter>
                                            copy LOD 0 proxies matching filter into the memory LOD
@@ -159,6 +163,18 @@ try
             }
             break;
         }
+        case "bind":
+            Need(6);
+            Selections.Bind(input, args[2], args[3], args[4], args[5]);
+            break;
+        case "selection":
+            Need(4);
+            Selections.Show(input, args[2], args[3]);
+            break;
+        case "bones":
+            Need(3);
+            Bones.List(input, args[2], args.Length > 3 ? args[3] : "");
+            break;
         case "set-source":
             Need(5);
             Edits.SetSource(input, args[2], args[3], args[4], args.Length > 5 ? args[5] : null);

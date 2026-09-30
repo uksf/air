@@ -83,6 +83,7 @@ class CfgVehicles {
                 animPeriod = 0.01;
                 initPhase = 1;
             };
+#include "vehicle\Nozzles.hpp"
         };
 
         // The EAWS scripts need Firewill's AWS, which is not in the pack. The drag chute stays.

@@ -9,6 +9,7 @@ class MFD : MFD {
     class MFD_RH : MFD_RH {};
 // user40 is HMD_USER_VALUE, set by fnc_hmdVisibility.
 #define HMD_DRAW_CONDITION "on*(user40>0.5)"
+#define HMD_NO_F35_SYMBOLS
 #include "\u\uksf_air\addons\f35\hmd\hmd.hpp"
 };
 

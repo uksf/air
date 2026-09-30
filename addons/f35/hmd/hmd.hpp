@@ -1,4 +1,5 @@
-// Aircraft that share this HMD may define HMD_DRAW_CONDITION before including it.
+// Aircraft that share this HMD may define HMD_DRAW_CONDITION before including it, and
+// HMD_NO_F35_SYMBOLS to drop the F-35 outline and nozzle angles (the thrust number stays).
 #ifndef HMD_DRAW_CONDITION
 #define HMD_DRAW_CONDITION "on"
 #endif
@@ -7357,6 +7358,8 @@ class AirplaneHUD {
                 down[] = { { 0.932, 0.845 }, 1 };
             };
         };
+        // F-35 airframe outline and lift-fan nozzle angles.
+#ifndef HMD_NO_F35_SYMBOLS
         class LittlePlane {
             type = "line";
             width = 3;
@@ -7376,6 +7379,7 @@ class AirplaneHUD {
                 {}
             };
         };
+#endif
         class LittlePlaneThrust {
             type = "text";
             source = "throttle";
@@ -7386,6 +7390,7 @@ class AirplaneHUD {
             right[] = { "LittlePlane", { 0.05, -0.040000 }, 1 };
             down[] = { "LittlePlane", { -0.00, 0.010000 }, 1 };
         };
+#ifndef HMD_NO_F35_SYMBOLS
         //VTOL
         class LittleVtol1_V {
             type = "text";
@@ -7428,6 +7433,7 @@ class AirplaneHUD {
                 { "LittleVtol2", { 0.045, "0.005" }, 1 }
             };
         };
+#endif
 
         class TargetingPodLockTerrain {
             condition = "pilotcameralock<2";

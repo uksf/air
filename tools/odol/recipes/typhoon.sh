@@ -26,7 +26,10 @@ hemtt utils pbo extract "$ARMA/Addons/air_f_gamma.pbo" 'Plane_Fighter_03\Plane_F
 "$odol" set-source "$work/1a.p3d" "$work/1b.p3d" rotor_R rotor loop
 "$odol" set-source "$work/1b.p3d" "$work/1c.p3d" vrtule_0 rotor loop
 "$odol" set-source "$work/1c.p3d" "$work/1d.p3d" vrtule_1 rotor loop
-"$odol" remap "$work/1d.p3d" "$work/2.p3d" "@$here/typhoon.rules"
+# The fan-face discs inside each nozzle were never weighted to their vrtule bones, so they never spun.
+"$odol" bind "$work/1d.p3d" "$work/1e.p3d" 0 burner_fire_1_left "vrtule 0"
+"$odol" bind "$work/1e.p3d" "$work/1f.p3d" 0 burner_fire_1_right "vrtule 1"
+"$odol" remap "$work/1f.p3d" "$work/2.p3d" "@$here/typhoon.rules"
 "$odol" add-proxies "$work/2.p3d" "$work/3.p3d" "$work/buzzard.p3d" pylonpod
 
 # Model +Z points aft. Cockpit supply point, ejection seat start, and landing-gear contacts for AAE.
