@@ -1,0 +1,150 @@
+class DefaultVehicleSystemsDisplayManagerLeft;
+class DefaultVehicleSystemsDisplayManagerRight;
+class CfgVehicles {
+    class Plane_Base_F;
+    class Plane_Fighter_03_base_F : Plane_Base_F {
+        class Components;
+    };
+    class EAWS_EF2000 : Plane_Fighter_03_base_F {
+        class AnimationSources;
+        class EventHandlers;
+        class MFD;
+        class pilotCamera;
+    };
+    class GVAR(base) : EAWS_EF2000 {
+        scope = 1;
+        scopeCurator = 0;
+        author = QUOTE(UKSF);
+        displayName = "Typhoon FGR4";
+        side = 1;
+        faction = "CUP_B_GB";
+        crew = "UKSF_B_Pilot_617";
+        typicalCargo[] = { "UKSF_B_Pilot_617" };
+        FUEL(6215,80); // Typhoon real internal: ~4,996 kg / ~6,215 L
+        unitInfoType = "RscUnitInfoAirPlaneNoSpeed";
+        unitInfoTypeLite = "RscUnitInfoAirPlaneNoSpeed";
+        driverWeaponsInfoType = "RscOptics_CAS_01_TGP";
+        armor = 100;
+        threat[] = { 0.1, 1, 1 };
+        camouflage = 20;
+        audible = 25;
+        radarTargetSize = 0.7;
+        visualTargetSize = 0.8;
+        irTargetSize = 0.9;
+        showAllTargets = 2;
+        countermeasureActivationRadius = 32000;
+#include "vehicle\Flight.hpp"
+
+        weapons[] = { "CUP_weapon_mastersafe", "EAWS_BK27", "Laserdesignator_pilotCamera", "UK3CB_BAF_CMFlareLauncher" };
+        magazines[] = { "EAWS_150Rnd_BK27", "Laserbatteries", "240Rnd_CMFlare_Chaff_Magazine" };
+        memoryPointCM[] = { "flare_launcher1", "flare_launcher2" };
+        memoryPointCMDir[] = { "flare_launcher1_dir", "flare_launcher2_dir" };
+
+        disableInventory = 0;
+        supplyRadius = 4; // doplnovani is in the cockpit, ~3.2 m from a player at the ladder
+        maximumLoad = 200;
+        transportMaxBackpacks = 1;
+        class TransportItems {};
+        class TransportMagazines {};
+        class TransportWeapons {};
+
+        soundSetSonicBoom[] = { "Plane_Fighter_SonicBoom_SoundSet" };
+        soundEngineOnInt[] = { "A3\Sounds_F_Jets\vehicles\air\Plane_Fighter_04\I_Plane_Fighter_04_engine_start_int", 1, 1 };
+        soundEngineOnExt[] = { "A3\Sounds_F_Jets\vehicles\air\Plane_Fighter_04\I_Plane_Fighter_04_engine_start_ext", 1.75, 1, 300 };
+        soundEngineOffInt[] = { "A3\Sounds_F_Jets\vehicles\air\Plane_Fighter_04\I_Plane_Fighter_04_engine_shut_int", 1, 1 };
+        soundEngineOffExt[] = { "A3\Sounds_F_Jets\vehicles\air\Plane_Fighter_04\I_Plane_Fighter_04_engine_shut_ext", 1.75, 1, 300 };
+        soundLocked[] = { "A3\Sounds_F_Jets\vehicles\air\Shared\FX_Plane_Jet_lockedOn1", 1, 1 };
+        soundIncommingMissile[] = { "A3\Sounds_F_Jets\vehicles\air\Shared\FX_Plane_Jet_lockedon2", 1, 1.5 };
+        class Sounds {
+            soundSets[] = {
+                "Plane_Fighter_04_EngineLowExt_SoundSet",
+                "Plane_Fighter_04_EngineHighExt_SoundSet",
+                "Plane_Fighter_04_ForsageExt_SoundSet",
+                "Plane_Fighter_04_WindNoiseExt_SoundSet",
+                "Plane_Fighter_04_EngineExt_Dist_Front_SoundSet",
+                "Plane_Fighter_04_EngineExt_Middle_SoundSet",
+                "Plane_Fighter_04_EngineExt_Dist_Rear_SoundSet",
+                "Plane_Fighter_04_EngineLowInt_SoundSet",
+                "Plane_Fighter_04_EngineHighInt_SoundSet",
+                "Plane_Fighter_04_ForsageInt_SoundSet",
+                "Plane_Fighter_04_WindNoiseInt_SoundSet",
+                "Plane_Fighter_04_VelocityInt_SoundSet"
+            };
+        };
+
+        class AnimationSources : AnimationSources {
+            // The model's tail hook follows this source instead of the gear; held stowed.
+            class hook {
+                source = "user";
+                animPeriod = 0.01;
+                initPhase = 1;
+            };
+        };
+
+        // The EAWS scripts need Firewill's AWS, which is not in the pack. The drag chute stays.
+        class EventHandlers : EventHandlers {
+            init = "";
+            engine = "";
+            fired = "";
+            getOut = "";
+            incomingMissile = "";
+        };
+
+        // Replaces every EAWS action (loadout dialog, reheat toggle, jammers, nosecone and the rest).
+        driverCanEject = 0;
+        class UserActions {
+            class Typhoon_Eject {
+                priority = 999;
+                shortcut = "Eject";
+                displayName = "Eject";
+                condition = "player in this && {speed this > 1}";
+                statement = "[this] spawn bis_fnc_planeEjection";
+                position = "pilotcontrol";
+                radius = 10;
+                onlyforplayer = 1;
+                showWindow = 0;
+                hideOnUse = 1;
+            };
+        };
+        class EjectionSystem {
+            EjectionSeatEnabled = 1;
+            EjectionDual = 0;
+            EjectionSeatClass = "B_Ejection_Seat_Plane_Fighter_01_F";
+            CanopyClass = "";
+            canopyExplodes = 1;
+            CanopyHideAnim = "";
+            CanopyPos = "";
+            // The model's own seat animation both hides the seat and stands in for the rail motion.
+            EjectionSeatHideAnim = "ejectionSeat";
+            EjectionSeatRailAnim = "ejectionSeat";
+            EjectionSeatPos = "pos_eject";
+            EjectionSoundExt = "Plane_Fighter_01_ejection_ext_sound";
+            EjectionSoundInt = "Plane_Fighter_01_ejection_in_sound";
+            EjectionSeatForce = 50;
+            CanopyForce = 30;
+            EjectionParachute = "NonSteerable_Parachute_F";
+        };
+
+#include "vehicle\Systems.hpp"
+
+        class Components : Components {
+#include "vehicle\Pylons.hpp"
+#include "vehicle\Sensors.hpp"
+#include "vehicle\Displays.hpp"
+        };
+    };
+    class GVAR(raf) : GVAR(base) {
+        scope = 2;
+        scopeCurator = 2;
+        hiddenSelectionsTextures[] = {
+            "\EAWS_EF2000\data\top_UK3.paa",
+            "",
+            "\EAWS_EF2000\data\su35_engine_empty_ca.paa",
+            "\EAWS_EF2000\data\su35_engine_empty_ca.paa",
+            "\EAWS_EF2000\data\top_UK3.paa",
+            "\EAWS_EF2000\data\top_UK3.paa"
+        };
+    };
+
+#include "vehicle\Hidden.hpp"
+};

@@ -33,6 +33,7 @@ private _targets = [
     "uksf_air_f35_raf_stealth",
     "uksf_f35_plane_raf",
     "uksf_f35_plane_raf_stealth",
+    "uksf_air_typhoon_raf",
     "uksf_air_reaper_raf",
     "uksf_air_reaper_raf_recon",
     "UK3CB_BAF_MQ9_Reaper",

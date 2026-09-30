@@ -1,3 +1,8 @@
+// Aircraft that share this HMD may define HMD_DRAW_CONDITION before including it.
+#ifndef HMD_DRAW_CONDITION
+#define HMD_DRAW_CONDITION "on"
+#endif
+
 class AirplaneHUD {
     enableParallax = 1;
     helmetMountedDisplay = 1;
@@ -263,7 +268,7 @@ class AirplaneHUD {
     class Draw {
         alpha = 0.40000001;
         color[] = { 0.15000001, 1, 0.15000001 };
-        condition = "on";
+        condition = HMD_DRAW_CONDITION;
 
         class WPHud {
             condition = "wpvalid";

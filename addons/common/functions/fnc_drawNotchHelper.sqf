@@ -4,15 +4,15 @@
         Tim Beswick
 
     Description:
-        Draw3D handler body for the F-35 notch helper. For each inbound radar
+        Draw3D handler body for the fast-jet notch helper. For each inbound radar
         (RDR) threat on the player vehicle's activeThreats hashmap, draws an
         always-on-top dot-matrix box (drawIcon3D filled circles, never occluded)
         at the beam/doppler-null azimuth plus a "<seeker> <range>km" label.
         Dots are world-positioned across the rectangle so the box stays
         world-vertical naturally (appears sideways at 90 deg roll) without any
         sprite-angle hack. Flashes amber while seeking, solid green when the
-        velocity vector is in the notch. Only runs for uksf_air_f35_base
-        aircraft.
+        velocity vector is in the notch. Only runs for uksf_air_f35_base and
+        uksf_air_typhoon_base aircraft.
 
     Parameter(s):
         None (reads vehicle player)
@@ -33,7 +33,7 @@
 #define BLINK_PERIOD 0.6
 
 private _vehicle = vehicle player;
-if !(_vehicle isKindOf QEGVAR(f35,base)) exitWith {};
+if !(_vehicle isKindOf QEGVAR(f35,base) || {_vehicle isKindOf QEGVAR(typhoon,base)}) exitWith {};
 
 private _threats = _vehicle getVariable QGVAR(activeThreats);
 if (isNil "_threats" || {count _threats == 0}) exitWith {};

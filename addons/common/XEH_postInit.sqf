@@ -49,5 +49,5 @@ if (!isNil "_a3tiInfo") then {
     }, 0.25, [_deadline]] call CBA_fnc_addPerFrameHandler;
 }, true] call CBA_fnc_addPlayerEventHandler;
 
-// Notch helper: per-frame draw (self-gates to F-35 inside the function)
+// Notch helper: per-frame draw (self-gates to the F-35 and Typhoon inside the function)
 addMissionEventHandler ["Draw3D", {call FUNC(drawNotchHelper)}];
