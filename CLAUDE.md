@@ -21,6 +21,8 @@ addons/
   common/      RWR, AAE, flares         weapons/     missile guidance, A2A/SAM (CfgAmmo/Weapons/Vehicles, ammoSets/, weaponSets/)
   apache/ c130/ f35/ reaper/ slingloading/ tracking/ equipment/ radios/ patches/
 ```
+`tools/odol/` edits binarized third-party models (proxies, memory points, animation sources); see its README and `recipes/`.
+
 CBA macro conventions (`GVAR`/`QGVAR`/`FUNC`/`EGVAR`, `ADDON=false/…/true`, `PREP`) are identical to modpack — see modpack `CLAUDE.md`.
 
 ## Gotchas

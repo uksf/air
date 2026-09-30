@@ -1,0 +1,16 @@
+# EAWS legacy bomb proxies -> dynamic-loadout pylon proxies. The new id is the config pylon number:
+# 1/13 outer rails, 2-4 and 10-12 underwing, 5/9 rear and 6/8 front semi-conformal, 7 centreline.
+# EAWS ids 9-32 are rack and store positions on the same pylons and stay as they are.
+\a3\weapons_f\ammo\bomb_01_f|1|\a3\weapons_f\dynamicloadout\pylonpod_3x_missile_agm_02_f|1
+\a3\weapons_f\ammo\bomb_01_f|3|\a3\weapons_f\dynamicloadout\pylonpod_3x_missile_agm_02_f|2
+\a3\weapons_f\ammo\bomb_01_f|5|\a3\weapons_f\dynamicloadout\pylonpod_3x_missile_agm_02_f|3
+\a3\weapons_f\ammo\bomb_01_f|7|\a3\weapons_f\dynamicloadout\pylonpod_3x_missile_agm_02_f|4
+\a3\weapons_f\ammo\bomb_01_f|35|\a3\weapons_f\dynamicloadout\pylonpod_3x_missile_agm_02_f|5
+\a3\weapons_f\ammo\bomb_01_f|33|\a3\weapons_f\dynamicloadout\pylonpod_3x_missile_agm_02_f|6
+\a3\weapons_f\ammo\bomb_01_f|37|\a3\weapons_f\dynamicloadout\pylonpod_3x_missile_agm_02_f|7
+\a3\weapons_f\ammo\bomb_01_f|34|\a3\weapons_f\dynamicloadout\pylonpod_3x_missile_agm_02_f|8
+\a3\weapons_f\ammo\bomb_01_f|36|\a3\weapons_f\dynamicloadout\pylonpod_3x_missile_agm_02_f|9
+\a3\weapons_f\ammo\bomb_01_f|8|\a3\weapons_f\dynamicloadout\pylonpod_3x_missile_agm_02_f|10
+\a3\weapons_f\ammo\bomb_01_f|6|\a3\weapons_f\dynamicloadout\pylonpod_3x_missile_agm_02_f|11
+\a3\weapons_f\ammo\bomb_01_f|4|\a3\weapons_f\dynamicloadout\pylonpod_3x_missile_agm_02_f|12
+\a3\weapons_f\ammo\bomb_01_f|2|\a3\weapons_f\dynamicloadout\pylonpod_3x_missile_agm_02_f|13

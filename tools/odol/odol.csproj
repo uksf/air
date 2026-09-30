@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>disable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <InvariantGlobalization>true</InvariantGlobalization>
+    <AssemblyName>odol</AssemblyName>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Remove=".deps/**" />
+    <ProjectReference Include=".deps/UKSFTA-BIS/BIS.P3D/BIS.P3D.csproj" />
+    <ProjectReference Include=".deps/UKSFTA-BIS/BIS.Core/BIS.Core.csproj" />
+  </ItemGroup>
+</Project>
