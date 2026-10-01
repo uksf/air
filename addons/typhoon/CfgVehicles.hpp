@@ -39,6 +39,18 @@ class CfgVehicles {
         countermeasureActivationRadius = 32000;
 #include "vehicle\Flight.hpp"
 
+        // The rebuilt model splits the camo: camo1 is the upper sheet, camo_lower the underside sheet,
+        // camo_pilot the pilot-view LOD on the original layout. Every camo selection comes first so
+        // hiddenSelectionsMaterials only lists those. fnc_afterburnerVisuals addresses the flame discs
+        // by index; the RWR lamps are only indexed by the disabled EAWS incoming-missile script.
+        hiddenSelections[] = {
+            "camo1", "camo_lower", "camo_pilot", "misc_parts", "pylons", "camo2", "burner_fire_1_left", "burner_fire_1_right",
+            "rwr_LL", "rwr_LR", "rwr_UL", "rwr_UR", "rwr_U", "rwr_D", "rwr_L", "rwr_R",
+            "rwr_1oclock", "rwr_2oclock", "rwr_3oclock", "rwr_4oclock", "rwr_5oclock", "rwr_6oclock",
+            "rwr_7oclock", "rwr_8oclock", "rwr_9oclock", "rwr_10oclock", "rwr_11oclock", "rwr_12oclock",
+            "rwr_00", "rwr_45", "rwr_90", "rwr_120", "rwr_180", "rwr_225", "rwr_270", "rwr_315", "rwr_CLOSE"
+        };
+
         weapons[] = { "CUP_weapon_mastersafe", "EAWS_BK27", "Laserdesignator_pilotCamera", "UK3CB_BAF_CMFlareLauncher" };
         magazines[] = { "EAWS_150Rnd_BK27", "Laserbatteries", "240Rnd_CMFlare_Chaff_Magazine" };
         memoryPointCM[] = { "flare_launcher1", "flare_launcher2" };
@@ -142,12 +154,21 @@ class CfgVehicles {
         scope = 2;
         scopeCurator = 2;
         hiddenSelectionsTextures[] = {
-            "\EAWS_EF2000\data\top_UK3.paa",
+            QPATHTOF(data\camo_upper_co.paa),
+            QPATHTOF(data\camo_lower_co.paa),
+            QPATHTOF(data\camo_pilot_co.paa),
+            QPATHTOF(data\camo_upper_co.paa),
+            QPATHTOF(data\camo_upper_co.paa),
             "",
             "\EAWS_EF2000\data\su35_engine_empty_ca.paa",
-            "\EAWS_EF2000\data\su35_engine_empty_ca.paa",
-            "\EAWS_EF2000\data\top_UK3.paa",
-            "\EAWS_EF2000\data\top_UK3.paa"
+            "\EAWS_EF2000\data\su35_engine_empty_ca.paa"
+        };
+        hiddenSelectionsMaterials[] = {
+            QPATHTOF(data\camo_upper.rvmat),
+            QPATHTOF(data\camo_lower.rvmat),
+            QPATHTOF(data\camo_pilot.rvmat),
+            QPATHTOF(data\camo_upper.rvmat),
+            QPATHTOF(data\camo_upper.rvmat)
         };
     };
 

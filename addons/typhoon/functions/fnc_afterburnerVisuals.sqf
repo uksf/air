@@ -20,8 +20,8 @@
 */
 #define TEXTURE_FLAME "\EAWS_EF2000\data\SU35_engine_fire_high_ca.paa"
 #define TEXTURE_EMPTY "\EAWS_EF2000\data\SU35_engine_empty_ca.paa"
-#define FLAME_SELECTION_LEFT 2
-#define FLAME_SELECTION_RIGHT 3
+#define FLAME_SELECTION_LEFT 6
+#define FLAME_SELECTION_RIGHT 7
 
 params ["_plane", "_on"];
 

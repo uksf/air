@@ -66,8 +66,22 @@ static class Edits
         var lod = Odol.FindLod(Odol.Load(input), lodName);
         using var w = new StreamWriter(output);
         foreach (var v in lod.Vertices) w.WriteLine(FormattableString.Invariant($"v {v.X} {v.Y} {v.Z}"));
-        foreach (var f in lod.Polygons.Faces) w.WriteLine("f " + string.Join(' ', f.VertexIndices.Select(i => i + 1)));
-        Console.WriteLine($"wrote {output}: {lod.Vertices.Count} vertices, {lod.Polygons.Faces.Length} faces");
+        // ODOL stores one UV per vertex, V pointing down the texture; OBJ readers expect V up.
+        var uvs = lod.UvSets.Length > 0 ? lod.UvSets[0].GetUV() : [];
+        foreach (var t in uvs) w.WriteLine(FormattableString.Invariant($"vt {t.X} {1 - t.Y}"));
+        string F(int i) => uvs.Length > 0 ? $"{i + 1}/{i + 1}" : $"{i + 1}";
+        var written = new HashSet<int>();
+        for (int si = 0; si < lod.Sections.Length; si++)
+        {
+            var sec = lod.Sections[si];
+            w.WriteLine($"g s{si}");
+            w.WriteLine("usemtl " + (sec.TextureIndex >= 0 && sec.TextureIndex < lod.Textures.Length ? lod.Textures[sec.TextureIndex] : "none").Replace(' ', '_'));
+            foreach (var f in Selections.FacesInSection(lod, sec).Where(written.Add)) w.WriteLine("f " + string.Join(' ', lod.Polygons.Faces[f].VertexIndices.Select(F)));
+        }
+        if (written.Count < lod.Polygons.Faces.Length) w.WriteLine("usemtl none");
+        for (int f = 0; f < lod.Polygons.Faces.Length; f++)
+            if (!written.Contains(f)) w.WriteLine("f " + string.Join(' ', lod.Polygons.Faces[f].VertexIndices.Select(F)));
+        Console.WriteLine($"wrote {output}: {lod.Vertices.Count} vertices, {uvs.Length} UVs, {lod.Polygons.Faces.Length} faces in {lod.Sections.Length} sections");
     }
 
     // Appends one vertex copying the template vertex's clip flag, normal and bone reference.

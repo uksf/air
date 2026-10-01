@@ -39,4 +39,12 @@ hemtt utils pbo extract "$ARMA/Addons/air_f_gamma.pbo" 'Plane_Fighter_03\Plane_F
 "$odol" add-point "$work/6.p3d" "$work/7.p3d" "$work/buzzard.p3d" wheel_2_contact 0.331 -0.581 1.057
 "$odol" add-point "$work/7.p3d" "$work/8.p3d" "$work/buzzard.p3d" wheel_3_contact -0.322 -0.580 1.057
 
-node "$here/../../pbo-replace.js" "$EAWS" "$out" EAWS_EF2000.p3d "$work/8.p3d"
+# Camo on two 4096 sheets: upper surfaces stay in camo1 and the underside moves to camo_lower, with
+# the UV islands repacked by tools/odol/uv/plan.py. The pilot-view LOD keeps its UVs, under camo_pilot.
+"$odol" uv-split "$work/8.p3d" "$work/9.p3d" 0 "$here/typhoon-camo.json" camo1 camo_lower 'u\uksf_air\addons\typhoon\data\camo_lower_co.paa'
+"$odol" move-sections "$work/9.p3d" "$work/10.p3d" 1100 'eaws_ef2000\data\top.paa' camo_pilot camo1,pylons
+# Stencil sheets redrawn at 4096 in uksf_air, same layout.
+"$odol" retexture "$work/10.p3d" "$work/11.p3d" 'eaws_ef2000\data\decals_clear.paa' 'u\uksf_air\addons\typhoon\data\decals_clear_ca.paa'
+"$odol" retexture "$work/11.p3d" "$work/12.p3d" 'eaws_ef2000\data\decals_solid.paa' 'u\uksf_air\addons\typhoon\data\decals_solid_co.paa'
+
+node "$here/../../pbo-replace.js" "$EAWS" "$out" EAWS_EF2000.p3d "$work/12.p3d"

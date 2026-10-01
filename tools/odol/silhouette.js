@@ -17,7 +17,7 @@ function readObj(file) {
   for (const line of fs.readFileSync(file, 'utf8').split(/\r?\n/)) {
     const p = line.split(' ');
     if (p[0] === 'v') verts.push([+p[1], +p[2], +p[3]]);
-    else if (p[0] === 'f') faces.push(p.slice(1).map(i => +i - 1));
+    else if (p[0] === 'f') faces.push(p.slice(1).map(i => parseInt(i, 10) - 1));
   }
   return { verts, faces };
 }

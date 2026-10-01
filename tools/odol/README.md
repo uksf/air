@@ -36,6 +36,25 @@ Run `odol roundtrip <model>` on any new model first. Zero differing bytes means 
 
 `odol export-obj <model> 0 v.obj`, `odol export-obj <model> geometry g.obj`, then `node tools/odol/silhouette.js v.obj out.png --clip g.obj --points points.json` renders a vanilla-style top view (2048x1024, nose left) and prints a `UIposition` for each pylon proxy position. Convert with `hemtt utils paa convert out.png loadout_ca.paa`. Spread boxes that land within about 0.05 of each other.
 
+## Texture layout and art
+
+The EAWS camo was one planar top/bottom projection on a single sheet. The recipe moves it onto two 4096 sheets and ships redrawn art in the `typhoon` addon.
+
+- `uv-split` applies a layout plan to one LOD: each UV island moves to `(old - box) * s + pos`, with no rotation, so the stored tangents stay valid. Sheet-B faces are reordered behind the sheet-A faces of their section, which is then split; the new sections take the new texture and selection, and every face, section and proxy reference is remapped. `AreaOverTex` is divided by the area-weighted median scale squared, because the engine picks mips from it.
+- `move-sections` gives the pilot-view LOD its own selection. That LOD is a separately simplified mesh whose islands do not match LOD 0, so it keeps its UVs and gets a texture rebuilt on the original layout.
+- `retexture` points a model texture at another path, for art shipped in the addon.
+
+The Python scripts in `uv/` build the plan and the art. They need `numpy`, `scipy`, `pillow`, `opencv-python-headless`, `scikit-image` and `rectpack`, and run in a work directory holding `odol export-obj` output and PNG conversions of the EAWS textures:
+
+1. `plan.py lod0.obj` assigns true UV islands (vertices joined by position and UV) to the upper or underside sheet and packs them by shape. Its output is `recipes/typhoon-camo.json`.
+2. `bake.py old.obj new.obj top_UK3.png <sheet>_co.png 4096 <material>` re-bakes the old camo into each sheet and writes the island mask.
+3. `art.py <sheet>_co` redraws the sheet: straightened panel lines with a lit edge, rivet rows, per-panel tone, light weathering, palette-smoothed markings (complex badges are sharpened instead), plus `_nohq` (DirectX) and `_smdi` maps.
+4. `pilot.py old.obj new.obj _co|_nohq|_smdi` rebuilds the pilot-view textures on the original layout from the new sheets.
+5. `decals.py` redraws the visible stencils of both decal sheets at 4096 in the same layout.
+6. `render.py` renders an OBJ with its textures from above, below and the side. Compare old and new renders to check a layout change before it reaches the engine.
+
+Convert with Arma 3 Tools `ImageToPAA`, which applies the `_co`, `_ca`, `_nohq` and `_smdi` formats.
+
 ## Limits
 
 - Tested on ODOL v73 (the EAWS Typhoon and the UKSF F-35). Other versions may read but have not been edited.

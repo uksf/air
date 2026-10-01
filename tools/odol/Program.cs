@@ -17,7 +17,7 @@ Inspect:
   sections   <model> <lod> [x0 x1 y0 y1 z0 z1]
                                            sections with texture, extent and bones, optionally inside a box
   roundtrip  <model>                       read and re-write in memory; reports differing bytes
-  export-obj <model> <lod> <out.obj>       write a LOD as Wavefront OBJ (see silhouette.js)
+  export-obj <model> <lod> <out.obj>       write a LOD as Wavefront OBJ with UVs, one usemtl per section texture
 
 Edit (each output is re-read and must serialize to the same bytes):
   set-source   <in> <out> <anim> <source> [clamp|mirror|loop]
@@ -29,6 +29,12 @@ Edit (each output is re-read and must serialize to the same bytes):
                                            copy LOD 0 proxies matching filter into the memory LOD
   add-point    <in> <out> <template> <name> <x> <y> <z>
                                            add a named memory point
+  uv-split     <in> <out> <lod> <plan.json> <selection> <new-selection> <new-texture>
+                                           move UV islands per plan; sheet-B faces get new sections and selection
+  move-sections <in> <out> <lod> <texture> <new-selection> <from,from>
+                                           move every section using texture out of selections into a new one
+  retexture    <in> <out> <old-texture> <new-texture>
+                                           point every LOD's use of a texture at another path
 
 <lod> is a resolution (0, 1100, 1e15) or memory, geometry, landcontact, roadway, fire, pilot.
 <template> is a model whose memory LOD has proxy triangles and points, such as the A-143 Buzzard.
@@ -185,6 +191,18 @@ try
             Need(5);
             Edits.SetSource(input, args[2], args[3], args[4], args.Length > 5 ? args[5] : null);
             break;
+        case "uv-split":
+            Need(8);
+            Uv.Split(input, args[2], args[3], args[4], args[5], args[6], args[7]);
+            break;
+        case "move-sections":
+            Need(7);
+            Uv.MoveSections(input, args[2], args[3], args[4], args[5], args[6].Split(','));
+            break;
+        case "retexture":
+            Need(5);
+            Uv.Retexture(input, args[2], args[3], args[4]);
+            break;
         case "export-obj":
             Need(4);
             Edits.ExportObj(input, args[2], args[3]);
@@ -216,6 +234,7 @@ try
 }
 catch (Exception e) when (e is not OutOfMemoryException)
 {
-    Console.Error.WriteLine($"error: {(e is System.Reflection.TargetInvocationException t ? t.InnerException : e).Message}");
+    var inner = e is System.Reflection.TargetInvocationException t ? t.InnerException : e;
+    Console.Error.WriteLine(Environment.GetEnvironmentVariable("ODOL_DEBUG") is null ? $"error: {inner.Message}" : $"error: {inner}");
     return 1;
 }
