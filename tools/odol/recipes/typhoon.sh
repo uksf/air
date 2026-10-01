@@ -45,6 +45,6 @@ hemtt utils pbo extract "$ARMA/Addons/air_f_gamma.pbo" 'Plane_Fighter_03\Plane_F
 "$odol" move-sections "$work/9.p3d" "$work/10.p3d" 1100 'eaws_ef2000\data\top.paa' camo_pilot camo1,pylons
 # Stencil sheets redrawn at 4096 in uksf_air, same layout.
 "$odol" retexture "$work/10.p3d" "$work/11.p3d" 'eaws_ef2000\data\decals_clear.paa' 'u\uksf_air\addons\typhoon\data\decals_clear_ca.paa'
-"$odol" retexture "$work/11.p3d" "$work/12.p3d" 'eaws_ef2000\data\decals_solid.paa' 'u\uksf_air\addons\typhoon\data\decals_solid_co.paa'
+"$odol" retexture "$work/11.p3d" "$work/12.p3d" 'eaws_ef2000\data\decals_solid.paa' 'u\uksf_air\addons\typhoon\data\decals_solid_ca.paa'
 
 node "$here/../../pbo-replace.js" "$EAWS" "$out" EAWS_EF2000.p3d "$work/12.p3d"

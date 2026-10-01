@@ -31,9 +31,13 @@ skel = remove_small_objects(skel, max_size=24, connectivity=2)
 # trace the skeleton, straighten it to within ~1 px, and draw it anti-aliased at 2x
 cs, _ = cv2.findContours(skel.astype(np.uint8), cv2.RETR_LIST, cv2.CHAIN_APPROX_NONE)
 canvas = np.zeros((2 * N, 2 * N), np.uint8)
+dark = bg - L
 for c in cs:
     if len(c) < 12: continue
-    a = cv2.approxPolyDP(c, 0.6, False)
+    # stretched streaks of the old planar projection trace as faint zig-zags, not seams: drop them
+    zig = len(cv2.approxPolyDP(c, 1.5, False)) / max(cv2.arcLength(c, False), 1) * 100
+    if zig > 6 or dark[c[:, 0, 1], c[:, 0, 0]].mean() < 10: continue
+    a = cv2.approxPolyDP(c, 1.5, False)
     cv2.polylines(canvas, [a * 2], False, 255, 2, cv2.LINE_AA)
 ink = cv2.resize(canvas.astype(np.float32) / 255, (N, N), interpolation=cv2.INTER_AREA)
 ink = np.clip(ink * 1.5, 0, 1)
