@@ -7,9 +7,14 @@ using BIS.P3D.ODOL;
 // hidden selection so the config can texture them separately.
 static class Uv
 {
-    record Island(string Sheet, float S, float[] Box, float[] Pos, int[] Verts);
+    record Island(string Sheet, float S, float[] Box, float[] Pos, int[] Verts, float[][] Uv, float[][] St);
 
-    // Applies a layout plan to one LOD. Each plan island is moved to new UV = (old - box) * s + pos.
+    static float[] Floats(JsonElement e) => e.EnumerateArray().Select(x => x.GetSingle()).ToArray();
+    static float[][] Rows(JsonElement e, string name) =>
+        e.TryGetProperty(name, out var p) ? p.EnumerateArray().Select(Floats).ToArray() : null;
+
+    // Applies a layout plan to one LOD. A plan island either gives each vertex's new UV ("uv", with
+    // optional "st" tangents S and T) or moves the island to new UV = (old - box) * s + pos.
     // Faces of islands on sheet "B" are moved behind the sheet-A faces of their section, which is then
     // split; the new sections use newTexture and belong to newSelection instead of selection.
     public static void Split(string input, string output, string lodName, string planFile, string selection, string newSelection, string newTexture)
@@ -17,16 +22,28 @@ static class Uv
         var odol = Odol.Load(input);
         var lod = Odol.FindLod(odol, lodName);
         var plan = JsonDocument.Parse(File.ReadAllText(planFile)).RootElement.GetProperty("islands").EnumerateArray()
-            .Select(e => new Island(e.GetProperty("sheet").GetString(), e.GetProperty("s").GetSingle(),
-                e.GetProperty("box").EnumerateArray().Select(x => x.GetSingle()).ToArray(),
-                e.GetProperty("pos").EnumerateArray().Select(x => x.GetSingle()).ToArray(),
-                e.GetProperty("verts").EnumerateArray().Select(x => x.GetInt32()).ToArray())).ToList();
+            .Select(e => new Island(e.GetProperty("sheet").GetString(),
+                e.TryGetProperty("s", out var s) ? s.GetSingle() : 1,
+                e.TryGetProperty("box", out var b) ? Floats(b) : null,
+                e.TryGetProperty("pos", out var p) ? Floats(p) : null,
+                e.GetProperty("verts").EnumerateArray().Select(x => x.GetInt32()).ToArray(),
+                Rows(e, "uv"), Rows(e, "st"))).ToList();
         var owner = new Dictionary<int, Island>();
         foreach (var i in plan) foreach (var v in i.Verts) owner[v] = i;
 
-        var uv = lod.UvSets[0].GetUV();
-        foreach (var (v, i) in owner) uv[v] = new Vector2((uv[v].X - i.Box[0]) * i.S + i.Pos[0], (uv[v].Y - i.Box[1]) * i.S + i.Pos[1]);
+        var old = lod.UvSets[0].GetUV();
+        var uv = (Vector2[])old.Clone();
+        var st = lod.STCoordsCompressed.ToArray();
+        foreach (var i in plan)
+            for (int k = 0; k < i.Verts.Length; k++)
+            {
+                int v = i.Verts[k];
+                uv[v] = i.Uv != null ? new Vector2(i.Uv[k][0], i.Uv[k][1])
+                    : new Vector2((old[v].X - i.Box[0]) * i.S + i.Pos[0], (old[v].Y - i.Box[1]) * i.S + i.Pos[1]);
+                if (i.St != null) st[v] = Tuple.Create(Pack(i.St[k], 0), Pack(i.St[k], 3));
+            }
         WriteUv(lod.UvSets[0], uv);
+        Odol.Set(typeof(LOD), lod, "STCoordsCompressed", new TrackedArray<Tuple<BIS.Core.Math.Vector3PCompressed, BIS.Core.Math.Vector3PCompressed>>(st));
 
         var faces = lod.Polygons.Faces;
         bool OnB(int f)
@@ -35,7 +52,9 @@ static class Uv
             if (sheets.Count != 1) throw new Exception($"face {f} spans islands on sheets {string.Join(',', sheets)}");
             return sheets[0] == "B";
         }
-        float Scale2(int f) => faces[f].VertexIndices.Average(v => owner.TryGetValue(v, out var i) ? i.S * i.S : 1f);
+        // AreaOverTex is world area per UV area and drives mip selection; scale it by the change in total
+        // UV area, which stays stable where the old map gave faces almost no area.
+        float Ratio(List<int> fs) => fs.Sum(f => UvArea(uv, faces[f].VertexIndices)) / Math.Max(fs.Sum(f => UvArea(old, faces[f].VertexIndices)), 1e-12f);
 
         var textures = lod.Textures.Append(newTexture).ToArray();
         Odol.Set(typeof(LOD), lod, "Textures", textures);
@@ -54,7 +73,7 @@ static class Uv
             var a = inSec.Where(f => !OnB(f)).ToList();
             var b = inSec.Where(OnB).ToList();
             float aot = sec.AreaOverTex[0];
-            if (a.Count > 0) SetAreaOverTex(sec, aot / MedianByArea(lod, a, Scale2));
+            if (a.Count > 0) SetAreaOverTex(sec, aot / Ratio(a));
             if (b.Count == 0) continue;
             var order = a.Concat(b).ToList();
             for (int k = 0; k < order.Count; k++) perm[inSec[0] + k] = order[k];
@@ -63,7 +82,7 @@ static class Uv
             Odol.Set(secB, "FaceLowerIndex", split);
             Odol.Set(secB, "TextureIndex", texB);
             Odol.Set(secB, "AreaOverTex", (float[])sec.AreaOverTex.Clone());
-            SetAreaOverTex(secB, aot / MedianByArea(lod, b, Scale2));
+            SetAreaOverTex(secB, aot / Ratio(b));
             if (a.Count == 0)
             {
                 sections[s] = secB;
@@ -107,6 +126,22 @@ static class Uv
         Odol.Save(odol, output);
     }
 
+    // Writes one line per vertex: position, normal, S and T tangents, UV set 0.
+    public static void DumpVertices(string input, string lodName, string output)
+    {
+        var lod = Odol.FindLod(Odol.Load(input), lodName);
+        var uv = lod.UvSets[0].GetUV();
+        using var w = new StreamWriter(output);
+        for (int i = 0; i < lod.Vertices.Count; i++)
+        {
+            BIS.Core.Math.Vector3P p = lod.Vertices[i], n = lod.NormalsCompressed[i];
+            var st = lod.STCoordsCompressed[i];
+            BIS.Core.Math.Vector3P s = st.Item1, t = st.Item2;
+            w.WriteLine(FormattableString.Invariant($"{p.X} {p.Y} {p.Z} {n.X} {n.Y} {n.Z} {s.X} {s.Y} {s.Z} {t.X} {t.Y} {t.Z} {uv[i].X} {uv[i].Y}"));
+        }
+        Console.WriteLine($"wrote {output}: {lod.Vertices.Count} vertices");
+    }
+
     // Points every LOD's references to one texture at another, for replacement art shipped elsewhere.
     public static void Retexture(string input, string output, string from, string to)
     {
@@ -131,23 +166,6 @@ static class Uv
         Odol.Set(n, "Sections", new TrackedArray<int>(list.OrderBy(x => x)));
     }
 
-    // AreaOverTex is world area per UV area, which drives mip selection; scaling UVs by s divides it by s^2.
-    static float MedianByArea(LOD lod, List<int> faces, Func<int, float> scale2)
-    {
-        var rows = faces.Select(f => (k: scale2(f), w: Area(lod, f))).OrderBy(r => r.k).ToList();
-        float total = rows.Sum(r => r.w), acc = 0;
-        foreach (var r in rows) if ((acc += r.w) >= total / 2) return r.k;
-        return 1;
-    }
-
-    static float Area(LOD lod, int f)
-    {
-        var v = lod.Polygons.Faces[f].VertexIndices.Select(i => lod.Vertices[i]).Select(p => new Vector3(p.X, p.Y, p.Z)).ToArray();
-        float a = 0;
-        for (int i = 1; i + 1 < v.Length; i++) a += Vector3.Cross(v[i] - v[0], v[i + 1] - v[0]).Length() / 2;
-        return a;
-    }
-
     static void SetAreaOverTex(Section s, float value)
     {
         var a = (float[])s.AreaOverTex.Clone();
@@ -155,9 +173,27 @@ static class Uv
         Odol.Set(s, "AreaOverTex", a);
     }
 
+    static float UvArea(Vector2[] uv, int[] f)
+    {
+        float a = 0;
+        for (int i = 1; i + 1 < f.Length; i++)
+        {
+            Vector2 e1 = uv[f[i]] - uv[f[0]], e2 = uv[f[i + 1]] - uv[f[0]];
+            a += Math.Abs(e1.X * e2.Y - e1.Y * e2.X) / 2;
+        }
+        return a;
+    }
+
+    // Compressed vectors hold three signed 10-bit components scaled by -1/511.
+    static BIS.Core.Math.Vector3PCompressed Pack(float[] v, int o)
+    {
+        int C(float x) => (int)Math.Clamp(Math.Round(-x * 511), -511, 511) & 0x3FF;
+        return new BIS.Core.Math.Vector3PCompressed(C(v[o]) | C(v[o + 1]) << 10 | C(v[o + 2]) << 20);
+    }
+
     // ODOL v45+ stores UVs as 16-bit steps across [min, max]: u = 2^-16 * (q + 32767) * (max - min) + min.
     // q tops out at 32767, so max is widened to keep the largest UV representable.
-    static void WriteUv(UVSet set, Vector2[] uv)
+    internal static void WriteUv(UVSet set, Vector2[] uv)
     {
         float minU = uv.Min(t => t.X), minV = uv.Min(t => t.Y);
         float maxU = minU + (uv.Max(t => t.X) - minU) * 65536f / 65534f, maxV = minV + (uv.Max(t => t.Y) - minV) * 65536f / 65534f;

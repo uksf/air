@@ -17,6 +17,7 @@ Inspect:
   sections   <model> <lod> [x0 x1 y0 y1 z0 z1]
                                            sections with texture, extent and bones, optionally inside a box
   roundtrip  <model>                       read and re-write in memory; reports differing bytes
+  vertices   <model> <lod> <out.txt>         per vertex: position, normal, S and T tangents, UV
   export-obj <model> <lod> <out.obj>       write a LOD as Wavefront OBJ with UVs, one usemtl per section texture
 
 Edit (each output is re-read and must serialize to the same bytes):
@@ -29,6 +30,7 @@ Edit (each output is re-read and must serialize to the same bytes):
                                            copy LOD 0 proxies matching filter into the memory LOD
   add-point    <in> <out> <template> <name> <x> <y> <z>
                                            add a named memory point
+  cut-seams    <in> <out> <lod> <cuts.json>            duplicate vertices so listed faces get their own copies (UV seams)
   uv-split     <in> <out> <lod> <plan.json> <selection> <new-selection> <new-texture>
                                            move UV islands per plan; sheet-B faces get new sections and selection
   move-sections <in> <out> <lod> <texture> <new-selection> <from,from>
@@ -191,6 +193,10 @@ try
             Need(5);
             Edits.SetSource(input, args[2], args[3], args[4], args.Length > 5 ? args[5] : null);
             break;
+        case "cut-seams":
+            Need(5);
+            Seams.Cut(input, args[2], args[3], args[4]);
+            break;
         case "uv-split":
             Need(8);
             Uv.Split(input, args[2], args[3], args[4], args[5], args[6], args[7]);
@@ -198,6 +204,10 @@ try
         case "move-sections":
             Need(7);
             Uv.MoveSections(input, args[2], args[3], args[4], args[5], args[6].Split(','));
+            break;
+        case "vertices":
+            Need(4);
+            Uv.DumpVertices(input, args[2], args[3]);
             break;
         case "retexture":
             Need(5);

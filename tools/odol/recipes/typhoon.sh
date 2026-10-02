@@ -4,7 +4,8 @@
 # the addon uses. Everything else in the PBO is copied unchanged.
 #
 # usage: recipes/typhoon.sh <out.pbo>
-# env:   ARMA (Arma 3 install), EAWS (Workshop EAWS_EF2000.pbo)
+# env:   ARMA (Arma 3 install), EAWS (Workshop EAWS_EF2000.pbo), WORK (keep intermediates there),
+#        PLAN and CUTS (override the camo layout plan and its seam cuts, for layout work)
 set -euo pipefail
 here="$(cd "$(dirname "$0")" && pwd)"
 odol="$here/../bin/Release/net10.0/odol.exe"
@@ -12,8 +13,9 @@ odol="$here/../bin/Release/net10.0/odol.exe"
 ARMA="${ARMA:-B:/Steam/steamapps/common/Arma 3}"
 EAWS="${EAWS:-B:/Steam/steamapps/workshop/content/107410/1337653467/addons/EAWS_EF2000.pbo}"
 out="${1:?usage: typhoon.sh <out.pbo>}"
-work="$(mktemp -d)"
-trap 'rm -rf "$work"' EXIT
+plan="${PLAN:-$here/typhoon-camo.json}"
+cuts="${CUTS:-$here/typhoon-cuts.json}"
+if [ -n "${WORK:-}" ]; then work="$WORK"; mkdir -p "$work"; else work="$(mktemp -d)"; trap 'rm -rf "$work"' EXIT; fi
 
 hemtt utils pbo extract "$EAWS" EAWS_EF2000.p3d "$work/0.p3d" >/dev/null
 hemtt utils pbo extract "$ARMA/Addons/air_f_gamma.pbo" 'Plane_Fighter_03\Plane_Fighter_03_F.p3d' "$work/buzzard.p3d" >/dev/null
@@ -41,7 +43,9 @@ hemtt utils pbo extract "$ARMA/Addons/air_f_gamma.pbo" 'Plane_Fighter_03\Plane_F
 
 # Camo on two 4096 sheets: upper surfaces stay in camo1 and the underside moves to camo_lower, with
 # the UV islands repacked by tools/odol/uv/plan.py. The pilot-view LOD keeps its UVs, under camo_pilot.
-"$odol" uv-split "$work/8.p3d" "$work/9.p3d" 0 "$here/typhoon-camo.json" camo1 camo_lower 'u\uksf_air\addons\typhoon\data\camo_lower_co.paa'
+# Seams cut first so closed and strongly curved islands can be flattened in pieces.
+if [ -f "$cuts" ]; then "$odol" cut-seams "$work/8.p3d" "$work/8c.p3d" 0 "$cuts"; else cp "$work/8.p3d" "$work/8c.p3d"; fi
+"$odol" uv-split "$work/8c.p3d" "$work/9.p3d" 0 "$plan" camo1 camo_lower 'u\uksf_air\addons\typhoon\data\camo_lower_co.paa'
 "$odol" move-sections "$work/9.p3d" "$work/10.p3d" 1100 'eaws_ef2000\data\top.paa' camo_pilot camo1,pylons
 # Stencil sheets redrawn at 4096 in uksf_air, same layout.
 "$odol" retexture "$work/10.p3d" "$work/11.p3d" 'eaws_ef2000\data\decals_clear.paa' 'u\uksf_air\addons\typhoon\data\decals_clear_ca.paa'
