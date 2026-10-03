@@ -1,6 +1,8 @@
 """Typhoon camo sheet painter. Run from this folder, in order:
 
-    odol export-obj <recipe model before uv-split> 0 $TYPHOON_WORK/t3.obj   (and 1100 -> p3.obj)
+    WORK=<dir> recipes/typhoon.sh <out.pbo>    keeps the intermediates; 12.p3d has the split camo
+    odol export-obj <dir>/12.p3d 0 $TYPHOON_WORK/t3.obj
+    odol export-obj <dir>/12.p3d 1100 $TYPHOON_WORK/p3.obj
     gbuf.py    texel g-buffers (position, normal) for the upper, lower and pilot sheets
     ao.py      ambient occlusion per texel
     edges.py   part outlines from mesh boundaries

@@ -40,18 +40,17 @@ Run `odol roundtrip <model>` on any new model first. Zero differing bytes means 
 
 The EAWS camo was one planar top/bottom projection on a single sheet. The recipe moves it onto two 4096 sheets and ships redrawn art in the `typhoon` addon.
 
-- `uv-split` applies a layout plan to one LOD: each UV island moves to `(old - box) * s + pos`, with no rotation, so the stored tangents stay valid. Sheet-B faces are reordered behind the sheet-A faces of their section, which is then split; the new sections take the new texture and selection, and every face, section and proxy reference is remapped. `AreaOverTex` is divided by the area-weighted median scale squared, because the engine picks mips from it.
-- `move-sections` gives the pilot-view LOD its own selection. That LOD is a separately simplified mesh whose islands do not match LOD 0, so it keeps its UVs and gets a texture rebuilt on the original layout.
+- `uv-split` applies a layout plan to one LOD: each UV island either moves to `(old - box) * s + pos`, which keeps the stored tangents valid, or takes explicit per-vertex UVs and tangents. Sheet-B faces are reordered behind the sheet-A faces of their section, which is then split; the new sections take the new texture and selection, and every face, section and proxy reference is remapped. `AreaOverTex` is scaled by the change in total UV area, because the engine picks mips from it. A section whose UVs repeat past 0..1 is switched to wrapped addressing.
+- `move-sections` gives the pilot-view LOD its own selection. That LOD is a separately simplified mesh whose islands do not match LOD 0, so it keeps its UVs and `uv/paint` paints its own sheet on the original layout.
 - `retexture` points a model texture at another path, for art shipped in the addon.
 
-The Python scripts in `uv/` build the plan and the art. They need `numpy`, `scipy`, `pillow`, `opencv-python-headless`, `scikit-image` and `rectpack`, and run in a work directory holding `odol export-obj` output and PNG conversions of the EAWS textures:
+The Python scripts in `uv/` build the layout plan, and `uv/paint/` paints the sheets. They need `numpy`, `scipy`, `pillow`, `opencv-python-headless`, `scikit-image` and `rectpack`.
 
-1. `plan.py lod0.obj` assigns true UV islands (vertices joined by position and UV) to the upper or underside sheet and packs them by shape. Its output is `recipes/typhoon-camo.json`.
-2. `bake.py old.obj new.obj top_UK3.png <sheet>_co.png 4096 <material>` re-bakes the old camo into each sheet and writes the island mask.
-3. `art.py <sheet>_co` redraws the sheet: straightened panel lines with a lit edge, rivet rows, per-panel tone, light weathering, palette-smoothed markings (complex badges are sharpened instead), plus `_nohq` (DirectX) and `_smdi` maps.
-4. `pilot.py old.obj new.obj _co|_nohq|_smdi` rebuilds the pilot-view textures on the original layout from the new sheets.
-5. `decals.py` redraws the visible stencils of both decal sheets at 4096 in the same layout.
-6. `render.py` renders an OBJ with its textures from above, below and the side. Compare old and new renders to check a layout change before it reaches the engine.
+1. `plan.py lod0.obj` assigns true UV islands (vertices joined by position and UV) to the upper or underside sheet and packs them by shape. `charts.py` re-flattens distorted islands into charts and writes the plan and seam cuts, `recipes/typhoon-camo.json` and `recipes/typhoon-cuts.json`.
+2. `uv/paint/` builds the camo sheets from geometry: g-buffers, ambient occlusion, part outlines, panel lines, markings, and `_co`, `_nohq` (DirectX) and `_smdi` maps. `paint/paths.py` lists the run order, the `TYPHOON_WORK` and `TYPHOON_SRC` folders and the OBJ exports it needs. Third-party reference sheets stay in `TYPHOON_SRC` and are never committed.
+3. `render.py` renders an OBJ with its textures from above, below and the side. Compare old and new renders to check a layout change before it reaches the engine.
+
+`export-obj` writes V flipped (OBJ v = 1 - ODOL v). Build a UV plan from `vertices` output, which gives the stored UVs, or flip V back.
 
 Convert with Arma 3 Tools `ImageToPAA`, which applies the `_co`, `_ca`, `_nohq` and `_smdi` formats.
 

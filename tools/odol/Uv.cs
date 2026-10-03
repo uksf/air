@@ -48,6 +48,12 @@ static class Uv
         Odol.Set(typeof(LOD), lod, "STCoordsCompressed", new TrackedArray<Tuple<BIS.Core.Math.Vector3PCompressed, BIS.Core.Math.Vector3PCompressed>>(st));
 
         var faces = lod.Polygons.Faces;
+        // UVs repeating past 0..1 need wrapped addressing; a section from a clamped decal samples its border
+        void WrapIfRepeating(Section s, List<int> fs)
+        {
+            if (fs.SelectMany(f => faces[f].VertexIndices).Any(v => uv[v].X < 0 || uv[v].X > 1 || uv[v].Y < 0 || uv[v].Y > 1))
+                Odol.Set(s, "Special", (s.Special & ~(ClampU | ClampV)) | NoClamp);
+        }
         bool OnB(int f)
         {
             var sheets = faces[f].VertexIndices.Select(v => owner.TryGetValue(v, out var i) ? i.Sheet : null).Distinct().ToList();
@@ -75,7 +81,7 @@ static class Uv
             var a = inSec.Where(f => !OnB(f)).ToList();
             var b = inSec.Where(OnB).ToList();
             float aot = sec.AreaOverTex[0];
-            if (a.Count > 0) SetAreaOverTex(sec, aot / Ratio(a));
+            if (a.Count > 0) { SetAreaOverTex(sec, aot / Ratio(a)); WrapIfRepeating(sec, a); }
             if (b.Count == 0) continue;
             var order = a.Concat(b).ToList();
             for (int k = 0; k < order.Count; k++) perm[inSec[0] + k] = order[k];
@@ -85,9 +91,7 @@ static class Uv
             Odol.Set(secB, "TextureIndex", texB);
             Odol.Set(secB, "AreaOverTex", (float[])sec.AreaOverTex.Clone());
             SetAreaOverTex(secB, aot / Ratio(b));
-            // UVs repeating past 0..1 need wrapped addressing; a section cloned from a clamped decal samples its border
-            if (b.SelectMany(f => faces[f].VertexIndices).Any(v => uv[v].X < 0 || uv[v].X > 1 || uv[v].Y < 0 || uv[v].Y > 1))
-                Odol.Set(secB, "Special", (secB.Special & ~(ClampU | ClampV)) | NoClamp);
+            WrapIfRepeating(secB, b);
             if (a.Count == 0)
             {
                 sections[s] = secB;
