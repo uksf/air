@@ -30,15 +30,10 @@ def mk_list():
     # arrows point aft on both sides: towards the viewer's right on the port side, left on starboard
     out.append((D.rescue(0.42, 0.075, 'right'), [0.75, 0.45, -4.15], [1, 0, 0], [0, 1, 0], 0.42, 0.075))
     out.append((D.rescue(0.42, 0.075, 'left'), [-0.75, 0.45, -4.15], [-1, 0, 0], [0, 1, 0], 0.42, 0.075))
-    # APU outlet on the port wing-body fillet (photo: ZJ923). fnc_apuSmoke emits from it.
-    # a dark hole on the wing-body fillet, soot rising from it up the fuselage side (ZJ923)
-    out.append((A.soot_column(0.7, 0.5), [0.98, APU[1] + 0.25, APU[2] + 0.03], [0.97, 0.25, 0], [0, 1, 0], 0.7, 0.5))
-    out.append((A.apu_hole(), APU, [0.6, 0.8, 0], [0, 1, 0], 0.15, 0.15))
     return out
 
 
 APU = [1.09, -0.118, 0.67]
-APU_R = 0.054                                              # painted hole radius: 0.36 of the 0.15 m decal
 
 
 def snap(anchor, nd, lod0):
@@ -78,7 +73,7 @@ def paint(name, decal_list, lod0):
     col = np.repeat(BASE[None], len(P), 0)
     # weathering: broad tonal mottling, and fine streaks along the airflow (+Z)
     col *= (1 + 0.025 * noise3(P, 1, 0.9))[:, None]
-    col *= (1 + 0.018 * noise3(P, 2, 0.05, (1, 1, 14)))[:, None]
+    col *= (1 + 0.004 * noise3(P, 2, 0.05, (1, 1, 14)))[:, None]
     # exhaust soot on the rear fuselage around the nozzles
     rear = np.clip((P[:, 2] - 4.9) / 0.9, 0, 1) * (np.abs(P[:, 0]) < 1.05) * (P[:, 1] < 0.7)
     col *= (1 - 0.32 * rear * (0.8 + 0.2 * noise3(P, 3, 0.04, (1, 1, 6))))[:, None]
@@ -125,11 +120,16 @@ def paint(name, decal_list, lod0):
         a = s[:, 3:4]
         rows, cols = g['r'][m], g['c'][m]
         colI[rows, cols] = colI[rows, cols] * (1 - a) + s[:, :3] * a
+    # APU outlet (painted in 3D, see apu_decal); fnc_apuSmoke emits from it
+    P0, n0 = snap(np.asarray(APU, float), [0.6, 0.8, 0], lod0)
+    soot, hrgb, ha = A.apu(P, Nn, P0, n0, lambda Q: noise3(Q, 7, 0.03, (1, 2, 1)))
+    k = (soot > 0) | (ha > 0); rows, cols = g['r'][k], g['c'][k]
+    c = colI[rows, cols] * (1 - soot[k, None]) + 0.07 * soot[k, None]
+    colI[rows, cols] = c * (1 - ha[k, None]) + hrgb[k] * ha[k, None]
     # normal map: panel lines as shallow grooves; tangent frame u right, v down the image
     hgt = -gaussian_filter(lines, 0.6) * 1.6
     # APU outlet: a bowl, steep at the edge and flat at the bottom, so the hole reads as having depth
-    P0, n0 = snap(np.asarray(APU, float), [0.6, 0.8, 0], lod0)
-    d = P - P0; dz = d @ n0; rr = np.linalg.norm(d - dz[:, None] * n0, axis=1) / APU_R
+    d = P - P0; dz = d @ n0; rr = np.linalg.norm(d - dz[:, None] * n0, axis=1) / A.R
     hole = (rr < 1) & (np.abs(dz) < 0.1)
     hv = np.zeros(len(P), np.float32); hv[hole] = -8 * (1 - rr[hole] ** 4)
     hgt += gaussian_filter(to_img(g, hv, 0), 0.8)
@@ -137,8 +137,8 @@ def paint(name, decal_list, lod0):
     nrm = np.stack([-gx, -gy, np.ones_like(gx)], -1); nrm /= np.linalg.norm(nrm, axis=-1, keepdims=True)
     # specular: matte paint, lower still in lines and soot
     lum = colI.mean(-1) / BASE.mean()
-    spec = np.clip(0.17 * lum, 0.05, 0.22) * np.clip((lum - 0.25) / 0.25, 0, 1)    # holes and openings do not reflect
-    smdi = np.stack([np.ones_like(lum), spec, np.full_like(lum, 0.22) * (spec > 0)], -1)
+    spec = np.clip(0.09 * lum, 0.03, 0.12) * np.clip((lum - 0.25) / 0.25, 0, 1)    # holes and openings do not reflect
+    smdi = np.stack([np.ones_like(lum), spec, np.full_like(lum, 0.12) * (spec > 0)], -1)
     # pad islands outward so mip levels do not pick up the empty background
     idx = distance_transform_edt(~cov, return_distances=False, return_indices=True)
     out = {}
