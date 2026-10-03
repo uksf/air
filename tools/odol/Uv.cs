@@ -7,6 +7,8 @@ using BIS.P3D.ODOL;
 // hidden selection so the config can texture them separately.
 static class Uv
 {
+    const uint NoClamp = 0x2000, ClampU = 0x4000, ClampV = 0x8000;
+
     record Island(string Sheet, float S, float[] Box, float[] Pos, int[] Verts, float[][] Uv, float[][] St);
 
     static float[] Floats(JsonElement e) => e.EnumerateArray().Select(x => x.GetSingle()).ToArray();
@@ -83,6 +85,9 @@ static class Uv
             Odol.Set(secB, "TextureIndex", texB);
             Odol.Set(secB, "AreaOverTex", (float[])sec.AreaOverTex.Clone());
             SetAreaOverTex(secB, aot / Ratio(b));
+            // UVs repeating past 0..1 need wrapped addressing; a section cloned from a clamped decal samples its border
+            if (b.SelectMany(f => faces[f].VertexIndices).Any(v => uv[v].X < 0 || uv[v].X > 1 || uv[v].Y < 0 || uv[v].Y > 1))
+                Odol.Set(secB, "Special", (secB.Special & ~(ClampU | ClampV)) | NoClamp);
             if (a.Count == 0)
             {
                 sections[s] = secB;
@@ -126,18 +131,20 @@ static class Uv
         Odol.Save(odol, output);
     }
 
-    // Writes one line per vertex: position, normal, S and T tangents, UV set 0.
+    // Writes one line per vertex: position, normal, S and T tangents, UV set 0, then UV set 1 if the LOD has one.
     public static void DumpVertices(string input, string lodName, string output)
     {
         var lod = Odol.FindLod(Odol.Load(input), lodName);
         var uv = lod.UvSets[0].GetUV();
+        var uv1 = lod.UvSets.Length > 1 ? lod.UvSets[1].GetUV() : null;
         using var w = new StreamWriter(output);
         for (int i = 0; i < lod.Vertices.Count; i++)
         {
             BIS.Core.Math.Vector3P p = lod.Vertices[i], n = lod.NormalsCompressed[i];
             var st = lod.STCoordsCompressed[i];
             BIS.Core.Math.Vector3P s = st.Item1, t = st.Item2;
-            w.WriteLine(FormattableString.Invariant($"{p.X} {p.Y} {p.Z} {n.X} {n.Y} {n.Z} {s.X} {s.Y} {s.Z} {t.X} {t.Y} {t.Z} {uv[i].X} {uv[i].Y}"));
+            var line = FormattableString.Invariant($"{p.X} {p.Y} {p.Z} {n.X} {n.Y} {n.Z} {s.X} {s.Y} {s.Z} {t.X} {t.Y} {t.Z} {uv[i].X} {uv[i].Y}");
+            w.WriteLine(uv1 == null ? line : line + FormattableString.Invariant($" {uv1[i].X} {uv1[i].Y}"));
         }
         Console.WriteLine($"wrote {output}: {lod.Vertices.Count} vertices");
     }

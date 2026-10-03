@@ -11,6 +11,7 @@ Inspect:
   points     <model> <lod>                 named selections with vertex count and first vertex
   verts      <model> <lod>                 every vertex in a LOD
   dump       <model> <lod>                 raw LOD, section, polygon and UV set fields
+  materials  <model> <lod>                 embedded materials with their stage textures
   anims      <model> [filter]              model animations: type, source, phase and value range
   bones      <model> <lod> [filter]        bones with the vertices they move and the animations driving them
   selection  <model> <lod> <name>          a selection's sections, textures, vertex extent and bone weights
@@ -132,6 +133,19 @@ try
             Need(3);
             var lod = Odol.FindLod(Odol.Load(input), args[2]);
             for (int i = 0; i < lod.Vertices.Count; i++) Console.WriteLine($"v{i} {lod.Vertices[i]}");
+            break;
+        }
+        case "materials":
+        {
+            Need(3);
+            var lod = Odol.FindLod(Odol.Load(input), args[2]);
+            for (int m = 0; m < lod.Materials.Length; m++)
+            {
+                var mat = lod.Materials[m];
+                Console.WriteLine($"{m} {mat.MaterialName} ps={mat.PixelShader}");
+                for (int s = 0; s < mat.StageTextures.Length; s++)
+                    Console.WriteLine($"    stage {s}: '{mat.StageTextures[s].Texture}' uvSource={(s < mat.StageTransforms.Length ? mat.StageTransforms[s].UvSource : 0)}");
+            }
             break;
         }
         case "dump":

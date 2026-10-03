@@ -17,6 +17,7 @@ plan="${PLAN:-$here/typhoon-camo.json}"
 cuts="${CUTS:-$here/typhoon-cuts.json}"
 if [ -n "${WORK:-}" ]; then work="$WORK"; mkdir -p "$work"; else work="$(mktemp -d)"; trap 'rm -rf "$work"' EXIT; fi
 
+rm -f "$work/0.p3d" "$work/p0.p3d"   # hemtt extract keeps an existing output file
 hemtt utils pbo extract "$EAWS" EAWS_EF2000.p3d "$work/0.p3d" >/dev/null
 hemtt utils pbo extract "$ARMA/Addons/air_f_gamma.pbo" 'Plane_Fighter_03\Plane_Fighter_03_F.p3d' "$work/buzzard.p3d" >/dev/null
 
@@ -50,5 +51,18 @@ if [ -f "$cuts" ]; then "$odol" cut-seams "$work/8.p3d" "$work/8c.p3d" 0 "$cuts"
 # Stencil sheets redrawn at 4096 in uksf_air, same layout.
 "$odol" retexture "$work/10.p3d" "$work/11.p3d" 'eaws_ef2000\data\decals_clear.paa' 'u\uksf_air\addons\typhoon\data\decals_clear_ca.paa'
 "$odol" retexture "$work/11.p3d" "$work/12.p3d" 'eaws_ef2000\data\decals_solid.paa' 'u\uksf_air\addons\typhoon\data\decals_solid_ca.paa'
+# The drag-chute door samples a photo crop of sides.paa; the uksf_air copy paints that patch grey.
+"$odol" retexture "$work/12.p3d" "$work/13.p3d" 'eaws_ef2000\data\sides.paa' 'u\uksf_air\addons\typhoon\data\sides_co.paa'
+# Unlit formation-light strips: pale yellow-green instead of the EAWS white.
+"$odol" retexture "$work/13.p3d" "$work/14.p3d" 'eaws_ef2000\data\night_markers.paa' 'u\uksf_air\addons\typhoon\data\formation_off_co.paa'
+# Lit strips sampled one flat spot of the EAWS compass texture; give them the unlit strips' UVs and
+# a lit copy of that texture, so the segments show in both states.
+"$odol" uv-split "$work/14.p3d" "$work/15.p3d" 0 "$here/typhoon-formation.json" zbytek formation_on 'u\uksf_air\addons\typhoon\data\formation_on_co.paa'
 
-node "$here/../../pbo-replace.js" "$EAWS" "$out" EAWS_EF2000.p3d "$work/12.p3d"
+# Antennas, sensor fairings and the tail tubes are a separate proxy model on the old EAWS top.paa,
+# which hidden selections cannot reach: point it at plain airframe grey.
+hemtt utils pbo extract "$EAWS" EAWS_EF2000parts.p3d "$work/p0.p3d" >/dev/null
+"$odol" retexture "$work/p0.p3d" "$work/p1.p3d" 'eaws_ef2000\data\top.paa' 'u\uksf_air\addons\typhoon\data\parts_co.paa'
+
+node "$here/../../pbo-replace.js" "$EAWS" "$work/a.pbo" EAWS_EF2000.p3d "$work/15.p3d"
+node "$here/../../pbo-replace.js" "$work/a.pbo" "$out" EAWS_EF2000parts.p3d "$work/p1.p3d"

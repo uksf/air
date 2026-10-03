@@ -122,6 +122,23 @@ class CfgVehicles {
                 showWindow = 0;
                 hideOnUse = 1;
             };
+            // Formation light strips: the model's lit (green, emissive) and unlit strip faces swap.
+            class Typhoon_FormationLightsOn {
+                priority = 1;
+                displayName = "Formation lights on";
+                condition = "player == driver this && {this animationPhase 'night_marker' > 0.5}";
+                statement = "this animate ['night_marker', 0, true]; this animate ['night_marker_off', 1, true]";
+                position = "pilotcontrol";
+                radius = 10;
+                onlyforplayer = 1;
+                showWindow = 0;
+                hideOnUse = 1;
+            };
+            class Typhoon_FormationLightsOff: Typhoon_FormationLightsOn {
+                displayName = "Formation lights off";
+                condition = "player == driver this && {this animationPhase 'night_marker' < 0.5}";
+                statement = "this animate ['night_marker', 1, true]; this animate ['night_marker_off', 0, true]";
+            };
         };
         class EjectionSystem {
             EjectionSeatEnabled = 1;
