@@ -137,7 +137,7 @@ class CfgVehicles {
 #include "vehicle\Nozzles.hpp"
         };
 
-        // The EAWS scripts need Firewill's AWS, which is not in the pack. The drag chute stays.
+        // The EAWS scripts need Firewill's AWS, which is not in the pack.
         class EventHandlers : EventHandlers {
             init = "";
             engine = "";

@@ -19,6 +19,7 @@ static class Physx
 
     public static void Add(string input, string output, float mass)
     {
+        if (!float.IsFinite(mass) || mass <= 0) throw new Exception("mass must be a positive number");
         var odol = Odol.Load(input);
         if (odol.Lods.Any(l => l.Resolution == PhysxRes)) throw new Exception("model already has a PhysX LOD");
         int g = Array.FindIndex(odol.Lods, l => l.Resolution == GeometryRes);
