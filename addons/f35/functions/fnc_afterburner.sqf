@@ -24,7 +24,8 @@
 #define SPEED_UPPER_MIN 1500
 #define SPEED_UPPER_OFFSET 800
 #define SPEED_LOWER_OFFSET 150
-#define FORCE 700
+// The F135-PW-600 gains about 14,000 lbf (62 kN) in reheat.
+#define FORCE 62000
 #define FUEL_USAGE 0.0004
 
 params ["_plane"];
@@ -51,8 +52,9 @@ if (_speed > SPEED_UPPER_MIN) then {
     _speedMultiplier = 1 - ((_speed - SPEED_UPPER_MIN) / SPEED_UPPER_OFFSET);
 };    
 
-private _forceFinal = FORCE * _throttleMultiplier * _speedMultiplier;
-_plane addForce [_plane vectorModelToWorld [0, abs _forceFinal, 0], getCenterOfMass _plane];
+// addForce is a one-frame impulse in newton-seconds, so scale by frame time to keep thrust independent of FPS.
+private _impulse = FORCE * _throttleMultiplier * (_speedMultiplier max 0) * diag_deltaTime;
+_plane addForce [_plane vectorModelToWorld [0, _impulse, 0], getCenterOfMass _plane];
 
 if (time > GVAR(afterburnerTick)) then {
     GVAR(afterburnerTick) = time + 1;

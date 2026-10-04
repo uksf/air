@@ -3,7 +3,8 @@
 
 // F-35 helmet display, hidden while the pilot looks through the Typhoon's own HUD.
 class MFD : MFD {
-    // The EAWS glass HUD and cockpit displays, declared ahead of the HMD.
+    // The EAWS glass HUD and cockpit displays, declared ahead of the HMD. The glass HUD's colour and
+    // units are patched on EAWS_EF2000 itself (CfgVehicles.hpp).
     class HUD : HUD {};
     class MFD_LH : MFD_LH {};
     class MFD_RH : MFD_RH {};

@@ -29,8 +29,9 @@ Edit (each output is re-read and must serialize to the same bytes):
   remap        <in> <out> <rule>...        rule = oldModel|oldId|newModel|newId; @file reads rules, one per line
   add-proxies  <in> <out> <template> <filter>
                                            copy LOD 0 proxies matching filter into the memory LOD
-  add-point    <in> <out> <template> <name> <x> <y> <z>
-                                           add a named memory point
+  add-point    <in> <out> <template> <name> <x> <y> <z> [like]
+                                           add a named memory point, optionally weighted like a selection
+  add-physx    <in> <out> <mass kg>      clone the geometry LOD as a PhysX LOD and set the model mass
   cut-seams    <in> <out> <lod> <cuts.json>            duplicate vertices so listed faces get their own copies (UV seams)
   uv-split     <in> <out> <lod> <plan.json> <selection> <new-selection> <new-texture>
                                            move UV islands per plan; sheet-B faces get new sections and selection
@@ -95,6 +96,9 @@ try
         {
             var odol = Odol.Load(input);
             Console.WriteLine($"{input}: ODOL v{odol.Version}, {odol.Lods.Length} LODs");
+            var mi = odol.ModelInfo;
+            Console.WriteLine(FormattableString.Invariant($"  mass {mi.Mass} kg, centre of mass [{mi.CenterOfMass.X}, {mi.CenterOfMass.Y}, {mi.CenterOfMass.Z}], {mi.MassArray?.Length ?? 0} geometry point masses"));
+            Console.WriteLine($"  special LODs: geometry {mi.Geometry}, geometryPhys {mi.GeometryPhys}, geometrySimple {mi.GeometrySimple}, memory {mi.Memory}, fire {mi.GeometryFire}, view {mi.GeometryView}, landContact {mi.LandContact}");
             foreach (var lod in odol.Lods)
                 Console.WriteLine($"  {lod.Resolution.ToString("G6", CultureInfo.InvariantCulture),-8} vertices {lod.Vertices.Count,6} faces {lod.Polygons.Faces.Length,6} sections {lod.Sections.Length,3} selections {lod.NamedSelections.Length,4} proxies {Odol.RawProxies(lod).Length,3}");
             break;
@@ -247,7 +251,11 @@ try
             break;
         case "add-point":
             Need(8);
-            Edits.AddPoint(input, args[2], args[3], args[4], new Vector3(Odol.ParseFloat(args[5]), Odol.ParseFloat(args[6]), Odol.ParseFloat(args[7])));
+            Edits.AddPoint(input, args[2], args[3], args[4], new Vector3(Odol.ParseFloat(args[5]), Odol.ParseFloat(args[6]), Odol.ParseFloat(args[7])), args.Length > 8 ? args[8] : null);
+            break;
+        case "add-physx":
+            Need(4);
+            Physx.Add(input, args[2], Odol.ParseFloat(args[3]));
             break;
         default:
             Console.Error.WriteLine($"unknown command {cmd}");

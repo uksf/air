@@ -4,12 +4,48 @@ class CfgVehicles {
     class Plane_Base_F;
     class Plane_Fighter_03_base_F : Plane_Base_F {
         class Components;
+        // EAWS defines no Wheels, so the Buzzard's wheel classes are inherited from here.
+        class Wheels {
+            class Wheel_1;
+            class Wheel_2;
+            class Wheel_3;
+        };
     };
     class EAWS_EF2000 : Plane_Fighter_03_base_F {
         class AnimationSources;
         class EventHandlers;
+        // The glass HUD is patched here in place. The engine draws only a Draw class's own elements, so
+        // subclassing Draw to change a few would drop every inherited line, scale and ladder.
         class MFD {
-            class HUD;
+            class HUD {
+                // Same green as the shared HMD (f35/hmd/hmd.hpp). EAWS drew every symbol in a dark
+                // {0, 0.3, 0.05} that vanished against a daylight sky.
+                color[] = { 0.15, 1, 0.15, 1 };
+                class Bones {
+                    // altimeter needle: one turn per 100 ft (EAWS: per 100 m)
+                    class ASL_Instrument {
+                        maxAngle = 236220;
+                    };
+                };
+                // Knots and feet like the HMD; EAWS read km/h and metres.
+                class Draw {
+                    color[] = { 0.15, 1, 0.15 };
+                    alpha = 1;
+                    class SpeedScale {
+                        sourceScale = 1.94384;
+                    };
+                    class SpeedNumber {
+                        sourceScale = 1.94384;
+                    };
+                    class AltNumber {
+                        sourceScale = 3.28084;
+                    };
+                    // feet per minute
+                    class VspeedNumber {
+                        sourceScale = 196.85;
+                    };
+                };
+            };
             class MFD_LH;
             class MFD_RH;
         };
@@ -37,7 +73,10 @@ class CfgVehicles {
         irTargetSize = 0.9;
         showAllTargets = 2;
         countermeasureActivationRadius = 32000;
+        // EAWS used the old pre-PhysX "airplane" model: no physics body, so no mass and no scripted forces.
+        simulation = "airplaneX";
 #include "vehicle\Flight.hpp"
+#include "vehicle\Wheels.hpp"
 
         // The rebuilt model splits the camo: camo1 is the upper sheet, camo_lower the underside sheet,
         // camo_pilot the pilot-view LOD on the original layout. Every camo selection comes first so
@@ -105,6 +144,9 @@ class CfgVehicles {
             fired = "";
             getOut = "";
             incomingMissile = "";
+            // EAWS chute.sqf: deploys the drag chute and cuts speed by script on every touchdown,
+            // which PhysX gear reports throughout a ground roll.
+            landedTouchDown = "";
         };
 
         // Replaces every EAWS action (loadout dialog, reheat toggle, jammers, nosecone and the rest).

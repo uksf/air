@@ -32,7 +32,11 @@ hemtt utils pbo extract "$ARMA/Addons/air_f_gamma.pbo" 'Plane_Fighter_03\Plane_F
 # The flame discs inside each nozzle were never weighted to their vrtule bones, so they never spun.
 "$odol" bind "$work/1d.p3d" "$work/1e.p3d" 0 burner_fire_1_left "vrtule 0"
 "$odol" bind "$work/1e.p3d" "$work/1f.p3d" 0 burner_fire_1_right "vrtule 1"
-"$odol" remap "$work/1f.p3d" "$work/2.p3d" "@$here/typhoon.rules"
+# The turbine disc deep in each nozzle (section 8 at this step, before the camo split renumbers it)
+# shows the spoked ring of burner.paa; weight each engine's disc to its rotor bone so it turns.
+"$odol" bind "$work/1f.p3d" "$work/1g.p3d" 0 "#8" "vrtule 0" 0 1.2 -1 1 4 4.4
+"$odol" bind "$work/1g.p3d" "$work/1h.p3d" 0 "#8" "vrtule 1" -1.2 0 -1 1 4 4.4
+"$odol" remap "$work/1h.p3d" "$work/2.p3d" "@$here/typhoon.rules"
 "$odol" add-proxies "$work/2.p3d" "$work/3.p3d" "$work/buzzard.p3d" pylonpod
 
 # Model +Z points aft. Cockpit supply point, ejection seat start, and landing-gear contacts for AAE.
@@ -64,5 +68,21 @@ if [ -f "$cuts" ]; then "$odol" cut-seams "$work/8.p3d" "$work/8c.p3d" 0 "$cuts"
 hemtt utils pbo extract "$EAWS" EAWS_EF2000parts.p3d "$work/p0.p3d" >/dev/null
 "$odol" retexture "$work/p0.p3d" "$work/p1.p3d" 'eaws_ef2000\data\top.paa' 'u\uksf_air\addons\typhoon\data\parts_co.paa'
 
-node "$here/../../pbo-replace.js" "$EAWS" "$work/a.pbo" EAWS_EF2000.p3d "$work/15.p3d"
+# PhysX: EAWS shipped no PhysX LOD, so the jet had no physics body (no mass, scripted forces ignored).
+# Clone the collision geometry as one and set the real empty mass.
+"$odol" add-physx "$work/15.p3d" "$work/16.p3d" 11000
+# airplaneX wheels. PhysX places them from the model's rest pose, and EAWS is modelled gear-up, so the
+# points are fixed (unweighted) at the deployed wheel centres measured in game, rims straight below.
+# The nose point sits 0.05 m above its wheel: at the model's full 3.2 degrees nose-up the wheel brakes
+# cannot hold the jet and it creeps forward at about 16 km/h. At 2.6 degrees it holds still.
+w="$work/16.p3d"; n=16
+for spec in "Wheel_1 -0.005 -1.649 -2.486 0.236" "Wheel_2 1.929 -1.371 1.119 0.363" "Wheel_3 -1.928 -1.372 1.119 0.363"; do
+    set -- $spec
+    "$odol" add-point "$w" "$work/$((n+1)).p3d" "$work/buzzard.p3d" "${1}_center" "$2" "$3" "$4"
+    rim_y=$(awk "BEGIN { print $3 - $5 }")
+    "$odol" add-point "$work/$((n+1)).p3d" "$work/$((n+2)).p3d" "$work/buzzard.p3d" "${1}_rim" "$2" "$rim_y" "$4"
+    w="$work/$((n+2)).p3d"; n=$((n+2))
+done
+
+node "$here/../../pbo-replace.js" "$EAWS" "$work/a.pbo" EAWS_EF2000.p3d "$w"
 node "$here/../../pbo-replace.js" "$work/a.pbo" "$out" EAWS_EF2000parts.p3d "$work/p1.p3d"

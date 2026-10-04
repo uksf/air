@@ -182,7 +182,9 @@ static class Edits
 
     // Adds a named single-vertex point to the memory LOD. Model coordinates: +X right, +Y up; check
     // which way Z points on the model with `points` before placing anything fore or aft.
-    public static void AddPoint(string input, string output, string template, string name, Vector3 p)
+    // With `like`, the point takes the bone weighting of that memory selection's first vertex, so it
+    // moves with it (wheel centres on gear bones).
+    public static void AddPoint(string input, string output, string template, string name, Vector3 p, string like = null)
     {
         var odol = Odol.Load(input);
         var tmem = Odol.FindLod(Odol.Load(template), "memory");
@@ -191,7 +193,15 @@ static class Edits
         var tSel = tmem.NamedSelections.First(n => n.SelectedVertices.Count == 1 && n.SelectedFaces.Count == 0);
         int tv = tSel.SelectedVertices[0];
         var boneRefs = Odol.BoneRefs(mem);
-        int v = AppendVertex(mem, tmem, tv, p, boneRefs, Odol.BoneRefs(tmem)[tv]);
+        int v;
+        if (like == null) v = AppendVertex(mem, tmem, tv, p, boneRefs, Odol.BoneRefs(tmem)[tv]);
+        else
+        {
+            var ls = mem.NamedSelections.FirstOrDefault(n => n.Name.Equals(like, StringComparison.OrdinalIgnoreCase))
+                ?? throw new Exception($"no memory selection {like}");
+            int lv = ls.SelectedVertices[0];
+            v = AppendVertex(mem, mem, lv, p, boneRefs, boneRefs[lv]);
+        }
         Odol.SetBoneRefs(mem, boneRefs);
         var ns = (NamedSelection)Odol.Clone(tSel);
         Odol.Set(ns, "Name", name);

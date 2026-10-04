@@ -24,8 +24,8 @@
 #define SPEED_UPPER_MIN 1700
 #define SPEED_UPPER_OFFSET 700
 #define SPEED_LOWER_OFFSET 150
-// Two EJ200s gain roughly half again their dry thrust in reheat, more than the F-35's single engine.
-#define FORCE 800
+// Reheat adds about 30 kN per EJ200 (60 kN dry, 90 kN wet), so 60 kN for the pair.
+#define FORCE 60000
 #define FUEL_USAGE 0.0005
 
 params ["_plane"];
@@ -55,8 +55,9 @@ if (_speed > SPEED_UPPER_MIN) then {
     _speedMultiplier = (1 - ((_speed - SPEED_UPPER_MIN) / SPEED_UPPER_OFFSET)) max 0;
 };
 
-private _force = FORCE * _throttleMultiplier * _speedMultiplier;
-_plane addForce [_plane vectorModelToWorld [0, _force, 0], getCenterOfMass _plane];
+// addForce is a one-frame impulse in newton-seconds, so scale by frame time to keep thrust independent of FPS.
+private _impulse = FORCE * _throttleMultiplier * _speedMultiplier * diag_deltaTime;
+_plane addForce [_plane vectorModelToWorld [0, _impulse, 0], getCenterOfMass _plane];
 
 if (time > (_plane getVariable [QGVAR(afterburnerFuelTick), 0])) then {
     _plane setVariable [QGVAR(afterburnerFuelTick), time + 1];
