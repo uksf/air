@@ -22,7 +22,7 @@
         }; \
         class Intercom_2: Intercom_1 { \
             displayName = "Passenger intercom"; \
-            shortName = "Passenger"; \
+            shortName = "Pax"; \
             allowedPositions[] = {"crew", {"cargo", "all"}}; \
             limitedPositions[] = {}; \
             numLimitedPositions = 0; \

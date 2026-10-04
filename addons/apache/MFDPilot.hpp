@@ -1046,7 +1046,7 @@ class MFD {
                 class Circle {
                     type = "line";
                     width = 4;
-                    points[] = { { "ForwardVector", 1, "Weapons", 1, { -0.05, -0.08 }, 1 }, { "ForwardVector", 1, "Weapons", 1, { 0.05, -0.08 }, 1 }, {}, { "ForwardVector", 1, "Weapons", 1, { 0, -0.08 }, 1 }, { "ForwardVector", 1, "Weapons", 1, { 0, 0.08 }, 1 }, {}, { "ForwardVector", 1, "Weapons", 1, { -0.05, 0.08 }, 1 }, { "ForwardVector", 1, "Weapons", 1, { 0.05, 0.08 }, 1 }, {} };
+                    points[] = { { "WeaponAimRelative", 1, { -0.05, -0.08 }, 1 }, { "WeaponAimRelative", 1, { 0.05, -0.08 }, 1 }, {}, { "WeaponAimRelative", 1, { 0, -0.08 }, 1 }, { "WeaponAimRelative", 1, { 0, 0.08 }, 1 }, {}, { "WeaponAimRelative", 1, { -0.05, 0.08 }, 1 }, { "WeaponAimRelative", 1, { 0.05, 0.08 }, 1 }, {} };
                 };
             };
             class Fuel_Text {

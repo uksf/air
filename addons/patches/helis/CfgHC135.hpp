@@ -32,7 +32,8 @@ class H135_Juno_HT1_ZM521 : Helicopter_Base_H {
         speedZoomMaxFOV = 0.95;
     };
     class Turrets : Turrets {
-        class CopilotTurret : CopilotTurret {
+        class MainTurret;
+        class CopilotTurret : MainTurret {
             weapons[] += { "UK3CB_BAF_CMFlareLauncher" };
             magazines[] += { "120Rnd_CMFlare_Chaff_Magazine" };
         };

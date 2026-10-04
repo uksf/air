@@ -38,15 +38,19 @@ class CUP_CH47F_base : Helicopter_Base_H {
             primaryGunner = 0;
             soundAttenuationTurret = "HeliAttenuationGunner";
         };
+        // Door guns and copilot inherit MainTurret's HitTurret/HitGun; the engine rejects duplicate hitpoint names.
         class RightDoorGun : MainTurret {
             soundAttenuationTurret = "HeliAttenuationGunner";
+            class HitPoints {};
         };
         class BackDoorGun : MainTurret {
             soundAttenuationTurret = "HeliAttenuationGunner";
+            class HitPoints {};
         };
         class CopilotTurret : CopilotTurret {
             weapons[] += { "UK3CB_BAF_CMFlareLauncher" };
             magazines[] += { "168Rnd_CMFlare_Chaff_Magazine" };
+            class HitPoints {};
             primaryGunner = 1;
             memoryPointsGetInGunner = "pos cargo";
             memoryPointsGetInGunnerDir = "pos cargo dir";
@@ -369,6 +373,7 @@ class CUP_B_CH47F_GB : CUP_CH47F_base {
             initTurn = 0;
             animationSourceBody = "Turret_2";
             animationSourceGun = "Gun_2";
+            class HitPoints {};
             stabilizedInAxes = 0;
             selectionFireAnim = "zasleh_1";
             proxyIndex = 2;
@@ -403,6 +408,7 @@ class CUP_B_CH47F_GB : CUP_CH47F_base {
             initElev = 0;
             animationSourceBody = "Turret_3";
             animationSourceGun = "Gun_3";
+            class HitPoints {};
             stabilizedInAxes = 0;
             selectionFireAnim = "zasleh_3";
             proxyIndex = 3;

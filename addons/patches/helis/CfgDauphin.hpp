@@ -15,6 +15,12 @@ class MEA_Pantera_Base : Helicopter_Base_H {
     irTargetSize = 0.5;
     extCameraPosition[] = { 0, 0, -15 };
     ace_fastroping_enabled = 1;
+    // The model names these "pos cargo r dir", not "pos Cargo dir R".
+    memoryPointsGetInCargoDir[] = { "pos cargo r dir", "pos cargo l dir", "pos cargo l dir", "pos cargo r dir" };
+    // Copied from the Hummingbird; the model has no rtd1 mirror points.
+    class RenderTargets {
+        delete LowerMirror;
+    };
     ace_fastroping_ropeOrigins[] = { { 1.4, 1.15, 0.5 } };
     class Wheels {
         class Wheel_f {

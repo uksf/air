@@ -27,6 +27,7 @@ class CfgVehicles {
 
     class Helicopter_Base_F;
     class Helicopter_Base_H;
+    class UK3CB_BAF_Apache_base;
 
     class CUP_AH1Z_Base : Helicopter_Base_H {
         ace_refuel_fuelCapacity = 1562; // Bell AH-1Z Viper: 412.5 US gal / 1562 L
@@ -72,7 +73,7 @@ class CfgVehicles {
         ace_refuel_fuelCapacity = 1361; // Sikorsky UH-60 Black Hawk: 360 US gal / 1361 L
     };
 
-    class UK3CB_BAF_Apache_AH1 : Helicopter_Base_H {
+    class UK3CB_BAF_Apache_AH1 : UK3CB_BAF_Apache_base {
         ace_refuel_fuelCapacity = 1422; // AH-64D Apache (UK3CB BAF base): 376 US gal / 1422 L
     };
 
@@ -170,7 +171,7 @@ class CfgVehicles {
         ace_refuel_fuelCapacity = 6513; // Bell-Boeing MV-22 Osprey: 1721 US gal / 6513 L
     };
 
-    class Plane_Fighter_04_Base_F : Plane {
+    class Plane_Fighter_04_Base_F : Plane_Base_F {
         ace_refuel_fuelCapacity = 3800; // Saab JAS-39 Gripen C: 3000 kg / ~3800 L
     };
 
@@ -191,11 +192,11 @@ class CfgVehicles {
         ace_refuel_fuelCapacity = 10300; // To-201 Shikra / Su-57-like fighter: ~10,300 L
     };
 
-    class VTOL_01_base_F : Plane_Base_F {
+    class VTOL_Base_F : Plane_Base_F {};
+    class VTOL_01_base_F : VTOL_Base_F {
         ace_refuel_fuelCapacity = 6513; // V-44 X Blackfish / V-22 Osprey analogue: ~6,513 L
     };
 
-    class VTOL_Base_F : Plane_Base_F {};
     class VTOL_02_base_F : VTOL_Base_F {
         ace_refuel_fuelCapacity = 6513; // Y-32 Xi'an / V-22-class VTOL transport: ~6,513 L
     };
