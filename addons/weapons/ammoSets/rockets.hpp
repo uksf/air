@@ -8,6 +8,9 @@ class UK3CB_BAF_M_CRV7_Base_PG : UK3CB_BAF_M_CRV7_Base {
         seekerMaxRange = 5000;
         seekerAngle = 60;
         seekLastTargetPos = 1;
+        // Dagr default LIN adds the rocket's ASL height to the aim point: air launch pitches up, then porpoises onto the target.
+        defaultAttackProfile = "DIR";
+        attackProfiles[] = {"DIR"};
     };
 };
 
