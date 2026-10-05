@@ -47,7 +47,7 @@ class CUP_M_AIM_9L_Sidewinder_AA : MissileBase {
     class Components {
         class SensorsManagerComponent {
             class Components {
-                class IRSensorComponent {
+                class IRSensorComponent : SensorTemplateIR {
                     componentType = "IRSensorComponent";
                     angleRangeHorizontal = 180;
                     angleRangeVertical = 180;

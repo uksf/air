@@ -16,7 +16,7 @@ class M_Air_AA : MissileBase {
     class Components {
         class SensorsManagerComponent {
             class Components {
-                class IRSensorComponent {
+                class IRSensorComponent : SensorTemplateIR {
                     componentType = "IRSensorComponent";
                     class AirTarget {
                         minRange = 500;

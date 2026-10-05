@@ -1,6 +1,5 @@
 // Root-scope sensor templates (required for `: SensorTemplateX` to resolve to the real engine
 // template — declaring them inside CfgVehicles creates empty shadows that wipe the sensor).
-class SensorTemplateIR;
 class SensorTemplatePassiveRadar;
 class SensorTemplateVisual;
 class SensorTemplateNV;

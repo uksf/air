@@ -34,6 +34,7 @@ class ace_missileguidance_type_R77;
 class ace_missileguidance_type_Dagr;
 class ace_missileguidance_type_Jdam;
 class ace_missileguidance_type_CruiseMissile;
+class SensorTemplateIR;
 
 #include "CfgAmmo.hpp"
 #include "CfgEventHandlers.hpp"
