@@ -15,4 +15,8 @@
 
     Return Value:
         None
+
+    Example:
+        Registered in CfgFunctions as A3TI_fnc_createLTM, A3TI_fnc_pfhLTM,
+        A3TI_fnc_toggleLTM and A3TI_fnc_toggleLTMmode; not invoked directly
 */
