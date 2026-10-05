@@ -164,6 +164,23 @@ class A400M_base_F : Plane_Base_F {
             initPhase = 1;
             animPeriod = 0.1;
         };
+        // The model's nose and third-axle gear dampers use these names; the mod only defines Damper_*_source.
+        class damper_wheel_1_1_source {
+            source = "damper";
+            wheel = "Wheel_1";
+        };
+        class damper_wheel_3_1_source {
+            source = "damper";
+            wheel = "Wheel_3_1";
+        };
+        class damper_wheel_3_2_source {
+            source = "damper";
+            wheel = "Wheel_3_2";
+        };
+    };
+    // The flight engineer screen needs pip0 points and a render target surface that the model does not have.
+    class RenderTargets {
+        delete ecran_FE;
     };
     class UserActions : UserActions {
         delete openrampbottom;
