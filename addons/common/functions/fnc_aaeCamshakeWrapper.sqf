@@ -13,6 +13,6 @@
         Nothing
 
     Example:
-        call uksf_air_common_fnc_aaeCamshakeWrapper
+        call AAE_fnc_camshake
 */
 call FUNC(aaeCamshake);
