@@ -12,7 +12,16 @@ class CfgVehicles {
         };
     };
     class EAWS_EF2000 : Plane_Fighter_03_base_F {
-        class AnimationSources;
+        scopeCurator = 0;
+        // Every EAWS variant shares the patched model, whose tail hook follows this source; held stowed.
+        // EAWS declares AnimationSources without a parent.
+        class AnimationSources {
+            class hook {
+                source = "user";
+                animPeriod = 0.01;
+                initPhase = 1;
+            };
+        };
         class EventHandlers;
         // The glass HUD is patched here in place. The engine draws only a Draw class's own elements, so
         // subclassing Draw to change a few would drop every inherited line, scale and ladder.
@@ -128,12 +137,6 @@ class CfgVehicles {
         };
 
         class AnimationSources : AnimationSources {
-            // The model's tail hook follows this source instead of the gear; held stowed.
-            class hook {
-                source = "user";
-                animPeriod = 0.01;
-                initPhase = 1;
-            };
 #include "vehicle\Nozzles.hpp"
         };
 

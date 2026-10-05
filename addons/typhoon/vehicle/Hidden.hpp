@@ -1,7 +1,11 @@
-// Hide the EAWS variants: their loadouts and scripts need Firewill AWS. Scope 1 keeps them spawnable by script.
+// Hide the EAWS variants: their loadouts need Firewill AWS, which is not in the pack. The loadout is cleared
+// to the bare EAWS_EF2000 one so a scripted spawn logs nothing. Not scope 0: the engine then reads every
+// variant at game start and logs each missing FIR class.
 #define HIDE_EAWS(CLASS,BASE) class CLASS : BASE { \
     scope = 1; \
     scopeCurator = 0; \
+    weapons[] = { "FakeWeapon" }; \
+    magazines[] = { "FakeWeapon" }; \
 }
 
 HIDE_EAWS(EAWS_EF2000_BAF_CAP,EAWS_EF2000);
