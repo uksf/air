@@ -1,5 +1,5 @@
 class A400M_base_F : Plane_Base_F {
-    class Turrets : Turrets {
+    class Turrets {
         class MainTurret;
     };
     unitInfoType = "RscUnitInfoAirPlaneNoSpeed";
