@@ -10,9 +10,9 @@ class CfgPatches {
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {
             "uksf_air_weapons",
-            "EAWS_EF2000"
+            "EAWS_EF2000",
+            "EAWS_EF2000_OPFOR"
         };
-        // The EAWS Typhoon ships in uksf_dependencies; without it this addon must not load.
         skipWhenMissingDependencies = 1;
         author = QUOTE(UKSF);
         authors[] = { "Beswick.T" };
