@@ -10,8 +10,7 @@ class CfgPatches {
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {
             "uksf_air_weapons",
-            "EAWS_EF2000",
-            "EAWS_EF2000_OPFOR"
+            "EAWS_EF2000"
         };
         skipWhenMissingDependencies = 1;
         author = QUOTE(UKSF);
