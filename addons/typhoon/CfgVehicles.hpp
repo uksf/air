@@ -4,7 +4,6 @@ class CfgVehicles {
     class Plane_Base_F;
     class Plane_Fighter_03_base_F : Plane_Base_F {
         class Components;
-        // EAWS defines no Wheels, so the Buzzard's wheel classes are inherited from here.
         class Wheels {
             class Wheel_1;
             class Wheel_2;
@@ -13,8 +12,6 @@ class CfgVehicles {
     };
     class EAWS_EF2000 : Plane_Fighter_03_base_F {
         scopeCurator = 0;
-        // Every EAWS variant shares the patched model, whose tail hook follows this source; held stowed.
-        // EAWS declares AnimationSources without a parent.
         class AnimationSources {
             class hook {
                 source = "user";
@@ -23,41 +20,7 @@ class CfgVehicles {
             };
         };
         class EventHandlers;
-        // The glass HUD is patched here in place. The engine draws only a Draw class's own elements, so
-        // subclassing Draw to change a few would drop every inherited line, scale and ladder.
-        class MFD {
-            class HUD {
-                // Same green as the shared HMD (f35/hmd/hmd.hpp). EAWS drew every symbol in a dark
-                // {0, 0.3, 0.05} that vanished against a daylight sky.
-                color[] = { 0.15, 1, 0.15, 1 };
-                class Bones {
-                    // altimeter needle: one turn per 100 ft (EAWS: per 100 m)
-                    class ASL_Instrument {
-                        maxAngle = 236220;
-                    };
-                };
-                // Knots and feet like the HMD; EAWS read km/h and metres.
-                class Draw {
-                    color[] = { 0.15, 1, 0.15 };
-                    alpha = 1;
-                    class SpeedScale {
-                        sourceScale = 1.94384;
-                    };
-                    class SpeedNumber {
-                        sourceScale = 1.94384;
-                    };
-                    class AltNumber {
-                        sourceScale = 3.28084;
-                    };
-                    // feet per minute
-                    class VspeedNumber {
-                        sourceScale = 196.85;
-                    };
-                };
-            };
-            class MFD_LH;
-            class MFD_RH;
-        };
+#include "vehicle\Hud.hpp"
         class pilotCamera;
     };
     class GVAR(base) : EAWS_EF2000 {
@@ -69,7 +32,7 @@ class CfgVehicles {
         faction = "CUP_B_GB";
         crew = "UKSF_B_Pilot_617";
         typicalCargo[] = { "UKSF_B_Pilot_617" };
-        FUEL(6215,80); // Typhoon real internal: ~4,996 kg / ~6,215 L
+        FUEL(6215,80);
         unitInfoType = "RscUnitInfoAirPlaneNoSpeed";
         unitInfoTypeLite = "RscUnitInfoAirPlaneNoSpeed";
         driverWeaponsInfoType = "RscOptics_CAS_01_TGP";
@@ -82,15 +45,10 @@ class CfgVehicles {
         irTargetSize = 0.9;
         showAllTargets = 2;
         countermeasureActivationRadius = 32000;
-        // EAWS used the old pre-PhysX "airplane" model: no physics body, so no mass and no scripted forces.
         simulation = "airplaneX";
 #include "vehicle\Flight.hpp"
 #include "vehicle\Wheels.hpp"
 
-        // The rebuilt model splits the camo: camo1 is the upper sheet, camo_lower the underside sheet,
-        // camo_pilot the pilot-view LOD on the original layout. Every camo selection comes first so
-        // hiddenSelectionsMaterials only lists those. fnc_afterburnerVisuals addresses the flame discs
-        // by index; the RWR lamps are only indexed by the disabled EAWS incoming-missile script.
         hiddenSelections[] = {
             "camo1", "camo_lower", "camo_pilot", "misc_parts", "pylons", "camo2", "burner_fire_1_left", "burner_fire_1_right",
             "rwr_LL", "rwr_LR", "rwr_UL", "rwr_UR", "rwr_U", "rwr_D", "rwr_L", "rwr_R",
@@ -105,7 +63,7 @@ class CfgVehicles {
         memoryPointCMDir[] = { "flare_launcher1_dir", "flare_launcher2_dir" };
 
         disableInventory = 0;
-        supplyRadius = 4; // doplnovani is in the cockpit, ~3.2 m from a player at the ladder
+        supplyRadius = 4;
         maximumLoad = 200;
         transportMaxBackpacks = 1;
         class TransportItems {};
@@ -140,19 +98,15 @@ class CfgVehicles {
 #include "vehicle\Nozzles.hpp"
         };
 
-        // The EAWS scripts need Firewill's AWS, which is not in the pack.
         class EventHandlers : EventHandlers {
             init = "";
             engine = "";
             fired = "";
             getOut = "";
             incomingMissile = "";
-            // EAWS chute.sqf: deploys the drag chute and cuts speed by script on every touchdown,
-            // which PhysX gear reports throughout a ground roll.
             landedTouchDown = "";
         };
 
-        // Replaces every EAWS action (loadout dialog, reheat toggle, jammers, nosecone and the rest).
         driverCanEject = 0;
         class UserActions {
             class Typhoon_Eject {
@@ -167,7 +121,6 @@ class CfgVehicles {
                 showWindow = 0;
                 hideOnUse = 1;
             };
-            // Formation light strips: the model's lit (green, emissive) and unlit strip faces swap.
             class Typhoon_FormationLightsOn {
                 priority = 1;
                 displayName = "Formation lights on";
@@ -193,7 +146,6 @@ class CfgVehicles {
             canopyExplodes = 1;
             CanopyHideAnim = "";
             CanopyPos = "";
-            // The model's own seat animation both hides the seat and stands in for the rail motion.
             EjectionSeatHideAnim = "ejectionSeat";
             EjectionSeatRailAnim = "ejectionSeat";
             EjectionSeatPos = "pos_eject";
