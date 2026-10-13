@@ -5,9 +5,9 @@ class H135_Juno_HT1_ZM521 : Helicopter_Base_H {
     typicalCargo[] = { "UKSF_B_Pilot_7" };
     unitInfoType = "RscUnitInfoNoSpeed";
     attenuationEffectType = "SemiOpenHeliAttenuation";
-    liftForceCoef = 1;         // 1.5
-    cyclicAsideForceCoef = 1;  // 1.6
-    cyclicForwardForceCoef = 1;  // 1.1
+    liftForceCoef = 1;
+    cyclicAsideForceCoef = 1;
+    cyclicForwardForceCoef = 1;
     FUEL(700,45);
     startDuration = 30;
     weapons[] = { "UK3CB_BAF_CMFlareLauncher" };
@@ -40,4 +40,10 @@ class H135_Juno_HT1_ZM521 : Helicopter_Base_H {
     };
     INVENTORY_AIRCRAFT;
 #include "..\hmds\MFDGeneral.hpp"
+};
+class HelicopterWreck;
+class HAFM_EC635Wreck : HelicopterWreck {
+    class EventHandlers {
+        class CBA_Extended_EventHandlers : CBA_Extended_EventHandlers_base {};
+    };
 };

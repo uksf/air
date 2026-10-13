@@ -1,6 +1,6 @@
 class CUP_CH47F_base : Helicopter_Base_H {
-    cyclicAsideForceCoef = 2; // 1.7
-    cyclicForwardForceCoef = 1.8; // 1.7
+    cyclicAsideForceCoef = 2;
+    cyclicForwardForceCoef = 1.8;
     FUEL(3914,100);
     armor = 60;
     startDuration = 90;
@@ -38,7 +38,6 @@ class CUP_CH47F_base : Helicopter_Base_H {
             primaryGunner = 0;
             soundAttenuationTurret = "HeliAttenuationGunner";
         };
-        // Door guns and copilot inherit MainTurret's HitTurret/HitGun; the engine rejects duplicate hitpoint names.
         class RightDoorGun : MainTurret {
             soundAttenuationTurret = "HeliAttenuationGunner";
             class HitPoints {};
@@ -527,4 +526,42 @@ class CUP_B_CH47F_VIV_GB : CUP_CH47F_VIV_base {
     INVENTORY_AIRCRAFT;
 };
 
-HIDE_CLASS_WITH_BASE(CUP_B_MH47E_GB,CUP_B_MH47E_USA);
+class CUP_MH47E_base : Helicopter_Base_H {
+    scope = 0;
+    class AnimationSources;
+};
+class CUP_B_MH47E_USA : CUP_MH47E_base {
+    class AnimationSources : AnimationSources {
+        class hitglass1 {
+            source = "Hit";
+            hitpoint = "HitGlass1";
+            raw = 1;
+        };
+        class hitglass2 {
+            source = "Hit";
+            hitpoint = "HitGlass2";
+            raw = 1;
+        };
+        class hitglass3 {
+            source = "Hit";
+            hitpoint = "HitGlass3";
+            raw = 1;
+        };
+        class hitglass4 {
+            source = "Hit";
+            hitpoint = "HitGlass4";
+            raw = 1;
+        };
+        class hitglass5 {
+            source = "Hit";
+            hitpoint = "HitGlass5";
+            raw = 1;
+        };
+        class hitglass6 {
+            source = "Hit";
+            hitpoint = "HitGlass6";
+            raw = 1;
+        };
+    };
+};
+HIDE_CLASS(CUP_B_MH47E_GB,CUP_B_MH47E_USA);

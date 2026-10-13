@@ -7,7 +7,7 @@ class UK3CB_BAF_Merlin_Base : Heli_Transport_02_base_F {
     weapons[] = { "UK3CB_BAF_CMFlareLauncher" };
     magazines[] = { "168Rnd_CMFlare_Chaff_Magazine" };
     startDuration = 60;
-    cyclicAsideForceCoef = 1.1; // 1
+    cyclicAsideForceCoef = 1.1;
     cyclicForwardForceCoef = 1;
     unitInfoType = "RscUnitInfoNoSpeed";
     class ViewPilot : ViewPilot {
@@ -29,12 +29,7 @@ class UK3CB_BAF_Merlin_Base : Heli_Transport_02_base_F {
         speedZoomMaxSpeed = 0;
         speedZoomMaxFOV = 0.95;
     };
-    /*landingSoundInt0[] = { "A3\Sounds_F\vehicles\air\noises\landing_wheels_large_int1", 0.25, 1, 50 };
-    landingSoundInt1[] = { "A3\Sounds_F\vehicles\air\noises\landing_wheels_large_int2", 0.25, 1, 50 };
-    landingSoundInt[] = { "landingSoundInt0", 0.5, "landingSoundInt1", 0.5 };
-    landingSoundOut0[] = { "A3\Sounds_F\vehicles\air\noises\landing_wheels_ext1", 0.4, 1, 50 };
-    landingSoundOut1[] = { "A3\Sounds_F\vehicles\air\noises\landing_wheels_ext2", 0.4, 1, 50 };
-    landingSoundOut[] = { "landingSoundOut0", 0.5, "landingSoundOut1", 0.5 };*/
+
     class Components : Components {
         class SensorsManagerComponent {
             class Components {

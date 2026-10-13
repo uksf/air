@@ -11,7 +11,9 @@ class CfgPatches {
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {
             "uksf_air_common",
-            "ace_missile_cruise"
+            "ace_missile_cruise",
+            "EAWS_EF2000",
+            "gx_drones_compat_rksl_cvwp"
         };
         author = QUOTE(UKSF);
         authors[] = { "Beswick.T" };

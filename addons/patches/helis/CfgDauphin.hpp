@@ -15,9 +15,7 @@ class MEA_Pantera_Base : Helicopter_Base_H {
     irTargetSize = 0.5;
     extCameraPosition[] = { 0, 0, -15 };
     ace_fastroping_enabled = 1;
-    // The model names these "pos cargo r dir", not "pos Cargo dir R".
     memoryPointsGetInCargoDir[] = { "pos cargo r dir", "pos cargo l dir", "pos cargo l dir", "pos cargo r dir" };
-    // Copied from the Hummingbird; the model has no rtd1 mirror points.
     class RenderTargets {
         delete LowerMirror;
     };
@@ -104,3 +102,13 @@ class GVAR(dauphin) : MEA_Pantera_Base {
     INVENTORY_AIRCRAFT;
 };
 DEPRECATE_CLASS(uksf_air_dauphin,GVAR(dauphin));
+class Mea_Hoist_Hook : Items_base_F {
+    class AnimationSources : AnimationSources {
+        class collisionlightred_source {
+            source = "MarkerLight";
+        };
+        class collisionlightwhite_source {
+            source = "MarkerLight";
+        };
+    };
+};

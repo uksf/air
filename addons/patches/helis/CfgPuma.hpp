@@ -7,9 +7,9 @@ class rksla3_pumahc_base: Helicopter_Base_H {
     FUEL(1556,75);
     liftForceCoef = 0.9;
     bodyFrictionCoef = 1.1;
-    cyclicAsideForceCoef = 0.7; // 0.9
-    cyclicForwardForceCoef = 0.7; // 0.9
-    backRotorForceCoef = 0.7; // 0.7
+    cyclicAsideForceCoef = 0.7;
+    cyclicForwardForceCoef = 0.7;
+    backRotorForceCoef = 0.7;
     startDuration = 40;
     class Components: Components {
         class SensorsManagerComponent {
@@ -132,8 +132,10 @@ class rksla3_puma_hc1_1gpmg: rksla3_pumahc_base {
     typicalCargo[] = { "UKSF_B_Pilot_7" };
     vehicleClass = "Air";
     class Turrets: Turrets {
+        class CopilotTurret;
         class RH_Turret: MainTurret {
             weapons[] = { "CUP_weapon_mastersafe", "rksla3_pumahc1_mounted_GPMG_R" };
+            class HitPoints {};
         };
     };
     class TransportMagazines {
@@ -159,11 +161,14 @@ class rksla3_puma_hc1_2gpmg: rksla3_pumahc_base {
     typicalCargo[] = { "UKSF_B_Pilot_7" };
     vehicleClass = "Air";
     class Turrets: Turrets {
+        class CopilotTurret;
         class RH_Turret: MainTurret {
             weapons[] = { "CUP_weapon_mastersafe", "rksla3_pumahc1_mounted_GPMG_R" };
+            class HitPoints {};
         };
         class LH_Turret: RH_Turret {
             weapons[] = { "CUP_weapon_mastersafe", "rksla3_pumahc1_mounted_GPMG_L" };
+            class HitPoints {};
         };
     };
     class TransportMagazines {

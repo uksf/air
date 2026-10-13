@@ -245,7 +245,6 @@ class GVAR(pe_ah6) : B_Heli_Light_01_dynamicLoadout_F {
 #include "..\hmds\MFDCAS.hpp"
 };
 
-class CUP_Uh60_Unarmed_FFV_Base;
 class CUP_Uh60L_Unarmed_FFV_Base : CUP_Uh60_Unarmed_FFV_Base {
     class Turrets;
 };
@@ -270,178 +269,6 @@ class GVAR(pe_uh60) : CUP_B_UH60L_Unarmed_FFV_MEV_US {
     lockDetectionSystem = "8 + 4";
     incomingMissileDetectionSystem = "8 + 16";
     UGVAR(radios,rackChannels)[] = { 30,40,41 };
-    // class Turrets : Turrets {
-    //     class CopilotTurret : CopilotTurret {
-    //         // body = "flirgun";
-    //         // gun = "flirgun";
-    //         // animationSourceBody = "flirgun";
-    //         // animationSourceGun = "flirgun";
-    //         memoryPointGunnerOptics = "flirgun_axis";
-    //         // gunBeg = "flirgun_axis";
-    //         // gunEnd = "flirgun";
-    //         // memoryPointGun = "flirgun_axis";
-    //         gunAxis = "flirgun_axis";
-    //         turretAxis = "flirturret_axis";
-    //         stabilizedInAxes = 3;
-    //         isCopilot = 1;
-    //         primaryObserver = 1;
-    //         proxyIndex = 3;
-    //         minElev = -40;
-    //         maxElev = 20;
-    //         initElev = 0;
-    //         minTurn = -360;
-    //         maxTurn = 360;
-    //         initTurn = 0;
-    //         turretInfoType = "RscOptics_UAV_gunner";
-    //         weapons[] = {};
-    //         magazines[] = {};
-    //         proxyType = "CPGunner";
-    //         inGunnerMayFire = 0;
-    //         gunnerOpticsEffect[] = {};
-    //         gunnerOpticsModel = "";
-    //         class Components {
-    //             class VehicleSystemsDisplayManagerComponentLeft: DefaultVehicleSystemsDisplayManagerLeft{
-    //                 defaultDisplay = "EmptyDisplay";
-    //                 class Components{
-    //                     class CrewDisplay{
-    //                         componentType = "CrewDisplayComponent";
-    //                         resource = "RscCustomInfoCrew";
-    //                     };
-    //                     class MinimapDisplay{
-    //                         componentType = "MinimapDisplayComponent";
-    //                         resource = "RscCustomInfoMiniMap";
-    //                     };
-    //                     class SlingLoadDisplay{
-    //                         componentType = "SlingLoadDisplayComponent";
-    //                         resource = "RscCustomInfoSlingLoad";
-    //                     };
-    //                     class EmptyDisplay{
-    //                         componentType = "EmptyDisplayComponent";
-    //                     };
-    //                 };
-    //             };
-    //             class VehicleSystemsDisplayManagerComponentRight: DefaultVehicleSystemsDisplayManagerRight{
-    //                 defaultDisplay = "SensorsDisplay";
-    //                 class Components{
-    //                     class SensorsDisplay{
-    //                         componentType = "SensorsDisplayComponent";
-    //                         range[] = {16000, 8000, 4000, 2000};
-    //                         resource = "RscCustomInfoSensors";
-    //                     };
-    //                     class CrewDisplay{
-    //                         componentType = "CrewDisplayComponent";
-    //                         resource = "RscCustomInfoCrew";
-    //                     };
-    //                     class MinimapDisplay{
-    //                         componentType = "MinimapDisplayComponent";
-    //                         resource = "RscCustomInfoMiniMap";
-    //                     };
-    //                     class SlingLoadDisplay{
-    //                         componentType = "SlingLoadDisplayComponent";
-    //                         resource = "RscCustomInfoSlingLoad";
-    //                     };
-    //                     class EmptyDisplay{
-    //                         componentType = "EmptyDisplayComponent";
-    //                     };
-    //                 };
-    //             };
-    //         };
-    //         class OpticsIn{
-    //             class WideNGS{
-    //                 opticsDisplayName = "W";
-    //                 initAngleX = 0;
-    //                 minAngleX = -35;
-    //                 maxAngleX = 10;
-    //                 initAngleY = 0;
-    //                 minAngleY = -100;
-    //                 maxAngleY = 100;
-    //                 initFov = 0.466;
-    //                 minFov = 0.466;
-    //                 maxFov = 0.466;
-    //                 visionMode[] = {"Normal", "NVG", "Ti"};
-    //                 thermalMode[] = {0, 1};
-    //                 gunnerOpticsColor[] = {0.15, 1, 0.15, 1};
-    //                 gunnerOpticsModel = "A3\Weapons_F\Reticle\Optics_Gunner_MBT_03_w_F.p3d";
-    //                 directionStabilized = 0;
-    //                 opticsPPEffects[] = {"OpticsCHAbera2", "OpticsBlur2"};
-    //             };
-    //             class Wide{
-    //                 opticsDisplayName = "W";
-    //                 initAngleX = 0;
-    //                 minAngleX = -35;
-    //                 maxAngleX = 10;
-    //                 initAngleY = 0;
-    //                 minAngleY = -100;
-    //                 maxAngleY = 100;
-    //                 initFov = 0.466;
-    //                 minFov = 0.466;
-    //                 maxFov = 0.466;
-    //                 visionMode[] = {"Normal", "NVG", "Ti"};
-    //                 thermalMode[] = {0, 1};
-    //                 gunnerOpticsColor[] = {0.15, 1, 0.15, 1};
-    //                 gunnerOpticsModel = "A3\Weapons_F\Reticle\Optics_Gunner_MBT_02_w_F.p3d";
-    //                 directionStabilized = 1;
-    //                 opticsPPEffects[] = {"OpticsCHAbera2", "OpticsBlur2"};
-    //                 gunnerOpticsEffect[] = {"TankCommanderOptics1"};
-    //             };
-    //             class WideL: Wide{
-    //                 opticsDisplayName = "WL";
-    //                 initFov = 0.2;
-    //                 minFov = 0.2;
-    //                 maxFov = 0.2;
-    //                 gunnerOpticsModel = "A3\Weapons_F\Reticle\Optics_Gunner_MBT_02_m_F.p3d";
-    //                 gunnerOpticsColor[] = {0, 0, 0, 1};
-    //                 directionStabilized = 1;
-    //                 opticsPPEffects[] = {"OpticsCHAbera2", "OpticsBlur2"};
-    //             };
-    //             class Medium: Wide{
-    //                 opticsDisplayName = "M";
-    //                 initFov = 0.1;
-    //                 minFov = 0.1;
-    //                 maxFov = 0.1;
-    //                 directionStabilized = 1;
-    //                 gunnerOpticsColor[] = {0, 0, 0, 1};
-    //                 gunnerOpticsModel = "A3\Weapons_F\Reticle\Optics_Gunner_MBT_02_m_F.p3d";
-    //             };
-    //             class Narrow: Wide{
-    //                 opticsDisplayName = "N";
-    //                 gunnerOpticsColor[] = {0, 0, 0, 1};
-    //                 gunnerOpticsModel = "A3\Weapons_F\Reticle\Optics_Gunner_MBT_02_n_F.p3d";
-    //                 directionStabilized = 1;
-    //                 initFov = 0.02;
-    //                 minFov = 0.02;
-    //                 maxFov = 0.02;
-    //             };
-    //             class Narrower: Wide{
-    //                 opticsDisplayName = "N";
-    //                 gunnerOpticsColor[] = {0, 0, 0, 1};
-    //                 gunnerOpticsModel = "A3\Weapons_F\Reticle\Optics_Gunner_MBT_02_n_F.p3d";
-    //                 directionStabilized = 1;
-    //                 initFov = 0.01;
-    //                 minFov = 0.01;
-    //                 maxFov = 0.01;
-    //             };
-    //         };
-    //         class OpticsOut{
-    //             class Monocular{
-    //                 initAngleX = 0;
-    //                 minAngleX = -30;
-    //                 maxAngleX = 30;
-    //                 initAngleY = 0;
-    //                 minAngleY = -100;
-    //                 maxAngleY = 100;
-    //                 initFov = 1.1;
-    //                 minFov = 0.133;
-    //                 maxFov = 1.1;
-    //                 visionMode[] = {"Normal", "NVG"};
-    //                 gunnerOpticsModel = "";
-    //                 gunnerOpticsEffect[] = {};
-    //             };
-    //         };
-    //         startEngine = 0;
-    //         gunnerHasFlares = 0;
-    //     };
-    // };
     class Turrets : Turrets {
         class CopilotTurret : CopilotTurret {
             weapons[] += { "UK3CB_BAF_CMFlareLauncher" };
@@ -544,10 +371,6 @@ class GVAR(pe_uh60) : CUP_B_UH60L_Unarmed_FFV_MEV_US {
 #include "..\hmds\MFDGeneral.hpp"
 };
 
-class CUP_Uh60_Base;
-class CUP_Uh60_FFV_Base : CUP_Uh60_Base {
-    class Turrets;
-};
 class CUP_B_UH60M_FFV_US : CUP_Uh60_FFV_Base {
     class Components;
     class Turrets : Turrets {
@@ -797,15 +620,6 @@ class GVAR(pe_mh60l) : CUP_B_MH60L_DAP_4x_US {
 #include "..\hmds\MFDGeneral.hpp"
 };
 
-class CUP_Merlin_Rescue_Base : Helicopter_Base_H {
-    class Turrets;
-};
-class CUP_C_Merlin_HC3_IDAP_Rescue : CUP_Merlin_Rescue_Base {
-    class Components;
-    class Turrets : Turrets {
-        class CopilotTurret;
-    };
-};
 class GVAR(eh101_idap) : CUP_C_Merlin_HC3_IDAP_Rescue {
     scope = 2;
     scopeCurator = 2;

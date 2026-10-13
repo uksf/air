@@ -45,6 +45,7 @@ class CfgMagazines {
 #include "magazineSets\bombs.hpp"
 #include "magazineSets\brimstone.hpp"
 #include "magazineSets\bullets.hpp"
+#include "magazineSets\eaws.hpp"
 #include "magazineSets\hellfire.hpp"
 #include "magazineSets\rockets.hpp"
 #include "magazineSets\meteor.hpp"

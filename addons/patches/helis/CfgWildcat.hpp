@@ -8,16 +8,16 @@ class UK3CB_BAF_Wildcat_Base : Heli_light_03_base_F {
     faction = "CUP_B_GB";
     crew = "UKSF_B_Pilot_7";
     typicalCargo[] = { "UKSF_B_Pilot_7" };
-    FUEL(1275,60); // AW159 real internal: ~1275 L (1007 kg fuel)
+    FUEL(1275,60);
     weapons[] = { "UK3CB_BAF_CMFlareLauncher" };
     magazines[] = { "168Rnd_CMFlare_Chaff_Magazine" };
     startDuration = 30;
     mainRotorSpeed = 1;
-    bodyFrictionCoef = 0.5;        // 1
-    liftForceCoef = 0.95;          // 1
-    maxFordingDepth = 1.2;         // 0.7
-    cyclicAsideForceCoef = 1.2;    // 1
-    cyclicForwardForceCoef = 1.1;  // 1
+    bodyFrictionCoef = 0.5;
+    liftForceCoef = 0.95;
+    maxFordingDepth = 1.2;
+    cyclicAsideForceCoef = 1.2;
+    cyclicForwardForceCoef = 1.1;
     unitInfoType = "RscUnitInfoNoSpeed";
     attenuationEffectType = "HeliAttenuation";
     class Components : Components {
@@ -359,13 +359,16 @@ class rksla3_aw159_base : Helicopter_Base_F {
     class Turrets : Turrets {
         class MainTurret;
     };
+    class EventHandlers {
+        class CBA_Extended_EventHandlers : CBA_Extended_EventHandlers_base {};
+    };
 };
 class rksla3_aw159_hma2 : rksla3_aw159_base {
     faction = "CUP_B_GB";
     vehicleClass = "Air";
     crew = "UKSF_B_Pilot_7";
     typicalCargo[] = { "UKSF_B_Pilot_7" };
-    FUEL(1275,60); // AW159 real internal: ~1275 L
+    FUEL(1275,60);
     startDuration = 30;
     unitInfoType = "RscUnitInfoNoSpeed";
     attenuationEffectType = "HeliAttenuation";

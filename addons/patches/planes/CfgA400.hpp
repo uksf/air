@@ -4,9 +4,9 @@ class A400M_base_F : Plane_Base_F {
     };
     unitInfoType = "RscUnitInfoAirPlaneNoSpeed";
     unitInfoTypeLite = "RscUnitInfoAirPlaneNoSpeed";
-    FUEL(63750,120); // A400M real internal: 51 t / ~63,750 L
+    FUEL(63750,120);
     altFullForce = 10000;
-    thrustCoef[] = { 1.42, 1.38, 1.34, 1.3, 1.25, 1.2, 1.19, 1.18, 1.17, 1.17, 1.16, 1.16, 1.1, 1, 0.7, 0.2, 0 }; // Check 400 knots
+    thrustCoef[] = { 1.42, 1.38, 1.34, 1.3, 1.25, 1.2, 1.19, 1.18, 1.17, 1.17, 1.16, 1.16, 1.1, 1, 0.7, 0.2, 0 };
     armor = 150;
     weapons[] = { QEGVAR(weapons,C130FlareLauncher) };
     magazines[] = { QEGVAR(weapons,CMFlare_Chaff_1200Rnd_Magazine) };
@@ -164,7 +164,6 @@ class A400M_base_F : Plane_Base_F {
             initPhase = 1;
             animPeriod = 0.1;
         };
-        // The model's nose and third-axle gear dampers use these names; the mod only defines Damper_*_source.
         class damper_wheel_1_1_source {
             source = "damper";
             wheel = "Wheel_1";
@@ -178,7 +177,6 @@ class A400M_base_F : Plane_Base_F {
             wheel = "Wheel_3_2";
         };
     };
-    // The flight engineer screen needs pip0 points and a render target surface that the model does not have.
     class RenderTargets {
         delete ecran_FE;
     };
@@ -300,5 +298,11 @@ class GVAR(a400m_raf) : B_A400M_UK_CAMO_F {
         QPATHTOF(data\textures\a400m\_tx_wing_l_b.paa),
         QPATHTOF(data\textures\a400m\_tx_wing_r.paa),
         QPATHTOF(data\textures\a400m\_tx_wing_r_b.paa)
+    };
+};
+class PlaneWreck;
+class A400M_wreck_F : PlaneWreck {
+    class EventHandlers {
+        class CBA_Extended_EventHandlers : CBA_Extended_EventHandlers_base {};
     };
 };
