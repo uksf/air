@@ -26,6 +26,8 @@ Edit (each output is re-read and must serialize to the same bytes):
                                            point an animation at another source, optionally its address
   bind         <in> <out> <lod> <selection|#section> <bone> [x0 x1 y0 y1 z0 z1]
                                            weight unweighted faces (optionally only those inside a box) to a bone
+  move         <in> <out> <lod> <selection|#section> <dx> <dy> <dz>
+                                           translate a selection that shares no vertex with other faces
   remap        <in> <out> <rule>...        rule = oldModel|oldId|newModel|newId; @file reads rules, one per line
   add-proxies  <in> <out> <template> <filter>
                                            copy LOD 0 proxies matching filter into the memory LOD
@@ -176,10 +178,8 @@ try
             for (int k = 0; k < classes.Length; k++)
             {
                 var a = classes[k];
-                // LODs in which the animation drives a bone; an animation bound in none never moves.
                 var bound = model.Lods.Where((l, j) => model.Animations.Anims2Bones[j][k] >= 0).Select(l => l.Resolution.ToString("G3", CultureInfo.InvariantCulture));
                 if (!a.AnimName.Contains(filter, StringComparison.OrdinalIgnoreCase) && !a.AnimSource.Contains(filter, StringComparison.OrdinalIgnoreCase)) continue;
-                // Source address: 0 clamp, 1 mirror, 2 loop.
                 var range = a.AnimType switch
                 {
                     <= 3 => $" angle {a.Angle0 * 180 / MathF.PI:G4}..{a.Angle1 * 180 / MathF.PI:G4} deg",
@@ -194,6 +194,10 @@ try
         case "bind":
             Need(6);
             Selections.Bind(input, args[2], args[3], args[4], args[5], args.Length >= 12 ? args.Skip(6).Take(6).Select(Odol.ParseFloat).ToArray() : null);
+            break;
+        case "move":
+            Need(8);
+            Move.Run(input, args[2], args[3], args[4], args.Skip(5).Take(3).Select(Odol.ParseFloat).ToArray());
             break;
         case "sections":
             Need(3);
