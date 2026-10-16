@@ -32,6 +32,22 @@ Run `odol roundtrip <model>` on any new model first. Zero differing bytes means 
 - `bind` weights an unweighted sectional selection to a bone, so the bone's animation moves it. Each section can only reference a window of bones, so `bind` also moves the section's window. If an animation cycles but nothing moves, check `bones <lod>` for a bone with 0 vertices and `selection <lod> <name>` for the geometry that should follow it. Visual-LOD selections are sectional, so `points` shows 0 vertices for them. When the geometry has no selection, `sections <lod> <box>` finds its section; bind it as `#N`, with a box to take only part of it.
 - The memory-LOD edits copy their structure from a template model. The A-143 Buzzard (`air_f_gamma.pbo`, `Plane_Fighter_03\Plane_Fighter_03_F.p3d`) works. `add-proxies` only supports a memory LOD that has no faces yet.
 
+## Typhoon recipe
+
+Run `recipes/typhoon.sh <out.pbo>`. It reads the Workshop EAWS release (item 1337653467) and copies everything in the PBO unchanged except the two models. Set `ARMA` (Arma 3 install), `EAWS` (Workshop `EAWS_EF2000.pbo`) and `WORK` (keep the intermediate models there) to override the defaults. `PLAN` and `CUTS` override the camo layout plan and its seam cuts. The script deletes old intermediates first, because `hemtt utils pbo extract` keeps an existing output file. The steps are:
+
+1. The tail hook reads the `hook` source, which uksf_air defines and holds stowed. By default the hook follows the gear.
+2. The engine fans read `rotor` with address `loop`, because `rotor` rises continuously and `clamp` stops after one turn. `vrtule_0` and `vrtule_1` used sources that do not exist.
+3. The flame discs (`burner_fire_1_*`) and the spoked turbine disc in each nozzle (section 8 at this step, before the camo split renumbers it) are weighted to their `vrtule` bones, so they spin with the engine.
+4. The flame discs move 1.44 m forward from the nozzle throat (z 5.66) to 2 cm aft of the turbine disc (z 4.20). The reheat cone (section 46) moves with them. Model +Z points aft.
+5. Proxies are remapped for 13 dynamic pylons and copied into the memory LOD.
+6. Memory points are added: the cockpit supply point, the ejection seat start, and the landing-gear contacts for AAE.
+7. The camo moves onto two 4096 sheets. Upper surfaces stay in `camo1` and the underside moves to `camo_lower`. Seams are cut first, so closed and strongly curved islands can be flattened in pieces. The pilot-view LOD keeps its UVs under `camo_pilot`.
+8. Textures are redirected to uksf_air art: the 4096 stencil sheets, a `sides.paa` copy with the drag-chute door patch painted grey, and pale yellow-green unlit formation strips. The lit strips get the unlit strips' UVs and a lit texture, so the segments show in both states.
+9. The antennas, sensor fairings and tail tubes are a separate proxy model on the old `top.paa`, which hidden selections cannot reach. It is retextured to plain airframe grey.
+10. EAWS shipped no PhysX LOD, so the jet had no physics body. The geometry LOD is cloned as one, with the real empty mass of 11000 kg.
+11. `airplaneX` wheel points are added. PhysX places wheels from the rest pose, and EAWS is modelled gear-up, so the points are fixed (unweighted) at the deployed wheel centres measured in game, with each rim straight below. The nose point sits 0.05 m above its wheel. At the model's full 3.2 degrees nose-up the wheel brakes cannot hold the jet, and it creeps forward at about 16 km/h. At 2.6 degrees it holds still.
+
 ## Pylon-menu picture
 
 `odol export-obj <model> 0 v.obj`, `odol export-obj <model> geometry g.obj`, then `node tools/odol/silhouette.js v.obj out.png --clip g.obj --points points.json` renders a vanilla-style top view (2048x1024, nose left) and prints a `UIposition` for each pylon proxy position. Convert with `hemtt utils paa convert out.png loadout_ca.paa`. Spread boxes that land within about 0.05 of each other.
