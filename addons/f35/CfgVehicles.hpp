@@ -11,7 +11,7 @@ class CfgVehicles {
         scope = 1;
         author = QUOTE(UKSF);
         displayName = "F-35B Lightning II";
-        FUEL(7750,75); // F-35B real internal: 13,500 lb / ~7,750 L
+        FUEL(7750,75);
         unitInfoType = "RscUnitInfoAirPlaneNoSpeed";
         unitInfoTypeLite = "RscUnitInfoAirPlaneNoSpeed";
         driverWeaponsInfoType = "RscOptics_CAS_01_TGP";
@@ -48,7 +48,7 @@ class CfgVehicles {
         irTargetSize = 0.5;
         showAllTargets = 2;
         countermeasureActivationRadius = 32000;
-        landingSpeed = 150; // 230
+        landingSpeed = 150;
         stallSpeed = 1;
         acceleration = 250;
         maxSpeed = 1930;
@@ -68,36 +68,18 @@ class CfgVehicles {
         draconicForceYCoef = 2;
         draconicForceZCoef = 0.05;
 
-        // draconicTorqueXCoef[] = { 4, 5.1, 6.1, 7, 7.7, 8.3, 9, 9.1, 9.2, 9.2, 9.2 };  // f-18
-        // draconicTorqueXCoef[] = { 16, 15.5, 15, 14.5, 14, 14, 14.5, 15, 16, 17, 18 }; // blackfish
-        // draconicTorqueXCoef = 0.15; // f-35
         draconicTorqueXCoef[] = { 4, 5.1, 6.1, 7, 7.7, 8.3, 9, 9.1, 9.2, 9.2, 9.2 };
 
-        // draconicTorqueYCoef[] = { 6.8, 5.5, 4, 1.5, 0.1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };  // f-18
-        // draconicTorqueYCoef[] = { 1, 1.2, 1.4, 2, 4, 7, 6.8, 6.6, 6.4, 6.2, 5.5, 5, 4.5, 3.9, 3, 1 }; // blackfish
-        // draconicTorqueYCoef = 1; // f-35
         draconicTorqueYCoef[] = { 1, 1.2, 1.4, 0.1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 
-        // envelope[] = { 0, 0.11, 0.43, 0.97, 1.72, 2.69, 3.87, 5.27, 6.89, 8.72, 9.7, 9.6, 9.2, 8.5, 8.2, 8 };  // f-18
-        // envelope[] = { 0, 1, 1.5, 1.8, 3.8, 5.3, 5.5, 6.9, 5.2, 4.3, 5, 3.2, 0.5, 0 }; // f-35
         envelope[] = { 0, 1, 1.3, 1.4, 1.6, 1.72, 2.69, 3.87, 5.27, 6.89, 8.72, 9.4, 9.2, 8.5, 8.2, 8, 7.5 };
 
-        // thrustCoef[] = { 1.76, 1.69, 1.62, 1.68, 1.74, 1.81, 1.89, 1.95, 1.96, 1.96, 1.92, 1.4, 0.4, 0, 0, 0 };  // f-18
-        // thrustCoef[] = { 1, 1.1, 1.3, 1.5, 1.9, 1.7, 1.4, 1.2, 1.2, 1.1, 1, 0.5, 0 }; // f-35
-        // thrustCoef[] = { 1, 1, 1, 1.1, 1.3, 1.5, 1.7, 1.8, 1.9, 1.8, 1.7, 1.6, 1, 0.4, 0, 0 }; // f-35 OP
         thrustCoef[] = { 1.01, 1.03, 1.06, 1.1, 1.15, 1.2, 1.3, 1.6, 1.55, 1.2, 1.1, 1.05, 1, 0.5, 0 };
 
-        // elevatorCoef[] = { 0.3, 0.5, 0.66, 0.52, 0.49, 0.46, 0.43, 0.4, 0.35, 0.3, 0.25, 0.18, 0.17, 0.16, 0.15, 0.15 };  // f-18
-        // elevatorCoef[] = { 0.6, 0.9, 1.0, 1.1, 1.0, 0.8, 0.5 }; // f-35
-        // elevatorCoef[] = { 0.5, 0.55, 0.65, 0.55, 0.5, 0.45, 0.4, 0.35, 0.3, 0.25, 0.2, 0.18, 0.16, 0.15, 0.13, 0.12 }; // f-35 OP
         elevatorCoef[] = { 0.4, 0.5, 0.6, 0.55, 0.5, 0.45, 0.4, 0.35, 0.3, 0.25, 0.2, 0.18, 0.16, 0.15, 0.15, 0.15 };
 
-        // aileronCoef[] = { 0.4, 0.5, 0.8, 0.95, 1.02, 1.04, 1.03, 1.01, 1, 0.7, 0.6, 0.55, 0.5, 0.45, 0.4, 0.35 };  // f-18
-        // aileronCoef[] = { 0.2, 1.5, 1.7, 1.8, 1.9, 1.9, 1.9, 1.9, 1.9, 1.8, 1.7, 1.6, 1.5 }; // f-35
         aileronCoef[] = { 0.5, 0.9, 1, 1.02, 1.04, 1.06, 1.04, 1.02, 1, 0.9, 0.8, 0.6, 0.55, 0.5, 0.45, 0.4 };
 
-        // rudderCoef[] = { 0.5, 1.8, 2.6, 2.75, 2.8, 2.85, 2.9, 2.95, 2.98, 3.01, 2.7, 1.1, 0.9, 0.7, 0.5, 0.3 };  // f-18
-        // rudderCoef[] = { 0.7, 1.5, 4, 3, 2, 1, 0.6 }; // f-35
         rudderCoef[] = { 0.5, 1.8, 2.6, 2.75, 2.8, 2.85, 2.9, 2.95, 2.98, 3.01, 2.7, 1.1, 0.9, 0.7, 0.5, 0.3 };
 
         airFrictionCoefs0[] = { 0, 0, 0 };
@@ -123,7 +105,7 @@ class CfgVehicles {
         memoryPointLDust = "WheelDust_left_pos";
         memoryPointRDust = "WheelDust_right_pos";
         disableInventory = 0;
-        supplyRadius = 4.5; // doplnovani is in the cockpit, ~3.9 m from a player standing at the cockpit side
+        supplyRadius = 4.5;
         maximumLoad = 200;
         transportMaxBackpacks = 1;
         weapons[] = { "CUP_weapon_mastersafe", "Laserdesignator_pilotCamera", "UK3CB_BAF_CMFlareLauncher" };
@@ -535,7 +517,7 @@ class CfgVehicles {
                 };
                 class pylons {
                     class pylons1 {
-                        // right 1
+
                         UIposition[] = { 0.55, 0.4 };
                         maxweight = 300;
                         hardpoints[] = {
@@ -549,7 +531,7 @@ class CfgVehicles {
                         priority = 5;
                     };
                     class pylons2 : pylons1 {
-                        // right 2
+
                         UIposition[] = { 0.52, 0.35 };
                         hardpoints[] = {
                             "B_AIM132_RAIL_ACE_Only",
@@ -569,7 +551,7 @@ class CfgVehicles {
                         priority = 4;
                     };
                     class pylons3 : pylons2 {
-                        // right 3
+
                         UIposition[] = { 0.49, 0.3 };
                         hardpoints[] = {
                             "B_AIM132_RAIL_ACE_Only",
@@ -590,7 +572,7 @@ class CfgVehicles {
                         priority = 3;
                     };
                     class pylons4 : pylons3 {
-                        // bay right outer
+
                         UIposition[] = { 0.45, 0.45 };
                         hardpoints[] = {
                             "B_AMRAAM_D_INT_ACE_Only",
@@ -603,7 +585,7 @@ class CfgVehicles {
                         bay = 1;
                     };
                     class pylons5 : pylons4 {
-                        // bay right inner
+
                         UIposition[] = { 0.45, 0.2 };
                         hardpoints[] = {
                             "B_GBU12_ACE_Only",
@@ -620,32 +602,32 @@ class CfgVehicles {
                         bay = 1;
                     };
                     class pylons6 : pylons5 {
-                        // bay left inner
+
                         UIposition[] = { 0.2, 0.2 };
                         mirroredMissilePos = 5;
                     };
                     class pylons7 : pylons4 {
-                        // bay left outer
+
                         UIposition[] = { 0.2, 0.45 };
                         mirroredMissilePos = 4;
                     };
                     class pylons8 : pylons3 {
-                        // left 3
+
                         UIposition[] = { 0.12, 0.3 };
                         mirroredMissilePos = 3;
                     };
                     class pylons9 : pylons2 {
-                        // left 2
+
                         UIposition[] = { 0.09, 0.35 };
                         mirroredMissilePos = 2;
                     };
                     class pylons10 : pylons1 {
-                        // left 1
+
                         UIposition[] = { 0.06, 0.4 };
                         mirroredMissilePos = 1;
                     };
                     class pylons11 : pylons1 {
-                        // centre pylon — gunpod
+
                         UIposition[] = { 0.31, 0.1 };
                         hardpoints[] = { QEGVAR(weapons,gunpod) };
                         attachment = QEGVAR(weapons,gunpod_pylon);
@@ -1017,60 +999,7 @@ class CfgVehicles {
             delete Plane_Fighter_01_unfold_wings;
         };
         class pilotCamera : pilotCamera {
-            class OpticsIn {
-                class Wide {
-                    opticsDisplayName = "WFOV";
-                    initAngleX = 0;
-                    minAngleX = 0;
-                    maxAngleX = 0;
-                    initAngleY = 0;
-                    minAngleY = 0;
-                    maxAngleY = 0;
-                    initFov = "(75 / 120)";
-                    minFov = "(75 / 120)";
-                    maxFov = "(75 / 120)";
-                    directionStabilized = 1;
-                    visionMode[] = { "Normal", "NVG", "Ti" };
-                    thermalMode[] = { 0, 1 };
-                    gunnerOpticsModel = "\A3\Drones_F\Weapons_F_Gamma\Reticle\UAV_Optics_Gunner_wide_F.p3d";
-                    opticsPPEffects[] = { "OpticsCHAbera2", "OpticsBlur2" };
-                };
-                class LWide : Wide {
-                    opticsDisplayName = "LWFOV";
-                    initFov = "(25 / 120)";
-                    minFov = "(25 / 120)";
-                    maxFov = "(25 / 120)";
-                    gunnerOpticsModel = "\A3\Drones_F\Weapons_F_Gamma\Reticle\UAV_Optics_Gunner_medium_F.p3d";
-                };
-                class Medium : Wide {
-                    opticsDisplayName = "MFOV";
-                    initFov = "(14.4 / 120)";
-                    minFov = "(14.4 / 120)";
-                    maxFov = "(14.4 / 120)";
-                    gunnerOpticsModel = "\A3\Drones_F\Weapons_F_Gamma\Reticle\UAV_Optics_Gunner_medium_F.p3d";
-                };
-                class Narrow : Wide {
-                    opticsDisplayName = "NFOV";
-                    initFov = "(4.8 / 120)";
-                    minFov = "(4.8 / 120)";
-                    maxFov = "(4.8 / 120)";
-                    gunnerOpticsModel = "\A3\Drones_F\Weapons_F_Gamma\Reticle\UAV_Optics_Gunner_narrow_F.p3d";
-                };
-                class VNarrow : Wide {
-                    opticsDisplayName = "VNFOV";
-                    initFov = "(2 / 120)";
-                    minFov = "(2 / 120)";
-                    maxFov = "(2 / 120)";
-                    gunnerOpticsModel = "\A3\Drones_F\Weapons_F_Gamma\Reticle\UAV_Optics_Gunner_narrow_F.p3d";
-                };
-                class VVNarrow : Wide {
-                    opticsDisplayName = "VVNFOV";
-                    initFov = "(1 / 120)";
-                    minFov = "(1 / 120)";
-                    maxFov = "(1 / 120)";
-                    gunnerOpticsModel = "\A3\Drones_F\Weapons_F_Gamma\Reticle\UAV_Optics_Gunner_narrow_F.p3d";
-                };
-            };
+#include "PilotCameraOptics.hpp"
         };
         class MFD {
 #include "hmd\hmd.hpp"
@@ -1079,7 +1008,7 @@ class CfgVehicles {
 #include "mfd\3.hpp"
 #include "mfd\4.hpp"
 #include "mfd\ins.hpp"
-        };        
+        };
         tailHook = 0;
         delete CarrierOpsCompatability;
         CatapultExclude = 1;
@@ -1091,9 +1020,7 @@ class CfgVehicles {
         EGVAR(common,towbarRotation)[] = { 0, 1, 0.015 };
         EGVAR(common,towbarActionMemoryPoint) = "Wheel_1_center";
         UGVAR(radios,rackChannels)[] = { 31, 40, 41 };
-        // AAE patches Plane_Fighter_01_Base_F with AAE_Have_AB = 1 in
-        // Wing_Effect/Jet_Configs.hpp — explicitly override so AAE's burner
-        // reflector vehicle does not spawn. We handle the AB light ourselves.
+
         AAE_Have_AB = 0;
         AAE_Alarm_Int = "AAE_Alarm";
         AAE_Rumble_Int = "AAE_Rumble";
