@@ -98,6 +98,11 @@ class CfgVehicles {
 
         class AnimationSources : AnimationSources {
 #include "vehicle\Nozzles.hpp"
+            class afterburner_stretch {
+                source = "user";
+                animPeriod = 1e-30;
+                initPhase = 0;
+            };
         };
 
         class EventHandlers : EventHandlers {
