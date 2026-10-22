@@ -5,7 +5,7 @@
 
     Description:
         Starts the per-frame handler for a Typhoon: afterburner and nozzles where the plane is local,
-        and HMD visibility for the local pilot.
+        the reheat light-up kick and APU smoke on every client, and HMD visibility for the local pilot.
 
     Parameter(s):
         0: Plane <OBJECT>
@@ -17,6 +17,8 @@
         [_plane] call uksf_air_typhoon_fnc_initPlane
 */
 #define NOZZLE_INTERVAL 0.5
+#define REHEAT_FLAME_HIDE "afterburner_left_userhide"
+#define REHEAT_FLAME_SHOWN 0.5
 
 params ["_plane"];
 
@@ -24,7 +26,7 @@ if !(hasInterface || isServer) exitWith {};
 
 [{
     params ["_args", "_idPFH"];
-    _args params ["_plane", "_nextNozzleCheck", "_engineWasOn"];
+    _args params ["_plane", "_nextNozzleCheck", "_engineWasOn", "_reheatWasOn"];
 
     if (!alive _plane) exitWith {
         [_idPFH] call CBA_fnc_removePerFrameHandler;
@@ -48,9 +50,15 @@ if !(hasInterface || isServer) exitWith {};
             [_plane] call FUNC(apuSmoke);
         };
         _args set [2, _engineOn];
+
+        private _reheatOn = _plane animationPhase REHEAT_FLAME_HIDE < REHEAT_FLAME_SHOWN;
+        if (_reheatOn && {!_reheatWasOn}) then {
+            [_plane] call FUNC(reheatKick);
+        };
+        _args set [3, _reheatOn];
     };
 
     if (hasInterface && {ACE_player == driver _plane}) then {
         [_plane] call FUNC(hmdVisibility);
     };
-}, 0, [_plane, 0, isEngineOn _plane]] call CBA_fnc_addPerFrameHandler;
+}, 0, [_plane, 0, isEngineOn _plane, _plane animationPhase REHEAT_FLAME_HIDE < REHEAT_FLAME_SHOWN]] call CBA_fnc_addPerFrameHandler;

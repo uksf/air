@@ -82,6 +82,7 @@ class CfgVehicles {
                 "Plane_Fighter_04_EngineLowExt_SoundSet",
                 "Plane_Fighter_04_EngineHighExt_SoundSet",
                 "Plane_Fighter_04_ForsageExt_SoundSet",
+                QGVAR(RoarExt_SoundSet),
                 "Plane_Fighter_04_WindNoiseExt_SoundSet",
                 "Plane_Fighter_04_EngineExt_Dist_Front_SoundSet",
                 "Plane_Fighter_04_EngineExt_Middle_SoundSet",
@@ -89,6 +90,7 @@ class CfgVehicles {
                 "Plane_Fighter_04_EngineLowInt_SoundSet",
                 "Plane_Fighter_04_EngineHighInt_SoundSet",
                 "Plane_Fighter_04_ForsageInt_SoundSet",
+                QGVAR(RoarInt_SoundSet),
                 "Plane_Fighter_04_WindNoiseInt_SoundSet",
                 "Plane_Fighter_04_VelocityInt_SoundSet"
             };

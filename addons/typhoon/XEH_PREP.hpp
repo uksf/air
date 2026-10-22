@@ -4,3 +4,4 @@ PREP(apuSmoke);
 PREP(hmdVisibility);
 PREP(initPlane);
 PREP(nozzles);
+PREP(reheatKick);
