@@ -4,20 +4,10 @@
         Tim Beswick
 
     Description:
-        Manages all afterburner audiovisuals on the F-35: light, particles,
-        and sound. Replaces AAE's burner pipeline (disabled via AAE_Have_AB=0)
-        so we control everything from one place.
-
-        Light: AAE_AfterBurner_Reflector (vehicle subclass with cone reflectors
-        already configured). Spawned once on engage. Position and orientation
-        driven by setPosASL + setVectorDirAndUp every PFH tick using the
-        plane's *visual* (render-interpolated) transform — no attachTo, so
-        no sim-tick lag.
-
-        Particles: one-shot puff at engage (mirrors AAE's startup behaviour
-        with auto-delete after 0.3s).
-
-        Sound: AAE_PlaySound CBA event for the pilot in internal view.
+        Manages the F-35 afterburner light and light-up particles. Replaces AAE's burner pipeline,
+        which AAE_Have_AB=0 disables. The light follows the plane's visual transform every frame
+        instead of attachTo, so it does not lag a simulation tick. The cockpit light-up sound is
+        the reheat kick in fnc_reheatKick.
 
     Parameter(s):
         0: Plane <OBJECT>
@@ -28,7 +18,6 @@
     Example:
         [_plane] call uksf_air_f35_fnc_afterburnerLight
 */
-// Model-space offset of the afterburner_start memory point.
 #define OFFSET [0, -5.83, 0.09]
 
 params ["_plane"];
@@ -37,7 +26,6 @@ if (!hasInterface) exitWith {};
 
 private _light = _plane getVariable [QGVAR(afterburnerLight), objNull];
 private _wasEngaged = _plane getVariable [QGVAR(afterburnerLightWas), false];
-// Animation phase is engine-synced via animateSource broadcast in fnc_afterburner.
 private _engaged = alive _plane && {_plane animationPhase "afterburner_hide" > 0.5};
 
 if (!_engaged) exitWith {
@@ -54,7 +42,6 @@ if (!_wasEngaged) then {
     _plane setVariable [QGVAR(afterburnerLight), _light];
     _plane setVariable [QGVAR(afterburnerLightWas), true];
 
-    // One-shot particle puff mirroring AAE's fn_burner startup.
     private _velocity = velocity _plane;
     private _particle = "#particlesource" createVehicleLocal [0, 0, 0];
     _particle attachTo [_plane, OFFSET];
@@ -71,11 +58,6 @@ if (!_wasEngaged) then {
         params ["_p"];
         uiSleep 0.3;
         deleteVehicle _p;
-    };
-
-    // Internal pilot sound only — external roar is handled by SoundSets.
-    if (cameraOn == _plane && {cameraView == "INTERNAL"}) then {
-        ["AAE_PlaySound", ["AAE_AB_Active"]] call CBA_fnc_localEvent;
     };
 };
 
