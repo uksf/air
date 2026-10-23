@@ -6,7 +6,7 @@ class CfgSounds {
     };
     class GVAR(reheatKickInt) {
         name = QGVAR(reheatKickInt);
-        sound[] = { QPATHTOF(data\sounds\kick_int.ogg), 2, 1, 20 };
+        sound[] = { QPATHTOF(data\sounds\kick_int.ogg), 4, 1, 20 };
         titles[] = {};
     };
 };

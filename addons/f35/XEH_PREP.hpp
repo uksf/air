@@ -8,5 +8,6 @@ PREP(getOut);
 PREP(handleWPCamera);
 PREP(initPlane);
 PREP(initWPCamera);
+PREP(reheatKick);
 PREP(setMfdLoadout);
 PREP(setNamePlate);
