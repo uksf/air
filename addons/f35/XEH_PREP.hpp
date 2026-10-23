@@ -1,13 +1,10 @@
-PREP(addWPCameraAction);
 PREP(afterburner);
 PREP(afterburnerLight);
 PREP(animateSpeedBreak);
 PREP(animateThrustVector);
 PREP(getIn);
 PREP(getOut);
-PREP(handleWPCamera);
 PREP(initPlane);
-PREP(initWPCamera);
 PREP(reheatKick);
 PREP(setMfdLoadout);
 PREP(setNamePlate);
