@@ -115,16 +115,14 @@ class CfgVehicles {
         class Sounds {
             soundSets[] = {
                 QGVAR(enginelowext_soundset),
-                QGVAR(enginehighext_soundset),
-                QGVAR(forsageext_soundset),
+                QGVAR(howlext_soundset),
                 QGVAR(forsageexthigh_soundset),
                 QGVAR(windnoiseext_soundset),
                 QGVAR(engineext_middle_soundset),
                 QGVAR(engineext_dist_front_soundset),
                 QGVAR(engineext_dist_rear_soundset),
                 "Plane_Fighter_04_EngineLowInt_SoundSet",
-                "Plane_Fighter_04_EngineHighInt_SoundSet",
-                "Plane_Fighter_04_ForsageInt_SoundSet",
+                QGVAR(HowlInt_SoundSet),
                 QGVAR(ForsageIntHigh_SoundSet),
                 "Plane_Fighter_04_WindNoiseInt_SoundSet",
                 "Plane_Fighter_04_VelocityInt_SoundSet"
