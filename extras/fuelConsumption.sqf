@@ -1,59 +1,32 @@
-private _plane = vehicle player;
-startFuel = fuel _plane;
-endFuel = startFuel;
-fuelConsumedPerSecond = [];
-endCollection = false;
-[{
-    params ["_args", "_idPFH"];
-    _args params ["_plane", "_time"];
+if (!isNil 'uksf_fuelLog_pfh') exitWith {
+    [uksf_fuelLog_pfh] call CBA_fnc_removePerFrameHandler;
+    uksf_fuelLog_pfh = nil;
+    hintSilent '';
+    systemChat 'Fuel log stopped';
+};
 
-    if (endCollection) exitWith {
-        [_idPFH] call CBA_fnc_removePerFrameHandler;
-    };
+private _vehicle = vehicle player;
+private _capacity = getNumber (configOf _vehicle >> 'ace_refuel_fuelCapacity');
+if (_vehicle isEqualTo player || {_capacity <= 0}) exitWith {
+    systemChat 'Fuel log: get in a vehicle with ace_refuel_fuelCapacity set';
+};
 
-    if (CBA_missionTime > (_time + 1)) then {
-        endFuel = fuel _plane;
-        private _diff = (startFuel - endFuel);
-        fuelConsumedPerSecond pushBack _diff;
-        startFuel = endFuel;
+systemChat 'Fuel log started. Run again to stop.';
+uksf_fuelLog_pfh = [{
+    params ['_args'];
+    _args params ['_vehicle', '_capacity', '_last'];
+    _last params ['_lastTime', '_lastFuel'];
+    private _elapsed = time - _lastTime;
+    if (_elapsed <= 0) exitWith {};
 
-        systemChat str _diff;
-        _args set [1, CBA_missionTime];
-    };
-
-}, 0, [_plane, 0]] call cba_fnc_addPerFrameHandler;
-
-
-
-endCollection = true;
-private _totalFuelConsumedPerSecond = 0;
-{
-    if (_x > 0) then {
-        _totalFuelConsumedPerSecond = _totalFuelConsumedPerSecond + _x;
-    };
-} forEach fuelConsumedPerSecond;
-private _averageFuelConsumedPerSecond = _totalFuelConsumedPerSecond / (count fuelConsumedPerSecond);
-diag_log _averageFuelConsumedPerSecond;
-_averageFuelConsumedPerSecond
-
-
-
-[idPfh] call CBA_fnc_removePerFrameHandler;
-
-private _plane = vehicle player; 
-_plane setFuel 1; 
-startTime = CBA_missionTime; 
-idPfh = [{ 
-    params ["_args", "_idPFH"]; 
-    _args params ["_plane"]; 
- 
-    systemChat str (fuel _plane); 
- 
-    if (fuel _plane <= 0.995) exitWith { 
-        [_idPFH] call CBA_fnc_removePerFrameHandler; 
-        private _timeTaken = CBA_missionTime - startTime; 
-        diag_log str _timeTaken; 
-        systemChat str _timeTaken; 
-    }; 
- 
-}, 0, [_plane]] call cba_fnc_addPerFrameHandler;
+    private _fuel = fuel _vehicle;
+    private _litresPerHour = (_lastFuel - _fuel) / _elapsed * _capacity * 3600;
+    private _minutesLeft = if (_litresPerHour > 0) then {round (_fuel * _capacity / _litresPerHour * 60)} else {-1};
+    private _line = format [
+        'Fuel %1 L/h | %2 L left | %3 min left | throttle %4 | %5 km/h',
+        round _litresPerHour, round (_fuel * _capacity), _minutesLeft, (airplaneThrottle _vehicle) toFixed 2, round speed _vehicle
+    ];
+    hintSilent _line;
+    diag_log text _line;
+    _args set [2, [time, _fuel]];
+}, 5, [_vehicle, _capacity, [time, fuel _vehicle]]] call CBA_fnc_addPerFrameHandler;

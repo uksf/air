@@ -5,7 +5,7 @@
 
     Description:
         Reheat as the top of the throttle range, not a toggle. Above THROTTLE_ENGAGE it adds thrust
-        scaled by throttle and airspeed, burns extra fuel, and shows the reheat flames.
+        scaled by throttle and airspeed, and shows the reheat flames. fuelBurn charges the reheat fuel.
         Reheat adds about 30 kN per EJ200 (60 kN dry, 90 kN wet), so FORCE is 60 kN for the pair,
         applied as an impulse scaled by frame time. Thrust fades out between SPEED_UPPER_MIN and
         SPEED_UPPER_MIN + SPEED_UPPER_OFFSET km/h. The flames stretch with throttle in tenths, so the
@@ -28,7 +28,6 @@
 #define SPEED_UPPER_OFFSET 700
 #define SPEED_LOWER_OFFSET 150
 #define FORCE 60000
-#define FUEL_USAGE 0.0005
 #define STRETCH_STEPS 10
 
 params ["_plane"];
@@ -44,7 +43,6 @@ if (!isEngineOn _plane || {_throttle < THROTTLE_ENGAGE} || {_plane getHitPointDa
 
 if (!_engaged) then {
     _plane setVariable [QGVAR(afterburnerEngaged), true];
-    _plane setVariable [QGVAR(afterburnerFuelTick), time + 1];
     [_plane, true] call FUNC(afterburnerVisuals);
 };
 
@@ -65,9 +63,3 @@ if (_speed > SPEED_UPPER_MIN) then {
 
 private _impulse = FORCE * _throttleMultiplier * _speedMultiplier * diag_deltaTime;
 _plane addForce [_plane vectorModelToWorld [0, _impulse, 0], getCenterOfMass _plane];
-
-if (time > (_plane getVariable [QGVAR(afterburnerFuelTick), 0])) then {
-    _plane setVariable [QGVAR(afterburnerFuelTick), time + 1];
-    private _fuelUsage = linearConversion [THROTTLE_ENGAGE, 1, _throttle, 0.0001, FUEL_USAGE, true];
-    _plane setFuel ((fuel _plane - _fuelUsage) max 0);
-};
