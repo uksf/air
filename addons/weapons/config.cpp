@@ -43,6 +43,7 @@ class SensorTemplateIR;
 #include "CfgExplosionEffects.hpp"
 #include "CfgMagazines.hpp"
 #include "CfgNonAIVehicles.hpp"
+#include "CfgSoundSets.hpp"
 #include "CfgVehicles.hpp"
 #include "CfgWeapons.hpp"
 

@@ -116,7 +116,10 @@ class CUP_Vacannon_M230_veh : CannonCore {
         textureType = "semi";
         burst = 10;
         soundBurst = 0;
-        dispersion = 0.0045;  // 0.00015 (data sheet value 0.003, observed assumed 0.006)
+        class StandardSound {
+            soundSetShot[] = { QGVAR(m230_shot_soundset), "jsrs_2025_tailsystem_Autocannon_soundset" };
+        };
+        dispersion = 0.0045;
     };
     class burst_15 : manual {
         displayName = "Burst 20";
