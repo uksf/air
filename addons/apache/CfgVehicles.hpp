@@ -20,6 +20,39 @@ class CfgNonAIVehicles {
         simulation = "pylonpod";
     };
 };
+#define APACHE_SOUND_SETS \
+    soundSetsExt[] = { \
+        QGVAR(engineext_soundset), \
+        QGVAR(rotorext_soundset), \
+        QGVAR(evr_soundset), \
+        QGVAR(rotordistance_soundset), \
+        QGVAR(enginedistance_soundset), \
+        "jsrs_2025_helicopter_transmissiondamageext_phase1_soundset", \
+        "jsrs_2025_helicopter_transmissiondamageext_phase2_soundset", \
+        "jsrs_2025_helicopter_scrublandext_soundset", \
+        "jsrs_2025_helicopter_scrubbuildingext_soundset", \
+        "jsrs_2025_helicopter_scrubtreeext_soundset", \
+        "jsrs_2025_helicopter_slingloaddownext_soundset", \
+        "jsrs_2025_helicopter_slingloadupext_soundset", \
+        "jsrs_2025_helicopter_rainext_soundset" \
+    }; \
+    soundSetsInt[] = { \
+        QGVAR(engineint_soundset), \
+        QGVAR(rotorint_soundset), \
+        "jsrs_2025_helicopter_transmissiondamageint_phase1_soundset", \
+        "jsrs_2025_helicopter_transmissiondamageint_phase2_soundset", \
+        "jsrs_2025_helicopter_damagealarmint_soundset", \
+        "jsrs_2025_helicopter_rotorlowalarmint_soundset", \
+        "jsrs_2025_helicopter_scrublandint_soundset", \
+        "jsrs_2025_helicopter_scrubbuildingint_soundset", \
+        "jsrs_2025_helicopter_scrubtreeint_soundset", \
+        "jsrs_2025_helicopter_slingloaddownint_soundset", \
+        "jsrs_2025_helicopter_slingloadupint_soundset", \
+        "jsrs_2025_helicopter_rainint_soundset", \
+        "jsrs_2025_helicopter_windint_soundset", \
+        "jsrs_2025_helicopter_AH64_Apache_gstress_soundset" \
+    };
+
 class CfgVehicles {
     class UK3CB_BAF_Apache_base;
     class UK3CB_BAF_Apache_AH1 : UK3CB_BAF_Apache_base {
@@ -27,6 +60,9 @@ class CfgVehicles {
     };
     class UK3CB_BAF_Apache_AH1_Generic : UK3CB_BAF_Apache_AH1 {
         class Sounds;
+        class SoundsExt {
+            class Sounds;
+        };
         class Turrets : Turrets {
             class MainTurret;
         };
@@ -41,14 +77,14 @@ class CfgVehicles {
         crew = "UKSF_B_Pilot_656";
         typicalCargo[] = { "UKSF_B_Pilot_656", "UKSF_B_Pilot_656" };
         armor = 150;
-        FUEL(1422,75); // AH-64D real internal: 376 US gal / 1422 L
+        FUEL(1422,75);
         startDuration = 70;
         explosionShielding = 2;
         epeImpulseDamageCoef = 5;
         crewCrashProtection = 0.5;
         lockDetectionSystem = "1 + 2 + 4 + 8";
-        cyclicAsideForceCoef = 2; // 1.75 // 1.06
-        cyclicForwardForceCoef = 1.6; // 1.5 // 1
+        cyclicAsideForceCoef = 2;
+        cyclicForwardForceCoef = 1.6;
         backRotorForceCoef = 1.8;
         backRotorSpeed = 3.0;
         liftForceCoef = 1.8;
@@ -57,64 +93,14 @@ class CfgVehicles {
         magazines[] = { "168Rnd_CMFlare_Chaff_Magazine" };
         unitInfoType = "RscUnitInfoNoSpeed";
         unitInfoTypeLite = "RscUnitInfoNoSpeed";
-        // class Sounds : Sounds {
-        //     class RotorExt {
-        //         sound[] = { QPATHTOF(data\sounds\ah64_rotor_ext),1.4,1,1000 };
-        //         frequency = "(rotorSpeed factor [0.3, 0.7]) * (rotorSpeed factor [0.3, 1]) * (1 - rotorThrust/4)";
-        //         volume = "camPos * (rotorSpeed factor [0.3, 1]) * (1 + rotorThrust)";
-        //     };
-        //     class RotorInt {
-        //         sound[] = { QPATHTOF(data\sounds\ah64_rotor_int),0.7,1 };
-        //         frequency = "(rotorSpeed factor [0.3, 0.7]) * (rotorSpeed factor [0.3, 1]) * (1 - rotorThrust/4)";
-        //         volume = "(1 - camPos) * (rotorSpeed factor [0.3, 0.7]) * (1 + rotorThrust) * 0.7";
-        //     };
-        //     class RotorSwist {
-        //         sound[] = { QPATHTOF(data\sounds\ah64_trotor_ext),1,1,500 };
-        //         frequency = 1;
-        //         volume = 0;
-        //         cone[] = { 0.7, 1.3, 1, 0 };
-        //     };
-        //     class EngineExt {
-        //         sound[] = { "\jsrs_2025\sounds_f_jsrs2025\vehicles\helicopters\mi48_kajman\turbine_ext_close.ogg", 1.4, 1, 800 };
-        //         frequency = "rotorSpeed";
-        //         volume = "2.2 * camPos * (0 max (rotorSpeed - 0.4))";
-        //     };
-        //     class EngineInt {
-        //         sound[] = { "\jsrs_2025\sounds_f_jsrs2025\vehicles\helicopters\mi48_kajman\turbine_int.ogg", 1, 1 };
-        //         frequency = "rotorSpeed";
-        //         volume = "(1 - camPos) * 1.5 * (0 max (rotorSpeed - 0.4))";
-        //     };
-        // };
-        // class SoundsExt {
-        //     class Sounds {
-        //         class RotorExt {
-        //             sound[] = { QPATHTOF(data\sounds\ah64_rotor_ext),1.4,1,1000 };
-        //             frequency = "(rotorSpeed factor [0.3, 0.7]) * (rotorSpeed factor [0.3, 1]) * (1 - rotorThrust/4)";
-        //             volume = "camPos * (rotorSpeed factor [0.3, 1]) * (1 + rotorThrust)";
-        //         };
-        //         class RotorInt {
-        //             sound[] = { QPATHTOF(data\sounds\ah64_rotor_int),0.7,1 };
-        //             frequency = "(rotorSpeed factor [0.3, 0.7]) * (rotorSpeed factor [0.3, 1]) * (1 - rotorThrust/4)";
-        //             volume = "(1 - camPos) * (rotorSpeed factor [0.3, 0.7]) * (1 + rotorThrust) * 0.7";
-        //         };
-        //         class RotorSwist {
-        //             sound[] = { QPATHTOF(data\sounds\ah64_trotor_ext),0,1,0 };
-        //             frequency = 1;
-        //             volume = 0;
-        //             cone[] = { 0.7, 1.3, 1, 0 };
-        //         };
-        //         class EngineExt {
-        //             sound[] = { "\jsrs_2025\sounds_f_jsrs2025\vehicles\helicopters\mi48_kajman\turbine_ext_close.ogg", 1.4, 1, 800 };
-        //             frequency = "rotorSpeed";
-        //             volume = "2.2 * camPos * (0 max (rotorSpeed - 0.4))";
-        //         };
-        //         class EngineInt {
-        //             sound[] = { "\jsrs_2025\sounds_f_jsrs2025\vehicles\helicopters\mi48_kajman\turbine_int.ogg", 1, 1 };
-        //             frequency = "rotorSpeed";
-        //             volume = "(1 - camPos) * 1.5 * (0 max (rotorSpeed - 0.4))";
-        //         };
-        //     };
-        // };
+        class Sounds : Sounds {
+            APACHE_SOUND_SETS
+        };
+        class SoundsExt : SoundsExt {
+            class Sounds : Sounds {
+                APACHE_SOUND_SETS
+            };
+        };
         class Turrets : Turrets {
             class MainTurret : MainTurret {
                 #include "MFDGunner.hpp"
