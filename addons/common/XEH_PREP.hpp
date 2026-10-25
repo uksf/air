@@ -10,6 +10,7 @@ PREP(canStaticLineJump);
 PREP(classifyMissileGuidance);
 PREP(computeNotchGeometry);
 PREP(drawNotchHelper);
+PREP(fuelBurn);
 PREP(initCountermeasures);
 PREP(initSensorPanelExtension);
 PREP(interrogateTarget);

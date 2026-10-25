@@ -5,6 +5,8 @@
 
     Description:
         Starts the per-frame handler for a Typhoon: afterburner, fuel burn and nozzles where the plane is local,
+        burning fuel at real EJ200 rates: two engines burn about 9,500 kg/h at full dry power and 31,000 kg/h
+        at full reheat (Rolls-Royce and EuroJet figures, jet fuel at 0.8 kg/L),
         the reheat light-up kick and APU smoke on every client, and HMD visibility for the local pilot.
 
     Parameter(s):
@@ -18,6 +20,9 @@
 */
 #define NOZZLE_INTERVAL 0.5
 #define FUEL_INTERVAL 1
+#define IDLE_LITRES_PER_HOUR 600
+#define MAX_DRY_LITRES_PER_HOUR 11900
+#define MAX_REHEAT_LITRES_PER_HOUR 38800
 #define REHEAT_FLAME_HIDE "afterburner_left_userhide"
 #define REHEAT_FLAME_SHOWN 0.5
 
@@ -45,7 +50,7 @@ if !(hasInterface || isServer) exitWith {};
         };
 
         if (CBA_missionTime > _nextFuelBurn) then {
-            [_plane] call FUNC(fuelBurn);
+            [_plane, IDLE_LITRES_PER_HOUR, MAX_DRY_LITRES_PER_HOUR, MAX_REHEAT_LITRES_PER_HOUR] call EFUNC(common,fuelBurn);
             _args set [4, CBA_missionTime + FUEL_INTERVAL];
         };
     };
