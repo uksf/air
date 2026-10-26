@@ -5,6 +5,7 @@
 
     Description:
         Starts the per-frame handler for a Typhoon: afterburner, fuel burn and nozzles where the plane is local,
+        landing lights off while the gear is up, because they sit in the main gear doors,
         burning fuel at real EJ200 rates: two engines burn about 9,500 kg/h at full dry power and 31,000 kg/h
         at full reheat (Rolls-Royce and EuroJet figures, jet fuel at 0.8 kg/L),
         real mass from the 11,000 kg basic empty mass (EuroJet) plus fuel, stores and crew,
@@ -27,6 +28,8 @@
 #define EMPTY_MASS 11000
 #define REHEAT_FLAME_HIDE "afterburner_left_userhide"
 #define REHEAT_FLAME_SHOWN 0.5
+#define GEAR_SOURCE "gear"
+#define GEAR_RETRACTED 0.5
 
 params ["_plane"];
 
@@ -50,6 +53,9 @@ if !(hasInterface || isServer) exitWith {};
 
         if (CBA_missionTime > _nextNozzleCheck) then {
             [_plane] call FUNC(nozzles);
+            if (isLightOn _plane && {_plane animationSourcePhase GEAR_SOURCE > GEAR_RETRACTED}) then {
+                _plane setPilotLight false;
+            };
             _args set [1, CBA_missionTime + NOZZLE_INTERVAL];
         };
 

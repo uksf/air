@@ -20,6 +20,10 @@ class CfgVehicles {
             };
         };
         class EventHandlers;
+        class Reflectors {
+            class Left;
+            class Right;
+        };
 #include "vehicle\Hud.hpp"
         class pilotCamera;
     };
