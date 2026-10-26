@@ -1,0 +1,21 @@
+class GVAR(storeMass) {
+    Default = 0;
+    CMflareAmmo = 0.2;
+    BulletBase = 0.5;
+    ShellBase = 1;
+    RocketBase = 12;
+    MissileBase = 100;
+    BombCore = 250;
+    LaserBombCore = 227;
+    ammo_Bomb_SDB = 129;
+    ammo_Missile_ShortRangeAABase = 85;
+    ammo_Missile_MediumRangeAABase = 157;
+    ammo_Missile_LongRangeAABase = 190;
+    ace_missile_aim9_aim132 = 88;
+    ace_missile_gbu_12 = 227;
+    rksla3_ammo_meteor = 190;
+    rksla3_ammo_spear3 = 100;
+    rksla3_ammo_brimstone_2 = 50;
+    rksla3_ammo_kepd350 = 1400;
+    rksla3_ammo_stormshadow = 1300;
+};

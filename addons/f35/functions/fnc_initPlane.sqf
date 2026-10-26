@@ -8,7 +8,8 @@
         handler drives thrust vectoring, the speedbrake, reheat, and the fuel burn. The F135 makes
         28,000 lbf dry and 43,000 lbf in reheat (Pratt & Whitney); at the published estimate of
         0.7 and 2.0 lb/lbf/h that burns about 8,900 kg/h dry and 39,000 kg/h in reheat, jet fuel
-        at 0.8 kg/L. On every client with an
+        at 0.8 kg/L. Mass is the F-35B's 14,651 kg empty mass (Lockheed Martin) plus fuel, stores and
+        crew. On every client with an
         interface it drives the afterburner light and plays the reheat kick on light-up.
 
     Parameter(s):
@@ -26,6 +27,7 @@
 #define IDLE_LITRES_PER_HOUR 600
 #define MAX_DRY_LITRES_PER_HOUR 11100
 #define MAX_REHEAT_LITRES_PER_HOUR 48800
+#define EMPTY_MASS 14651
 
 params ["_plane"];
 
@@ -36,6 +38,8 @@ if (ACE_player in _plane) then {
 };
 
 if (hasInterface || isServer) then {
+    [_plane, EMPTY_MASS] call EFUNC(common,initMass);
+
     [{
         params ["_args", "_idPFH"];
         _args params ["_plane", "_previousTime", "_reheatWasOn", "_nextFuelBurn"];
@@ -60,6 +64,7 @@ if (hasInterface || isServer) then {
 
             if (CBA_missionTime > _nextFuelBurn) then {
                 [_plane, IDLE_LITRES_PER_HOUR, MAX_DRY_LITRES_PER_HOUR, MAX_REHEAT_LITRES_PER_HOUR] call EFUNC(common,fuelBurn);
+                [_plane, EMPTY_MASS] call EFUNC(common,updateMass);
                 _args set [3, CBA_missionTime + FUEL_INTERVAL];
             };
         };
