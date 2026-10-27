@@ -6,8 +6,9 @@
     Description:
         Reheat as the top of the throttle range, not a toggle. Above THROTTLE_ENGAGE it adds thrust
         scaled by throttle and airspeed, and shows the reheat flames. fuelBurn charges the reheat fuel.
-        Reheat adds about 30 kN per EJ200 (60 kN dry, 90 kN wet), so FORCE is 60 kN for the pair,
-        applied as an impulse scaled by frame time. Thrust fades out between SPEED_UPPER_MIN and
+        Dry thrust comes from the config. FORCE is tuned in game so full reheat takes the loaded jet
+        from 200 kt to Mach 0.9 at low level in about 20 seconds, the figure Eurofighter quotes, and
+        is applied as an impulse scaled by frame time. Thrust fades out between SPEED_UPPER_MIN and
         SPEED_UPPER_MIN + SPEED_UPPER_OFFSET km/h. The flames stretch with throttle in tenths, so the
         animation broadcasts only when the step changes.
         Runs every frame where the plane is local.
@@ -27,7 +28,7 @@
 #define SPEED_UPPER_MIN 1700
 #define SPEED_UPPER_OFFSET 700
 #define SPEED_LOWER_OFFSET 150
-#define FORCE 60000
+#define FORCE 105000
 #define STRETCH_STEPS 10
 
 params ["_plane"];
