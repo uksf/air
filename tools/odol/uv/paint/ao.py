@@ -4,9 +4,6 @@ from paths import WORK as W, SRC
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
 from plan_lib import load
 
-# Ambient occlusion per texel from our own LOD 0: orthographic depth maps from many directions
-# (dense surface points splatted with a minimum), then each texel tests whether it is the nearest
-# surface towards each direction. Saves ao_<target>.npy as a flat array matching the gbuffer.
 H = W
 SKIP = {'chute.paa', 'su35_afterburner_ca.paa', 'su35_engine_fire_ca.paa', 'av8b_glass_ca.paa', 'none',
         'car_light_flare2.paa', 'burner.paa'}
@@ -19,7 +16,7 @@ n = 10_000_000
 k = rng.choice(len(tri), n, p=area / area.sum()); r1, r2 = rng.random(n), rng.random(n); s = np.sqrt(r1)
 S = ((1 - s)[:, None] * a[k] + (s * (1 - r2))[:, None] * b[k] + (s * r2)[:, None] * c[k]).astype(np.float32)
 lo, hi = V.min(0) - 0.5, V.max(0) + 0.5
-R = 2048; px = (hi - lo).max() * 1.75 / R            # depth map pixel, covers any rotation
+R = 2048; px = (hi - lo).max() * 1.75 / R
 centre = (lo + hi) / 2
 
 
@@ -41,12 +38,12 @@ def bake(targets, m=160, bias=0.012):
         q = S - centre
         x = np.clip((q @ u / px + R / 2).astype(int), 0, R - 1); y = np.clip((q @ w / px + R / 2).astype(int), 0, R - 1)
         depth = np.full((R, R), np.inf, np.float32)
-        np.minimum.at(depth, (y, x), -(q @ d))          # distance from a camera far along +d
+        np.minimum.at(depth, (y, x), -(q @ d))
         for t, g in targets.items():
-            P, N = g['P'], g['N']
+            P, N = g['P'], g.get('Ns', g['N'])
             cos = N @ d
             m_ = cos > 0
-            q = P[m_] + N[m_] * 0.03 - centre             # normal offset against self-occlusion
+            q = P[m_] + N[m_] * 0.03 - centre
             xx = np.clip((q @ u / px + R / 2).astype(int), 0, R - 1); yy = np.clip((q @ w / px + R / 2).astype(int), 0, R - 1)
             vis = (-(q @ d)) <= depth[yy, xx] + bias
             acc[t][m_] += cos[m_] * vis; wsum[t][m_] += cos[m_]
