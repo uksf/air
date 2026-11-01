@@ -1,5 +1,3 @@
-// Aircraft that share this HMD may define HMD_DRAW_CONDITION before including it, and
-// HMD_NO_F35_SYMBOLS to drop the F-35 outline and nozzle angles (the thrust number stays).
 #ifndef HMD_DRAW_CONDITION
 #define HMD_DRAW_CONDITION "on"
 #endif
@@ -304,6 +302,7 @@ class AirplaneHUD {
             };
         };
 
+#ifndef HMD_CENTRE_DOT_SEPARATE
         class centerPoint {
             type = "line";
             width = 4;
@@ -328,6 +327,7 @@ class AirplaneHUD {
                 {}
             };
         };
+#endif
         class flightPathVector {
             clipTL[] = { 0, 1 };
             clipBR[] = { 1, 0 };
