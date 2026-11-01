@@ -62,9 +62,6 @@
             class HitLCRudder : HitLAileron {
                 name = "hit_rudder";
             };
-            class HitRRudder : HitLAileron {
-                name = "hit_rudder";
-            };
             class HitLCElevator : HitLAileron {
                 name = "hit_elevon_l_1";
             };
