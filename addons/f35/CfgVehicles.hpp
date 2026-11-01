@@ -39,7 +39,7 @@ class CfgVehicles {
                 QPATHTO_R(data\exterior_glass_damage.rvmat)
             };
         };
-        armor = 90;
+        armor = 70;
         threat[] = { 0.1, 1, 1 };
         camouflage = 20;
         audible = 20;
@@ -415,18 +415,18 @@ class CfgVehicles {
         };
         class HitPoints : HitPoints {
             class HitHull {
-                armor = 3.5;
+                armor = 4.02;
                 explosionShielding = 3;
                 name = "HitHull";
                 passThrough = 1;
                 visual = "fuselage";
-                radius = 0.6;
+                radius = 0.45;
                 minimalHit = 0.05;
                 depends = "0";
                 material = -1;
             };
             class HitEngine : HitHull {
-                armor = 3;
+                armor = 3.45;
                 explosionShielding = 4.5;
                 name = "HitEngine";
                 passThrough = 0.8;
@@ -438,35 +438,35 @@ class CfgVehicles {
                 visual = "";
             };
             class HitAvionics : HitHull {
-                armor = 1.5;
+                armor = 1.72;
                 explosionShielding = 4;
                 name = "HitAvionics";
                 passThrough = 0.4;
                 visual = "";
-                radius = 0.4;
+                radius = 0.3;
             };
             class HitFuel : HitHull {
-                armor = 4;
+                armor = 4.6;
                 explosionShielding = 5;
                 name = "HitFuel";
                 passThrough = 0.6;
                 visual = "";
-                radius = 0.4;
+                radius = 0.3;
             };
             class HitFuel2 : HitFuel {
                 name = "HitFuel2";
             };
             class HitGlass1 : HitHull {
-                armor = 1.5;
+                armor = 1.72;
                 explosionShielding = 3;
                 name = "HitGlass1";
                 passThrough = 0;
                 visual = "glass_1";
-                radius = 0.3;
+                radius = 0.2;
                 minimalHit = 0.1;
             };
             class HitLAileron : HitHull {
-                armor = 1.8;
+                armor = 2.07;
                 explosionShielding = 3.5;
                 name = "HitLAileron";
                 passThrough = 0.3;

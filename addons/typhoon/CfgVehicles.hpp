@@ -43,7 +43,7 @@ class CfgVehicles {
         unitInfoType = "RscUnitInfoAirPlaneNoSpeed";
         unitInfoTypeLite = "RscUnitInfoAirPlaneNoSpeed";
         driverWeaponsInfoType = "RscOptics_CAS_01_TGP";
-        armor = 100;
+        armor = 60;
         threat[] = { 0.1, 1, 1 };
         camouflage = 20;
         audible = 25;
