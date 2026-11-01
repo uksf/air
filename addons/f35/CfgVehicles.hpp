@@ -414,78 +414,79 @@ class CfgVehicles {
             };
         };
         class HitPoints : HitPoints {
-            class HitEngine {
+            class HitHull {
+                armor = 3.5;
+                explosionShielding = 3;
+                name = "HitHull";
+                passThrough = 1;
+                visual = "fuselage";
+                radius = 0.6;
+                minimalHit = 0.05;
+                depends = "0";
+                material = -1;
+            };
+            class HitEngine : HitHull {
                 armor = 3;
                 explosionShielding = 4.5;
                 name = "HitEngine";
                 passThrough = 0.8;
                 visual = "Hit_Engine";
-                radius = 1;
-                minimalHit = 0.05;
-                depends = "0";
-                material = -1;
+                radius = 0.6;
             };
-            class HitEngine2 {
-                armor = 3;
-                explosionShielding = 4.5;
+            class HitEngine2 : HitEngine {
                 name = "HitEngine2";
-                passThrough = 0.8;
                 visual = "";
-                radius = 2;
-                minimalHit = 0.05;
-                depends = "0";
-                material = -1;
             };
-            class HitFuel {
-                armor = 4;
-                explosionShielding = 5;
-                name = "HitFuel";
-                passThrough = 0.6;
-                visual = "";
-                radius = 2;
-                minimalHit = 0.05;
-                depends = "0";
-                material = -1;
-            };
-            class HitFuel2 {
-                armor = 4;
-                explosionShielding = 5;
-                name = "HitFuel2";
-                passThrough = 0.6;
-                visual = "";
-                radius = 6;
-                minimalHit = 0.05;
-                depends = "0";
-                material = -1;
-            };
-            class HitHull {
-                armor = 100;
-                explosionShielding = 1;
-                radius = 9;
-                passThrough = 0.5;
-                name = "HitHull";
-                visual = "fuselage";
-                depends = "0";
-                minimumHit = 0.05;
-            };
-            class HitAvionics {
+            class HitAvionics : HitHull {
                 armor = 1.5;
                 explosionShielding = 4;
                 name = "HitAvionics";
                 passThrough = 0.4;
                 visual = "";
-                radius = 0.3;
-                minimalHit = 0.05;
-                depends = "0";
-                material = -1;
+                radius = 0.4;
             };
-            class HitGlass1 {
-                armor = 3;
-                explosionShielding = 2;
-                radius = 0.5;
-                passThrough = 0;
+            class HitFuel : HitHull {
+                armor = 4;
+                explosionShielding = 5;
+                name = "HitFuel";
+                passThrough = 0.6;
+                visual = "";
+                radius = 0.4;
+            };
+            class HitFuel2 : HitFuel {
+                name = "HitFuel2";
+            };
+            class HitGlass1 : HitHull {
+                armor = 1.5;
+                explosionShielding = 3;
                 name = "HitGlass1";
+                passThrough = 0;
                 visual = "glass_1";
+                radius = 0.3;
+                minimalHit = 0.1;
+            };
+            class HitLAileron : HitHull {
+                armor = 1.8;
+                explosionShielding = 3.5;
+                name = "HitLAileron";
+                passThrough = 0.3;
+                visual = "";
+                radius = 0.35;
+            };
+            class HitRAileron : HitLAileron {
+                name = "HitRAileron";
+            };
+            class HitLCRudder : HitLAileron {
+                name = "HitLCRudder";
+            };
+            class HitRRudder : HitLAileron {
+                name = "HitRRudder";
+            };
+            class HitLCElevator : HitLAileron {
+                name = "HitLCElevator";
+            };
+            class HitRElevator : HitLAileron {
+                name = "HitRElevator";
             };
         };
         class Components : Components {

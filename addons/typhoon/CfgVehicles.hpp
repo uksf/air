@@ -20,6 +20,9 @@ class CfgVehicles {
             };
         };
         class EventHandlers;
+        class HitPoints {
+            class HitHull;
+        };
         class Reflectors {
             class Left;
             class Right;
@@ -52,6 +55,7 @@ class CfgVehicles {
         simulation = "airplaneX";
 #include "vehicle\Flight.hpp"
 #include "vehicle\Wheels.hpp"
+#include "vehicle\HitPoints.hpp"
 
         hiddenSelections[] = {
             "camo1", "camo_lower", "camo_pilot", "misc_parts", "pylons", "camo2", "burner_fire_1_left", "burner_fire_1_right",
