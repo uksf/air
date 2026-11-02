@@ -24,7 +24,6 @@ if (local _helicopter) then {
     _helicopter setVariable [QGVAR(previousE2Damage), 0, true];
     _helicopter setVariable [QGVAR(previousGunDamage), 0, true];
     _helicopter setVariable [QGVAR(previousInsDamage), 0, true];
-    _helicopter setVariable [QGVAR(cmMode), 0, true];
 };
 
 if (player isEqualTo driver _helicopter) then {

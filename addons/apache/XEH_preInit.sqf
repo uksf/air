@@ -35,7 +35,6 @@ GVAR(soundDurations) = createHashMapFromArray [
     [QGVAR(instrumentFailure), 1.7]
 ];
 
-GVAR(trackedMissiles) = [];
 GVAR(cooldowns) = createHashMap;
 GVAR(damageHandlerPFHID) = -1;
 
