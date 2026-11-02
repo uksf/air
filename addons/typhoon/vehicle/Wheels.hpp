@@ -6,9 +6,9 @@ class Wheels : Wheels {
         dampingRate = 0.25;
         longitudinalStiffnessPerUnitGravity = 2000;
         frictionVsSlipGraph[] = {{0, 0.6}, {0.2, 1}, {0.6, 0.8}};
-        sprungMass = 3410;
-        springStrength = 60000;
-        springDamperRate = 30000;
+        sprungMass = 5970;
+        springStrength = 105000;
+        springDamperRate = 52500;
         maxCompression = 0.15;
         maxDroop = 0.1;
     };
@@ -20,9 +20,9 @@ class Wheels : Wheels {
         maxBrakeTorque = 10000;
         longitudinalStiffnessPerUnitGravity = 2500;
         frictionVsSlipGraph[] = {{0, 0.6}, {0.2, 1}, {0.6, 0.8}};
-        sprungMass = 3795;
-        springStrength = 60000;
-        springDamperRate = 30000;
+        sprungMass = 6640;
+        springStrength = 105000;
+        springDamperRate = 52500;
         maxCompression = 0.1;
         maxDroop = 0.05;
     };
@@ -34,9 +34,9 @@ class Wheels : Wheels {
         maxBrakeTorque = 10000;
         longitudinalStiffnessPerUnitGravity = 2500;
         frictionVsSlipGraph[] = {{0, 0.6}, {0.2, 1}, {0.6, 0.8}};
-        sprungMass = 3795;
-        springStrength = 60000;
-        springDamperRate = 30000;
+        sprungMass = 6640;
+        springStrength = 105000;
+        springDamperRate = 52500;
         maxCompression = 0.1;
         maxDroop = 0.05;
     };

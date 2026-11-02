@@ -48,7 +48,7 @@ class CfgVehicles {
         irTargetSize = 0.5;
         showAllTargets = 2;
         countermeasureActivationRadius = 32000;
-        landingSpeed = 150;
+        landingSpeed = 270;
         stallSpeed = 1;
         acceleration = 250;
         maxSpeed = 1930;
