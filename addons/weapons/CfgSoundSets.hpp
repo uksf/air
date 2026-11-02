@@ -15,6 +15,7 @@ class CfgSoundShaders {
             { QPATHTOF(sounds\m230\cockpit_7.ogg), 1 },
             { QPATHTOF(sounds\m230\cockpit_8.ogg), 1 }
         };
+        volume = "1.4*(1 - campos)";
     };
     class GVAR(m230_close_soundshader) : jsrs_2025_autocannon_small_close_shot_soundshader {
         samples[] = {
