@@ -14,7 +14,7 @@ class CfgSoundShaders {
     class GVAR(HowlExt_SoundShader) {
         samples[] = { { QPATHTOF(data\sounds\howl_ext.ogg), 1 } };
         frequency = "1.0 min (rpm + 0.5) * (rpm factor [0.5, 1.1])";
-        volume = "0.6 * machcone * engineOn * camPos * (rpm factor [0, 1]) * (thrust factor [0, 0.9])";
+        volume = "0.6 * machcone * engineOn * camPos * (rpm factor [0, 1]) * ((thrust factor [0, 0.9]) max (0.35 * (speed factor [30, 150])))";
         range = 4000;
         rangeCurve[] = { { 0, 1 }, { 1000, 0.75 }, { 2500, 0.25 }, { 4000, 0 } };
     };
