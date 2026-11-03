@@ -5,7 +5,7 @@
 
     Description:
         Listener loop. Plays the threat warning cues of the aircraft the local player can hear.
-        Looping tone: launch warble while a radar missile is guided at the aircraft and closing, else steady lock tone while a radar has a lock.
+        Looping tone: launch warble while any missile is guided at the aircraft and closing, else steady lock tone while a radar has a lock.
         Voice: clock call for each new missile, repeated at most every CALL_REPEAT_INTERVAL seconds when the bearing moves two clock positions or more.
         Voice calls duck every tone.
 
@@ -71,7 +71,7 @@ private _loop = "";
 if (_missiles findIf {_x#1} isNotEqualTo -1) then {
     _loop = "rwr_launch";
 } else {
-    if (_radars findIf {_x#1 isEqualTo 1} isNotEqualTo -1) then {
+    if (_radars findIf {_x#1 isEqualTo 2} isNotEqualTo -1) then {
         _loop = "rwr_lock";
     };
 };

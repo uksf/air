@@ -6,8 +6,8 @@
     Description:
         Computes the threat state of a local aircraft from engine sensor data and publishes it when it changes.
         Radar threats only resolve on the aircraft owner, so listeners read the published state.
-        Radars: hostile radar emitters that have the aircraft marked or locked.
-        Missiles: missiles guided at the aircraft, flagged for the launch warble while radar guided and closing since the last update.
+        Radars: [emitter vehicle, state] for every non-friendly active radar on the RWR. State 0 on the RWR only, 1 marked by it, 2 locked by it.
+        Missiles: [missile, closing] for every missile guided at the aircraft. Closing compares with the last update.
 
     Parameters:
         0: Aircraft <OBJECT>
@@ -29,6 +29,14 @@ if (alive _aircraft && {isEngineOn _aircraft}) then {
     private _known = _candidates apply {_x#0};
 
     {
+        _x params ["_target", "", "", "_sensors"];
+        private _emitter = vehicle _target;
+        if ("passiveradar" in _sensors && {(_side getFriend side _emitter) < 0.6} && {_radars findIf {_x#0 isEqualTo _emitter} isEqualTo -1}) then {
+            _radars pushBack [_emitter, 0];
+        };
+    } forEach getSensorTargets _aircraft;
+
+    {
         _x params ["_entity", "_state", "_sensors"];
         if (_state isEqualTo "missile") then {
             if !(_entity in _known) then {
@@ -37,13 +45,14 @@ if (alive _aircraft && {isEngineOn _aircraft}) then {
             };
             continue;
         };
-        if (!("radar" in _sensors) || {(_side getFriend side _entity) >= 0.6}) then {continue};
-        private _locked = parseNumber (_state isEqualTo "locked");
-        private _index = _radars findIf {_x#0 isEqualTo _entity};
+        private _emitter = vehicle _entity;
+        if (!("radar" in _sensors) || {(_side getFriend side _emitter) >= 0.6}) then {continue};
+        private _level = [1, 2] select (_state isEqualTo "locked");
+        private _index = _radars findIf {_x#0 isEqualTo _emitter};
         if (_index isEqualTo -1) then {
-            _radars pushBack [_entity, _locked];
+            _radars pushBack [_emitter, _level];
         } else {
-            (_radars select _index) set [1, _locked max (_radars#_index#1)];
+            (_radars select _index) set [1, _level max (_radars#_index#1)];
         };
     } forEach getSensorThreats _aircraft;
 
@@ -68,9 +77,7 @@ if (alive _aircraft && {isEngineOn _aircraft}) then {
         private _distance = _missile distance _aircraft;
         private _closing = _distance <= _lastDistance;
         _x set [2, _distance];
-        private _ammo = typeOf _missile;
-        private _radarGuided = GVAR(guidance) getOrDefaultCall [_ammo, {[_ammo] call EFUNC(common,classifyMissileGuidance) isEqualTo "RDR"}, true];
-        _missiles pushBack [_missile, _radarGuided && _closing];
+        _missiles pushBack [_missile, _closing];
     } forEach _candidates;
 
     _aircraft setVariable [QGVAR(candidates), _candidates];
