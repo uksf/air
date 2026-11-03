@@ -52,6 +52,7 @@ class CfgSoundShaders {
             { QPATHTOF(sounds\m230\medium_7.ogg), 1 },
             { QPATHTOF(sounds\m230\medium_8.ogg), 1 }
         };
+        volume = 2.1;
     };
     class GVAR(m230_fardistance_soundshader) : jsrs_2025_autocannon_small_fardistance_shot_soundshader {
         samples[] = {
@@ -64,6 +65,7 @@ class CfgSoundShaders {
             { QPATHTOF(sounds\m230\far_7.ogg), 1 },
             { QPATHTOF(sounds\m230\far_8.ogg), 1 }
         };
+        volume = 3;
     };
 };
 
