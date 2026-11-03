@@ -4,8 +4,7 @@
         Tim Beswick
 
     Description:
-        Checks whether a unit hears the aircraft threat warnings: always in a flight seat, otherwise only while connected to the aircraft's crew intercom.
-        Cargo seats never hear them.
+        Checks whether a unit hears the aircraft threat warnings: always in a flight seat, otherwise only while connected to the aircraft's crew intercom, whatever the seat.
 
     Parameters:
         0: Aircraft <OBJECT>
@@ -20,6 +19,5 @@
 params ["_aircraft", "_unit"];
 
 if ([_aircraft, _unit] call FUNC(isFlightSeat)) exitWith {true};
-if ((_aircraft unitTurret _unit) isEqualTo []) exitWith {false};
 
 !isNil "acre_sys_intercom_fnc_isInIntercom" && {[_aircraft, _unit, 0] call acre_sys_intercom_fnc_isInIntercom}

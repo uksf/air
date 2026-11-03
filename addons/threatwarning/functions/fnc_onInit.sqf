@@ -4,7 +4,7 @@
         Tim Beswick
 
     Description:
-        Registers a covered aircraft for threat warning on this machine and adds its incoming missile handler
+        Registers a covered aircraft for threat warning on this machine
 
     Parameters:
         0: Aircraft <OBJECT>

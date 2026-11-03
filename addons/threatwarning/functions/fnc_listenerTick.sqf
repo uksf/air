@@ -7,7 +7,8 @@
         Listener loop. Plays the threat warning cues of the aircraft the local player can hear.
         Looping tone: launch warble while any missile is guided at the aircraft and closing, else steady lock tone while a radar has a lock.
         Voice: clock call for each new missile, repeated at most every CALL_REPEAT_INTERVAL seconds when the bearing moves two clock positions or more.
-        Voice calls duck every tone.
+        Voice calls duck the looping tone and later one-shots, and stop one-shots already playing.
+        Moving straight to another aircraft resets the cues and history, so each aircraft announces its own threats.
 
     Parameters:
         None
@@ -28,6 +29,10 @@ if (
     || {!([_aircraft, player] call FUNC(canHear))}
 ) exitWith {
     call FUNC(silence);
+};
+if (_aircraft isNotEqualTo GVAR(listenerAircraft)) then {
+    call FUNC(silence);
+    GVAR(listenerAircraft) = _aircraft;
 };
 GVAR(active) = true;
 
@@ -59,6 +64,8 @@ if (GVAR(voiceEnd) <= CBA_missionTime) then {
 
     if (_call isNotEqualTo []) then {
         _call params ["_clock", "_level"];
+        {stopSound _x} forEach GVAR(oneShots);
+        GVAR(oneShots) = [];
         GVAR(voiceId) = playSoundUI [format ["%1\call_%2_%3.ogg", QPATHTOF(data), _clock, _level], GVAR(volume), 1, false];
         GVAR(voiceEnd) = CBA_missionTime + VOICE_LENGTH;
     };
