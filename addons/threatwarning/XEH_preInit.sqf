@@ -5,7 +5,6 @@ ADDON = false;
 #include "XEH_PREP.hpp"
 
 GVAR(aircraft) = [];
-GVAR(guidance) = createHashMap;
 GVAR(seat) = [objNull, [], false];
 GVAR(active) = false;
 GVAR(radarsSeen) = [];

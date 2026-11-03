@@ -20,13 +20,7 @@ class CfgVehicles {
     class UK3CB_BAF_Wildcat_Base : Heli_light_03_base_F {
         THREAT_WARNING;
     };
-    class CUP_AW159_Unarmed_Base : Helicopter_Base_H {
-        THREAT_WARNING;
-    };
     class UK3CB_BAF_Merlin_Base : Heli_Transport_02_base_F {
-        THREAT_WARNING;
-    };
-    class CUP_Merlin_HC3_Base : Helicopter_Base_H {
         THREAT_WARNING;
     };
     class CUP_CH47F_base : Helicopter_Base_H {
