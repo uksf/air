@@ -6,7 +6,7 @@
     Description:
         Owner loop.
         Broadcasts target changes of missiles fired on this machine when the old or new target is a covered aircraft, because missileTarget only reads correctly where the missile is local.
-        Each broadcast is a JIP event keyed to the missile, so a machine that joins later, and then takes ownership of the aircraft, still knows the target. The JIP event is removed when the missile dies.
+        Each broadcast is a JIP event keyed to the missile, so a machine that joins later, and then takes ownership of the aircraft, still knows the target. The JIP event is removed when the missile dies, or by the server when the missile is deleted, so it goes even if this machine disconnects first.
         Drops dead missiles, then updates the published threat state of every covered aircraft local to this machine.
 
     Parameters:
@@ -37,7 +37,10 @@ GVAR(localMissiles) = GVAR(localMissiles) select {
             [QGVAR(missileTarget), [_missile, _target]] call CBA_fnc_globalEvent;
         } else {
             [QGVAR(missileTarget), [_missile, _target], _jipId] call CBA_fnc_globalEventJIP;
-            _x set [2, _jipId];
+            if (count _x < 3) then {
+                [_jipId, _missile] call CBA_fnc_removeGlobalEventJIP;
+                _x set [2, _jipId];
+            };
         };
     };
 } forEach GVAR(localMissiles);
