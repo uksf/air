@@ -14,6 +14,8 @@ GVAR(missilesCalled) = [];
 GVAR(loop) = ["", -1, 0, false];
 GVAR(voiceId) = -1;
 GVAR(voiceEnd) = 0;
+GVAR(oneShots) = [];
+GVAR(listenerAircraft) = objNull;
 
 [
     QGVAR(volume),

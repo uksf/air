@@ -4,7 +4,7 @@
         Tim Beswick
 
     Description:
-        Stops every playing threat warning cue and forgets announced threats, so current threats are announced again when the system comes back
+        Stops every playing threat warning cue, one-shot radar cues included, and forgets announced threats, so current threats are announced again when the system comes back
 
     Parameters:
         None
@@ -23,6 +23,8 @@ if (GVAR(voiceId) isNotEqualTo -1) then {
     stopSound GVAR(voiceId);
 };
 GVAR(voiceId) = -1;
+{stopSound _x} forEach GVAR(oneShots);
+GVAR(oneShots) = [];
 GVAR(voiceEnd) = 0;
 GVAR(radarsSeen) = [];
 GVAR(missilesCalled) = [];
