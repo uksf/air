@@ -203,12 +203,6 @@ _action = [QGVAR(droneActionWaypoint), "Waypoints", "", {}, {true}, {
 }] call ace_interact_menu_fnc_createAction;
 [QGVAR(raf), 1, ["ACE_SelfActions"], _action, true] call ace_interact_menu_fnc_addActionToClass;
 
-_action = [QGVAR(droneActionCompass), "Compass", "", {
-    private _state = _target getVariable [QGVAR(compassState), false];
-    _target setVariable [QGVAR(compassState), !_state];
-}, {true}] call ace_interact_menu_fnc_createAction;
-[QGVAR(raf), 1, ["ACE_SelfActions"], _action, true] call ace_interact_menu_fnc_addActionToClass;
-
 _action = [QGVAR(droneActionImmobilise), "Immobilise", "", {[_target, true] call FUNC(immobilise)}, {
     speed _target < 10 && {!(_target getVariable [QGVAR(immobilised), false])}
 }] call ace_interact_menu_fnc_createAction;

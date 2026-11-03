@@ -121,20 +121,3 @@ private _targetElevation = (_targetPositionASL#2);
 (_display displayCtrl TGT_MGRS_2) ctrlSetText _g100km;
 (_display displayCtrl TGT_GRID_1) ctrlSetText (format ["%1 M+", _targetEasting]);
 (_display displayCtrl TGT_GRID_2) ctrlSetText (format ["%1 M+", _targetNorthing]);
-
-if (_uav getVariable [QGVAR(compassState), false]) then {
-    private _zoom = (call CBA_fnc_getFov) select 1;
-    private _factor = 500 / _zoom;
-    private _halfFactor = _factor / 2;
-    private _center = screenToWorld [0.5,0.5];
-    {
-        _x params ["_letter", "_color", "_offset1", "_offset2"];
-        drawIcon3D ["", _color, _center vectorAdd _offset1, 0, 0, 0, _letter, 2, 0.05, "PuristaMedium"];
-        drawIcon3D ["", _color, _center vectorAdd _offset2, 0, 0, 0, ".", 2, 0.05, "PuristaMedium"];
-    } forEach [
-        ["N", [1,1,1,1], [0,_factor,0], [0,_halfFactor,0]],
-        ["S", [1,1,1,0.7], [0,-_factor,0], [0,-_halfFactor,0]],
-        ["E", [1,1,1,0.7], [_factor,0,0], [_halfFactor,0,0]],
-        ["W", [1,1,1,0.7], [-_factor,0,0], [-_halfFactor,0,0]]
-    ];
-};
