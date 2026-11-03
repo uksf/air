@@ -4,7 +4,6 @@ PREP(clockCall);
 PREP(isFlightSeat);
 PREP(isLive);
 PREP(listenerTick);
-PREP(onIncomingMissile);
 PREP(onInit);
 PREP(ownerTick);
 PREP(ownerUpdate);

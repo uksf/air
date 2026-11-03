@@ -7,7 +7,7 @@
         Computes the threat state of a local aircraft from engine sensor data and publishes it when it changes.
         Radar threats only resolve on the aircraft owner, so listeners read the published state.
         Radars: [emitter vehicle, state] for every non-friendly active radar on the RWR. State 0 on the RWR only, 1 marked by it, 2 locked by it.
-        Missiles: [missile, closing] for every missile guided at the aircraft. Closing compares with the last update.
+        Missiles: [missile, closing] for every live missile whose shooter reported the aircraft as its target. Closing compares with the last update.
 
     Parameters:
         0: Aircraft <OBJECT>
@@ -25,8 +25,6 @@ private _missiles = [];
 
 if (alive _aircraft && {isEngineOn _aircraft}) then {
     private _side = side _aircraft;
-    private _candidates = _aircraft getVariable [QGVAR(candidates), []];
-    private _known = _candidates apply {_x#0};
 
     {
         _x params ["_target", "", "", "_sensors"];
@@ -38,15 +36,8 @@ if (alive _aircraft && {isEngineOn _aircraft}) then {
 
     {
         _x params ["_entity", "_state", "_sensors"];
-        if (_state isEqualTo "missile") then {
-            if !(_entity in _known) then {
-                _candidates pushBack [_entity, CBA_missionTime, _entity distance _aircraft];
-                _known pushBack _entity;
-            };
-            continue;
-        };
         private _emitter = vehicle _entity;
-        if (!("radar" in _sensors) || {(_side getFriend side _emitter) >= 0.6}) then {continue};
+        if (_state isEqualTo "missile" || {!("radar" in _sensors)} || {(_side getFriend side _emitter) >= 0.6}) then {continue};
         private _level = [1, 2] select (_state isEqualTo "locked");
         private _index = _radars findIf {_x#0 isEqualTo _emitter};
         if (_index isEqualTo -1) then {
@@ -56,21 +47,18 @@ if (alive _aircraft && {isEngineOn _aircraft}) then {
         };
     } forEach getSensorThreats _aircraft;
 
-    _candidates = _candidates select {
-        _x params ["_missile", "_added"];
-        private _target = missileTarget _missile;
-        alive _missile && {_target isEqualTo _aircraft || {isNull _target && {CBA_missionTime - _added < LAUNCH_GRACE}}}
-    };
-
+    private _lastDistances = _aircraft getVariable [QGVAR(distances), []];
+    private _distances = [];
     {
-        _x params ["_missile", "", "_lastDistance"];
-        private _distance = _missile distance _aircraft;
-        private _closing = _distance <= _lastDistance;
-        _x set [2, _distance];
-        _missiles pushBack [_missile, _closing];
-    } forEach _candidates;
-
-    _aircraft setVariable [QGVAR(candidates), _candidates];
+        _x params ["_missile", "_target"];
+        if (_target isEqualTo _aircraft) then {
+            private _distance = _missile distance _aircraft;
+            private _last = _lastDistances findIf {_x#0 isEqualTo _missile};
+            _missiles pushBack [_missile, _last isEqualTo -1 || {_distance <= _lastDistances#_last#1}];
+            _distances pushBack [_missile, _distance];
+        };
+    } forEach GVAR(missileTargets);
+    _aircraft setVariable [QGVAR(distances), _distances];
 };
 
 if (_radars isNotEqualTo (_aircraft getVariable [QGVAR(radars), []])) then {

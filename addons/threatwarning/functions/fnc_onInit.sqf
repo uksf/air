@@ -20,4 +20,3 @@ params ["_aircraft"];
 if (getNumber (configOf _aircraft >> QGVAR(enabled)) isNotEqualTo 1) exitWith {};
 
 GVAR(aircraft) pushBackUnique _aircraft;
-_aircraft addEventHandler ["IncomingMissile", {call FUNC(onIncomingMissile)}];
