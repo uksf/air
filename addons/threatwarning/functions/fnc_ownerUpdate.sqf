@@ -56,16 +56,6 @@ if (alive _aircraft && {isEngineOn _aircraft}) then {
         };
     } forEach getSensorThreats _aircraft;
 
-    private _scan = (_aircraft getVariable [QGVAR(scan), 0]) + 1;
-    _aircraft setVariable [QGVAR(scan), _scan];
-    if (_scan mod 4 isEqualTo 0) then {
-        {
-            if (missileTarget _x isEqualTo _aircraft && {!(_x in _known)}) then {
-                _candidates pushBack [_x, CBA_missionTime, _x distance _aircraft];
-            };
-        } forEach (_aircraft nearObjects ["MissileBase", SCAN_RADIUS]);
-    };
-
     _candidates = _candidates select {
         _x params ["_missile", "_added"];
         private _target = missileTarget _missile;
