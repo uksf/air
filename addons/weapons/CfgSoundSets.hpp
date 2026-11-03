@@ -75,12 +75,15 @@ class CfgSoundSets {
         soundShaders[] = {
             "jsrs_2025_interior_casing_soundshader",
             "jsrs_2025_autocannon_shells_new_soundshader",
-            QGVAR(m230_cockpit_soundshader),
             QGVAR(m230_close_soundshader),
             QGVAR(m230_closedistance_soundshader),
             QGVAR(m230_mediumdistance_soundshader),
             QGVAR(m230_fardistance_soundshader)
         };
+        frequencyRandomizer = 0.5;
+    };
+    class GVAR(m230_cockpit_soundset) : jsrs_2025_autocannon_small_shot_soundset {
+        soundShaders[] = { QGVAR(m230_cockpit_soundshader) };
         frequencyRandomizer = 0.5;
     };
 };
