@@ -150,6 +150,11 @@ class CfgVehicles {
                 animPeriod = 1e-30;
                 initPhase = 0;
             };
+            class afterburner_nozzle {
+                source = "user";
+                animPeriod = 1.2;
+                initPhase = 0;
+            };
             class afterburner_stretch {
                 source = "user";
                 animPeriod = 1e-30;

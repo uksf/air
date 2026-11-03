@@ -17,6 +17,8 @@
 */
 #define ANIMATION_HIDE "afterburner_hide"
 #define ANIMATION_STRETCH "afterburner_stretch"
+#define ANIMATION_NOZZLE "afterburner_nozzle"
+#define NOZZLE_OPEN_SPEED 4
 #define ANIMATION_THRUSTVECTOR "source_thrustVector"
 #define HIT_ENGINE "HitEngine"
 #define THROTTLE_ENGAGE 0.9
@@ -32,6 +34,7 @@ private _throttle = airplaneThrottle _plane;
 if (!isEngineOn _plane || {_throttle < THROTTLE_ENGAGE} || {_plane getHitPointDamage HIT_ENGINE > 0.8} || {_plane animationPhase ANIMATION_THRUSTVECTOR > -1}) exitWith {
     if (_plane getVariable [QGVAR(afterburnerEngaged), false]) then {
         _plane animateSource [ANIMATION_HIDE, 0, true];
+        _plane animateSource [ANIMATION_NOZZLE, 0];
         _plane setVariable [QGVAR(afterburnerEngaged), false];
     };
 };
@@ -51,4 +54,5 @@ private _impulse = F135_REHEAT_GAIN_NEWTONS * _throttleMultiplier * (_speedMulti
 _plane addForce [_plane vectorModelToWorld [0, _impulse, 0], getCenterOfMass _plane];
 
 _plane animateSource [ANIMATION_HIDE, 1, true];
+_plane animateSource [ANIMATION_NOZZLE, 1, NOZZLE_OPEN_SPEED];
 _plane animateSource [ANIMATION_STRETCH, _throttleMultiplier];
