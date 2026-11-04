@@ -117,7 +117,7 @@ class CUP_Vacannon_M230_veh : CannonCore {
         burst = 10;
         soundBurst = 0;
         class StandardSound {
-            soundSetShot[] = { QGVAR(m230_shot_soundset), QGVAR(m230_cockpit_soundset), "jsrs_2025_tailsystem_Autocannon_soundset" };
+            soundSetShot[] = { QGVAR(m230_shot_soundset), QGVAR(m230_cockpit_soundset), QGVAR(m230_tail_soundset) };
         };
         dispersion = 0.0045;
     };
