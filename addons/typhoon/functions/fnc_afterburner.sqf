@@ -37,13 +37,13 @@ private _throttle = airplaneThrottle _plane;
 private _engaged = _plane getVariable [QGVAR(afterburnerEngaged), false];
 if (!isEngineOn _plane || {_throttle < THROTTLE_ENGAGE} || {_plane getHitPointDamage HIT_ENGINE > 0.8} || {fuel _plane <= 0}) exitWith {
     if (_engaged) then {
-        _plane setVariable [QGVAR(afterburnerEngaged), false];
+        _plane setVariable [QGVAR(afterburnerEngaged), false, true];
         [_plane, false] call FUNC(afterburnerVisuals);
     };
 };
 
 if (!_engaged) then {
-    _plane setVariable [QGVAR(afterburnerEngaged), true];
+    _plane setVariable [QGVAR(afterburnerEngaged), true, true];
     [_plane, true] call FUNC(afterburnerVisuals);
 };
 

@@ -32,7 +32,7 @@ params ["_plane"];
 
 private _throttle = airplaneThrottle _plane;
 if (!isEngineOn _plane || {_throttle < THROTTLE_ENGAGE} || {_plane getHitPointDamage HIT_ENGINE > 0.8} || {_plane animationPhase ANIMATION_THRUSTVECTOR > -1}) exitWith {
-    if (_plane getVariable [QGVAR(afterburnerEngaged), false]) then {
+    if (_plane getVariable [QGVAR(afterburnerEngaged), false] || {_plane animationSourcePhase ANIMATION_HIDE > 0}) then {
         _plane animateSource [ANIMATION_HIDE, 0, true];
         _plane animateSource [ANIMATION_NOZZLE, 0];
         _plane setVariable [QGVAR(afterburnerEngaged), false];
