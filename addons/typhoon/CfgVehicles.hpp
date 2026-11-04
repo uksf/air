@@ -95,6 +95,7 @@ class CfgVehicles {
                 "Plane_Fighter_04_EngineExt_Dist_Front_SoundSet",
                 "Plane_Fighter_04_EngineExt_Middle_SoundSet",
                 QGVAR(RumbleDist_SoundSet),
+                QGVAR(HowlDist_SoundSet),
                 "Plane_Fighter_04_EngineLowInt_SoundSet",
                 QGVAR(HowlInt_SoundSet),
                 QGVAR(BurnerInt_SoundSet),

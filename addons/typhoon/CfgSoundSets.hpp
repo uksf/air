@@ -39,8 +39,15 @@ class CfgSoundShaders {
         samples[] = { { QPATHTOF(data\sounds\rumble_dist.ogg), 1 } };
         frequency = 1;
         volume = "0.6 * machcone * camPos * (rpm factor [0.5, 1])";
-        range = 5000;
-        rangeCurve[] = { { 0, 0 }, { 50, 1 }, { 5000, 1 } };
+        range = 10000;
+        rangeCurve[] = { { 0, 0 }, { 50, 1 }, { 10000, 1 } };
+    };
+    class GVAR(HowlDist_SoundShader) {
+        samples[] = { { QPATHTOF(data\sounds\howl_ext.ogg), 1 } };
+        frequency = 1;
+        volume = "0.6 * machcone * camPos * (rpm factor [0.5, 1])";
+        range = 10000;
+        rangeCurve[] = { { 0, 0 }, { 50, 1 }, { 10000, 1 } };
     };
 };
 
@@ -103,6 +110,17 @@ class CfgSoundSets {
         loop = 1;
         volumeCurve = "InverseSquare1Curve";
         shape = "RearSemispace20";
+        sound3DProcessingType = "JetExt_Distant_3DProcessingType";
+        occlusionFactor = 0.5;
+        obstructionFactor = 0;
+    };
+    class GVAR(HowlDist_SoundSet) {
+        soundShaders[] = { QGVAR(HowlDist_SoundShader) };
+        volumeFactor = 0.9;
+        spatial = 1;
+        loop = 1;
+        volumeCurve = "InverseSquare1Curve";
+        shape = "FrontSemispace20";
         sound3DProcessingType = "JetExt_Distant_3DProcessingType";
         occlusionFactor = 0.5;
         obstructionFactor = 0;
