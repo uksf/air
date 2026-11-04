@@ -74,6 +74,10 @@ class CfgSoundShaders {
         };
         volume = 3;
     };
+    class jsrs_2025_sc_20mm_close_soundshader;
+    class GVAR(m230_crack_close_soundshader) : jsrs_2025_sc_20mm_close_soundshader {
+        rangeCurve[] = { {0, 0}, {3, 0}, {4, 1}, {9, 1}, {10, 0} };
+    };
 };
 
 class CfgDistanceFilters {
@@ -87,6 +91,10 @@ class CfgSoundSets {
     class jsrs_2025_tailsystem_Autocannon_soundset;
     class GVAR(m230_tail_soundset) : jsrs_2025_tailsystem_Autocannon_soundset {
         soundShaders[] = { QGVAR(m230_tail_base_soundshader), "jsrs_2025_tailsystem_Autocannon_scape_soundshader", "jsrs_2025_tailsystem_Autocannon_stereo_soundshader" };
+    };
+    class jsrs_2025_sc_20mm_soundset;
+    class GVAR(m230_crack_soundset) : jsrs_2025_sc_20mm_soundset {
+        soundShaders[] = { QGVAR(m230_crack_close_soundshader), "jsrs_2025_sc_20mm_medium_soundshader", "jsrs_2025_sc_20mm_far_soundshader", "jsrs_2025_sc_20mm_very_far_soundshader" };
     };
     class jsrs_2025_autocannon_small_shot_soundset;
     class GVAR(m230_shot_soundset) : jsrs_2025_autocannon_small_shot_soundset {

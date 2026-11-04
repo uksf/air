@@ -43,6 +43,7 @@ class GVAR(gunpod_25mm_apex) : B_35mm_AA {
 
 class CUP_B_30x113mm_M789_HEDP_Red_Tracer : BulletBase {
     SoundSetExplosion[] = { "JPEX_20mm_EXPLOSION_SoundSet", "JPEX_20mm_REFLECTOR_SoundSet" };
+    soundSetSonicCrack[] = { QGVAR(m230_crack_soundset) };
     CraterEffects = "ExploAmmoCrater";
     explosionEffects = "ExploAmmoExplosion";
     class HitEffects {
