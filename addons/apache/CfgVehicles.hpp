@@ -22,7 +22,7 @@ class CfgNonAIVehicles {
 };
 #define APACHE_SOUND_SETS \
     soundSetsExt[] = { \
-        "jsrs_2025_helicopter_ah64_apache_engineext_soundset", \
+        QGVAR(engineext_soundset), \
         QGVAR(rotorext_soundset), \
         QGVAR(evr_soundset), \
         QGVAR(rotordistance_soundset), \
@@ -37,7 +37,7 @@ class CfgNonAIVehicles {
         "jsrs_2025_helicopter_rainext_soundset" \
     }; \
     soundSetsInt[] = { \
-        "jsrs_2025_helicopter_ah64_apache_engineint_soundset", \
+        QGVAR(engineint_soundset), \
         QGVAR(rotorint_soundset), \
         "jsrs_2025_helicopter_transmissiondamageint_phase1_soundset", \
         "jsrs_2025_helicopter_transmissiondamageint_phase2_soundset", \
