@@ -40,14 +40,14 @@ class CfgSoundShaders {
         frequency = 1;
         volume = "0.6 * machcone * camPos * (rpm factor [0.5, 1])";
         range = 10000;
-        rangeCurve[] = { { 0, 0 }, { 50, 1 }, { 10000, 1 } };
+        rangeCurve[] = { { 0, 0 }, { 50, 1 }, { 4000, 1 }, { 6500, 0.35 }, { 10000, 0.35 } };
     };
     class GVAR(HowlDist_SoundShader) {
         samples[] = { { QPATHTOF(data\sounds\howl_ext.ogg), 1 } };
         frequency = 1;
         volume = "0.6 * machcone * camPos * (rpm factor [0.5, 1])";
         range = 10000;
-        rangeCurve[] = { { 0, 0 }, { 50, 1 }, { 10000, 1 } };
+        rangeCurve[] = { { 0, 0 }, { 50, 1 }, { 4000, 1 }, { 6500, 0.35 }, { 10000, 0.35 } };
     };
 };
 
