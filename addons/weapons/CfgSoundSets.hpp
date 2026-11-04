@@ -91,14 +91,16 @@ class CfgSoundSets {
     class jsrs_2025_autocannon_small_shot_soundset;
     class GVAR(m230_shot_soundset) : jsrs_2025_autocannon_small_shot_soundset {
         soundShaders[] = {
-            "jsrs_2025_interior_casing_soundshader",
-            "jsrs_2025_autocannon_shells_new_soundshader",
             QGVAR(m230_close_soundshader),
             QGVAR(m230_closedistance_soundshader),
             QGVAR(m230_mediumdistance_soundshader),
             QGVAR(m230_fardistance_soundshader)
         };
         distanceFilter = QGVAR(m230_lowpass_filter);
+        frequencyRandomizer = 0.5;
+    };
+    class GVAR(m230_mechanism_soundset) : jsrs_2025_autocannon_small_shot_soundset {
+        soundShaders[] = { "jsrs_2025_interior_casing_soundshader", "jsrs_2025_autocannon_shells_new_soundshader" };
         frequencyRandomizer = 0.5;
     };
     class GVAR(m230_cockpit_soundset) : jsrs_2025_autocannon_small_shot_soundset {
