@@ -33,8 +33,6 @@
 
 params ["_plane"];
 
-if !(hasInterface || isServer) exitWith {};
-
 [_plane, EMPTY_MASS] call EFUNC(common,initMass);
 
 [{

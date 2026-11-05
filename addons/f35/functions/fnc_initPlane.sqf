@@ -37,46 +37,44 @@ if (ACE_player in _plane) then {
     [_plane] call FUNC(getIn);
 };
 
-if (hasInterface || isServer) then {
-    [_plane, EMPTY_MASS] call EFUNC(common,initMass);
+[_plane, EMPTY_MASS] call EFUNC(common,initMass);
 
-    [{
-        params ["_args", "_idPFH"];
-        _args params ["_plane", "_previousTime", "_reheatWasOn", "_nextFuelBurn"];
+[{
+    params ["_args", "_idPFH"];
+    _args params ["_plane", "_previousTime", "_reheatWasOn", "_nextFuelBurn"];
 
-        if (!alive _plane) exitWith {
-            [_idPFH] call CBA_fnc_removePerFrameHandler;
-            [_plane] call FUNC(afterburnerLight);
-        };
-
-        if (local _plane) then {
-            private _newThrustVector = _plane animationPhase "source_thrustVector";
-            private _newSpeedBrake = _plane animationPhase "source_speedBrake";
-
-            [_plane, _newThrustVector, _newSpeedBrake] call FUNC(animateThrustVector);
-
-            [_plane, _newSpeedBrake] call FUNC(animateSpeedBreak);
-
-            if (CBA_missionTime > _previousTime) then {
-                [_plane] call FUNC(afterburner);
-                _args set [1, CBA_missionTime];
-            };
-
-            if (CBA_missionTime > _nextFuelBurn) then {
-                [_plane, IDLE_LITRES_PER_HOUR, MAX_DRY_LITRES_PER_HOUR, MAX_REHEAT_LITRES_PER_HOUR] call EFUNC(common,fuelBurn);
-                [_plane, EMPTY_MASS] call EFUNC(common,updateMass);
-                _args set [3, CBA_missionTime + FUEL_INTERVAL];
-            };
-        };
-
+    if (!alive _plane) exitWith {
+        [_idPFH] call CBA_fnc_removePerFrameHandler;
         [_plane] call FUNC(afterburnerLight);
+    };
 
-        if (hasInterface) then {
-            private _reheatOn = _plane animationSourcePhase REHEAT_SOURCE > REHEAT_SHOWN;
-            if (_reheatOn && {!_reheatWasOn}) then {
-                [_plane] call FUNC(reheatKick);
-            };
-            _args set [2, _reheatOn];
+    if (local _plane) then {
+        private _newThrustVector = _plane animationPhase "source_thrustVector";
+        private _newSpeedBrake = _plane animationPhase "source_speedBrake";
+
+        [_plane, _newThrustVector, _newSpeedBrake] call FUNC(animateThrustVector);
+
+        [_plane, _newSpeedBrake] call FUNC(animateSpeedBreak);
+
+        if (CBA_missionTime > _previousTime) then {
+            [_plane] call FUNC(afterburner);
+            _args set [1, CBA_missionTime];
         };
-    }, 0, [_plane, CBA_missionTime, _plane animationSourcePhase REHEAT_SOURCE > REHEAT_SHOWN, 0]] call CBA_fnc_addPerFrameHandler;
-};
+
+        if (CBA_missionTime > _nextFuelBurn) then {
+            [_plane, IDLE_LITRES_PER_HOUR, MAX_DRY_LITRES_PER_HOUR, MAX_REHEAT_LITRES_PER_HOUR] call EFUNC(common,fuelBurn);
+            [_plane, EMPTY_MASS] call EFUNC(common,updateMass);
+            _args set [3, CBA_missionTime + FUEL_INTERVAL];
+        };
+    };
+
+    [_plane] call FUNC(afterburnerLight);
+
+    if (hasInterface) then {
+        private _reheatOn = _plane animationSourcePhase REHEAT_SOURCE > REHEAT_SHOWN;
+        if (_reheatOn && {!_reheatWasOn}) then {
+            [_plane] call FUNC(reheatKick);
+        };
+        _args set [2, _reheatOn];
+    };
+}, 0, [_plane, CBA_missionTime, _plane animationSourcePhase REHEAT_SOURCE > REHEAT_SHOWN, 0]] call CBA_fnc_addPerFrameHandler;
