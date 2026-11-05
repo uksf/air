@@ -6,8 +6,8 @@
     Description:
         Starts real mass for a jet: sets it now where the plane is local, and again on the frame after each
         weapon release on whichever machine then owns the plane. Fuel burn, refuel, rearm and crew changes
-        reach the mass through the caller's once-a-second updateMass call.
-        Call once on every machine that runs the plane's init.
+        reach the mass through the caller's once-a-second updateMass call. Resets the fuel-burn baseline
+        when locality changes. Call once on every machine that runs the plane's init.
 
     Parameter(s):
         0: Plane <OBJECT>
@@ -22,6 +22,11 @@
 params ["_plane", "_emptyMass"];
 
 _plane setVariable [QGVAR(emptyMass), _emptyMass];
+
+_plane addEventHandler ["Local", {
+    params ["_plane"];
+    _plane setVariable [QGVAR(fuelBurnTime), nil];
+}];
 
 if (local _plane) then {
     [_plane, _emptyMass, true] call FUNC(updateMass);

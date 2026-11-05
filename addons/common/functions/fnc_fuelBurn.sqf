@@ -9,7 +9,7 @@
         Dry burn scales with throttle up to THROTTLE_REHEAT, with an idle floor; reheat scales from full dry
         to full reheat over the top of the throttle range.
         FUEL_TIME_SCALE multiplies every rate for every jet, to shorten flight time and force refuels.
-        Call about once a second where the plane is local; the burn uses the real time since the last call.
+        Call about once a second where the plane is local; elapsed time is capped at three seconds and reset on locality changes.
 
     Parameter(s):
         0: Plane <OBJECT>
@@ -25,11 +25,12 @@
 */
 #define THROTTLE_REHEAT 0.9
 #define FUEL_TIME_SCALE 1
+#define MAX_FUEL_ELAPSED 3
 
 params ["_plane", "_idleLitresPerHour", "_maxDryLitresPerHour", "_maxReheatLitresPerHour"];
 
 private _now = CBA_missionTime;
-private _elapsed = _now - (_plane getVariable [QGVAR(fuelBurnTime), _now]);
+private _elapsed = (_now - (_plane getVariable [QGVAR(fuelBurnTime), _now])) min MAX_FUEL_ELAPSED;
 _plane setVariable [QGVAR(fuelBurnTime), _now];
 
 private _fuel = fuel _plane;
