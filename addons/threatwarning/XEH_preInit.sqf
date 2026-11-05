@@ -37,6 +37,22 @@ GVAR(listenerAircraft) = objNull;
     }] call CBA_fnc_addEventHandler;
 } forEach ["ace_firedPlayer", "ace_firedNonPlayer", "ace_firedPlayerVehicle", "ace_firedNonPlayerVehicle"];
 
+if (isServer) then {
+    addMissionEventHandler ["PlayerDisconnected", {
+        params ["", "", "", "", "_owner"];
+        private _pending = GVAR(missileTargets) select {alive (_x#0) && {owner (_x#0) isEqualTo _owner}};
+        private _recover = {
+            {
+                _x params ["_missile", "_target"];
+                if (alive _missile && {local _missile} && {GVAR(localMissiles) findIf {_x#0 isEqualTo _missile} isEqualTo -1}) then {
+                    GVAR(localMissiles) pushBack [_missile, _target];
+                };
+            } forEach GVAR(missileTargets);
+        };
+        [{_this isNotEqualTo [] && {_this findIf {alive (_x#0) && {!local (_x#0)}} isEqualTo -1}}, _recover, _pending, 5, _recover] call CBA_fnc_waitUntilAndExecute;
+    }];
+};
+
 [QGVAR(missileTarget), {
     params ["_missile", "_target"];
     private _index = GVAR(missileTargets) findIf {_x#0 isEqualTo _missile};
