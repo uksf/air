@@ -21,11 +21,10 @@
 GVAR(aircraft) = GVAR(aircraft) select {!isNull _x};
 GVAR(localMissiles) = GVAR(localMissiles) select {
     _x params ["_missile", "", ["_jipId", ""]];
-    if (!alive _missile) exitWith {
+    if (alive _missile) then {local _missile} else {
         if (_jipId isNotEqualTo "") then {[_jipId] call CBA_fnc_removeGlobalEventJIP};
         false
-    };
-    local _missile
+    }
 };
 {
     _x params ["_missile", "_last"];
