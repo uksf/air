@@ -4,7 +4,7 @@
         Tim Beswick
 
     Description:
-        Shakes the camera a little for crew inside the Apache while the M230 fires
+        Shakes the camera a little for crew inside the Apache while the M230 fires, except in the gunner optics where zoom magnifies it
 
     Parameters:
         0: Helicopter <OBJECT>
@@ -19,6 +19,6 @@
 params ["_helicopter", "_weapon"];
 
 if (_weapon isNotEqualTo "CUP_Vacannon_M230_veh") exitWith {};
-if (objectParent player isNotEqualTo _helicopter) exitWith {};
+if (objectParent player isNotEqualTo _helicopter || {cameraView == "GUNNER"}) exitWith {};
 
 addCamShake [0.6, 0.2, 30];
