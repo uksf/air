@@ -23,6 +23,7 @@ if (GVAR(voiceId) isNotEqualTo -1) then {
     stopSound GVAR(voiceId);
 };
 GVAR(voiceId) = -1;
+GVAR(voiceMissile) = objNull;
 {stopSound _x} forEach GVAR(oneShots);
 GVAR(oneShots) = [];
 GVAR(voiceEnd) = 0;

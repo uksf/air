@@ -37,7 +37,7 @@ if (_aircraft isNotEqualTo GVAR(listenerAircraft)) then {
 GVAR(active) = true;
 
 private _radars = _aircraft getVariable [QGVAR(radars), []];
-private _missiles = (_aircraft getVariable [QGVAR(missiles), []]) select {alive (_x#0)};
+private _missiles = (_aircraft getVariable [QGVAR(missiles), []]) select {alive (_x#0) && {!((_x#0) in GVAR(goneMissiles))}};
 
 if (GVAR(voiceEnd) <= CBA_missionTime) then {
     private _current = _missiles apply {_x#0};
@@ -45,9 +45,11 @@ if (GVAR(voiceEnd) <= CBA_missionTime) then {
     private _called = GVAR(missilesCalled) apply {_x#0};
     private _new = _missiles findIf {!(_x#0 in _called)};
     private _call = [];
+    private _callMissile = objNull;
     if (_new isNotEqualTo -1) then {
         private _missile = _missiles#_new#0;
         _call = [_aircraft, _missile] call FUNC(clockCall);
+        _callMissile = _missile;
         GVAR(missilesCalled) pushBack [_missile, _call#0, CBA_missionTime];
     } else {
         {
@@ -58,6 +60,7 @@ if (GVAR(voiceEnd) <= CBA_missionTime) then {
             if ((_shift min (12 - _shift)) >= 2) exitWith {
                 GVAR(missilesCalled) set [_forEachIndex, [_missile, _position#0, CBA_missionTime]];
                 _call = _position;
+                _callMissile = _missile;
             };
         } forEach GVAR(missilesCalled);
     };
@@ -67,6 +70,7 @@ if (GVAR(voiceEnd) <= CBA_missionTime) then {
         {stopSound _x} forEach GVAR(oneShots);
         GVAR(oneShots) = [];
         GVAR(voiceId) = playSoundUI [format ["%1\call_%2_%3.ogg", QPATHTOF(data), _clock, _level], GVAR(volume), 1, false];
+        GVAR(voiceMissile) = _callMissile;
         GVAR(voiceEnd) = CBA_missionTime + VOICE_LENGTH;
     };
 };

@@ -7,12 +7,14 @@ ADDON = false;
 GVAR(aircraft) = [];
 GVAR(localMissiles) = [];
 GVAR(missileTargets) = [];
+GVAR(goneMissiles) = [];
 GVAR(seat) = [objNull, [], false];
 GVAR(active) = false;
 GVAR(radarsSeen) = [];
 GVAR(missilesCalled) = [];
 GVAR(loop) = ["", -1, 0, false];
 GVAR(voiceId) = -1;
+GVAR(voiceMissile) = objNull;
 GVAR(voiceEnd) = 0;
 GVAR(oneShots) = [];
 GVAR(listenerAircraft) = objNull;
@@ -40,21 +42,31 @@ GVAR(listenerAircraft) = objNull;
 if (isServer) then {
     addMissionEventHandler ["PlayerDisconnected", {
         params ["", "", "", "", "_owner"];
-        private _pending = GVAR(missileTargets) select {alive (_x#0) && {owner (_x#0) isEqualTo _owner}};
-        private _recover = {
-            {
-                _x params ["_missile", "_target"];
-                if (alive _missile && {local _missile} && {GVAR(localMissiles) findIf {_x#0 isEqualTo _missile} isEqualTo -1}) then {
-                    GVAR(localMissiles) pushBack [_missile, _target];
-                };
-            } forEach GVAR(missileTargets);
+        private _missiles = (GVAR(missileTargets) select {owner (_x#0) isEqualTo _owner}) apply {_x#0};
+        if (_missiles isNotEqualTo []) then {
+            [QGVAR(missilesGone), [_missiles]] call CBA_fnc_globalEvent;
         };
-        [{_this isNotEqualTo [] && {_this findIf {alive (_x#0) && {!local (_x#0)}} isEqualTo -1}}, _recover, _pending, 5, _recover] call CBA_fnc_waitUntilAndExecute;
     }];
 };
 
+[QGVAR(missilesGone), {
+    params ["_missiles"];
+    GVAR(goneMissiles) = GVAR(goneMissiles) select {!isNull _x};
+    {GVAR(goneMissiles) pushBackUnique _x} forEach _missiles;
+    GVAR(missileTargets) = GVAR(missileTargets) select {!((_x#0) in _missiles)};
+    GVAR(localMissiles) = GVAR(localMissiles) select {!((_x#0) in _missiles)};
+    if (GVAR(voiceMissile) in _missiles) then {
+        if (GVAR(voiceId) isNotEqualTo -1) then {stopSound GVAR(voiceId)};
+        GVAR(voiceId) = -1;
+        GVAR(voiceMissile) = objNull;
+        GVAR(voiceEnd) = 0;
+    };
+    if (hasInterface && {GVAR(active)}) then {call FUNC(listenerTick)};
+}] call CBA_fnc_addEventHandler;
+
 [QGVAR(missileTarget), {
     params ["_missile", "_target"];
+    if (_missile in GVAR(goneMissiles)) exitWith {};
     private _index = GVAR(missileTargets) findIf {_x#0 isEqualTo _missile};
     if (_index isEqualTo -1) then {
         GVAR(missileTargets) pushBack [_missile, _target];
