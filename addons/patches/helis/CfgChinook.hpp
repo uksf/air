@@ -334,7 +334,7 @@ class CUP_B_CH47F_GB : CUP_CH47F_base {
             stabilizedInAxes = 0;
             gunBeg = "muzzle_1";
             gunEnd = "chamber_1";
-            weapons[] = { "CUP_M134" };
+            weapons[] = { "CUP_weapon_mastersafe", "CUP_M134" };
             magazines[] = { "CUP_2000Rnd_TE1_Red_Tracer_762x51_M134_M" };
             gunnerOpticsModel = "\A3\weapons_f\reticle\optics_empty";
             gunnerOutOpticsShowCursor = 1;
@@ -376,7 +376,7 @@ class CUP_B_CH47F_GB : CUP_CH47F_base {
             stabilizedInAxes = 0;
             selectionFireAnim = "zasleh_1";
             proxyIndex = 2;
-            weapons[] = { "CUP_M134_2" };
+            weapons[] = { "CUP_weapon_mastersafe", "CUP_M134_2" };
             magazines[] = { "CUP_2000Rnd_TE1_Red_Tracer_762x51_M134_M" };
             gunnerOpticsModel = "\A3\weapons_f\reticle\optics_empty";
             gunnerOutOpticsShowCursor = 1;
@@ -416,7 +416,7 @@ class CUP_B_CH47F_GB : CUP_CH47F_base {
             commanding = -1;
             gunnerAction = "CUP_CH47_Gunner01";
             gunnerInAction = "CUP_CH47_Gunner01";
-            weapons[] = { "CUP_Vlmg_L7A2_veh", "UK3CB_BAF_CMFlareLauncher" };
+            weapons[] = { "CUP_weapon_mastersafe", "CUP_Vlmg_L7A2_veh", "UK3CB_BAF_CMFlareLauncher" };
             magazines[] = { "CUP_100Rnd_TE4_LRT4_Red_Tracer_762x51_Belt_M", "CUP_100Rnd_TE4_LRT4_Red_Tracer_762x51_Belt_M", "CUP_100Rnd_TE4_LRT4_Red_Tracer_762x51_Belt_M", "CUP_100Rnd_TE4_LRT4_Red_Tracer_762x51_Belt_M", "CUP_100Rnd_TE4_LRT4_Red_Tracer_762x51_Belt_M", "168Rnd_CMFlare_Chaff_Magazine" };
             gunBeg = "muzzle_3";
             gunEnd = "chamber_3";
@@ -517,8 +517,25 @@ class CUP_B_CH47F_GB : CUP_CH47F_base {
     };
     INVENTORY_AIRCRAFT;
 };
-class CUP_CH47F_VIV_base;
+class CUP_CH47F_VIV_base : CUP_CH47F_base {
+    class Turrets : Turrets {
+        class MainTurret;
+        class RightDoorGun;
+        class BackDoorGun;
+    };
+};
 class CUP_B_CH47F_VIV_GB : CUP_CH47F_VIV_base {
+    class Turrets : Turrets {
+        class MainTurret : MainTurret {
+            weapons[] = { "CUP_weapon_mastersafe", "CUP_M134" };
+        };
+        class RightDoorGun : RightDoorGun {
+            weapons[] = { "CUP_weapon_mastersafe", "CUP_M134_2" };
+        };
+        class BackDoorGun : BackDoorGun {
+            weapons[] = { "CUP_weapon_mastersafe", "CUP_M240_veh_W" };
+        };
+    };
     crew = "UKSF_B_Pilot_7";
     typicalCargo[] = { "UKSF_B_Pilot_7", "UKSF_B_Pilot_7", "UKSF_B_Pilot_7" };
     hiddenSelectionsTextures[] = { "cup\airvehicles\cup_airvehicles_ch47\data\ch47_ext_1_baf_co.paa", "cup\airvehicles\cup_airvehicles_ch47\data\ch47_ext_2_baf_co.paa", "", "cup\airvehicles\cup_airvehicles_ch47\data\ch47_ext_mlod_co.paa" };
