@@ -4,7 +4,7 @@
         Tim Beswick
 
     Description:
-        Starts the per-frame handler for a Typhoon: afterburner, fuel burn and nozzles where the plane is local,
+        Starts the per-frame handler for a Typhoon. Hides the reheat flames until light-up, then runs afterburner, fuel burn and nozzles where the plane is local,
         landing lights off while the gear is up, because they sit in the main gear doors,
         burning fuel at real EJ200 rates: two engines burn about 9,500 kg/h at full dry power and 31,000 kg/h
         at full reheat (Rolls-Royce and EuroJet figures, jet fuel at 0.8 kg/L),
@@ -34,6 +34,9 @@
 params ["_plane"];
 
 [_plane, EMPTY_MASS] call EFUNC(common,initMass);
+if (local _plane) then {
+    [_plane, false] call FUNC(afterburnerVisuals);
+};
 
 [{
     params ["_args", "_idPFH"];
