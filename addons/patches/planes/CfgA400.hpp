@@ -160,7 +160,7 @@ class A400M_base_F : Plane_Base_F {
             explosionShielding = 3;
             name = "HitHull";
             passThrough = 1;
-            radius = 0.45;
+            radius = 3;
             minimalHit = 0.05;
             depends = "0";
             material = -1;
