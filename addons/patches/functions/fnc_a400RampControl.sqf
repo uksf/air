@@ -4,7 +4,7 @@
         Tim Beswick
 
     Description:
-        Set ramp position for A400M
+        Set ramp position for A400M. The toe stays stowed at closed, half and full.
 
     Parameter(s):
         0: Plane <OBJECT>
@@ -21,7 +21,7 @@
 params ["_plane", ["_newPosition", 0]];
 
 private _bottomValue = [0, RAMP_LEVEL, 1] select (_newPosition min 2);
-private _toeValue = parseNumber (_newPosition > 0);
+private _toeValue = 0;
 private _topValue = parseNumber (_newPosition > 0);
 private _values = [_bottomValue, _toeValue, _topValue];
 
