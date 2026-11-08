@@ -21,7 +21,6 @@ class CUP_CH47F_base : Helicopter_Base_H {
             radius = 0.45;
         };
         class HitFuel : HitFuel {
-            armor = 2;
             radius = 0.5;
         };
     };
