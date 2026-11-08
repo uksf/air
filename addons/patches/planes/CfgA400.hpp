@@ -1,20 +1,14 @@
 class A400M_base_F : Plane_Base_F {
     class Turrets {
-        class MainTurret {
-            gunnerGetOutAction = "GetOutLow";
-            memoryPointsGetInGunner = "pos gunner";
-            memoryPointsGetInGunnerDir = "pos gunner dir";
-        };
-        class MainTurret2 {
-            gunnerGetOutAction = "GetOutLow";
-            memoryPointsGetInGunner = "pos gunner";
-            memoryPointsGetInGunnerDir = "pos gunner dir";
-        };
+        class MainTurret;
+        class MainTurret2;
     };
     memoryPointsGetInDriver = "pos driver";
     memoryPointsGetInDriverDir = "pos driver dir";
     memoryPointsGetInCargo = "pos cargo";
     memoryPointsGetInCargoDir = "pos cargo dir";
+    cargoGetInAction[] = {"GetInLow"};
+    cargoGetOutAction[] = {"GetOutLow"};
     preciseGetInOut = 1;
     getInRadius = 8;
     ejectSpeed[] = {0, 0, 0};
@@ -164,6 +158,7 @@ class A400M_base_F : Plane_Base_F {
         class HitHull : HitHull {
             armor = 3.5;
             explosionShielding = 3;
+            name = "HitHull";
             passThrough = 1;
             radius = 0.45;
             minimalHit = 0.05;
@@ -340,6 +335,10 @@ class B_A400M_UK_CAMO_F : A400M_base_F {
         class MainTurret : MainTurret {
             weapons[] += { QEGVAR(weapons,C130FlareLauncher) };
             magazines[] += { QEGVAR(weapons,CMFlare_Chaff_1200Rnd_Magazine) };
+            gunnerGetOutAction = "GetOutLow";
+        };
+        class MainTurret2 : MainTurret2 {
+            gunnerGetOutAction = "GetOutLow";
         };
     };
 };
