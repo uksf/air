@@ -79,6 +79,9 @@ class CfgVehicles {
         class Components;
         class AnimationSources;
         class UserActions;
+        class HitPoints {
+            class HitHull;
+        };
     };
     class VTOL_Base_F;
     class Plane_CAS_01_base_F : Plane_Base_F {

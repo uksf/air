@@ -1,7 +1,23 @@
 class A400M_base_F : Plane_Base_F {
     class Turrets {
-        class MainTurret;
+        class MainTurret {
+            gunnerGetOutAction = "GetOutLow";
+            memoryPointsGetInGunner = "pos gunner";
+            memoryPointsGetInGunnerDir = "pos gunner dir";
+        };
+        class MainTurret2 {
+            gunnerGetOutAction = "GetOutLow";
+            memoryPointsGetInGunner = "pos gunner";
+            memoryPointsGetInGunnerDir = "pos gunner dir";
+        };
     };
+    memoryPointsGetInDriver = "pos driver";
+    memoryPointsGetInDriverDir = "pos driver dir";
+    memoryPointsGetInCargo = "pos cargo";
+    memoryPointsGetInCargoDir = "pos cargo dir";
+    preciseGetInOut = 1;
+    getInRadius = 8;
+    ejectSpeed[] = {0, 0, 0};
     unitInfoType = "RscUnitInfoAirPlaneNoSpeed";
     unitInfoTypeLite = "RscUnitInfoAirPlaneNoSpeed";
     FUEL(63750,120);
@@ -127,6 +143,100 @@ class A400M_base_F : Plane_Base_F {
         class damper_wheel_3_2_source {
             source = "damper";
             wheel = "Wheel_3_2";
+        };
+        class ramp_bottom {
+            source = "user";
+            animPeriod = 4;
+            initPhase = 0;
+        };
+        class ramp_bottom2 {
+            source = "user";
+            animPeriod = 4;
+            initPhase = 0;
+        };
+        class ramp_top {
+            source = "user";
+            animPeriod = 4;
+            initPhase = 0;
+        };
+    };
+    class HitPoints : HitPoints {
+        class HitHull : HitHull {
+            armor = 3.5;
+            explosionShielding = 3;
+            passThrough = 1;
+            radius = 0.45;
+            minimalHit = 0.05;
+            depends = "0";
+            material = -1;
+        };
+        class HitEngine : HitHull {
+            armor = 3;
+            explosionShielding = 4.5;
+            name = "HitEngine";
+            visual = "";
+            passThrough = 0.8;
+            radius = 0.6;
+        };
+        class HitEngine2 : HitEngine {
+            name = "HitEngine2";
+        };
+        class HitEngine3 : HitEngine {
+            name = "HitEngine3";
+        };
+        class HitEngine4 : HitEngine {
+            name = "HitEngine4";
+        };
+        class HitAvionics : HitHull {
+            armor = 1.5;
+            explosionShielding = 4;
+            name = "HitAvionics";
+            visual = "";
+            passThrough = 0.4;
+            radius = 0.3;
+        };
+        class HitFuel : HitHull {
+            armor = 4;
+            explosionShielding = 5;
+            name = "HitFuel";
+            visual = "";
+            passThrough = 0.6;
+            radius = 0.3;
+        };
+        class HitFuel2 : HitFuel {
+            name = "HitFuel2";
+        };
+        class HitGlass1 : HitHull {
+            armor = 1.5;
+            explosionShielding = 3;
+            name = "HitGlass1";
+            visual = "";
+            passThrough = 0;
+            radius = 0.2;
+            minimalHit = 0.1;
+        };
+        class HitLAileron : HitHull {
+            armor = 1.8;
+            explosionShielding = 3.5;
+            name = "HitLAileron";
+            visual = "";
+            passThrough = 0.3;
+            radius = 0.35;
+        };
+        class HitRAileron : HitLAileron {
+            name = "HitRAileron";
+        };
+        class HitLCElevator : HitLAileron {
+            name = "HitLCElevator";
+        };
+        class HitRElevator : HitLAileron {
+            name = "HitRElevator";
+        };
+        class HitLCRudder : HitLAileron {
+            name = "HitRudder";
+        };
+        class HitRRudder : HitLAileron {
+            name = "HitRudder";
         };
     };
     class RenderTargets {
