@@ -7,4 +7,3 @@ PREP(getOut);
 PREP(initPlane);
 PREP(reheatKick);
 PREP(setMfdLoadout);
-PREP(setNamePlate);
