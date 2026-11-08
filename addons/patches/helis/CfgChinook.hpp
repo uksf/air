@@ -3,6 +3,26 @@ class CUP_CH47F_base : Helicopter_Base_H {
     cyclicForwardForceCoef = 1.8;
     FUEL(3914,100);
     armor = 60;
+    class HitPoints : HitPoints {
+        class HitHull {
+            radius = 0.45;
+        };
+        class HitEngine {
+            radius = 0.6;
+        };
+        class HitAvionics {
+            radius = 0.3;
+        };
+        class HitVRotor {
+            radius = 0.45;
+        };
+        class HitHRotor {
+            radius = 0.45;
+        };
+        class HitFuel : HitFuel {
+            radius = 0.3;
+        };
+    };
     startDuration = 90;
     maximumLoad = 2500;
     memoryPointsGetInDriver = "pos cargo";
