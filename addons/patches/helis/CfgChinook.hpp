@@ -5,6 +5,7 @@ class CUP_CH47F_base : Helicopter_Base_H {
     armor = 60;
     class HitPoints : HitPoints {
         class HitHull {
+            armor = 4;
             radius = 0.45;
         };
         class HitEngine {
@@ -20,6 +21,7 @@ class CUP_CH47F_base : Helicopter_Base_H {
             radius = 0.45;
         };
         class HitFuel : HitFuel {
+            armor = 2;
             radius = 0.5;
         };
     };
