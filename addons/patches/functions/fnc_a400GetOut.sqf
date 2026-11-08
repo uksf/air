@@ -35,7 +35,7 @@ private _model = [];
 if (_airborne) then {
     _model = if (_ramp > 0.3) then { [_spread, -28, 1] } else { [-3.6 + (_spread * 0.2), -9.6, 1.2] };
 } else {
-    private _rel = _plane worldToModel (getPosWorld _unit);
+    private _rel = _plane worldToModel (getPosATL _unit);
     if ((_rel select 2) > 3 || {_ramp < 0.3 && {_role == "cargo"}}) then {
         _model = if (_ramp > 0.3) then { [_spread, -18, 0.2] } else { [-3.2, 7.8, 0.1] };
     };
