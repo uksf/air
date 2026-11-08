@@ -21,7 +21,7 @@
 params ["_plane", ["_newPosition", 0]];
 
 private _bottomValue = [0, RAMP_LEVEL, 1] select (_newPosition min 2);
-private _toeValue = parseNumber (_newPosition >= 2);
+private _toeValue = parseNumber (_newPosition > 0);
 private _topValue = parseNumber (_newPosition > 0);
 private _values = [_bottomValue, _toeValue, _topValue];
 
