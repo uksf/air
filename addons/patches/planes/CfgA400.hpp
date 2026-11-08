@@ -147,7 +147,7 @@ class A400M_base_F : Plane_Base_F {
         class ramp_bottom2 {
             source = "user";
             animPeriod = 4;
-            initPhase = 0;
+            initPhase = 0.427917;
         };
         class ramp_top {
             source = "user";
