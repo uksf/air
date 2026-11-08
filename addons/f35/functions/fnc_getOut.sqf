@@ -13,12 +13,8 @@
         Nothing
 
     Example:
-        [_plane] call uksf_air_f35_fnc_getOut
+        call uksf_air_f35_fnc_getOut
 */
-
-params ["_plane"];
-
-[_plane, 1] call EFUNC(common,setNamePlate);
 
 [GVAR(pilotGroupPFH)] call CBA_fnc_removePerFrameHandler;
 if (!GVAR(inGroup)) then {
