@@ -18,6 +18,16 @@ class CfgWeapons {
         magazineReloadTime = 0.1;
     };
 
+    class CUP_Vlmg_M240_veh;
+    class CUP_Vlmg_L7A2_veh;
+    class CUP_M240_veh_W;
+    class uksf_air_chinook_l7: CUP_Vlmg_L7A2_veh {
+        type = 65536;
+    };
+    class uksf_air_chinook_m240: CUP_M240_veh_W {
+        type = 65536;
+    };
+
     class CannonCore;
     class CMFlareLauncher;
     class RocketPods;
