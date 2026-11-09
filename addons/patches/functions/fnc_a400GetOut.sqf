@@ -6,7 +6,7 @@
     Description:
         Place an A400M occupant clear of the airframe on get-out.
         In flight, cargo leaves aft of the open ramp, or out a para door when the ramp is shut.
-        On the ground, a unit left on the fuselage is moved to the ramp or the crew door.
+        On the ground, a unit left on or under the fuselage is moved to the ramp or beside the crew door.
 
     Parameter(s):
         0: Plane <OBJECT>
@@ -36,8 +36,11 @@ if (_airborne) then {
     _model = if (_ramp > 0.3) then { [_spread, -28, 1] } else { [-3.6 + (_spread * 0.2), -9.6, 1.2] };
 } else {
     private _rel = _plane worldToModel (getPosATL _unit);
-    if ((_rel select 2) > 3 || {_ramp < 0.3 && {_role == "cargo"}}) then {
-        _model = if (_ramp > 0.3) then { [_spread, -18, 0.2] } else { [-3.2, 7.8, 0.1] };
+    private _head = (getPosWorld _unit) vectorAdd [0, 0, 1.6];
+    private _overhead = lineIntersectsSurfaces [_head, _head vectorAdd [0, 0, 2.2], _unit, objNull, true, 2, "GEOM", "NONE"];
+    private _under = _overhead findIf { (_x select 2) == _plane || {(_x select 3) == _plane} } >= 0;
+    if ((_rel select 2) > 3 || {_under} || {_ramp < 0.3 && {_role == "cargo"}}) then {
+        _model = if (_ramp > 0.3) then { [_spread, -18, 0.2] } else { [-5.5, 6.8, 0.05] };
     };
 };
 
