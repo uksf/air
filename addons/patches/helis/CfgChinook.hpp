@@ -545,15 +545,19 @@ class CUP_B_CH47F_VIV_GB : CUP_CH47F_VIV_base {
     class TextureSources {};
     class AnimationSources : AnimationSources {
         class machinegun_muzzle_rot {
+            source = "ammorandom";
             weapon = "uksf_air_chinook_m240";
         };
         class ReloadAnim {
+            source = "reload";
             weapon = "uksf_air_chinook_m240";
         };
         class ReloadMagazine {
+            source = "reloadmagazine";
             weapon = "uksf_air_chinook_m240";
         };
         class Revolving {
+            source = "revolving";
             weapon = "uksf_air_chinook_m240";
         };
     };
