@@ -5,8 +5,8 @@
 
     Description:
         Paints the pilot name onto a hidden selection. Each client renders its own UI texture.
-        The texture is 16:9 so the UI blit does not stretch the glyphs. The text sits in the top
-        2/9 of that texture, the strip the rail quads map, so an 8:1 plate shows the name undistorted.
+        The texture is 1024x128, which the engine will load. A 16:9 UI blit into that 8:1
+        target stretches the glyphs, and the rail quads map only the top 2/9, which cancels it.
         Blank when the aircraft has no pilot.
 
     Parameter(s):
@@ -31,7 +31,7 @@ if (!isNull _pilot && {alive _pilot}) then {
 };
 
 private _key = "np" + ((netId _plane) splitString ":" joinString "x");
-private _path = ["#(argb,8,8,1)color(0,0,0,0)", format ["#(argb,1024,576,1)ui(""%1"",""%2"")", QGVAR(nameplate), _key]] select (_text != "");
+private _path = ["#(argb,8,8,1)color(0,0,0,0)", format ["#(argb,1024,128,1)ui(""%1"",""%2"")", QGVAR(nameplate), _key]] select (_text != "");
 
 _plane setObjectTexture [_selection, _path];
 if (local _plane) then {
