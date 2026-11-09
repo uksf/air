@@ -172,7 +172,7 @@ class A400M_base_F : Plane_Base_F {
             name = "HitEngine";
             visual = "";
             passThrough = 0.8;
-            radius = 0.6;
+            radius = 1;
         };
         class HitEngine2 : HitEngine {
             name = "HitEngine2";
@@ -189,7 +189,7 @@ class A400M_base_F : Plane_Base_F {
             name = "HitAvionics";
             visual = "";
             passThrough = 0.4;
-            radius = 0.3;
+            radius = 0.8;
         };
         class HitFuel : HitHull {
             armor = 4;
@@ -197,7 +197,7 @@ class A400M_base_F : Plane_Base_F {
             name = "HitFuel";
             visual = "";
             passThrough = 0.6;
-            radius = 0.3;
+            radius = 0.5;
         };
         class HitFuel2 : HitFuel {
             name = "HitFuel2";
@@ -224,14 +224,15 @@ class A400M_base_F : Plane_Base_F {
         };
         class HitLCElevator : HitLAileron {
             name = "HitLCElevator";
+            radius = 0.6;
         };
-        class HitRElevator : HitLAileron {
+        class HitRElevator : HitLCElevator {
             name = "HitRElevator";
         };
-        class HitLCRudder : HitLAileron {
+        class HitLCRudder : HitLCElevator {
             name = "HitRudder";
         };
-        class HitRRudder : HitLAileron {
+        class HitRRudder : HitLCElevator {
             name = "HitRudder";
         };
     };
