@@ -224,7 +224,7 @@ class A400M_base_F : Plane_Base_F {
         };
         class HitLCElevator : HitLAileron {
             name = "HitLCElevator";
-            radius = 0.6;
+            radius = 0.8;
         };
         class HitRElevator : HitLCElevator {
             name = "HitRElevator";
