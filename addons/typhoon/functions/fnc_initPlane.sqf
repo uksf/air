@@ -9,6 +9,7 @@
         burning fuel at real EJ200 rates: two engines burn about 9,500 kg/h at full dry power and 31,000 kg/h
         at full reheat (Rolls-Royce and EuroJet figures, jet fuel at 0.8 kg/L),
         real mass from the 11,000 kg basic empty mass (EuroJet) plus fuel, stores and crew,
+        a park hold at zero throttle, because the nose-up stance rolls an unbraked jet,
         the reheat light-up kick and APU smoke on every client, and HMD visibility for the local pilot.
 
     Parameter(s):
@@ -30,6 +31,8 @@
 #define REHEAT_FLAME_SHOWN 0.5
 #define GEAR_SOURCE "gear"
 #define GEAR_RETRACTED 0.5
+#define PARK_THROTTLE 0.02
+#define PARK_SPEED 6
 
 params ["_plane"];
 
@@ -51,6 +54,14 @@ if (local _plane) then {
 
     if (local _plane) then {
         [_plane] call FUNC(afterburner);
+
+        if (isTouchingGround _plane && {airplaneThrottle _plane < PARK_THROTTLE}) then {
+            private _velocity = velocity _plane;
+            private _horizontal = sqrt ((_velocity select 0) ^ 2 + (_velocity select 1) ^ 2);
+            if (_horizontal > 0.05 && {_horizontal < PARK_SPEED}) then {
+                _plane setVelocity [0, 0, _velocity select 2];
+            };
+        };
 
         if (CBA_missionTime > _nextNozzleCheck) then {
             [_plane] call FUNC(nozzles);
