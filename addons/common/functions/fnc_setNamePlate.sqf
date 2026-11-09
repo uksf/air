@@ -59,8 +59,8 @@ if (_text == "") exitWith {};
     _ctrl ctrlSetFontHeight _height;
     _ctrl ctrlSetText _text;
     private _width = ctrlTextWidth _ctrl;
-    if (_width > 0.94) then {
-        _ctrl ctrlSetFontHeight (_height * 0.94 / _width);
+    if (_width > 0.7) then {
+        _ctrl ctrlSetFontHeight (_height * 0.7 / _width);
     };
     displayUpdate _display;
 };
