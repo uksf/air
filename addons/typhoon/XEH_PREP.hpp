@@ -1,7 +1,10 @@
 PREP(afterburner);
 PREP(afterburnerVisuals);
 PREP(apuSmoke);
+PREP(clientTick);
 PREP(hmdVisibility);
 PREP(initPlane);
+PREP(localTick);
 PREP(nozzles);
 PREP(reheatKick);
+PREP(startLoops);
