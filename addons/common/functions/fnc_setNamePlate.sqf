@@ -5,6 +5,8 @@
 
     Description:
         Paints the pilot name onto a hidden selection. Each client renders its own UI texture.
+        The texture is 16:9 so the UI blit does not stretch the glyphs. The text sits in the top
+        2/9 of that texture, the strip the rail quads map, so an 8:1 plate shows the name undistorted.
         Blank when the aircraft has no pilot.
 
     Parameter(s):
@@ -29,7 +31,7 @@ if (!isNull _pilot && {alive _pilot}) then {
 };
 
 private _key = "np" + ((netId _plane) splitString ":" joinString "x");
-private _path = ["#(argb,8,8,1)color(0,0,0,0)", format ["#(argb,1024,128,1)ui(""%1"",""%2"")", QGVAR(nameplate), _key]] select (_text != "");
+private _path = ["#(argb,8,8,1)color(0,0,0,0)", format ["#(argb,1024,576,1)ui(""%1"",""%2"")", QGVAR(nameplate), _key]] select (_text != "");
 
 _plane setObjectTexture [_selection, _path];
 if (local _plane) then {
@@ -48,10 +50,13 @@ if (_text == "") exitWith {};
         !isNull _display || {diag_tickTime > _until} || {!alive _plane}
     };
     if (isNull _display) exitWith {};
-    private _height = 0.62;
-    if (count _text > 16) then { _height = 0.46 };
-    if (count _text > 24) then { _height = 0.34 };
+    private _band = 2 / 9;
+    private _aspect = (getResolution select 4) max 1.2;
+    private _byWidth = _aspect / (((count _text) max 1) * 0.56);
+    private _height = _byWidth min (_band * 0.78);
     private _ctrl = _display displayCtrl 1001;
+    _ctrl ctrlSetPosition [0, 0, 1, _band];
+    _ctrl ctrlCommit 0;
     _ctrl ctrlSetFont "RobotoCondensedBold";
     _ctrl ctrlSetFontHeight _height;
     _ctrl ctrlSetText _text;

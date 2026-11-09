@@ -9,7 +9,7 @@ class GVAR(nameplate) {
             idc = 1001;
             text = "";
             font = "RobotoCondensedBold";
-            sizeEx = 0.55;
+            sizeEx = 0.16;
             colorText[] = {0.02, 0.02, 0.02, 1};
             colorBackground[] = {0, 0, 0, 0};
             style = 2;
@@ -17,7 +17,7 @@ class GVAR(nameplate) {
             x = 0;
             y = 0;
             w = 1;
-            h = 1;
+            h = 0.222222;
         };
     };
 };
