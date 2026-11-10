@@ -8,9 +8,9 @@
         so a plane that is braking or parked keeps rolling. Where the plane is local and on the ground, slower than the
         configured speed, its horizontal speed is cut until it stops. The hold is skipped while the aircraft is attached
         to another object, loaded as vehicle cargo, roped to another vehicle, engine-towed, or marked towed by LESH.
-        When AI stop handling is enabled, an AI told to stop, ready, or without waypoints is held, as is an AI that creeps
-        below 2.5 m/s for 2 seconds. An AI accelerating toward a destination, or already faster than the configured speed,
-        is left alone.
+        When AI stop handling is enabled, an AI told to stop, ready, or without waypoints is stopped immediately, as is an
+        AI that creeps below 2.5 m/s for 2 seconds. An AI accelerating toward a destination, or already faster than the
+        configured speed, is left alone. A player or a taxiing AI is only slowed by the configured deceleration.
 
     Parameter(s):
         0: Plane <OBJECT>
@@ -76,6 +76,10 @@ _settings params ["_maxSpeed", "_maxThrottle", "_deceleration", "_holdAI"];
     if (_holdAI > 0) then {
         _plane setAirplaneThrottle -1;
     };
-    private _scale = if (_deceleration > 0) then {0 max (1 - _deceleration * diag_deltaTime / _horizontal)} else {0};
+    private _scale = if (_stopped || {_deceleration <= 0}) then {
+        0
+    } else {
+        0 max (1 - _deceleration * diag_deltaTime / _horizontal)
+    };
     _plane setVelocity [(_velocity select 0) * _scale, (_velocity select 1) * _scale, _velocity select 2];
 }, 0, [_plane, _maxSpeed, -1, _maxThrottle, _deceleration, _holdAI]] call CBA_fnc_addPerFrameHandler;
