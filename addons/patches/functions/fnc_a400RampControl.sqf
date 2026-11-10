@@ -19,7 +19,7 @@
 */
 #define RAMP_LEVEL 0.54
 #define TOE_UPRIGHT 0.427917
-#define PHASE_DONE 0.01
+#define PHASE_DONE 0.0001
 
 params ["_plane", ["_newPosition", 0]];
 
