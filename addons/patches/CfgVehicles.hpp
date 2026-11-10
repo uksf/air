@@ -35,6 +35,7 @@ class CfgVehicles {
     };
     class Helicopter_Base_F : Helicopter {
         class ACE_Actions;
+        class HitPoints;
         class Turrets : Turrets {
             class MainTurret;
             class NewTurret;
@@ -43,6 +44,11 @@ class CfgVehicles {
     class Helicopter_Base_H : Helicopter_Base_F {
         class ACE_Actions : ACE_Actions {
             class ACE_MainActions;
+        };
+        class HitPoints : HitPoints {
+            class HitHull;
+            class HitFuel;
+            class HitMissiles;
         };
         class ViewOptics;
         class ViewPilot;
