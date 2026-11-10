@@ -6,9 +6,11 @@
     Description:
         Holds a plane still on the ground when it is meant to be stopped. Arma stops applying wheel brakes at low speed,
         so a plane that is braking or parked keeps rolling. Where the plane is local and on the ground, slower than the
-        configured speed, its horizontal speed is cut until it stops. When AI stop handling is enabled, an AI told to
-        stop, ready, or without waypoints is held, as is an AI that creeps below 2.5 m/s for 2 seconds. An AI accelerating
-        toward a destination, or already faster than the configured speed, is left alone.
+        configured speed, its horizontal speed is cut until it stops. The hold is skipped while the aircraft is attached
+        to another object, loaded as vehicle cargo, roped to another vehicle, engine-towed, or marked towed by LESH.
+        When AI stop handling is enabled, an AI told to stop, ready, or without waypoints is held, as is an AI that creeps
+        below 2.5 m/s for 2 seconds. An AI accelerating toward a destination, or already faster than the configured speed,
+        is left alone.
 
     Parameter(s):
         0: Plane <OBJECT>
@@ -39,6 +41,9 @@ _settings params ["_maxSpeed", "_maxThrottle", "_deceleration", "_holdAI"];
     };
 
     if (!local _plane || {!isTouchingGround _plane}) exitWith {
+        _args set [2, -1];
+    };
+    if (!isNull attachedTo _plane || {!isNull isVehicleCargo _plane} || {!isNull ropeAttachedTo _plane} || {!isNull getTowParent _plane} || {!isNull (_plane getVariable ["LESH_towedBy", objNull])}) exitWith {
         _args set [2, -1];
     };
 
