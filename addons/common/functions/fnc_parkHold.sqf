@@ -70,9 +70,6 @@ _settings params ["_maxSpeed", "_maxThrottle", "_deceleration", "_holdAI"];
 
     if (_holdAI > 0) then {
         _plane setAirplaneThrottle -1;
-        if (!isNull _driver) then {
-            _driver forceSpeed 0;
-        };
     };
     private _scale = if (_deceleration > 0) then {0 max (1 - _deceleration * diag_deltaTime / _horizontal)} else {0};
     _plane setVelocity [(_velocity select 0) * _scale, (_velocity select 1) * _scale, _velocity select 2];
