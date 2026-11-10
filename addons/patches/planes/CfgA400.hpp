@@ -149,6 +149,11 @@ class A400M_base_F : Plane_Base_F {
             animPeriod = 4;
             initPhase = 0.427917;
         };
+        class uksf_air_a400_toe_hide {
+            source = "user";
+            animPeriod = 0.01;
+            initPhase = 1;
+        };
         class ramp_top {
             source = "user";
             animPeriod = 4;
