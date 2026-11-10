@@ -6,6 +6,7 @@
     Description:
         Sequence the A400M ramp and ground-only toe through closed, airdrop and loading positions.
         Fold and hide the toe before raising the ramp, and show it flat after lowering the ramp.
+        The server owns sequencing for the aircraft's lifetime; clients request a position.
 
     Parameter(s):
         0: Plane <OBJECT>
@@ -22,6 +23,10 @@
 #define PHASE_DONE 0.0001
 
 params ["_plane", ["_newPosition", 0]];
+
+if (!isServer) exitWith {
+    [_plane, _newPosition] remoteExecCall [QFUNC(a400RampControl), 2];
+};
 
 private _position = round ((_newPosition max 0) min 2);
 private _serial = (_plane getVariable [QGVAR(a400RampSerial), 0]) + 1;
