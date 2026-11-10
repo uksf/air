@@ -105,7 +105,7 @@ class CfgSoundSets {
     };
     class GVAR(RumbleDist_SoundSet) {
         soundShaders[] = { QGVAR(RumbleDist_SoundShader) };
-        volumeFactor = 1.5;
+        volumeFactor = 1.05;
         spatial = 1;
         loop = 1;
         volumeCurve = "InverseSquare1Curve";
@@ -116,7 +116,7 @@ class CfgSoundSets {
     };
     class GVAR(HowlDist_SoundSet) {
         soundShaders[] = { QGVAR(HowlDist_SoundShader) };
-        volumeFactor = 0.9;
+        volumeFactor = 0.63;
         spatial = 1;
         loop = 1;
         volumeCurve = "InverseSquare1Curve";
