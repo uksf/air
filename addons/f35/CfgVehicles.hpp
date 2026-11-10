@@ -1081,7 +1081,7 @@ class CfgVehicles {
         PREVIEW(raf);
         hiddenSelectionsTextures[] = {
             QPATHTOF(data\exterior_1_co.paa),
-            QPATHTOF(data\name_0_ca.paa)
+            "#(argb,8,8,1)color(0,0,0,0)"
         };
     };
     class GVAR(raf_stealth) : GVAR(raf) {

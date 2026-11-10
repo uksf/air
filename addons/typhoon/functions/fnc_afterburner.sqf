@@ -11,6 +11,7 @@
         is applied as an impulse scaled by frame time. Thrust fades out between SPEED_UPPER_MIN and
         SPEED_UPPER_MIN + SPEED_UPPER_OFFSET km/h. The flames stretch with throttle in tenths, so the
         animation broadcasts only when the step changes.
+        A plane variable reheatSuppressed forces dry thrust only, for measurement.
         Runs every frame where the plane is local.
 
     Parameter(s):
@@ -35,7 +36,7 @@ params ["_plane"];
 
 private _throttle = airplaneThrottle _plane;
 private _engaged = _plane getVariable [QGVAR(afterburnerEngaged), false];
-if (!isEngineOn _plane || {_throttle < THROTTLE_ENGAGE} || {_plane getHitPointDamage HIT_ENGINE > 0.8} || {fuel _plane <= 0}) exitWith {
+if (_plane getVariable [QGVAR(reheatSuppressed), false] || {!isEngineOn _plane} || {_throttle < THROTTLE_ENGAGE} || {_plane getHitPointDamage HIT_ENGINE > 0.8} || {fuel _plane <= 0}) exitWith {
     if (_engaged) then {
         _plane setVariable [QGVAR(afterburnerEngaged), false, true];
         [_plane, false] call FUNC(afterburnerVisuals);

@@ -18,6 +18,7 @@ class CfgPatches {
     };
 };
 
+#include "CfgNameplate.hpp"
 #include "CfgCloudlets.hpp"
 #include "CfgEventHandlers.hpp"
 #include "CfgFunctions.hpp"

@@ -52,6 +52,7 @@ class CfgVehicles {
         irTargetSize = 0.9;
         showAllTargets = 2;
         countermeasureActivationRadius = 32000;
+        EGVAR(common,parkHold)[] = {6, 0.02, 0, 0};
         simulation = "airplaneX";
 #include "vehicle\Flight.hpp"
 #include "vehicle\Wheels.hpp"
@@ -62,7 +63,8 @@ class CfgVehicles {
             "rwr_LL", "rwr_LR", "rwr_UL", "rwr_UR", "rwr_U", "rwr_D", "rwr_L", "rwr_R",
             "rwr_1oclock", "rwr_2oclock", "rwr_3oclock", "rwr_4oclock", "rwr_5oclock", "rwr_6oclock",
             "rwr_7oclock", "rwr_8oclock", "rwr_9oclock", "rwr_10oclock", "rwr_11oclock", "rwr_12oclock",
-            "rwr_00", "rwr_45", "rwr_90", "rwr_120", "rwr_180", "rwr_225", "rwr_270", "rwr_315", "rwr_CLOSE"
+            "rwr_00", "rwr_45", "rwr_90", "rwr_120", "rwr_180", "rwr_225", "rwr_270", "rwr_315", "rwr_CLOSE",
+            "name"
         };
 
         weapons[] = { "CUP_weapon_mastersafe", "EAWS_BK27", "Laserdesignator_pilotCamera", "UK3CB_BAF_CMFlareLauncher" };

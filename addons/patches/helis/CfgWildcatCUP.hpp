@@ -1,4 +1,19 @@
-class CUP_AW159_Unarmed_Base;
+class CUP_AW159_Unarmed_Base : Helicopter_Base_H {
+    class HitPoints : HitPoints {
+        class HitHull : HitHull {
+            name = "trup";
+        };
+        class HitMissiles : HitMissiles {
+            name = "munice";
+        };
+        class HitHRotor {
+            name = "main rotor";
+        };
+        class HitVRotor {
+            name = "tail rotor";
+        };
+    };
+};
 class CUP_B_AW159_Unarmed_RN_Grey: CUP_AW159_Unarmed_Base {
     scope = 0;
     scopeCurator = 0;

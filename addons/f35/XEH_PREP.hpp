@@ -9,5 +9,4 @@ PREP(initPlane);
 PREP(localTick);
 PREP(reheatKick);
 PREP(setMfdLoadout);
-PREP(setNamePlate);
 PREP(startLoops);

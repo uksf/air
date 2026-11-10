@@ -43,7 +43,7 @@ class CfgSoundShaders {
         rangeCurve[] = { { 0, 0 }, { 50, 1 }, { 4000, 1 }, { 6500, 0.35 }, { 10000, 0.35 } };
     };
     class GVAR(HowlDist_SoundShader) {
-        samples[] = { { QPATHTOF(data\sounds\howl_ext.ogg), 1 } };
+        samples[] = { { QPATHTOF(data\sounds\howl_dist.ogg), 1 } };
         frequency = 1;
         volume = "0.6 * machcone * camPos * (rpm factor [0.5, 1])";
         range = 10000;
@@ -105,7 +105,7 @@ class CfgSoundSets {
     };
     class GVAR(RumbleDist_SoundSet) {
         soundShaders[] = { QGVAR(RumbleDist_SoundShader) };
-        volumeFactor = 1.5;
+        volumeFactor = 1.05;
         spatial = 1;
         loop = 1;
         volumeCurve = "InverseSquare1Curve";
@@ -116,7 +116,7 @@ class CfgSoundSets {
     };
     class GVAR(HowlDist_SoundSet) {
         soundShaders[] = { QGVAR(HowlDist_SoundShader) };
-        volumeFactor = 0.9;
+        volumeFactor = 0.63;
         spatial = 1;
         loop = 1;
         volumeCurve = "InverseSquare1Curve";
