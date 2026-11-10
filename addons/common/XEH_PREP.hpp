@@ -26,6 +26,7 @@ PREP(ramp);
 PREP(radarIffPFH);
 PREP(radarSeekerToken);
 PREP(renderSensorPanel);
+PREP(setNamePlate);
 PREP(setRadarAircraftLocal);
 PREP(startLoop);
 PREP(staticLineJump);
