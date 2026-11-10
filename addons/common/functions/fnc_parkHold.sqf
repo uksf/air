@@ -8,9 +8,10 @@
         so a plane that is braking or parked keeps rolling. Where the plane is local and on the ground, slower than the
         configured speed, its horizontal speed is cut until it stops. The hold is skipped while the aircraft is attached
         to another object, loaded as vehicle cargo, roped to another vehicle, engine-towed, or marked towed by LESH.
-        When AI stop handling is enabled, an AI told to stop, ready, or without waypoints is stopped immediately, as is an
-        AI that creeps below 2.5 m/s for 2 seconds. An AI accelerating toward a destination, or already faster than the
-        configured speed, is left alone. A player or a taxiing AI is only slowed by the configured deceleration.
+        When AI stop handling is enabled, an AI told to stop, ready, or without waypoints is put back at the position
+        where that stop began, so engine thrust between frames cannot roll it. A current move waypoint releases that
+        hold. An AI that creeps below 2.5 m/s for 2 seconds is also held. An AI already faster than the configured
+        speed is left alone. A player or a taxiing AI is only slowed by the configured deceleration.
 
     Parameter(s):
         0: Plane <OBJECT>
@@ -42,9 +43,11 @@ _settings params ["_maxSpeed", "_maxThrottle", "_deceleration", "_holdAI"];
 
     if (!local _plane || {!isTouchingGround _plane}) exitWith {
         _args set [2, -1];
+        if (count _args > 6) then { _args deleteAt 6 };
     };
     if (!isNull attachedTo _plane || {!isNull isVehicleCargo _plane} || {!isNull ropeAttachedTo _plane} || {!isNull getTowParent _plane} || {!isNull (_plane getVariable ["LESH_towedBy", objNull])}) exitWith {
         _args set [2, -1];
+        if (count _args > 6) then { _args deleteAt 6 };
     };
 
     private _velocity = velocity _plane;
@@ -54,7 +57,16 @@ _settings params ["_maxSpeed", "_maxThrottle", "_deceleration", "_holdAI"];
     private _stopped = false;
     if (_holdAI > 0 && {!isNull _driver} && {!isPlayer _driver}) then {
         private _group = group _driver;
-        _stopped = currentCommand _driver == "STOP" || {unitReady _driver} || {isNull _group} || {waypoints _group isEqualTo []};
+        private _driving = false;
+        if (!isNull _group && {waypoints _group isNotEqualTo []}) then {
+            private _index = currentWaypoint _group;
+            if (_index >= 0 && {_index < count waypoints _group}) then {
+                _driving = (waypointType [_group, _index]) in ["MOVE", "SAD", "SCRIPTED", "GETIN", "GETOUT", "UNLOAD", "LOAD", "TR UNLOAD", "HOOK", "UNHOOK", "SUPPORT", "DESTROY"];
+            };
+        };
+        _stopped = !_driving && {
+            currentCommand _driver == "STOP" || {unitReady _driver} || {isNull _group} || {waypoints _group isEqualTo []}
+        };
     };
     private _hold = _throttle < _maxThrottle || {_stopped};
     if (_holdAI > 0 && {!_hold} && {!isNull _driver} && {!isPlayer _driver}) then {
@@ -71,15 +83,26 @@ _settings params ["_maxSpeed", "_maxThrottle", "_deceleration", "_holdAI"];
         _hold = _slowSince >= 0 && {time - _slowSince > PARK_CREEP_TIME};
     };
 
-    if (!_hold || {_horizontal < PARK_REST} || {_horizontal > _maxSpeed}) exitWith {};
-
-    if (_holdAI > 0) then {
+    if (_stopped && {_horizontal <= _maxSpeed}) then {
+        if (count _args < 7) then {
+            _args pushBack (getPosATL _plane);
+        };
         _plane setAirplaneThrottle -1;
-    };
-    private _scale = if (_stopped || {_deceleration <= 0}) then {
-        0
+        _plane setVelocity [0, 0, 0];
+        _plane setPosATL (_args select 6);
     } else {
-        0 max (1 - _deceleration * diag_deltaTime / _horizontal)
+        if (count _args > 6) then {
+            _args deleteAt 6;
+        };
+        if (!_hold || {_horizontal < PARK_REST} || {_horizontal > _maxSpeed}) exitWith {};
+        if (_holdAI > 0) then {
+            _plane setAirplaneThrottle -1;
+        };
+        private _scale = if (_deceleration <= 0) then {
+            0
+        } else {
+            0 max (1 - _deceleration * diag_deltaTime / _horizontal)
+        };
+        _plane setVelocity [(_velocity select 0) * _scale, (_velocity select 1) * _scale, _velocity select 2];
     };
-    _plane setVelocity [(_velocity select 0) * _scale, (_velocity select 1) * _scale, _velocity select 2];
 }, 0, [_plane, _maxSpeed, -1, _maxThrottle, _deceleration, _holdAI]] call CBA_fnc_addPerFrameHandler;
