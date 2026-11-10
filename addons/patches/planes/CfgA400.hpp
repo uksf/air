@@ -17,6 +17,7 @@ class A400M_base_F : Plane_Base_F {
     FUEL(63750,120);
     altFullForce = 10000;
     thrustCoef[] = { 1.42, 1.38, 1.34, 1.3, 1.25, 1.2, 1.19, 1.18, 1.17, 1.17, 1.16, 1.16, 1.1, 1, 0.7, 0.2, 0 };
+    EGVAR(common,parkHold)[] = {6, 0.02, 2, 1};
     brakeDistance = 800;
     armor = 150;
     weapons[] = { QEGVAR(weapons,C130FlareLauncher) };

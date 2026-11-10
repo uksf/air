@@ -12,7 +12,8 @@
 
     Parameter(s):
         0: Plane <OBJECT>
-        1: Speed below which the hold works, m/s <NUMBER> (default: 6)
+        Hold parameters are read from the aircraft config: maximum speed, throttle threshold,
+        deceleration (zero for immediate hold), and whether AI stop handling is enabled.
 
     Return Value:
         Nothing
@@ -20,18 +21,18 @@
     Example:
         [_plane] call uksf_air_common_fnc_parkHold
 */
-#define PARK_THROTTLE 0.02
 #define PARK_AI_THROTTLE 0.35
 #define PARK_CREEP 2.5
 #define PARK_CREEP_TIME 2
-#define PARK_DECELERATION 2
 #define PARK_REST 0.01
 
-params ["_plane", ["_maxSpeed", 6]];
+params ["_plane"];
+private _settings = getArray (configOf _plane >> QGVAR(parkHold));
+_settings params ["_maxSpeed", "_maxThrottle", "_deceleration", "_holdAI"];
 
 [{
     params ["_args", "_idPFH"];
-    _args params ["_plane", "_maxSpeed", "_slowSince"];
+    _args params ["_plane", "_maxSpeed", "_slowSince", "_maxThrottle", "_deceleration", "_holdAI"];
 
     if (!alive _plane) exitWith {
         [_idPFH] call CBA_fnc_removePerFrameHandler;
@@ -46,12 +47,12 @@ params ["_plane", ["_maxSpeed", 6]];
     private _driver = driver _plane;
     private _throttle = airplaneThrottle _plane;
     private _stopped = false;
-    if (!isNull _driver && {!isPlayer _driver}) then {
+    if (_holdAI > 0 && {!isNull _driver} && {!isPlayer _driver}) then {
         private _group = group _driver;
         _stopped = currentCommand _driver == "STOP" || {unitReady _driver} || {isNull _group} || {waypoints _group isEqualTo []};
     };
-    private _hold = _throttle < PARK_THROTTLE || {_stopped};
-    if (!_hold && {!isNull _driver} && {!isPlayer _driver}) then {
+    private _hold = _throttle < _maxThrottle || {_stopped};
+    if (_holdAI > 0 && {!_hold} && {!isNull _driver} && {!isPlayer _driver}) then {
         private _creeping = _horizontal < PARK_CREEP && {_throttle < PARK_AI_THROTTLE};
         if (_creeping) then {
             if (_slowSince < 0) then {
@@ -67,10 +68,12 @@ params ["_plane", ["_maxSpeed", 6]];
 
     if (!_hold || {_horizontal < PARK_REST} || {_horizontal > _maxSpeed}) exitWith {};
 
-    _plane setAirplaneThrottle -1;
-    if (!isNull _driver) then {
-        _driver forceSpeed 0;
+    if (_holdAI > 0) then {
+        _plane setAirplaneThrottle -1;
+        if (!isNull _driver) then {
+            _driver forceSpeed 0;
+        };
     };
-    private _scale = 0 max (1 - PARK_DECELERATION * diag_deltaTime / _horizontal);
+    private _scale = if (_deceleration > 0) then {0 max (1 - _deceleration * diag_deltaTime / _horizontal)} else {0};
     _plane setVelocity [(_velocity select 0) * _scale, (_velocity select 1) * _scale, _velocity select 2];
-}, 0, [_plane, _maxSpeed, -1]] call CBA_fnc_addPerFrameHandler;
+}, 0, [_plane, _maxSpeed, -1, _maxThrottle, _deceleration, _holdAI]] call CBA_fnc_addPerFrameHandler;

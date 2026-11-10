@@ -52,6 +52,7 @@ class CfgVehicles {
         irTargetSize = 0.9;
         showAllTargets = 2;
         countermeasureActivationRadius = 32000;
+        EGVAR(common,parkHold)[] = {6, 0.02, 0, 0};
         simulation = "airplaneX";
 #include "vehicle\Flight.hpp"
 #include "vehicle\Wheels.hpp"
