@@ -6,4 +6,22 @@ class Wheels {
         suspForceAppPointOffset = "wheel_1_1_center";
         tireForceAppPointOffset = "wheel_1_1_center";
     };
+    class Wheel_2_1 {
+        maxBrakeTorque = 16000;
+    };
+    class Wheel_2_2 {
+        maxBrakeTorque = 16000;
+    };
+    class Wheel_2_3 {
+        maxBrakeTorque = 16000;
+    };
+    class Wheel_3_1 {
+        maxBrakeTorque = 16000;
+    };
+    class Wheel_3_2 {
+        maxBrakeTorque = 16000;
+    };
+    class Wheel_3_3 {
+        maxBrakeTorque = 16000;
+    };
 };

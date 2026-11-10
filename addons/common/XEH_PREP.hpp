@@ -19,6 +19,8 @@ PREP(onCountermeasureFired);
 PREP(onCountermeasureRearmed);
 PREP(onIncomingMissile);
 PREP(packParachute);
+PREP(bulkheadStop);
+PREP(parkHold);
 PREP(paradropCargo);
 PREP(ramp);
 PREP(radarIffPFH);

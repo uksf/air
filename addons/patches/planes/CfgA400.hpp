@@ -1,12 +1,23 @@
 class A400M_base_F : Plane_Base_F {
     class Turrets {
         class MainTurret;
+        class MainTurret2;
     };
+    memoryPointsGetInDriver = "pos driver";
+    memoryPointsGetInDriverDir = "pos driver dir";
+    memoryPointsGetInCargo = "pos cargo";
+    memoryPointsGetInCargoDir = "pos cargo dir";
+    cargoGetInAction[] = {"GetInLow"};
+    cargoGetOutAction[] = {"GetOutLow"};
+    preciseGetInOut = 1;
+    getInRadius = 8;
+    ejectSpeed[] = {0, 0, 0};
     unitInfoType = "RscUnitInfoAirPlaneNoSpeed";
     unitInfoTypeLite = "RscUnitInfoAirPlaneNoSpeed";
     FUEL(63750,120);
     altFullForce = 10000;
     thrustCoef[] = { 1.42, 1.38, 1.34, 1.3, 1.25, 1.2, 1.19, 1.18, 1.17, 1.17, 1.16, 1.16, 1.1, 1, 0.7, 0.2, 0 };
+    brakeDistance = 800;
     armor = 150;
     weapons[] = { QEGVAR(weapons,C130FlareLauncher) };
     magazines[] = { QEGVAR(weapons,CMFlare_Chaff_1200Rnd_Magazine) };
@@ -128,6 +139,108 @@ class A400M_base_F : Plane_Base_F {
             source = "damper";
             wheel = "Wheel_3_2";
         };
+        class ramp_bottom {
+            source = "user";
+            animPeriod = 4;
+            initPhase = 0;
+        };
+        class ramp_bottom2 {
+            source = "user";
+            animPeriod = 4;
+            initPhase = 0.427917;
+        };
+        class uksf_air_a400_toe_hide {
+            source = "user";
+            animPeriod = 0.01;
+            initPhase = 1;
+        };
+        class ramp_top {
+            source = "user";
+            animPeriod = 4;
+            initPhase = 0;
+        };
+    };
+    class HitPoints : HitPoints {
+        class HitHull : HitHull {
+            armor = 3.5;
+            explosionShielding = 3;
+            name = "HitHull";
+            passThrough = 1;
+            radius = 1.1;
+            minimalHit = 0.05;
+            depends = "0";
+            material = -1;
+        };
+        class HitEngine : HitHull {
+            armor = 3;
+            explosionShielding = 4.5;
+            name = "HitEngine";
+            visual = "";
+            passThrough = 0.8;
+            radius = 1.2;
+        };
+        class HitEngine2 : HitEngine {
+            name = "HitEngine2";
+        };
+        class HitEngine3 : HitEngine {
+            name = "HitEngine3";
+        };
+        class HitEngine4 : HitEngine {
+            name = "HitEngine4";
+        };
+        class HitAvionics : HitHull {
+            armor = 1.5;
+            explosionShielding = 4;
+            name = "HitAvionics";
+            visual = "";
+            passThrough = 0.4;
+            radius = 0.8;
+        };
+        class HitFuel : HitHull {
+            armor = 4;
+            explosionShielding = 5;
+            name = "HitFuel";
+            visual = "";
+            passThrough = 0.6;
+            radius = 0.5;
+            minimalHit = 0.01;
+        };
+        class HitFuel2 : HitFuel {
+            name = "HitFuel2";
+        };
+        class HitGlass1 : HitHull {
+            armor = 1.5;
+            explosionShielding = 3;
+            name = "HitGlass1";
+            visual = "";
+            passThrough = 0;
+            radius = 0.4;
+            minimalHit = 0.1;
+        };
+        class HitLAileron : HitHull {
+            armor = 1.8;
+            explosionShielding = 3.5;
+            name = "HitLAileron";
+            visual = "";
+            passThrough = 0.3;
+            radius = 0.35;
+        };
+        class HitRAileron : HitLAileron {
+            name = "HitRAileron";
+        };
+        class HitLCElevator : HitLAileron {
+            name = "HitLCElevator";
+            radius = 0.8;
+        };
+        class HitRElevator : HitLCElevator {
+            name = "HitRElevator";
+        };
+        class HitLCRudder : HitLCElevator {
+            name = "HitRudder";
+        };
+        class HitRRudder : HitLCElevator {
+            name = "HitRudder";
+        };
     };
     class RenderTargets {
         delete ecran_FE;
@@ -230,6 +343,10 @@ class B_A400M_UK_CAMO_F : A400M_base_F {
         class MainTurret : MainTurret {
             weapons[] += { QEGVAR(weapons,C130FlareLauncher) };
             magazines[] += { QEGVAR(weapons,CMFlare_Chaff_1200Rnd_Magazine) };
+            gunnerGetOutAction = "GetOutLow";
+        };
+        class MainTurret2 : MainTurret2 {
+            gunnerGetOutAction = "GetOutLow";
         };
     };
 };
