@@ -6,9 +6,9 @@
     Description:
         Holds a plane still on the ground when it is meant to be stopped. Arma stops applying wheel brakes at low speed,
         so a plane that is braking or parked keeps rolling. Where the plane is local and on the ground, slower than the
-        given speed, its horizontal speed is cut until it stops. A player is held only below 0.02 throttle. An AI told to
+        configured speed, its horizontal speed is cut until it stops. When AI stop handling is enabled, an AI told to
         stop, ready, or without waypoints is held, as is an AI that creeps below 2.5 m/s for 2 seconds. An AI accelerating
-        toward a destination, or already faster than the given speed, is left alone.
+        toward a destination, or already faster than the configured speed, is left alone.
 
     Parameter(s):
         0: Plane <OBJECT>
