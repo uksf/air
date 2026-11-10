@@ -355,8 +355,8 @@ class CUP_B_CH47F_GB : CUP_CH47F_base {
             stabilizedInAxes = 0;
             gunBeg = "muzzle_1";
             gunEnd = "chamber_1";
-            weapons[] = { "CUP_M134" };
-            magazines[] = { "CUP_2000Rnd_TE1_Red_Tracer_762x51_M134_M" };
+            weapons[] = { "CUP_weapon_mastersafe", "CUP_M134" };
+            magazines[] = { "FakeMagazine", "CUP_2000Rnd_TE1_Red_Tracer_762x51_M134_M" };
             gunnerOpticsModel = "\A3\weapons_f\reticle\optics_empty";
             gunnerOutOpticsShowCursor = 1;
             gunnerOpticsShowCursor = 1;
@@ -397,8 +397,8 @@ class CUP_B_CH47F_GB : CUP_CH47F_base {
             stabilizedInAxes = 0;
             selectionFireAnim = "zasleh_1";
             proxyIndex = 2;
-            weapons[] = { "CUP_M134_2" };
-            magazines[] = { "CUP_2000Rnd_TE1_Red_Tracer_762x51_M134_M" };
+            weapons[] = { "CUP_weapon_mastersafe", "CUP_M134_2" };
+            magazines[] = { "FakeMagazine", "CUP_2000Rnd_TE1_Red_Tracer_762x51_M134_M" };
             gunnerOpticsModel = "\A3\weapons_f\reticle\optics_empty";
             gunnerOutOpticsShowCursor = 1;
             gunnerOpticsShowCursor = 1;
@@ -437,8 +437,8 @@ class CUP_B_CH47F_GB : CUP_CH47F_base {
             commanding = -1;
             gunnerAction = "CUP_CH47_Gunner01";
             gunnerInAction = "CUP_CH47_Gunner01";
-            weapons[] = { "CUP_Vlmg_L7A2_veh", "UK3CB_BAF_CMFlareLauncher" };
-            magazines[] = { "CUP_100Rnd_TE4_LRT4_Red_Tracer_762x51_Belt_M", "CUP_100Rnd_TE4_LRT4_Red_Tracer_762x51_Belt_M", "CUP_100Rnd_TE4_LRT4_Red_Tracer_762x51_Belt_M", "CUP_100Rnd_TE4_LRT4_Red_Tracer_762x51_Belt_M", "CUP_100Rnd_TE4_LRT4_Red_Tracer_762x51_Belt_M", "168Rnd_CMFlare_Chaff_Magazine" };
+            weapons[] = { "CUP_weapon_mastersafe", "uksf_air_chinook_l7", "UK3CB_BAF_CMFlareLauncher" };
+            magazines[] = { "FakeMagazine", "CUP_100Rnd_TE4_LRT4_Red_Tracer_762x51_Belt_M", "CUP_100Rnd_TE4_LRT4_Red_Tracer_762x51_Belt_M", "CUP_100Rnd_TE4_LRT4_Red_Tracer_762x51_Belt_M", "CUP_100Rnd_TE4_LRT4_Red_Tracer_762x51_Belt_M", "CUP_100Rnd_TE4_LRT4_Red_Tracer_762x51_Belt_M", "168Rnd_CMFlare_Chaff_Magazine" };
             gunBeg = "muzzle_3";
             gunEnd = "chamber_3";
             primaryGunner = 0;
@@ -521,29 +521,67 @@ class CUP_B_CH47F_GB : CUP_CH47F_base {
     class AnimationSources : AnimationSources {
         class machinegun_muzzle_rot {
             source = "ammorandom";
-            weapon = "CUP_Vlmg_L7A2_veh";
+            weapon = "uksf_air_chinook_l7";
         };
         class ReloadAnim {
             source = "reload";
-            weapon = "CUP_Vlmg_L7A2_veh";
+            weapon = "uksf_air_chinook_l7";
         };
         class ReloadMagazine {
             source = "reloadmagazine";
-            weapon = "CUP_Vlmg_L7A2_veh";
+            weapon = "uksf_air_chinook_l7";
         };
         class Revolving {
             source = "revolving";
-            weapon = "CUP_Vlmg_L7A2_veh";
+            weapon = "uksf_air_chinook_l7";
         };
     };
     INVENTORY_AIRCRAFT;
 };
-class CUP_CH47F_VIV_base;
+class CUP_CH47F_VIV_base : CUP_CH47F_base {
+    class Turrets : Turrets {
+        class MainTurret;
+        class RightDoorGun;
+        class BackDoorGun;
+    };
+};
 class CUP_B_CH47F_VIV_GB : CUP_CH47F_VIV_base {
+    class Turrets : Turrets {
+        class MainTurret : MainTurret {
+            weapons[] = { "CUP_weapon_mastersafe", "CUP_M134" };
+            magazines[] = { "FakeMagazine", "CUP_2000Rnd_TE1_Red_Tracer_762x51_M134_M" };
+        };
+        class RightDoorGun : RightDoorGun {
+            weapons[] = { "CUP_weapon_mastersafe", "CUP_M134_2" };
+            magazines[] = { "FakeMagazine", "CUP_2000Rnd_TE1_Red_Tracer_762x51_M134_M" };
+        };
+        class BackDoorGun : BackDoorGun {
+            weapons[] = { "CUP_weapon_mastersafe", "uksf_air_chinook_m240" };
+            magazines[] = { "FakeMagazine", "CUP_100Rnd_TE4_LRT4_Red_Tracer_762x51_Belt_M", "CUP_100Rnd_TE4_LRT4_Red_Tracer_762x51_Belt_M", "CUP_100Rnd_TE4_LRT4_Red_Tracer_762x51_Belt_M", "CUP_100Rnd_TE4_LRT4_Red_Tracer_762x51_Belt_M", "CUP_100Rnd_TE4_LRT4_Red_Tracer_762x51_Belt_M" };
+        };
+    };
     crew = "UKSF_B_Pilot_7";
     typicalCargo[] = { "UKSF_B_Pilot_7", "UKSF_B_Pilot_7", "UKSF_B_Pilot_7" };
     hiddenSelectionsTextures[] = { "cup\airvehicles\cup_airvehicles_ch47\data\ch47_ext_1_baf_co.paa", "cup\airvehicles\cup_airvehicles_ch47\data\ch47_ext_2_baf_co.paa", "", "cup\airvehicles\cup_airvehicles_ch47\data\ch47_ext_mlod_co.paa" };
     class TextureSources {};
+    class AnimationSources : AnimationSources {
+        class machinegun_muzzle_rot {
+            source = "ammorandom";
+            weapon = "uksf_air_chinook_m240";
+        };
+        class ReloadAnim {
+            source = "reload";
+            weapon = "uksf_air_chinook_m240";
+        };
+        class ReloadMagazine {
+            source = "reloadmagazine";
+            weapon = "uksf_air_chinook_m240";
+        };
+        class Revolving {
+            source = "revolving";
+            weapon = "uksf_air_chinook_m240";
+        };
+    };
     INVENTORY_AIRCRAFT;
 };
 
