@@ -10,6 +10,7 @@
         to full reheat over the top of the throttle range.
         FUEL_TIME_SCALE multiplies every rate for every jet, to shorten flight time and force refuels.
         Call about once a second where the plane is local; elapsed time is capped at three seconds and reset on locality changes.
+        The experimental setting replaces scripted burn with an uncalibrated engine coefficient.
 
     Parameter(s):
         0: Plane <OBJECT>
@@ -33,6 +34,13 @@ private _now = CBA_missionTime;
 private _elapsed = (_now - (_plane getVariable [QGVAR(fuelBurnTime), _now])) min MAX_FUEL_ELAPSED;
 _plane setVariable [QGVAR(fuelBurnTime), _now];
 
+private _experimental = GVAR(experimentalFuelCoefficient);
+private _previousCoefficient = _plane getVariable [QGVAR(previousFuelCoefficient), -1];
+if (!_experimental && {_previousCoefficient >= 0}) then {
+    _plane setFuelConsumptionCoef _previousCoefficient;
+    _plane setVariable [QGVAR(previousFuelCoefficient), nil];
+};
+
 private _fuel = fuel _plane;
 if (!isEngineOn _plane || {_fuel <= 0} || {_elapsed <= 0}) exitWith {};
 
@@ -41,6 +49,14 @@ private _litresPerHour = if (_throttle < THROTTLE_REHEAT) then {
     (_maxDryLitresPerHour * _throttle / THROTTLE_REHEAT) max _idleLitresPerHour
 } else {
     linearConversion [THROTTLE_REHEAT, 1, _throttle, _maxDryLitresPerHour, _maxReheatLitresPerHour, true]
+};
+
+if (_experimental) exitWith {
+    if (_previousCoefficient < 0) then {
+        _plane setVariable [QGVAR(previousFuelCoefficient), getFuelConsumptionCoef _plane];
+    };
+    private _estimatedBaseRate = 1200 * (_throttle max 0.05);
+    _plane setFuelConsumptionCoef (_litresPerHour * FUEL_TIME_SCALE / _estimatedBaseRate);
 };
 
 private _capacity = getNumber (configOf _plane >> "fuelCapacity");
