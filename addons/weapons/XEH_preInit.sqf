@@ -6,6 +6,18 @@ ADDON = false;
 
 [QGVAR(correctPilotPylon), {call FUNC(correctPilotPylon)}] call CBA_fnc_addEventHandler;
 ["ace_rearm_loadoutChanged", {call FUNC(correctPilotPylon)}] call CBA_fnc_addEventHandler;
+["Air", "PylonChanged", {
+    params ["_vehicle"];
+    if (_vehicle getVariable [QGVAR(correctingPylons), false] || {_vehicle getVariable [QGVAR(pylonPending), false]}) exitWith {};
+    _vehicle setVariable [QGVAR(pylonPending), true];
+    [{
+        params ["_vehicle"];
+        _vehicle setVariable [QGVAR(pylonPending), false];
+        if (local _vehicle) then {
+            [_vehicle] call FUNC(correctPilotPylon);
+        };
+    }, [_vehicle]] call CBA_fnc_execNextFrame;
+}] call CBA_fnc_addClassEventHandler;
 
 
 ADDON = true;

@@ -31,5 +31,6 @@ if (!local _plane) exitWith {};
         case (_x in AMMRAM): {_plane setUserMFDValue [_index, 2]};
         case (_x in GBU): {_plane setUserMFDValue [_index, 4]};
         case (_x in SDB): {_plane setUserMFDValue [_index, 8]};
+        default {_plane setUserMFDValue [_index, 0]};
     };
 } forEach getPylonMagazines _plane;

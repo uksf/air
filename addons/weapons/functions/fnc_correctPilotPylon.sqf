@@ -21,6 +21,8 @@ if (!local _vehicle) exitWith {
     [QGVAR(correctPilotPylon), _this, _vehicle] call CBA_fnc_targetEvent;
 };
 
+if (_vehicle getVariable [QGVAR(correctingPylons), false]) exitWith {};
+_vehicle setVariable [QGVAR(correctingPylons), true];
 private _magazines = getPylonMagazines _vehicle;
 
 {
@@ -32,3 +34,5 @@ private _magazines = getPylonMagazines _vehicle;
         _vehicle setAmmoOnPylon [(_forEachIndex + 1), _ammo];
     };
 } forEach _magazines;
+
+_vehicle setVariable [QGVAR(correctingPylons), false];
