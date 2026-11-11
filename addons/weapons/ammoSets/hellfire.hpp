@@ -41,7 +41,9 @@ class ACE_Hellfire_AGM114M : ACE_Hellfire_AGM114K {
     submunitionAmmo = "";
     explosionEffects = "BombExplosion";
     ace_frag_charge = 3500;
-    class ace_missileguidance;
+    class ace_missileguidance : ace_missileguidance {
+        enabled = 1;
+    };
 };
 class ACE_Hellfire_AGM114M_drone : ACE_Hellfire_AGM114M {
     class ace_missileguidance : ace_missileguidance {
