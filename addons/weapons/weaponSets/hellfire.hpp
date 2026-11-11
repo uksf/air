@@ -29,6 +29,13 @@ class ace_hellfire_launcher_L : ace_hellfire_launcher {
         "GX_PylonRack_2Rnd_ACE_Hellfire_AGM114L"
     };
 };
+class ace_hellfire_launcher_M : ace_hellfire_launcher {
+    displayName = "AGM-114M";
+    magazines[] = { "PylonRack_4Rnd_ACE_Hellfire_AGM114M" };
+};
+class ace_hellfire_launcher_drone_M : ace_hellfire_launcher_M {
+    magazines[] = { "PylonRack_2Rnd_ACE_Hellfire_AGM114M_Drone" };
+};
 class ace_hellfire_launcher_R9X : ace_hellfire_launcher {
     displayName = "AGM-114R9X";
     magazines[] = { "PylonRack_4Rnd_ACE_Hellfire_AGM114R9X" };
