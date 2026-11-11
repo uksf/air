@@ -1944,7 +1944,7 @@ class MFD {
                     };
                 };
                 class HideOnTurn {
-                    condition = "5-abs(cameraDir-heading)*( (abs(heading-cameraDir))<=355)) ";
+                    condition = "5-abs(cameraDir-heading)*( (abs(heading-cameraDir))<=355)";
                     class Limiter {
                         class Level0 {
                             type = "line";
