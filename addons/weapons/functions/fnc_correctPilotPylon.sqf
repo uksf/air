@@ -24,10 +24,11 @@ if (!local _vehicle) exitWith {
 if (_vehicle getVariable [QGVAR(correctingPylons), false]) exitWith {};
 _vehicle setVariable [QGVAR(correctingPylons), true];
 private _magazines = getPylonMagazines _vehicle;
+private _pylonTurrets = (getAllPylonsInfo _vehicle) apply {_x select 2};
 
 {
     private _magazine = configFile >> "CfgMagazines" >> _x;
-    if (isNumber (_magazine >> QGVAR(pilotControl)) && {(getNumber (_magazine >> QGVAR(pilotControl))) > 0}) then {
+    if (isNumber (_magazine >> QGVAR(pilotControl)) && {(getNumber (_magazine >> QGVAR(pilotControl))) > 0} && {!((_pylonTurrets select _forEachIndex) in [[], [-1]])}) then {
         _vehicle removeWeaponTurret [getText (_magazine >> "pylonWeapon"), [0]];
         private _ammo = (_vehicle ammoOnPylon (_forEachIndex + 1));
         _vehicle setPylonLoadOut [(_forEachIndex + 1), _x, true, []];
