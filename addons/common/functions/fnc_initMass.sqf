@@ -5,8 +5,8 @@
 
     Description:
         Starts real mass for a jet: sets it now where the plane is local, and again on the frame after each
-        weapon release on whichever machine then owns the plane. Fuel burn, refuel, rearm and crew changes
-        reach the mass through the caller's once-a-second updateMass call. Resets the fuel-burn baseline
+        weapon release or pylon change on whichever machine then owns the plane. Fuel burn, refuel and crew changes
+        also reach the mass through the caller's once-a-second updateMass call. Resets the fuel-burn baseline
         when locality changes. Call once on every machine that runs the plane's init.
 
     Parameter(s):
@@ -32,7 +32,7 @@ if (local _plane) then {
     [_plane, _emptyMass, true] call FUNC(updateMass);
 };
 
-_plane addEventHandler ["Fired", {
+private _queueMassUpdate = {
     params ["_plane"];
 
     if (!local _plane || {_plane getVariable [QGVAR(massPending), false]}) exitWith {};
@@ -46,4 +46,7 @@ _plane addEventHandler ["Fired", {
             [_plane, _plane getVariable QGVAR(emptyMass)] call FUNC(updateMass);
         };
     }, [_plane]] call CBA_fnc_execNextFrame;
-}];
+};
+
+_plane addEventHandler ["Fired", _queueMassUpdate];
+_plane addEventHandler ["PylonChanged", _queueMassUpdate];
