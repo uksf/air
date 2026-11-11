@@ -4,7 +4,14 @@ ADDON = false;
 
 #include "XEH_PREP.hpp"
 
-// #include "initSettings.sqf"
+[
+    QGVAR(experimentalFuelCoefficient),
+    "CHECKBOX",
+    ["Experimental jet fuel coefficient", "Pending calibration; replaces scripted jet fuel burn"],
+    "UKSF Air",
+    false,
+    1
+] call CBA_fnc_addSetting;
 
 GVAR(paradropInProgress) = false;
 GVAR(localRadarAircraft) = [];
