@@ -1,0 +1,36 @@
+if (!hasInterface || {!canSuspend}) exitWith {private _r = "A3CMD|A1|FAIL|Run with execVM on client"; diag_log _r; _r};
+private _plane = createVehicle ["uksf_air_f35_raf", player modelToWorld [0, 60, 0], [], 0, "NONE"];
+uiSleep 1;
+_plane setPylonLoadOut [1, "", true];
+uiSleep 0.2;
+private _emptyMass = getMass _plane;
+_plane setPylonLoadOut [1, "ace_missile_aim9_PylonRack_aim132_x1", true];
+uiSleep 0.2;
+private _loadedMass = getMass _plane;
+private _loadedMfd = (getUserMFDValue _plane) param [1, -1];
+_plane setPylonLoadOut [1, "", true];
+uiSleep 0.2;
+private _emptyMfd = (getUserMFDValue _plane) param [1, -1];
+{_plane setPylonLoadOut [_forEachIndex + 1, "", true]} forEach getPylonMagazines _plane;
+uiSleep 0.3;
+_plane setVariable ["a3cmd_pylonEvents", []];
+_plane addEventHandler ["PylonChanged", {
+    params ["_vehicle"];
+    private _events = _vehicle getVariable ["a3cmd_pylonEvents", []];
+    _events pushBack [_this, _vehicle getVariable ["uksf_air_weapons_correctingPylons", false], diag_frameNo];
+    _vehicle setVariable ["a3cmd_pylonEvents", _events];
+}];
+_plane setPylonLoadOut [1, "CUP_PylonPod_19Rnd_CRV7_FAT_M", true, [0]];
+uiSleep 0.3;
+private _events = +(_plane getVariable ["a3cmd_pylonEvents", []]);
+uiSleep 0.5;
+private _settled = _events isEqualTo (_plane getVariable ["a3cmd_pylonEvents", []]);
+private _corrections = {_x select 1} count _events;
+private _info = (getAllPylonsInfo _plane) select 0;
+private _pilot = (_info select 2) isEqualTo [] && {(_info select 3) isEqualTo "CUP_PylonPod_19Rnd_CRV7_FAT_M"};
+private _mass = _loadedMass > _emptyMass + 50;
+private _display = _loadedMfd isEqualTo 1 && {_emptyMfd isEqualTo 0};
+deleteVehicle _plane;
+private _result = format ["A3CMD|A1|%1|massEmptyLoaded=%2 displayLoadedEmpty=%3 pilot=%4 pylon=%5 corrections=%6 settled=%7 events=%8", ["FAIL", "PASS"] select (_mass && _display && _pilot && {_corrections isEqualTo 1} && _settled), [_emptyMass, _loadedMass], [_loadedMfd, _emptyMfd], _pilot, _info, _corrections, _settled, _events];
+diag_log _result;
+_result
