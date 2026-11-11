@@ -4,7 +4,7 @@ class GVAR(penetrator_hellfire) : ammo_Penetrator_Base {
     hit = 7500;
 };
 class ACE_Hellfire_AGM114K : M_Scalpel_AT {
-    hit = 450;  // 150 (javelin 350)
+    hit = 450;
     submunitionAmmo = QGVAR(penetrator_hellfire);
     SoundSetExplosion[] = { "JPEX_Missile_EXPLOSION_SoundSet", "JPEX_Missile_REFLECTOR_SoundSet", "JPEX_Big_Debris_SoundSet" };
     model = "\rksla3\rksla3-cvwp\agm\rksl_agm114k_fired.p3d";
@@ -24,6 +24,26 @@ class ACE_Hellfire_AGM114N : ACE_Hellfire_AGM114K {
     class ace_missileguidance;
 };
 class ACE_Hellfire_AGM114N_drone : ACE_Hellfire_AGM114N {
+    class ace_missileguidance : ace_missileguidance {
+        enabled = 1;
+        seekerAngle = 175;
+    };
+};
+class ACE_Hellfire_AGM114M : ACE_Hellfire_AGM114K {
+    displayName = "AGM-114M";
+    displayNameShort = "AGM-114M";
+    description = "AGM-114M";
+    descriptionShort = "AGM-114M";
+    hit = 250;
+    indirectHit = 160;
+    indirectHitRange = 10;
+    warheadName = "HE";
+    submunitionAmmo = "";
+    explosionEffects = "BombExplosion";
+    ace_frag_charge = 3500;
+    class ace_missileguidance;
+};
+class ACE_Hellfire_AGM114M_drone : ACE_Hellfire_AGM114M {
     class ace_missileguidance : ace_missileguidance {
         enabled = 1;
         seekerAngle = 175;
