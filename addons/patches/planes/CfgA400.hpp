@@ -163,12 +163,12 @@ class A400M_base_F : Plane_Base_F {
     };
     class HitPoints : HitPoints {
         class HitHull : HitHull {
-            armor = 3.5;
+            armor = 4.25;
             explosionShielding = 3;
             name = "HitHull";
             passThrough = 1;
             radius = 1.1;
-            minimalHit = 0.05;
+            minimalHit = 0.01;
             depends = "0";
             material = -1;
         };
@@ -179,6 +179,7 @@ class A400M_base_F : Plane_Base_F {
             visual = "";
             passThrough = 0.8;
             radius = 1.2;
+            minimalHit = 0.05;
         };
         class HitEngine2 : HitEngine {
             name = "HitEngine2";
@@ -196,6 +197,7 @@ class A400M_base_F : Plane_Base_F {
             visual = "";
             passThrough = 0.4;
             radius = 0.8;
+            minimalHit = 0.05;
         };
         class HitFuel : HitHull {
             armor = 4;
@@ -225,6 +227,7 @@ class A400M_base_F : Plane_Base_F {
             visual = "";
             passThrough = 0.3;
             radius = 0.35;
+            minimalHit = 0.05;
         };
         class HitRAileron : HitLAileron {
             name = "HitRAileron";
