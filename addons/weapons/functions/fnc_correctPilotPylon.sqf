@@ -26,7 +26,7 @@ _vehicle setVariable [QGVAR(correctingPylons), true];
 private _magazines = getPylonMagazines _vehicle;
 
 {
-    private _magazine = EGVAR(common,configMagazines) >> _x;
+    private _magazine = configFile >> "CfgMagazines" >> _x;
     if (isNumber (_magazine >> QGVAR(pilotControl)) && {(getNumber (_magazine >> QGVAR(pilotControl))) > 0}) then {
         _vehicle removeWeaponTurret [getText (_magazine >> "pylonWeapon"), [0]];
         private _ammo = (_vehicle ammoOnPylon (_forEachIndex + 1));
