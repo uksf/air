@@ -14,8 +14,9 @@
     Parameter(s):
         0: Aircraft (target) <OBJECT>
         1: Missile ammo type <STRING>
-        2: Firer (instigator) <OBJECT>
-        (engine passes 5 args; only first 3 used — matches apache convention)
+        2: Firing vehicle <OBJECT>
+        3: Instigator <OBJECT>
+        4: Incoming missile <OBJECT>
 
     Return Value:
         Nothing
@@ -25,7 +26,7 @@
 */
 #define THREAT_TTL_SECONDS 12
 
-params ["_aircraft", "_ammoType", "_firer"];
+params ["_aircraft", "_ammoType", "_firer", "", ["_missile", objNull]];
 
 if (!alive _aircraft) exitWith {};
 
@@ -39,7 +40,6 @@ if (vehicle player isNotEqualTo _aircraft) exitWith {};
 private _source = [_ammoType] call FUNC(classifyMissileGuidance);
 if (_source isEqualTo "") exitWith {};
 
-private _missile = nearestObject [_firer, _ammoType];
 if (isNull _missile) exitWith {};
 
 private _threats = _aircraft getVariable [QGVAR(activeThreats), createHashMap];
