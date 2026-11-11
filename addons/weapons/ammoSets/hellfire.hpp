@@ -21,6 +21,10 @@ class ACE_Hellfire_AGM114K_drone : ACE_Hellfire_AGM114K {
     };
 };
 class ACE_Hellfire_AGM114N : ACE_Hellfire_AGM114K {
+    hit = 250;
+    indirectHit = 600;
+    indirectHitRange = 9;
+    ace_frag_skip = 1;
     class ace_missileguidance;
 };
 class ACE_Hellfire_AGM114N_drone : ACE_Hellfire_AGM114N {
@@ -54,7 +58,12 @@ class ACE_Hellfire_AGM114M_drone : ACE_Hellfire_AGM114M {
 class ACE_Hellfire_AGM114L : ACE_Hellfire_AGM114K {
     model = "\rksla3\rksla3-cvwp\agm\rksl_agm114l_fired.p3d";
     proxyShape = "\rksla3\rksla3-cvwp\agm\rksl_agm114l_proxy.p3d";
-    class ace_missileguidance : ace_missileguidance {};
+    class ace_missileguidance : ace_missileguidance {
+        enabled = 1;
+        seekerMaxRange = 8000;
+        defaultSeekerLockMode = "LOBL";
+        seekerLockModes[] = { "LOBL" };
+    };
 };
 class ACE_Hellfire_AGM114R9X : ACE_Hellfire_AGM114K {
     displayName = "AGM-114R9X";
