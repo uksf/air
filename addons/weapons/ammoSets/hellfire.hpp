@@ -21,8 +21,8 @@ class ACE_Hellfire_AGM114K_drone : ACE_Hellfire_AGM114K {
     };
 };
 class ACE_Hellfire_AGM114N : ACE_Hellfire_AGM114K {
-    hit = 100;
-    indirectHit = 180;
+    hit = 50;
+    indirectHit = 100;
     indirectHitRange = 6;
     submunitionAmmo = "";
     ace_frag_skip = 1;
