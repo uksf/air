@@ -1,0 +1,58 @@
+params ["_regime"];
+if (!hasInterface || {!canSuspend}) exitWith {private _r = "A3CMD|A4|FAIL|Run with execVM in a local single-player pilot session"; diag_log _r; _r};
+private _plane = vehicle player;
+if (_plane isEqualTo player || {!local _plane} || {!isEngineOn _plane} || {!(_regime in ["idle", "dry", "reheat"])}) exitWith {private _r = "A3CMD|A4|FAIL|Pilot a local running Typhoon or F-35 and pass idle, dry or reheat"; diag_log _r; _r};
+private _rates = if (_plane isKindOf "EAWS_EF2000") then {[600, 11900, 38800]} else {if (_plane isKindOf "uksf_air_f35_base") then {[600, 11100, 48800]} else {[]}};
+if (_rates isEqualTo []) exitWith {private _r = format ["A3CMD|A4|FAIL|Unsupported aircraft %1", typeOf _plane]; diag_log _r; _r};
+private _savedSetting = uksf_air_common_experimentalFuelCoefficient;
+private _savedFuel = fuel _plane;
+private _savedCoef = getFuelConsumptionCoef _plane;
+private _savedPreviousCoef = _plane getVariable ["uksf_air_common_previousFuelCoefficient", -1];
+private _capacity = getNumber (configOf _plane >> "fuelCapacity");
+uksf_air_common_experimentalFuelCoefficient = true;
+_plane setVariable ["uksf_air_common_previousFuelCoefficient", nil];
+_plane setFuelConsumptionCoef 0.123;
+_plane setFuel 0.8;
+_plane setVariable ["uksf_air_common_fuelBurnTime", CBA_missionTime - 2];
+private _beforeCall = fuel _plane;
+private _callThrottle = airplaneThrottle _plane;
+([_plane] + _rates) call uksf_air_common_fnc_fuelBurn;
+private _afterCall = fuel _plane;
+private _actualCoef = getFuelConsumptionCoef _plane;
+private _targetRate = if (_callThrottle < 0.9) then {((_rates select 1) * _callThrottle / 0.9) max (_rates select 0)} else {linearConversion [0.9, 1, _callThrottle, _rates select 1, _rates select 2, true]};
+private _expectedCoef = _targetRate / (1200 * (_callThrottle max 0.05));
+private _branchActive = abs (_actualCoef - _expectedCoef) < 0.01 && {abs (_actualCoef - 0.123) > 0.01} && {abs ((_plane getVariable ["uksf_air_common_previousFuelCoefficient", -1]) - 0.123) < 0.00001};
+private _noScriptedSubtraction = abs (_beforeCall - _afterCall) < 0.000001;
+private _measurements = [];
+{
+    uksf_air_common_experimentalFuelCoefficient = _x;
+    uiSleep 3;
+    private _startFuel = fuel _plane;
+    private _startTime = CBA_missionTime;
+    private _throttles = [];
+    for "_i" from 1 to 30 do {
+        _throttles pushBack airplaneThrottle _plane;
+        uiSleep 1;
+    };
+    private _elapsed = CBA_missionTime - _startTime;
+    _measurements pushBack [(_startFuel - fuel _plane) * _capacity * 3600 / (_elapsed max 0.01), selectMin _throttles, selectMax _throttles, getFuelConsumptionCoef _plane];
+} forEach [false, true];
+uksf_air_common_experimentalFuelCoefficient = _savedSetting;
+_plane setVariable ["uksf_air_common_previousFuelCoefficient", if (_savedPreviousCoef < 0) then {nil} else {_savedPreviousCoef}];
+_plane setFuelConsumptionCoef _savedCoef;
+_plane setFuel _savedFuel;
+_measurements params ["_scripted", "_coefficient"];
+private _low = (_scripted select 1) min (_coefficient select 1);
+private _high = (_scripted select 2) max (_coefficient select 2);
+private _regimeMatches = switch (_regime) do {
+    case "idle": {_high < 0.15};
+    case "dry": {_low >= 0.15 && {_high < 0.9}};
+    case "reheat": {_low >= 0.95};
+};
+private _stable = _high - _low < 0.05;
+private _scriptRate = _scripted select 0;
+private _coefficientRate = _coefficient select 0;
+private _ok = _branchActive && _noScriptedSubtraction && _regimeMatches && {_stable} && {_scriptRate > 0} && {abs (_coefficientRate - _scriptRate) <= 0.25 * _scriptRate};
+private _result = format ["A3CMD|A4|%1|class=%2 regime=%3 scriptedLphMinMaxCoef=%4 coefficientLphMinMaxCoef=%5 branchActive=%6 noScriptedSubtraction=%7 fuelBeforeAfter=%8 coefActualExpected=%9", ["FAIL", "PASS"] select _ok, typeOf _plane, _regime, _scripted, _coefficient, _branchActive, _noScriptedSubtraction, [_beforeCall, _afterCall], [_actualCoef, _expectedCoef]];
+diag_log _result;
+_result
