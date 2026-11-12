@@ -38,7 +38,7 @@ private _experimental = GVAR(experimentalFuelCoefficient);
 private _previousCoefficient = _plane getVariable [QGVAR(previousFuelCoefficient), -1];
 if (!_experimental && {_previousCoefficient >= 0}) then {
     _plane setFuelConsumptionCoef _previousCoefficient;
-    _plane setVariable [QGVAR(previousFuelCoefficient), nil];
+    _plane setVariable [QGVAR(previousFuelCoefficient), nil, true];
 };
 
 private _fuel = fuel _plane;
@@ -53,7 +53,7 @@ private _litresPerHour = if (_throttle < THROTTLE_REHEAT) then {
 
 if (_experimental) exitWith {
     if (_previousCoefficient < 0) then {
-        _plane setVariable [QGVAR(previousFuelCoefficient), getFuelConsumptionCoef _plane];
+        _plane setVariable [QGVAR(previousFuelCoefficient), getFuelConsumptionCoef _plane, true];
     };
     private _estimatedBaseRate = 1200 * (_throttle max 0.05);
     _plane setFuelConsumptionCoef (_litresPerHour * FUEL_TIME_SCALE / _estimatedBaseRate);
