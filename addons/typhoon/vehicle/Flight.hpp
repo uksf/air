@@ -8,7 +8,7 @@ gearDownTime = 5;
 vtol = 0;
 rudderInfluence = 0.2;
 elevatorControlsSensitivityCoef = 4;
-aileronControlsSensitivityCoef = 4;
+aileronControlsSensitivityCoef = 3.5;
 rudderControlsSensitivityCoef = 4;
 
 draconicForceXCoef = 10;
@@ -20,7 +20,7 @@ draconicTorqueYCoef[] = { 1, 1.2, 1.4, 0.1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
 envelope[] = { 0, 1, 1.4, 1.8, 2.2, 2.6, 3.4, 4.4, 5.6, 7, 8.4, 9.2, 9.4, 9.2, 8.8, 8.4, 8 };
 thrustCoef[] = { 1.19, 1.19, 1.19, 1.19, 1.233, 1.275, 1.318, 1.36, 1.36, 1.275, 1.148, 1.02, 0.85, 0.595, 0.255, 0 };
 elevatorCoef[] = { 0.5, 0.6, 0.7, 0.65, 0.6, 0.55, 0.5, 0.45, 0.4, 0.35, 0.3, 0.25, 0.22, 0.2, 0.18, 0.16 };
-aileronCoef[] = { 0.6, 1, 1.1, 1.15, 1.2, 1.2, 1.15, 1.1, 1.05, 1, 0.9, 0.8, 0.7, 0.6, 0.5, 0.45 };
+aileronCoef[] = { 0.51, 0.85, 0.94, 0.98, 1.02, 1.02, 0.98, 0.94, 0.89, 0.85, 0.77, 0.68, 0.6, 0.51, 0.43, 0.38 };
 rudderCoef[] = { 0.5, 1.8, 2.6, 2.75, 2.8, 2.85, 2.9, 2.95, 2.98, 3.01, 2.7, 1.1, 0.9, 0.7, 0.5, 0.3 };
 
 airFrictionCoefs0[] = { 0, 0, 0 };

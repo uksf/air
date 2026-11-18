@@ -4,7 +4,8 @@
         Tim Beswick
 
     Description:
-        Handle afterburner animations, effects, and speed
+        Handle afterburner animations, effects, and speed.
+        A plane variable reheatSuppressed forces dry thrust only, for measurement.
 
     Parameter(s):
         0: Plane <OBJECT>
@@ -31,7 +32,7 @@
 params ["_plane"];
 
 private _throttle = airplaneThrottle _plane;
-if (!isEngineOn _plane || {_throttle < THROTTLE_ENGAGE} || {_plane getHitPointDamage HIT_ENGINE > 0.8} || {_plane animationPhase ANIMATION_THRUSTVECTOR > -1}) exitWith {
+if (_plane getVariable [QGVAR(reheatSuppressed), false] || {!isEngineOn _plane} || {_throttle < THROTTLE_ENGAGE} || {_plane getHitPointDamage HIT_ENGINE > 0.8} || {_plane animationPhase ANIMATION_THRUSTVECTOR > -1}) exitWith {
     if (_plane getVariable [QGVAR(afterburnerEngaged), false] || {_plane animationSourcePhase ANIMATION_HIDE > 0}) then {
         _plane animateSource [ANIMATION_HIDE, 0, true];
         _plane animateSource [ANIMATION_NOZZLE, 0];
