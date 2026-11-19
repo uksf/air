@@ -4,18 +4,18 @@ ADDON = false;
 
 #include "XEH_PREP.hpp"
 
-GVAR(MinRopeLength) = 2; // minimum rope length in meter
-GVAR(MaxRopeLength) = 100; // maximum rope length in meter (As of Arma v2.04, this limit is hardcoded. No ropes longer than 100 m can be created or unwound)
-GVAR(MaxDeployRetractDistance) = 10; // maximum rope deploy, retract distance in meter (when player is on foot)
-GVAR(MaxRopeDeployHeight) = 100; // maximum height in meter the action 'Deploy Cargo Ropes' is available
-GVAR(MinVehicleMass) = 0; // minimum mass a vehicle has to have to be able to deploy ropes
-GVAR(RopeHandlingDistance) = 5; // maximum distance in meter a unit has to be from a rope end to be able to pick up the rope
-GVAR(InitialDeployRopeLength) = 15; // initial rope length in meter, when rope is deployed
-GVAR(ExtendShortenRopeLength) = 5; // rope length in meter, when rope is extended / shortened
-GVAR(DefaultLiftableMass) = 4000; // default mass in kg, which can be lifted
-GVAR(MinRopeLengthDropCargo) = false; // drop cargo, when minimum rope length is reached, and ropes are shortened once more
-GVAR(RopeUnwindSpeed) = 3; // ropes unwinding speed
-GVAR(MaxLiftableMassFactor) = 8; // maximum liftable mass factor (FUNC(Rope_Get_Lift_Capability) * GVAR(MaxLiftableMassFactor))
+GVAR(MinRopeLength) = 2;
+GVAR(MaxRopeLength) = 100;
+GVAR(MaxDeployRetractDistance) = 10;
+GVAR(MaxRopeDeployHeight) = 100;
+GVAR(MinVehicleMass) = 0;
+GVAR(RopeHandlingDistance) = 5;
+GVAR(InitialDeployRopeLength) = 15;
+GVAR(ExtendShortenRopeLength) = 5;
+GVAR(DefaultLiftableMass) = 4000;
+GVAR(MinRopeLengthDropCargo) = false;
+GVAR(RopeUnwindSpeed) = 3;
+GVAR(MaxLiftableMassFactor) = 8;
 
 GVAR(classLoadPointOffsets) = [
     ["CUP_CH47F_base", [-0.05, -2, -0.05]],  
@@ -51,7 +51,8 @@ GVAR(slingRules) = [
     ["Air", "CAN_SLING", "Air"],
     ["Air", "CAN_SLING", "Boat_F"],
     ["Air", "CAN_SLING", "ReammoBox_F"],
-    ["Air", "CAN_SLING", QUGVAR(vehicles,L119)]
+    ["Air", "CAN_SLING", QUGVAR(vehicles,L119)],
+    ["Air", "CAN_SLING", "Pod_Heli_Transport_04_crewed_base_F"]
 ];
 
 GVAR(actionContext) = ACTION_CONTEXT_EMPTY;
