@@ -48,7 +48,7 @@ class CfgVehicles {
         envelope[] = { 0, 1, 1.3, 1.5, 1.6, 1.8, 2.8, 3.9, 5.4, 7.0, 8.9, 9.5, 9.3, 8.6, 8.3, 8.2, 7.6 };
         landingSpeed = 90; // 140
         FUEL(2260,360); // MQ-9 Reaper real internal: 4000 lb / ~2260 L (Jet-A)
-        unitInfoType = "RscOptics_AV_airplane_pilot";
+        unitInfoType = "RscOptics_UAV_reaper_pilot";
         class Turrets : Turrets {
             class MainTurret : MainTurret {
                 weapons[] = { "CUP_weapon_mastersafe", "UK3CB_BAF_Laserdesignator_mounted" };
