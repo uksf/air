@@ -3,6 +3,96 @@ class RscText;
 class RscPicture;
 class RscInGameUI {
     class RscUnitInfo;
+    class RscOptics_AV_pilot : RscUnitInfo {
+        class DriverOpticsGroup : RscControlsGroup {
+            class controls {
+                class TextGrid;
+                class ValueGrid;
+                class TextTime;
+                class ValueTime;
+                class TextMag;
+                class OpticsZoom;
+                class BorderLineSpdTop;
+                class BorderLineSpdBottom;
+                class BorderLineAltTop;
+                class BorderLineAltBottom;
+                class TextSpd;
+                class SpeedValueBorder;
+                class CA_Speed;
+                class AnalogueSpeed;
+                class TextAlt;
+                class AltValueBorder;
+                class CA_Alt;
+                class AnalogueAlt;
+                class AnalogueHorizon;
+                class HorizonCenter;
+            };
+        };
+    };
+    class RscOptics_AV_airplane_pilot : RscOptics_AV_pilot {
+        class CA_Speed;
+        class CA_SpeedUnits;
+        class CA_Alt;
+        class CA_AltUnits;
+    };
+    class RscOptics_UAV_reaper_pilot : RscOptics_AV_airplane_pilot {
+        onLoad = "['onLoad', _this, 'RscUnitInfo', 'IGUI'] call (uinamespace getvariable 'BIS_fnc_initDisplay'); [missionNamespace getVariable 'uksf_air_reaper_fnc_updatePilotDisplay', 0, [_this#0]] call CBA_fnc_addPerFrameHandler";
+        onUnload = "['onUnload', _this, 'RscUnitInfo', 'IGUI'] call (uinamespace getvariable 'BIS_fnc_initDisplay')";
+        class CA_Speed : CA_Speed {
+            idc = PILOT_SPEED;
+            text = "";
+        };
+        class CA_SpeedUnits : CA_SpeedUnits {
+            text = "kn";
+        };
+        class CA_Alt : CA_Alt {
+            idc = PILOT_ALT;
+            text = "";
+        };
+        class CA_AltUnits : CA_AltUnits {
+            text = "ft";
+        };
+        class DriverOpticsGroup : DriverOpticsGroup {
+            class controls : controls {
+                class TextGrid : TextGrid {};
+                class ValueGrid : ValueGrid {};
+                class TextTime : TextTime {};
+                class ValueTime : ValueTime {};
+                class TextMag : TextMag {};
+                class OpticsZoom : OpticsZoom {};
+                class BorderLineSpdTop : BorderLineSpdTop {};
+                class BorderLineSpdBottom : BorderLineSpdBottom {};
+                class BorderLineAltTop : BorderLineAltTop {};
+                class BorderLineAltBottom : BorderLineAltBottom {};
+                class TextSpd : TextSpd {
+                    text = "SPD KT";
+                };
+                class SpeedValueBorder : SpeedValueBorder {};
+                class CA_Speed : CA_Speed {
+                    idc = PILOT_OPTICS_SPEED;
+                    text = "";
+                };
+                class AnalogueSpeed : AnalogueSpeed {
+                    topValue = PILOT_LADDER_SPEED_TOP;
+                    bottomValue = PILOT_LADDER_SPEED_BOTTOM;
+                };
+                class TextAlt : TextAlt {
+                    text = "ALT FT";
+                };
+                class AltValueBorder : AltValueBorder {};
+                class CA_Alt : CA_Alt {
+                    idc = PILOT_OPTICS_ALT;
+                    text = "";
+                };
+                class AnalogueAlt : AnalogueAlt {
+                    topValue = PILOT_LADDER_ALT_TOP;
+                    bottomValue = PILOT_LADDER_ALT_BOTTOM;
+                };
+                class AnalogueHorizon : AnalogueHorizon {};
+                class HorizonCenter : HorizonCenter {};
+            };
+        };
+    };
     class RscOptics_UAV_reaper_gunner : RscUnitInfo {
         onLoad = "['onLoad', _this, 'RscUnitInfo', 'IGUI'] call (uinamespace getvariable 'BIS_fnc_initDisplay'); uiNamespace setVariable ['RscOptics_UAV_reaper_gunner', _this#0]";
         onUnload = "['onUnload', _this, 'RscUnitInfo', 'IGUI'] call (uinamespace getvariable 'BIS_fnc_initDisplay')";
