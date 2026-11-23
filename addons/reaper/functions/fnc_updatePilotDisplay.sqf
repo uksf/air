@@ -26,8 +26,9 @@ if (isNull _display) exitWith {
 };
 
 private _uav = cameraOn;
-private _speed = str round (KMH_TO_KNOTS(speed _uav));
-private _altitude = str round (METERS_TO_FEET((getPosASL _uav)#2));
+private _hasTelemetry = alive _uav && {unitIsUAV _uav};
+private _speed = ["", str round (KMH_TO_KNOTS(speed _uav))] select _hasTelemetry;
+private _altitude = ["", str round (METERS_TO_FEET((getPosASL _uav)#2))] select _hasTelemetry;
 (_display displayCtrl PILOT_SPEED) ctrlSetText _speed;
 (_display displayCtrl PILOT_OPTICS_SPEED) ctrlSetText _speed;
 (_display displayCtrl PILOT_ALT) ctrlSetText _altitude;
