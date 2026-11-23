@@ -3,6 +3,7 @@ class GVAR(nameplate) {
     idd = -1;
     movingEnable = 0;
     enableSimulation = 1;
+    onLoad = "_this call (missionNamespace getVariable 'uksf_air_common_fnc_drawNamePlate')";
     class controlsBackground {};
     class controls {
         class Name: RscText {
