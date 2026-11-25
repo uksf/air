@@ -5,8 +5,8 @@ class A400M_base_F : Plane_Base_F {
     };
     memoryPointsGetInDriver = "pos driver";
     memoryPointsGetInDriverDir = "pos driver dir";
-    memoryPointsGetInCargo = "pos cargo";
-    memoryPointsGetInCargoDir = "pos cargo dir";
+    memoryPointsGetInCargo[] = {"pos cargo", "pos cargo aft", "pos cargo fwd"};
+    memoryPointsGetInCargoDir[] = {"pos cargo dir", "pos cargo aft dir", "pos cargo fwd dir"};
     cargoGetInAction[] = {"GetInLow"};
     cargoGetOutAction[] = {"GetOutLow"};
     getInAction = "GetInLow";
@@ -271,27 +271,6 @@ class A400M_base_F : Plane_Base_F {
             displayName = "Open Ramp Fully";
             condition = QUOTE([ARR_2(this,2)] call EFUNC(common,canControlRamp));
             statement = QUOTE([ARR_2(this,2)] call FUNC(a400RampControl));
-        };
-        class CabinSeatCargo {
-            displayName = "Take a cabin seat";
-            position = "pos ramp";
-            radius = 16;
-            showWindow = 0;
-            onlyforplayer = 1;
-            hideOnUse = 1;
-            priority = 5;
-            condition = QUOTE([ARR_3(this,'cargo',true)] call FUNC(a400CabinSeat));
-            statement = QUOTE([ARR_2(this,'cargo')] call FUNC(a400CabinSeat));
-        };
-        class CabinSeatPilot : CabinSeatCargo {
-            displayName = "Take the pilot seat";
-            condition = QUOTE([ARR_3(this,'driver',true)] call FUNC(a400CabinSeat));
-            statement = QUOTE([ARR_2(this,'driver')] call FUNC(a400CabinSeat));
-        };
-        class CabinSeatCopilot : CabinSeatCargo {
-            displayName = "Take the co-pilot seat";
-            condition = QUOTE([ARR_3(this,'copilot',true)] call FUNC(a400CabinSeat));
-            statement = QUOTE([ARR_2(this,'copilot')] call FUNC(a400CabinSeat));
         };
         class open_door_crew {
             displayName = "Open Crew Door";
