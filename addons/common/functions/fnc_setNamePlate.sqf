@@ -4,46 +4,29 @@
         Tim Beswick
 
     Description:
-        Paints the pilot name onto a hidden selection. Each client renders its own UI texture,
-        whose display draws the stored name on load. Blank when the aircraft has no pilot.
+        Sets the painted pilot-name panel texture for the aircraft's driver.
+        Pilots without a panel texture get the blank panel (index 0).
 
     Parameter(s):
         0: Aircraft <OBJECT>
         1: Hidden selection index <NUMBER>
+        2: Texture path with %1 for the panel index <STRING>
 
     Return Value:
         Nothing
 
     Example:
-        [_plane, 1] call uksf_air_common_fnc_setNamePlate
+        [_plane, 1, "\u\uksf_air\addons\f35\data\name_%1_ca.paa"] call uksf_air_common_fnc_setNamePlate
 */
+#define PILOT_UIDS ["76561198041153310", "76561198136488003", "76561198052764916"]
 
-params ["_plane", "_selection"];
+params ["_plane", "_selection", "_texture"];
 
-if (isNull _plane || {!alive _plane}) exitWith {};
+if (isNull _plane || {!local _plane}) exitWith {};
 
-private _pilot = driver _plane;
-private _text = "";
-if (!isNull _pilot && {alive _pilot}) then {
-    _text = toUpper ([name _pilot, ".", ""] call CBA_fnc_replace);
-};
+private _index = 1 + (PILOT_UIDS find getPlayerUID driver _plane);
+private _path = format [_texture, _index];
+if (_plane getVariable [QGVAR(nameplate), ""] == _path) exitWith {};
 
-private _key = "np" + ((netId _plane) splitString ":" joinString "x");
-private _path = ["#(argb,8,8,1)color(0,0,0,0)", format ["#(argb,1024,128,1)ui(""%1"",""%2"")", QGVAR(nameplate), _key]] select (_text != "");
-
-private _names = uiNamespace getVariable QGVAR(nameplates);
-if (isNil "_names") then {
-    _names = createHashMap;
-    uiNamespace setVariable [QGVAR(nameplates), _names];
-};
-_names set [_key, _text];
-
-_plane setObjectTexture [_selection, _path];
-if (local _plane) then {
-    _plane setObjectTextureGlobal [_selection, _path];
-};
-
-private _display = findDisplay _key;
-if (!isNull _display) then {
-    [_display] call FUNC(drawNamePlate);
-};
+_plane setVariable [QGVAR(nameplate), _path];
+_plane setObjectTextureGlobal [_selection, _path];
