@@ -9,9 +9,12 @@ GVAR(inGroup) = true;
 [QGVAR(base), "init", {call FUNC(initPlane)}, true, nil, true] call CBA_fnc_addClassEventHandler;
 [QGVAR(base), "getin", {call FUNC(getIn)}] call CBA_fnc_addClassEventHandler;
 [QGVAR(base), "getout", {call FUNC(getOut)}] call CBA_fnc_addClassEventHandler;
-[QGVAR(base), "init", {[_this select 0, 1] call EFUNC(common,setNamePlate)}, true, [], true] call CBA_fnc_addClassEventHandler;
-[QGVAR(base), "seatswitched", {[_this select 0, 1] call EFUNC(common,setNamePlate)}] call CBA_fnc_addClassEventHandler;
-[QGVAR(base), "local", {[_this select 0, 1] call EFUNC(common,setNamePlate)}] call CBA_fnc_addClassEventHandler;
+private _nameplate = {[_this select 0, 1, QPATHTOF(data\name_%1_ca.paa)] call EFUNC(common,setNamePlate)};
+[QGVAR(base), "init", _nameplate, true, [], true] call CBA_fnc_addClassEventHandler;
+[QGVAR(base), "getin", _nameplate] call CBA_fnc_addClassEventHandler;
+[QGVAR(base), "getout", _nameplate] call CBA_fnc_addClassEventHandler;
+[QGVAR(base), "seatswitched", _nameplate] call CBA_fnc_addClassEventHandler;
+[QGVAR(base), "local", _nameplate] call CBA_fnc_addClassEventHandler;
 [QGVAR(base), "InitPost", {
     params ["_plane"];
     if (_plane getVariable [QGVAR(mfdPylonHandler), false]) exitWith {};

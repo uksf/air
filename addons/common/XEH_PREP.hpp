@@ -9,7 +9,6 @@ PREP(canControlRamp);
 PREP(canStaticLineJump);
 PREP(classifyMissileGuidance);
 PREP(computeNotchGeometry);
-PREP(drawNamePlate);
 PREP(drawNotchHelper);
 PREP(fuelBurn);
 PREP(initCountermeasures);

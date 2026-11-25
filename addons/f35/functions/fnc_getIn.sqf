@@ -17,8 +17,6 @@
 */
 params ["_plane"];
 
-[{_this call EFUNC(common,setNamePlate)}, [_plane, 1]] call CBA_fnc_execNextFrame;
-
 GVAR(pilotGroupPFH) = [{
     params ["_args", "_idPFH"];
     _args params ["_plane"];

@@ -17,7 +17,7 @@ class Wheels : Wheels {
         mass = 50;
         MOI = 3.3;
         dampingRate = 0.25;
-        maxBrakeTorque = 10000;
+        maxBrakeTorque = 12000;
         longitudinalStiffnessPerUnitGravity = 2500;
         frictionVsSlipGraph[] = {{0, 0.6}, {0.2, 1}, {0.6, 0.8}};
         sprungMass = 6640;
@@ -31,7 +31,7 @@ class Wheels : Wheels {
         mass = 50;
         MOI = 3.3;
         dampingRate = 0.25;
-        maxBrakeTorque = 10000;
+        maxBrakeTorque = 12000;
         longitudinalStiffnessPerUnitGravity = 2500;
         frictionVsSlipGraph[] = {{0, 0.6}, {0.2, 1}, {0.6, 0.8}};
         sprungMass = 6640;
