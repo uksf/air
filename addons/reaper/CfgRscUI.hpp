@@ -31,6 +31,7 @@ class RscInGameUI {
     };
     class RscOptics_AV_airplane_pilot : RscOptics_AV_pilot {};
     class RscOptics_UAV_reaper_pilot : RscOptics_AV_airplane_pilot {
+        controls[] = { "WeaponInfoControlsGroupRight", "CA_BackgroundVehicle", "CA_BackgroundVehicleTitle", "CA_BackgroundVehicleTitleDark", "CA_BackgroundFuel", "CA_Vehicle", "CA_VehicleRole", "CA_HitZones", "CA_VehicleTogglesBackground", "CA_VehicleToggles", "CA_ValueFuel", "DriverOpticsGroup" };
         onLoad = "['onLoad', _this, 'RscUnitInfo', 'IGUI'] call (uinamespace getvariable 'BIS_fnc_initDisplay'); [missionNamespace getVariable 'uksf_air_reaper_fnc_updatePilotDisplay', 0, [_this#0]] call CBA_fnc_addPerFrameHandler";
         onUnload = "['onUnload', _this, 'RscUnitInfo', 'IGUI'] call (uinamespace getvariable 'BIS_fnc_initDisplay')";
         class DriverOpticsGroup : DriverOpticsGroup {
