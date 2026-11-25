@@ -26,7 +26,6 @@ if (isNull _plane || {!local _plane}) exitWith {};
 
 private _index = 1 + (PILOT_UIDS find getPlayerUID driver _plane);
 private _path = format [_texture, _index];
-if (_plane getVariable [QGVAR(nameplate), ""] == _path) exitWith {};
+if ((getObjectTextures _plane) param [_selection, ""] == _path) exitWith {};
 
-_plane setVariable [QGVAR(nameplate), _path];
 _plane setObjectTextureGlobal [_selection, _path];
