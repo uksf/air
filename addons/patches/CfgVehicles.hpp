@@ -78,6 +78,7 @@ class CfgVehicles {
         epeImpulseDamageCoef = 4;
         crewCrashProtection = 1;
         class Turrets;
+        class HitPoints;
     };
     class UAV : Plane {};
     class Plane_Base_F : Plane {
@@ -85,7 +86,7 @@ class CfgVehicles {
         class Components;
         class AnimationSources;
         class UserActions;
-        class HitPoints {
+        class HitPoints : HitPoints {
             class HitHull;
         };
     };
